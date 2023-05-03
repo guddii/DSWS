@@ -1,0 +1,29 @@
+{
+  "name": "government",
+  "version": "0.0.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev -p 4000",
+    "lint": "next lint",
+    "start": "next start -p 4000"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@inrupt/solid-client": "1.27.0",
+    "@inrupt/solid-ui-react": "2.8.2",
+    "@inrupt/vocab-common-rdf": "1.0.5",
+    "antd": "5.4.3",
+    "next": "13.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "ui": "workspace:*"
+  },
+  "devDependencies": {
+    "eslint": "8.39.0",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "5.0.4"
+  }
+}

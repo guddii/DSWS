@@ -1,0 +1,28 @@
+stages:
+  - triggers
+
+deployment-review:
+  stage: triggers
+  trigger:
+    include: .gitlab/ci/terraform/review.gitlab-ci.yml
+    strategy: depend
+  only:
+    - branches
+  except:
+    - main
+
+deployment-production:
+  stage: triggers
+  trigger:
+    include: .gitlab/ci/terraform/production.gitlab-ci.yml
+    strategy: depend
+  only:
+    - main
+
+release-docker:
+  stage: triggers
+  trigger:
+    include: .gitlab/ci/docker.gitlab-ci.yml
+    strategy: depend
+  only:
+    - main

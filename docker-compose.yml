@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  citizen:
+    container_name: citizen
+    build:
+      context: .
+      dockerfile: ./apps/citizen/Dockerfile
+    image: guddii/solid-showcase-citizen:latest
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - showcase
+  government:
+    container_name: government
+    build:
+      context: .
+      dockerfile: ./apps/government/Dockerfile
+    image: guddii/solid-showcase-government:latest
+    restart: always
+    ports:
+      - "4000:3000"
+    networks:
+      - showcase
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  showcase:
+    external: false
