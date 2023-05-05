@@ -41,7 +41,7 @@ apply:
   script:
     - gitlab-terraform apply
     - echo "INSTANCE_CITIZEN_URL=$(gitlab-terraform output -raw instance_citizen_url)" >> build.env
-    - echo "INSTANCE_GOVERNMENT_URL=$(gitlab-terraform output -raw instance_citizen_url)" >> build.env
+    - echo "INSTANCE_GOVERNMENT_URL=$(gitlab-terraform output -raw instance_government_url)" >> build.env
   artifacts:
     name: apply
     paths:
