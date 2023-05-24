@@ -1,4 +1,4 @@
-import { LogoutButton, useSession } from "@inrupt/solid-ui-react";
+import { LogoutButton, useSession, logger } from "solid";
 import { Button, Space } from "antd";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 
@@ -17,11 +17,11 @@ export function SolidLogout() {
   return (
     <>
       <Space wrap>
-        <Button onClick={onClickHandler} icon={<UserOutlined />}>
+        <Button onClick={onClickHandler} icon={<UserOutlined rev={"webId"} />}>
           {session.info.webId}
         </Button>
-        <LogoutButton onLogout={reload}>
-          <Button icon={<LogoutOutlined />}>Logout</Button>
+        <LogoutButton onLogout={reload} onError={(error) => logger({ error })}>
+          <Button icon={<LogoutOutlined rev={"solidLogout"} />}>Logout</Button>
         </LogoutButton>
       </Space>
     </>

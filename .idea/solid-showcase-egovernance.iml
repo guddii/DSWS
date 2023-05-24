@@ -6,6 +6,12 @@
       <sourceFolder url="file://$MODULE_DIR$/apps/citizen/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/apps/government/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/sdk/ui/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/sdk/solid/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/citizen/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/government/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/sdk/solid/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/sdk/solid/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/sdk/ui/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/sdk/ui/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
