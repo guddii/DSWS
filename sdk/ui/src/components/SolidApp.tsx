@@ -1,13 +1,17 @@
 import React from "react";
 import { Col, Layout, Row } from "antd";
-import { SessionProvider } from "@inrupt/solid-ui-react";
+import { SessionProvider, logger } from "solid";
 import { SolidSession } from "./SolidSession";
 
 const { Header, Content, Footer } = Layout;
 
 export const SolidApp: React.FC<any> = ({ children }) => {
   return (
-    <SessionProvider>
+    <SessionProvider
+      sessionId="session-provider-example"
+      onError={(error) => logger({ error })}
+      restorePreviousSession={false}
+    >
       <Layout style={{ minHeight: "100vh" }}>
         <Layout className="site-layout">
           <Header style={{ background: "transparent", padding: "0 16px" }}>

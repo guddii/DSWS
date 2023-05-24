@@ -17,15 +17,14 @@
   "sideEffects": false,
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@inrupt/solid-client": "1.27.0",
-    "@inrupt/solid-ui-react": "2.8.2",
-    "@inrupt/vocab-common-rdf": "1.0.5",
+    "solid": "workspace:*",
     "antd": "5.4.3",
     "encoding": "0.1.13",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "@ant-design/icons": "5.1.2"
   },
   "devDependencies": {
-    "@ant-design/icons": "5.0.1",
+    "@ant-design/icons": "5.1.2",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.0",
     "eslint": "8.39.0",

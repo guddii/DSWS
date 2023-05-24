@@ -1,4 +1,4 @@
-import { useSession } from "@inrupt/solid-ui-react";
+import { useSession } from "solid";
 import { SolidLogin } from "./SolidLogin";
 import { SolidLogout } from "./SolidLogout";
 
