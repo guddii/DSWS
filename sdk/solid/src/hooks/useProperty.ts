@@ -2,12 +2,12 @@ import { Thing } from "./useThing";
 import { IriString } from "@inrupt/solid-client";
 import { logger } from "../services/logger";
 
-interface IUsePropertyOptions {
+interface IGetPropertyOptions {
   thing?: Thing;
   predicate?: URL;
 }
 
-const getPredicateValue = (options: Required<IUsePropertyOptions>) => {
+const getPredicateValue = (options: Required<IGetPropertyOptions>) => {
   const predicate = options.predicate.toString();
   let predicateValue: Record<IriString, any> = {};
   if (options.thing.predicates.hasOwnProperty(predicate)) {
@@ -40,7 +40,13 @@ const getNamedNode = (predicateValue: any) => {
   return predicateValue.namedNodes ?? [];
 };
 
-export const useProperty = (options: IUsePropertyOptions) => {
+export const getProperty = (
+  options: IGetPropertyOptions
+): {
+  properties: Array<string>;
+  firstProperty: string;
+  error: boolean;
+} => {
   const parsedPropertyObject = {
     properties: [],
     firstProperty: "",
@@ -68,4 +74,26 @@ export const useProperty = (options: IUsePropertyOptions) => {
     : "";
 
   return parsedPropertyObject;
+};
+
+interface IGetPropertiesOptions {
+  thing?: Thing;
+}
+
+export const getProperties = (
+  options: IGetPropertiesOptions
+): Array<{
+  properties: Array<string>;
+  firstProperty: string;
+  error: boolean;
+  predicate: string;
+}> => {
+  if (!options.thing) {
+    return [];
+  }
+
+  return Object.keys(options.thing.predicates).map((predicate) => ({
+    ...getProperty({ thing: options.thing, predicate: new URL(predicate) }),
+    predicate,
+  }));
 };

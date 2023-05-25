@@ -1,11 +1,41 @@
 import Head from "next/head";
 import { Button, Input, Typography, Form, message } from "antd";
-import { FOAF, useProperty, useResource, Thing } from "solid";
+import { useResource, Thing, getProperties } from "solid";
 import { SessionContent, StorageControls, turtleFileGenerator } from "ui";
 
 import React from "react";
 
 const { Title } = Typography;
+
+interface IFormItemProperties {
+  property: {
+    properties: Array<string>;
+    firstProperty: string;
+    error: boolean;
+    predicate: string;
+  };
+}
+
+const FormItem = ({ property }: IFormItemProperties) => {
+  if (property.error) {
+    return null;
+  }
+
+  const propertyName: string | undefined = property.predicate.split("/").pop();
+
+  return (
+    <Form.Item
+      label={propertyName}
+      name={propertyName}
+      rules={[
+        { required: true, message: `Please input your ${propertyName}!` },
+      ]}
+      extra={property.predicate}
+    >
+      <Input />
+    </Form.Item>
+  );
+};
 
 interface IFormStammdatenProperties {
   thing?: Thing;
@@ -15,20 +45,21 @@ interface IFormStammdatenProperties {
 const FormStammdaten = ({ thing, thingUrl }: IFormStammdatenProperties) => {
   const { putResource } = useResource();
 
-  const predicateFirstName = new URL(FOAF.firstName.iri.value);
-  const { firstProperty: firstName, error: errorFirstName } = useProperty({
-    thing,
-    predicate: predicateFirstName,
-  });
-  const predicateLastName = new URL(FOAF.lastName.iri.value);
-  const { firstProperty: lastName, error: errorLastName } = useProperty({
-    thing,
-    predicate: predicateLastName,
-  });
+  const properties = getProperties({ thing });
 
-  if (errorFirstName || errorLastName || !thingUrl) {
+  if (!thingUrl) {
     return null;
   }
+
+  const propertyValues: Record<string, string> = {};
+  properties.forEach((property) => {
+    const propertyName: string | undefined = property.predicate
+      .split("/")
+      .pop();
+    if (propertyName && !property.error) {
+      propertyValues[propertyName] = property.firstProperty;
+    }
+  });
 
   const onFinish = (values: any) => {
     putResource({
@@ -47,24 +78,13 @@ const FormStammdaten = ({ thing, thingUrl }: IFormStammdatenProperties) => {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
-      initialValues={{ firstName, lastName }}
+      initialValues={propertyValues}
       onFinish={onFinish}
       autoComplete="off"
     >
-      <Form.Item
-        label="Fist Name"
-        name="firstName"
-        rules={[{ required: true, message: "Please input your first name!" }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        label="Last Name"
-        name="lastName"
-        rules={[{ required: true, message: "Please input your last name!" }]}
-      >
-        <Input />
-      </Form.Item>
+      {properties.map((property) => (
+        <FormItem key={property.predicate} property={property} />
+      ))}
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
