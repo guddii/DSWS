@@ -10,7 +10,7 @@ WORKDIR /app
 RUN npm install -g pnpm
 RUN npm install turbo --global
 COPY . .
-RUN turbo prune --scope=government --docker
+RUN turbo prune --scope=tax-office --docker
 
 
 # Add lockfile and package.json's of isolated subworkspace
@@ -27,7 +27,7 @@ COPY --from=builder /app/out/full/ .
 RUN pnpm install --no-frozen-lockfile
 
 # Build the project
-RUN pnpm turbo run build --filter=government...
+RUN pnpm turbo run build --filter=tax-office...
 
 
 FROM node:alpine AS runner
@@ -38,13 +38,13 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
-COPY --from=installer /app/apps/government/next.config.js .
-COPY --from=installer /app/apps/government/package.json .
+COPY --from=installer /app/apps/tax-office/next.config.js .
+COPY --from=installer /app/apps/tax-office/package.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/apps/government/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/government/.next/static ./apps/government/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/government/public ./apps/government/public
+COPY --from=installer --chown=nextjs:nodejs /app/apps/tax-office/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/apps/tax-office/.next/static ./apps/tax-office/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/tax-office/public ./apps/tax-office/public
 
-CMD node apps/government/server.js
+CMD node apps/tax-office/server.js

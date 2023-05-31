@@ -1,4 +1,8 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 importers:
 
@@ -63,7 +67,7 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
 
-  apps/government:
+  apps/tax-office:
     dependencies:
       '@inrupt/solid-client':
         specifier: 1.27.0

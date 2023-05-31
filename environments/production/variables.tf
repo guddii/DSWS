@@ -9,6 +9,6 @@ variable "instance_citizen" {
 }
 
 
-variable "instance_government" {
-  default = "solid-showcase-government"
+variable "instance_tax-office" {
+  default = "solid-showcase-tax-office"
 }

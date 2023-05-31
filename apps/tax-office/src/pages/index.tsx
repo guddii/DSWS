@@ -7,9 +7,9 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Government App</title>
+        <title>Tax Office App</title>
       </Head>
-      <Title>Government App</Title>
+      <Title>Tax Office App</Title>
     </>
   );
 }
