@@ -1,4 +1,4 @@
-import { Thing, useProperty, useSession, useThing, WS } from "solid";
+import { Thing, useSession, useThing, WS, useProperty } from "solid";
 import React, { ReactNode } from "react";
 import { Empty } from "antd";
 import { Loading, LoadingFailed } from "./Loading";
@@ -9,8 +9,10 @@ interface IStorageLoaderProperties {
   children: ReactNode;
 }
 const StorageLoader = ({ thing, children }: IStorageLoaderProperties) => {
+  const { getProperty } = useProperty();
+
   const predicate = new URL(WS.storage);
-  const { firstProperty } = useProperty({ thing, predicate });
+  const { firstProperty } = getProperty({ thing, predicate });
 
   const childrenWithProps = assignPropsToChildren(children, {
     storage: firstProperty,

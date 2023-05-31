@@ -1,9 +1,18 @@
-export const turtleFileGenerator = ({
-  firstName = "",
-  lastName = "",
-}) => `@prefix : <#>.
-@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+interface ITurtleFileGeneratorOptions {
+  subject: string;
+  values: Record<string, string>;
+}
 
-:me
-    foaf:firstName "${firstName}";
-    foaf:lastName "${lastName}".`;
+export const turtleFileGenerator = (
+  options: ITurtleFileGeneratorOptions | void
+): string => {
+  if (!options) {
+    return "";
+  }
+
+  const { subject, values } = options;
+
+  return Object.entries(values)
+    .map(([predicate, value]) => `<${subject}> <${predicate}> "${value}".`)
+    .join("\n");
+};

@@ -50,7 +50,7 @@ const ControlButtons = ({
     const url: URL = new URL(`${storage}stammdaten`);
     createResource({
       url,
-      body: turtleFileGenerator({}),
+      body: turtleFileGenerator(),
     }).then((responseOrVoid) =>
       responseOrVoid
         ? message.success("Successfully created 'Stammdaten'-Resource")
