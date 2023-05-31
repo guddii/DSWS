@@ -1,1 +1,13 @@
 = Solid Showcase E-Governance
+
+This repository contains two applications that are deployed on vercel. The individual instances can be found in the environments section: https://gitlab.imn.htwk-leipzig.de/solid/solid-showcase-egovernance/-/environments
+
+The production environment URLs are
+
+- https://solid-showcase-citizen.vercel.app/
+- https://solid-showcase-tax-office.vercel.app/
+
+These instances correspond to the following Docker images:
+
+- https://hub.docker.com/r/guddii/solid-showcase-citizen
+- https://hub.docker.com/r/guddii/solid-showcase-tax-office

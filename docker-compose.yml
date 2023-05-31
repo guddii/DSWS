@@ -12,12 +12,12 @@ services:
       - "3000:3000"
     networks:
       - showcase
-  government:
-    container_name: government
+  tax-office:
+    container_name: tax-office
     build:
       context: .
-      dockerfile: ./apps/government/Dockerfile
-    image: guddii/solid-showcase-government:latest
+      dockerfile: ./apps/tax-office/Dockerfile
+    image: guddii/solid-showcase-tax-office:latest
     restart: always
     ports:
       - "4000:3000"
