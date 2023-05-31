@@ -7,6 +7,10 @@ interface IGetPropertyOptions {
   predicate?: URL;
 }
 
+interface IGetPropertiesOptions {
+  thing?: Thing;
+}
+
 const getPredicateValue = (options: Required<IGetPropertyOptions>) => {
   const predicate = options.predicate.toString();
   let predicateValue: Record<IriString, any> = {};
@@ -40,60 +44,63 @@ const getNamedNode = (predicateValue: any) => {
   return predicateValue.namedNodes ?? [];
 };
 
-export const getProperty = (
-  options: IGetPropertyOptions
-): {
-  properties: Array<string>;
-  firstProperty: string;
-  error: boolean;
-} => {
-  const parsedPropertyObject = {
-    properties: [],
-    firstProperty: "",
-    error: false,
+export const useProperty = () => {
+  const getProperty = (
+    options: IGetPropertyOptions
+  ): {
+    properties: Array<string>;
+    firstProperty: string;
+    error: boolean;
+  } => {
+    const parsedPropertyObject = {
+      properties: [],
+      firstProperty: "",
+      error: false,
+    };
+
+    if (!options.thing || !options.predicate) {
+      parsedPropertyObject.error = true;
+      return parsedPropertyObject;
+    }
+
+    const predicateValue: Record<IriString, any> = getPredicateValue({
+      thing: options.thing,
+      predicate: options.predicate,
+    });
+
+    parsedPropertyObject.properties = getLiteralsValue(predicateValue);
+
+    if (!parsedPropertyObject.properties.length) {
+      parsedPropertyObject.properties = getNamedNode(predicateValue);
+    }
+
+    parsedPropertyObject.firstProperty = parsedPropertyObject.properties.length
+      ? parsedPropertyObject.properties[0]
+      : "";
+
+    return parsedPropertyObject;
   };
 
-  if (!options.thing || !options.predicate) {
-    parsedPropertyObject.error = true;
-    return parsedPropertyObject;
-  }
+  const getProperties = (
+    options: IGetPropertiesOptions
+  ): Array<{
+    properties: Array<string>;
+    firstProperty: string;
+    error: boolean;
+    predicate: string;
+  }> => {
+    if (!options.thing) {
+      return [];
+    }
 
-  const predicateValue: Record<IriString, any> = getPredicateValue({
-    thing: options.thing,
-    predicate: options.predicate,
-  });
+    return Object.keys(options.thing.predicates).map((predicate) => ({
+      ...getProperty({ thing: options.thing, predicate: new URL(predicate) }),
+      predicate,
+    }));
+  };
 
-  parsedPropertyObject.properties = getLiteralsValue(predicateValue);
-
-  if (!parsedPropertyObject.properties.length) {
-    parsedPropertyObject.properties = getNamedNode(predicateValue);
-  }
-
-  parsedPropertyObject.firstProperty = parsedPropertyObject.properties.length
-    ? parsedPropertyObject.properties[0]
-    : "";
-
-  return parsedPropertyObject;
-};
-
-interface IGetPropertiesOptions {
-  thing?: Thing;
-}
-
-export const getProperties = (
-  options: IGetPropertiesOptions
-): Array<{
-  properties: Array<string>;
-  firstProperty: string;
-  error: boolean;
-  predicate: string;
-}> => {
-  if (!options.thing) {
-    return [];
-  }
-
-  return Object.keys(options.thing.predicates).map((predicate) => ({
-    ...getProperty({ thing: options.thing, predicate: new URL(predicate) }),
-    predicate,
-  }));
+  return {
+    getProperty,
+    getProperties,
+  };
 };

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Button, Input, Typography, Form, message } from "antd";
-import { useResource, Thing, getProperties } from "solid";
+import { useResource, Thing, useProperty } from "solid";
 import { SessionContent, StorageControls, turtleFileGenerator } from "ui";
 
 import React from "react";
@@ -26,7 +26,7 @@ const FormItem = ({ property }: IFormItemProperties) => {
   return (
     <Form.Item
       label={propertyName}
-      name={propertyName}
+      name={property.predicate}
       rules={[
         { required: true, message: `Please input your ${propertyName}!` },
       ]}
@@ -44,6 +44,7 @@ interface IFormStammdatenProperties {
 
 const FormStammdaten = ({ thing, thingUrl }: IFormStammdatenProperties) => {
   const { putResource } = useResource();
+  const { getProperties } = useProperty();
 
   const properties = getProperties({ thing });
 
@@ -53,18 +54,15 @@ const FormStammdaten = ({ thing, thingUrl }: IFormStammdatenProperties) => {
 
   const propertyValues: Record<string, string> = {};
   properties.forEach((property) => {
-    const propertyName: string | undefined = property.predicate
-      .split("/")
-      .pop();
-    if (propertyName && !property.error) {
-      propertyValues[propertyName] = property.firstProperty;
+    if (property.predicate && !property.error) {
+      propertyValues[property.predicate] = property.firstProperty;
     }
   });
 
   const onFinish = (values: any) => {
     putResource({
       url: thingUrl,
-      body: turtleFileGenerator(values),
+      body: turtleFileGenerator({ subject: "#me", values }),
     }).then((responseOrVoid) =>
       responseOrVoid
         ? message.success("Successfully updated 'Stammdaten'")
