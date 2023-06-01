@@ -7,8 +7,8 @@ RUN apk add --no-cache libc6-compat
 RUN apk update
 # Set working directory
 WORKDIR /app
-RUN npm install -g pnpm@8.6.0
-RUN npm install -g turbo@1.9.9
+RUN corepack enable
+RUN npm install -g turbo@1.10.1
 COPY . .
 RUN turbo prune --scope=tax-office --docker
 
@@ -18,8 +18,8 @@ FROM node:alpine AS installer
 RUN apk add --no-cache libc6-compat
 RUN apk update
 WORKDIR /app
-RUN npm install -g pnpm@8.6.0
-RUN npm install -g turbo@1.9.9
+RUN corepack enable
+RUN npm install -g turbo@1.10.1
 
 # First install the dependencies (as they change less often)
 COPY .gitignore .gitignore
