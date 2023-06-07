@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { useContainer, useResource } from "solid";
+import { useContainer, useResource, FOAF } from "solid";
 import { Button, Divider, message, Space } from "antd";
 import { turtleFileGenerator } from "../helper/turtleFileGenerator";
 import { assignPropsToChildren } from "../helper/assignPropsToChildren";
@@ -27,9 +27,16 @@ const ControlButtons = ({
 
   const createResourceHandler = () => {
     const url: URL = new URL(`${storage}stammdaten`);
+    const defaultData = {
+      subject: "#me",
+      values: {
+        [FOAF.firstName.iri.value]: "",
+        [FOAF.lastName.iri.value]: "",
+      },
+    };
     createResource({
       url,
-      body: turtleFileGenerator(),
+      body: turtleFileGenerator(defaultData),
     }).then((responseOrVoid) =>
       responseOrVoid
         ? message.success("Successfully created 'Stammdaten'-Resource")
