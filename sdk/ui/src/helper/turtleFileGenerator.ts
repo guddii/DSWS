@@ -1,8 +1,15 @@
+import { UrlString } from "solid";
+
 interface ITurtleFileGeneratorOptions {
-  subject: string;
-  values: Record<string, string>;
+  subject: UrlString | URL;
+  values: Record<UrlString, string>;
 }
 
+/**
+ * Generates a turtle file content string containing triples of the given subject and all predicate/value pairs.
+ * @param options object containing the subject and values array of predicate/value pairs
+ * @returns generated turtle file content
+ */
 export const turtleFileGenerator = (
   options: ITurtleFileGeneratorOptions | void
 ): string => {

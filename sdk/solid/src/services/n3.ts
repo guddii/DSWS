@@ -1,4 +1,5 @@
 import { Parser, Prefixes, Quad, Store } from "n3";
+import { removeUrlHash } from "../helper/urlHelper";
 
 interface IParseToN3Options {
   url: URL;
@@ -13,8 +14,7 @@ export interface ParsedN3 {
 export const parseToN3 = async (
   options: IParseToN3Options
 ): Promise<ParsedN3> => {
-  const baseIri = new URL(options.url);
-  baseIri.hash = "";
+  const baseIri: URL = removeUrlHash(options.url);
 
   const n3Store = new Store();
   const n3parser = new Parser({
