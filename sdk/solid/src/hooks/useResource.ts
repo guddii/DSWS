@@ -1,6 +1,7 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import { LDP } from "@inrupt/lit-generated-vocab-common";
 import { logger } from "../services/logger";
+import { checkResponse } from "../helper/checkResponse";
 
 interface IResourceOptions {
   url: URL;
@@ -24,9 +25,11 @@ export const useResource = () => {
       headers["Accept"] = "text/turtle,application/ld+json";
     }
 
-    return await fetch(options.url, { headers }).catch((error) =>
-      logger({ caller: "getResource", ...options.loggerOptions, error })
-    );
+    return await fetch(options.url, { headers })
+      .then(checkResponse)
+      .catch((error) =>
+        logger({ caller: "getResource", ...options.loggerOptions, error })
+      );
   };
 
   const postResource = async (
@@ -41,9 +44,11 @@ export const useResource = () => {
       method: "POST",
       headers,
       body: options.body,
-    }).catch((error) =>
-      logger({ caller: "postResource", ...options.loggerOptions, error })
-    );
+    })
+      .then(checkResponse)
+      .catch((error) =>
+        logger({ caller: "postResource", ...options.loggerOptions, error })
+      );
   };
 
   const createResource = (
@@ -79,9 +84,11 @@ export const useResource = () => {
       method: "PUT",
       headers,
       body: options.body,
-    }).catch((error) =>
-      logger({ caller: "putResource", ...options.loggerOptions, error })
-    );
+    })
+      .then(checkResponse)
+      .catch((error) =>
+        logger({ caller: "putResource", ...options.loggerOptions, error })
+      );
   };
 
   const deleteResource = async (
@@ -90,9 +97,11 @@ export const useResource = () => {
     return await fetch(options.url, {
       method: "DELETE",
       headers: options.headers,
-    }).catch((error) =>
-      logger({ caller: "deleteResource", ...options.loggerOptions, error })
-    );
+    })
+      .then(checkResponse)
+      .catch((error) =>
+        logger({ caller: "deleteResource", ...options.loggerOptions, error })
+      );
   };
 
   return {

@@ -3,6 +3,7 @@ import React, { ReactNode } from "react";
 import { Empty } from "antd";
 import { Loading, LoadingFailed } from "./Loading";
 import { assignPropsToChildren } from "../helper/assignPropsToChildren";
+import { removeUrlHash } from "solid";
 
 interface IStorageLoaderProperties {
   thing: Thing;
@@ -12,10 +13,10 @@ const StorageLoader = ({ thing, children }: IStorageLoaderProperties) => {
   const { getProperty } = useProperty();
 
   const predicate = new URL(WS.storage);
-  const { firstProperty } = getProperty({ thing, predicate });
+  const { data } = getProperty({ thing, predicate });
 
   const childrenWithProps = assignPropsToChildren(children, {
-    storage: firstProperty,
+    storage: data.firstProperty,
   });
   return <>{childrenWithProps}</>;
 };
@@ -25,9 +26,8 @@ interface IWebIdLoaderProperties {
   children: ReactNode;
 }
 const WebIdLoader = ({ webId, children }: IWebIdLoaderProperties) => {
-  const thingUrl = new URL(webId);
-  const datasetUrl: URL = new URL(webId);
-  datasetUrl.hash = "";
+  const thingUrl: URL = new URL(webId);
+  const datasetUrl: URL = removeUrlHash(webId);
 
   const { thing, error } = useThing({ datasetUrl, thingUrl });
   if (error) return <LoadingFailed />;

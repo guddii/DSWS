@@ -3,12 +3,22 @@ import { IriString } from "@inrupt/solid-client";
 import { logger } from "../services/logger";
 
 interface IGetPropertyOptions {
-  thing?: Thing;
-  predicate?: URL;
+  thing: Thing;
+  predicate: URL;
 }
 
 interface IGetPropertiesOptions {
-  thing?: Thing;
+  thing: Thing;
+}
+
+export interface IParsedProperty {
+  predicate: URL;
+  properties: Array<string>;
+  firstProperty: string;
+}
+
+export interface IParsedPropertyResponse {
+  data: IParsedProperty;
 }
 
 const getPredicateValue = (options: Required<IGetPropertyOptions>) => {
@@ -47,21 +57,12 @@ const getNamedNode = (predicateValue: any) => {
 export const useProperty = () => {
   const getProperty = (
     options: IGetPropertyOptions
-  ): {
-    properties: Array<string>;
-    firstProperty: string;
-    error: boolean;
-  } => {
-    const parsedPropertyObject = {
+  ): IParsedPropertyResponse => {
+    const parsedPropertyObject: IParsedProperty = {
+      predicate: options.predicate,
       properties: [],
       firstProperty: "",
-      error: false,
     };
-
-    if (!options.thing || !options.predicate) {
-      parsedPropertyObject.error = true;
-      return parsedPropertyObject;
-    }
 
     const predicateValue: Record<IriString, any> = getPredicateValue({
       thing: options.thing,
@@ -78,25 +79,21 @@ export const useProperty = () => {
       ? parsedPropertyObject.properties[0]
       : "";
 
-    return parsedPropertyObject;
+    return {
+      data: parsedPropertyObject,
+    };
   };
 
   const getProperties = (
     options: IGetPropertiesOptions
-  ): Array<{
-    properties: Array<string>;
-    firstProperty: string;
-    error: boolean;
-    predicate: string;
-  }> => {
+  ): Array<IParsedPropertyResponse> => {
     if (!options.thing) {
       return [];
     }
 
-    return Object.keys(options.thing.predicates).map((predicate) => ({
-      ...getProperty({ thing: options.thing, predicate: new URL(predicate) }),
-      predicate,
-    }));
+    return Object.keys(options.thing.predicates).map((predicate) =>
+      getProperty({ thing: options.thing, predicate: new URL(predicate) })
+    );
   };
 
   return {

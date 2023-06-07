@@ -1,29 +1,8 @@
-import React, { ReactNode, useState } from "react";
-import { useContainer, useResource, useThing } from "solid";
-import { assignPropsToChildren } from "../helper/assignPropsToChildren";
+import { ReactNode, useState } from "react";
+import { useContainer, useResource } from "solid";
 import { Button, Divider, message, Space } from "antd";
-import { Loading, LoadingFailed } from "./Loading";
 import { turtleFileGenerator } from "../helper/turtleFileGenerator";
-
-interface IResourceLoaderProperties {
-  dataset: string;
-  children: ReactNode;
-}
-
-const ResourceLoader = ({ dataset, children }: IResourceLoaderProperties) => {
-  const datasetUrl: URL = new URL(dataset);
-  const thingUrl: URL = new URL(`${datasetUrl.toString()}#me`);
-
-  const { thing, error } = useThing({ datasetUrl, thingUrl });
-  if (error) return <LoadingFailed />;
-  if (!thing) return <Loading />;
-
-  const childrenWithProps = assignPropsToChildren(children, {
-    thing,
-    thingUrl,
-  });
-  return <>{childrenWithProps}</>;
-};
+import { assignPropsToChildren } from "../helper/assignPropsToChildren";
 
 interface IControlButtonsProperties {
   storage: string;
@@ -90,16 +69,16 @@ export const StorageControls = ({
     return null;
   }
 
+  const childrenWithProps = assignPropsToChildren(children, {
+    source: resource,
+  });
+
   return (
     <>
       <Divider plain>Stammdaten</Divider>
       <ControlButtons storage={storage} setResource={setResource} />
       <Divider plain />
-      <Space>
-        {resource && (
-          <ResourceLoader dataset={resource}>{children}</ResourceLoader>
-        )}
-      </Space>
+      {resource && childrenWithProps}
     </>
   );
 };
