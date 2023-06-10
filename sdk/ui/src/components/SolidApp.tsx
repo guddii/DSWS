@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Layout, Row } from "antd";
-import { SessionProvider, logger } from "solid";
-import { SolidSession } from "./SolidSession";
+import { SessionProvider } from "solid";
+import { ControlsSession } from "./controls/ControlsSession";
 
 const { Header, Content, Footer } = Layout;
 
@@ -9,7 +9,7 @@ export const SolidApp: React.FC<any> = ({ children }) => {
   return (
     <SessionProvider
       sessionId="session-provider-example"
-      onError={(error) => logger({ error })}
+      onError={console.error}
       restorePreviousSession={false}
     >
       <Layout style={{ minHeight: "100vh" }}>
@@ -22,7 +22,7 @@ export const SolidApp: React.FC<any> = ({ children }) => {
                 </div>
               </Col>
               <Col span={18} style={{ textAlign: "right" }}>
-                <SolidSession />
+                <ControlsSession />
               </Col>
             </Row>
           </Header>

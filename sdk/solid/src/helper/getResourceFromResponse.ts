@@ -1,3 +1,5 @@
+import { replacePathnameInUrl } from "./urlHelper";
+
 /**
  * Gets the URL to a created resource from a HTTP response object.
  * @param response HTTP response
@@ -14,5 +16,5 @@ export const getResourceFromResponse = (response: Response): URL | null => {
 
   const resourceName = locationHeader.split("/").pop();
 
-  return new URL(`${baseUrl}${resourceName}`);
+  return replacePathnameInUrl(baseUrl, resourceName);
 };

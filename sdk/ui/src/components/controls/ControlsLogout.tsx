@@ -1,8 +1,8 @@
-import { LogoutButton, useSession, logger } from "solid";
+import { LogoutButton, useSession } from "solid";
 import { Button, Space } from "antd";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 
-export function SolidLogout() {
+export function ControlsLogout() {
   const { session } = useSession();
 
   function reload() {
@@ -20,7 +20,7 @@ export function SolidLogout() {
         <Button onClick={onClickHandler} icon={<UserOutlined rev={"webId"} />}>
           {session.info.webId}
         </Button>
-        <LogoutButton onLogout={reload} onError={(error) => logger({ error })}>
+        <LogoutButton onLogout={reload} onError={console.error}>
           <Button icon={<LogoutOutlined rev={"solidLogout"} />}>Logout</Button>
         </LogoutButton>
       </Space>

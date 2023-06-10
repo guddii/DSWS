@@ -65,15 +65,6 @@ importers:
 
   apps/tax-office:
     dependencies:
-      '@inrupt/solid-client':
-        specifier: 1.27.0
-        version: 1.27.0
-      '@inrupt/solid-ui-react':
-        specifier: 2.8.2
-        version: 2.8.2(react@18.2.0)
-      '@inrupt/vocab-common-rdf':
-        specifier: 1.0.5
-        version: 1.0.5
       antd:
         specifier: 5.4.3
         version: 5.4.3(react-dom@18.2.0)(react@18.2.0)
@@ -93,6 +84,15 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/ui
     devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
       eslint:
         specifier: 8.39.0
         version: 8.39.0
@@ -189,6 +189,9 @@ importers:
       solid:
         specifier: workspace:*
         version: link:../solid
+      swr:
+        specifier: 2.1.5
+        version: 2.1.5(react@18.2.0)
     devDependencies:
       '@types/react':
         specifier: 18.2.0
@@ -661,24 +664,6 @@ packages:
       - encoding
     dev: false
 
-  /@inrupt/solid-client@1.27.0:
-    resolution: {integrity: sha512-OUgsWb5+1a50LKPQBuovHvrqpKwyd/uP5GJ/Lpr7DcD3jzyVAtOvoiVr0IfDPxeiWwI4BR4kTgVlLIRm5UZu9A==}
-    engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0}
-    dependencies:
-      '@inrupt/universal-fetch': 1.0.1
-      '@rdfjs/dataset': 1.1.1
-      '@types/rdfjs__dataset': 1.0.5
-      http-link-header: 1.1.1
-      jsonld-context-parser: 2.3.0
-      jsonld-streaming-parser: 3.2.0
-      n3: 1.16.4
-      uuid: 9.0.0
-    optionalDependencies:
-      fsevents: 2.3.2
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /@inrupt/solid-client@1.28.1:
     resolution: {integrity: sha512-Nq1/ttMSU+kvxucfjIdP8CAYzHSJGBv2ECQ9bIDmyxJQqBfBA0vMX3e9osgp1J0YHWHulbzBqCl/miROi6dOYA==}
     engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
@@ -722,10 +707,6 @@ packages:
       undici: 5.22.1
     transitivePeerDependencies:
       - encoding
-    dev: false
-
-  /@inrupt/vocab-common-rdf@1.0.5:
-    resolution: {integrity: sha512-onrehQte8m0XW83WwM6T4o5WgmYGzdYUCef6FDjMKfQCF64FnARFNn5fYhKodimBaAOFKhuJ3vw1NBZV/EYqJw==}
     dev: false
 
   /@inrupt/vocab-solid@1.0.4:
@@ -1170,13 +1151,13 @@ packages:
   /@types/react-dom@18.0.7:
     resolution: {integrity: sha512-HaXc+BbqAZE1RdsK3tC8SbkFy6UL2xF76lT9rQs5JkPrJg3rWA3Ou/Lhw3YJQzEDkBpmJ79nBsfnd05WrBd2QQ==}
     dependencies:
-      '@types/react': 18.2.0
+      '@types/react': 18.2.9
     dev: true
 
   /@types/react-dom@18.2.0:
     resolution: {integrity: sha512-8yQrvS6sMpSwIovhPOwfyNf2Wz6v/B62LFSVYQ85+Rq3tLsBIG7rP5geMxaijTUxSkrO6RzN/IRuIAADYQsleA==}
     dependencies:
-      '@types/react': 18.2.0
+      '@types/react': 18.2.9
     dev: true
 
   /@types/react@18.0.22:
@@ -1189,6 +1170,14 @@ packages:
 
   /@types/react@18.2.0:
     resolution: {integrity: sha512-0FLj93y5USLHdnhIhABk83rm8XEGA7kH3cr+YUlvxoUGp1xNt/DINUMvqPxLyOQMzLmZe8i4RTHbvb8MC7NmrA==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.3
+      csstype: 3.1.2
+    dev: true
+
+  /@types/react@18.2.9:
+    resolution: {integrity: sha512-pL3JAesUkF7PEQGxh5XOwdXGV907te6m1/Qe1ERJLgomojS6Ne790QiA7GUl434JEkFA2aAaB6qJ5z4e1zJn/w==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
@@ -4195,6 +4184,15 @@ packages:
       react: 18.2.0
     dev: false
 
+  /swr@2.1.5(react@18.2.0):
+    resolution: {integrity: sha512-/OhfZMcEpuz77KavXST5q6XE9nrOBOVcBLWjMT+oAE/kQHyE3PASrevXCtQDZ8aamntOfFkbVJp7Il9tNBQWrw==}
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
   /synckit@0.8.5:
     resolution: {integrity: sha512-L1dapNV6vu2s/4Sputv8xGsCdAVlb5nRDMFU/E27D44l5U6cw1g0dGd45uLc+OXjNMmF4ntiMdCimzcjFKQI8Q==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -4434,6 +4432,14 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.3.0
+
+  /use-sync-external-store@1.2.0(react@18.2.0):
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /uuid@9.0.0:
     resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}

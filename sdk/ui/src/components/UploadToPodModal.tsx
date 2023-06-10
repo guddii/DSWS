@@ -1,6 +1,6 @@
 import { Input, Form, message, Modal } from "antd";
 import { useState } from "react";
-import { logger, useResource } from "solid";
+import { createResource, useSession, createUrl } from "solid";
 
 interface IUploadToPodModalProperties {
   open: boolean;
@@ -19,35 +19,36 @@ export const UploadToPodModal = ({
   onSuccess,
   onCancel,
 }: IUploadToPodModalProperties) => {
-  const { createResource } = useResource();
+  const { session } = useSession();
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onFinish = ({ containerUrl }: IUploadToPodModalValues) => {
+  const onFinish = async ({ containerUrl }: IUploadToPodModalValues) => {
     setIsLoading(true);
 
     let url: URL;
     try {
-      url = new URL(containerUrl);
+      url = createUrl(containerUrl);
     } catch (error) {
-      logger({ caller: "onFinish", error });
+      console.error(error);
       message.error("Error while creating URL from input");
       setIsLoading(false);
       return;
     }
 
-    createResource({
-      url: url,
-      body: data,
-    }).then((responseOrVoid) => {
-      setIsLoading(false);
-      if (responseOrVoid) {
-        message.success("Successfully uploaded data");
-        onSuccess(responseOrVoid);
-      } else {
-        message.error("Error while uploading data");
-      }
-    });
+    try {
+      const response = await createResource({
+        url: url,
+        body: data,
+        session,
+      });
+      message.success(response.statusText || "Successfully uploaded data");
+      onSuccess(response);
+    } catch (error: any) {
+      console.error(error);
+      message.error(error.message || "Error while uploading data");
+    }
+    setIsLoading(false);
   };
 
   const onReset = () => {

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Typography } from "antd";
-import { SessionContent, TurtleEditor } from "ui";
+import { SessionContent, TurtleEditor, ControlsAutofill } from "ui";
 import { TaxOfficeModel } from "solid";
 
 const { Title } = Typography;
@@ -14,7 +14,9 @@ export default function Home() {
       <Title>Tax Office App</Title>
 
       <SessionContent>
-        <TurtleEditor model={TaxOfficeModel.create({ subject: "#me" })} />
+        <TurtleEditor model={TaxOfficeModel.create({ subject: "#me" })}>
+          <ControlsAutofill />
+        </TurtleEditor>
       </SessionContent>
     </>
   );

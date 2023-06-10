@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { LoginButton, logger } from "solid";
+import { LoginButton, OIDC_ISSUER } from "solid";
 import { Button, Dropdown, MenuProps, Space } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
 
@@ -10,20 +10,14 @@ interface Item {
 
 type Items = Array<Item>;
 
-export function SolidLogin() {
+export function ControlsLogin() {
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
     setCurrentUrl(globalThis.location.href);
   }, [setCurrentUrl]);
 
-  const items: Items = [
-    "https://solidcommunity.net",
-    "https://solidweb.org",
-    "https://inrupt.net",
-    "https://trinpod.us",
-    "https://solidweb.me",
-  ].map((value, index) => {
+  const items: Items = OIDC_ISSUER.map((value, index) => {
     return {
       key: String(index),
       label: String(value),
@@ -57,7 +51,7 @@ export function SolidLogin() {
         authOptions={{ clientName: "Solid app" }}
         oidcIssuer={idp}
         redirectUrl={currentUrl}
-        onError={(error) => logger({ error })}
+        onError={console.error}
       >
         <Button icon={<LoginOutlined rev={"solidLogin"} />}>Login</Button>
       </LoginButton>

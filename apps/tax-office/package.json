@@ -11,9 +11,6 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@inrupt/solid-client": "1.27.0",
-    "@inrupt/solid-ui-react": "2.8.2",
-    "@inrupt/vocab-common-rdf": "1.0.5",
     "antd": "5.4.3",
     "next": "13.3.1",
     "react": "18.2.0",
@@ -22,6 +19,9 @@
     "solid": "workspace:*"
   },
   "devDependencies": {
+    "@types/node": "17.0.12",
+    "@types/react": "18.0.22",
+    "@types/react-dom": "18.0.7",
     "eslint": "8.39.0",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",

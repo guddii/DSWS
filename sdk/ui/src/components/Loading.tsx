@@ -1,5 +1,4 @@
 import { Space } from "antd";
-import React from "react";
 import { LoadingOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 
 export const Loading = () => {
