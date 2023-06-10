@@ -17,6 +17,7 @@
   "sideEffects": false,
   "types": "./dist/index.d.ts",
   "dependencies": {
+    "swr": "2.1.5",
     "solid": "workspace:*",
     "antd": "5.4.3",
     "encoding": "0.1.13",

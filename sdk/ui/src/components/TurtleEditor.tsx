@@ -1,21 +1,25 @@
-import { Button, Input, Form, message } from "antd";
+import { Button, Input, Form, message, FormInstance } from "antd";
 import {
-  useResource,
   Thing,
-  useProperty,
+  getProperties,
   IParsedProperty,
   AbstractModel,
   UrlString,
   toUrlString,
   getResourceFromResponse,
+  putResource,
+  useSession,
 } from "solid";
-
-import { ReactNode, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { ResourceLoader } from "./ResourceLoader";
 import { turtleFileGenerator } from "../helper/turtleFileGenerator";
 import { formValuesGenerator } from "../helper/formValuesGenerator";
 import { propertiesGenerator } from "../helper/propertiesGenerator";
 import { UploadToPodModal } from "./UploadToPodModal";
+import { assignPropsToChildren } from "../helper/assignPropsToChildren";
+import { hasNoDataOrError } from "../helper/hasNoDataOrError";
+import useSWR from "swr";
+import { Loading, LoadingFailed } from "./Loading";
 
 interface IFormItemProperties {
   property: IParsedProperty;
@@ -44,6 +48,7 @@ interface ITurtleEditorFormProperties {
   initialValues: Record<string, string>;
   onFinish: (values: Record<string, string>) => void;
   disabled?: boolean;
+  form?: FormInstance;
 }
 
 const TurtleEditorForm = ({
@@ -51,10 +56,12 @@ const TurtleEditorForm = ({
   initialValues,
   onFinish,
   disabled,
+  form,
 }: ITurtleEditorFormProperties) => {
   return (
     <Form
       name="basic"
+      form={form}
       labelCol={{ span: 6 }}
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
@@ -84,33 +91,40 @@ const SourceTurtleEditor = ({
   thingUrl,
   subject,
 }: ISourceTurtleEditorProperties) => {
-  const { putResource } = useResource();
-  const { getProperties } = useProperty();
+  const { session } = useSession();
 
-  if (!thing || !thingUrl) {
-    return null;
+  const options = useMemo(() => ({ thing }), [thing]);
+  const { data, error, isLoading } = useSWR(options, getProperties);
+
+  if (isLoading) return <Loading />;
+  if (hasNoDataOrError(data, error)) {
+    console.error(error);
+    return <LoadingFailed />;
+  }
+  if (!thingUrl) {
+    console.error("thingUrl missing");
+    return <LoadingFailed />;
   }
 
-  const properties: Array<IParsedProperty> = getProperties({
-    thing,
-  }).map((response) => response.data);
+  const propertyValues = formValuesGenerator({ properties: data });
 
-  const propertyValues = formValuesGenerator({ properties });
-
-  const onFinish = (values: Record<string, string>) => {
-    putResource({
-      url: thingUrl,
-      body: turtleFileGenerator({ subject, values }),
-    }).then((responseOrVoid) =>
-      responseOrVoid
-        ? message.success("Successfully updated data")
-        : message.error("Error while updating data")
-    );
+  const onFinish = async (values: Record<string, string>) => {
+    try {
+      const response = await putResource({
+        url: thingUrl,
+        body: turtleFileGenerator({ subject, values }),
+        session,
+      });
+      message.success(response.statusText || "Successfully updated data");
+    } catch (error: any) {
+      console.error(error);
+      message.error(error.message || "Error while updating data");
+    }
   };
 
   return (
     <TurtleEditorForm initialValues={propertyValues} onFinish={onFinish}>
-      {properties.map((property) => (
+      {data.map((property) => (
         <FormItem key={toUrlString(property.predicate)} property={property} />
       ))}
     </TurtleEditorForm>
@@ -119,9 +133,14 @@ const SourceTurtleEditor = ({
 
 interface IModelTurtleEditorProperties {
   model: AbstractModel;
+  children?: ReactNode;
 }
 
-const ModelTurtleEditor = ({ model }: IModelTurtleEditorProperties) => {
+const ModelTurtleEditor = ({
+  model,
+  children,
+}: IModelTurtleEditorProperties) => {
+  const [form] = Form.useForm();
   const properties = propertiesGenerator({ model });
   const propertyValues = formValuesGenerator({ properties });
   const [open, setOpen] = useState(false);
@@ -143,12 +162,18 @@ const ModelTurtleEditor = ({ model }: IModelTurtleEditorProperties) => {
     resetState();
   };
 
+  const childrenWithProps = assignPropsToChildren(children, {
+    form,
+  });
+
   return (
     <>
+      {childrenWithProps}
       <TurtleEditorForm
         initialValues={propertyValues}
         onFinish={onFinish}
         disabled={open}
+        form={form}
       >
         {properties.map((property) => (
           <FormItem key={toUrlString(property.predicate)} property={property} />
@@ -170,12 +195,14 @@ interface ITurtleEditorProperties {
   source?: string;
   model?: AbstractModel;
   subject?: string;
+  children?: ReactNode;
 }
 
 export const TurtleEditor = ({
   source,
   model,
   subject,
+  children,
 }: ITurtleEditorProperties) => {
   if (source && subject) {
     return (
@@ -186,7 +213,7 @@ export const TurtleEditor = ({
   }
 
   if (model) {
-    return <ModelTurtleEditor model={model} />;
+    return <ModelTurtleEditor model={model}>{children}</ModelTurtleEditor>;
   }
 
   return null;

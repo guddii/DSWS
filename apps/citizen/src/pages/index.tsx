@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Typography } from "antd";
-import { SessionContent, StorageControls, TurtleEditor } from "ui";
+import { SessionContent, ControlsStorage, TurtleEditor } from "ui";
 
 import React from "react";
 
@@ -15,9 +15,9 @@ export default function Home() {
       <Title>Citizen App</Title>
 
       <SessionContent>
-        <StorageControls>
+        <ControlsStorage>
           <TurtleEditor subject="#me" />
-        </StorageControls>
+        </ControlsStorage>
       </SessionContent>
     </>
   );

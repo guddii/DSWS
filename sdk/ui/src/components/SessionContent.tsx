@@ -1,19 +1,31 @@
-import { Thing, useSession, useThing, WS, useProperty } from "solid";
-import React, { ReactNode } from "react";
+import { Thing, useSession, WS, getProperty, getThing } from "solid";
+import { ReactNode, useMemo } from "react";
 import { Empty } from "antd";
 import { Loading, LoadingFailed } from "./Loading";
 import { assignPropsToChildren } from "../helper/assignPropsToChildren";
-import { removeUrlHash } from "solid";
+import { removeHashFromUrl, createUrl } from "solid";
+import { hasNoDataOrError } from "../helper/hasNoDataOrError";
+import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 
 interface IStorageLoaderProperties {
   thing: Thing;
   children: ReactNode;
 }
-const StorageLoader = ({ thing, children }: IStorageLoaderProperties) => {
-  const { getProperty } = useProperty();
 
-  const predicate = new URL(WS.storage);
-  const { data } = getProperty({ thing, predicate });
+const StorageLoader = ({ thing, children }: IStorageLoaderProperties) => {
+  const options = useMemo(
+    () => ({ thing, predicate: createUrl(WS.storage) }),
+    [thing]
+  );
+
+  const { data, error, isLoading } = useSWR(options, getProperty);
+
+  if (isLoading) return <Loading />;
+  if (hasNoDataOrError(data, error)) {
+    console.error(error);
+    return <LoadingFailed />;
+  }
 
   const childrenWithProps = assignPropsToChildren(children, {
     storage: data.firstProperty,
@@ -22,18 +34,28 @@ const StorageLoader = ({ thing, children }: IStorageLoaderProperties) => {
 };
 
 interface IWebIdLoaderProperties {
-  webId: string;
   children: ReactNode;
 }
-const WebIdLoader = ({ webId, children }: IWebIdLoaderProperties) => {
-  const thingUrl: URL = new URL(webId);
-  const datasetUrl: URL = removeUrlHash(webId);
+const WebIdLoader = ({ children }: IWebIdLoaderProperties) => {
+  const { session } = useSession();
 
-  const { thing, error } = useThing({ datasetUrl, thingUrl });
-  if (error) return <LoadingFailed />;
-  if (!thing) return <Loading />;
+  const options = useMemo(() => {
+    const { webId } = session.info;
+    const datasetUrl = webId ? removeHashFromUrl(webId) : undefined;
+    const thingUrl = webId ? createUrl(webId) : undefined;
 
-  return <StorageLoader thing={thing}>{children}</StorageLoader>;
+    return { datasetUrl, thingUrl, session };
+  }, [session]);
+
+  const { data, error, isLoading } = useSWRImmutable(options, getThing);
+
+  if (isLoading) return <Loading />;
+  if (hasNoDataOrError(data, error)) {
+    console.error(error);
+    return <LoadingFailed />;
+  }
+
+  return <StorageLoader thing={data}>{children}</StorageLoader>;
 };
 
 interface ILoggedInContentProperties {
@@ -52,5 +74,5 @@ export const SessionContent = ({ children }: ILoggedInContentProperties) => {
     );
   }
 
-  return <WebIdLoader webId={webId}>{children}</WebIdLoader>;
+  return <WebIdLoader>{children}</WebIdLoader>;
 };

@@ -1,7 +1,10 @@
-import { ReactNode } from "react";
-import { useThing } from "solid";
+import { ReactNode, useMemo } from "react";
+import { getThing, useSession } from "solid";
 import { assignPropsToChildren } from "../helper/assignPropsToChildren";
 import { Loading, LoadingFailed } from "./Loading";
+import useSWR from "swr";
+import { hasNoDataOrError } from "../helper/hasNoDataOrError";
+import { replaceHashInUrl, createUrl } from "solid";
 
 interface IResourceLoaderProperties {
   dataset: string;
@@ -14,16 +17,25 @@ export const ResourceLoader = ({
   subject,
   children,
 }: IResourceLoaderProperties) => {
-  const datasetUrl: URL = new URL(dataset);
-  const thingUrl: URL = new URL(`${datasetUrl.toString()}${subject}`);
+  const { session } = useSession();
+  const options = useMemo(() => {
+    const datasetUrl = createUrl(dataset);
+    const thingUrl = replaceHashInUrl(datasetUrl, subject);
 
-  const { thing, error } = useThing({ datasetUrl, thingUrl });
-  if (error) return <LoadingFailed />;
-  if (!thing) return <Loading />;
+    return { datasetUrl, thingUrl, session };
+  }, [dataset, session, subject]);
+
+  const { data, error, isLoading } = useSWR(options, getThing);
+
+  if (isLoading) return <Loading />;
+  if (hasNoDataOrError(data, error)) {
+    console.error(error);
+    return <LoadingFailed />;
+  }
 
   const childrenWithProps = assignPropsToChildren(children, {
-    thing,
-    thingUrl,
+    thing: data,
+    thingUrl: options.thingUrl,
   });
   return <>{childrenWithProps}</>;
 };
