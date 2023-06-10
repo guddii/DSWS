@@ -1,7 +1,8 @@
 import React from "react";
-import { Col, Layout, Row, Typography } from "antd";
+import { Col, Layout, Row, Space, Typography } from "antd";
 import { SessionProvider } from "solid";
 import { ControlsSession } from "./controls/ControlsSession";
+import Image from "next/image";
 
 const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
@@ -21,7 +22,15 @@ export const SolidApp: React.FC<any> = ({ children, metadata }) => {
                 <div style={{ width: "100%", textOverflow: "ellipsis" }}>
                   Solid Showcase
                   <Title style={{ marginTop: "-16px" }}>
-                    {metadata?.title}
+                    <Space>
+                      <img
+                        src={"/icon"}
+                        alt="App brand"
+                        width={55}
+                        height={55}
+                      />
+                      <>{metadata?.title}</>
+                    </Space>
                   </Title>
                 </div>
               </Col>
@@ -30,7 +39,7 @@ export const SolidApp: React.FC<any> = ({ children, metadata }) => {
               </Col>
             </Row>
           </Header>
-          <Content style={{ margin: "20px 16px 16px 16px" }}>
+          <Content style={{ margin: "32px 16px 16px 16px" }}>
             {children}
           </Content>
           <Footer style={{ textAlign: "center" }}>
