@@ -1,4 +1,4 @@
-import * as React from "react";
+"use client";
 export * from "./components/SolidApp";
 export * from "./components/Loading";
 export * from "./components/SessionContent";

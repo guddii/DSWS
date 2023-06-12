@@ -17,12 +17,13 @@
   "sideEffects": false,
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "swr": "2.1.5",
-    "solid": "workspace:*",
+    "@ant-design/icons": "5.1.2",
     "antd": "5.4.3",
     "encoding": "0.1.13",
+    "next": "13.4.5",
     "react-dom": "18.2.0",
-    "@ant-design/icons": "5.1.2"
+    "solid": "workspace:*",
+    "swr": "2.1.5"
   },
   "devDependencies": {
     "@ant-design/icons": "5.1.2",
