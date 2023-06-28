@@ -15,7 +15,6 @@ docker-review:
   stage: triggers
   trigger:
     include: .gitlab/ci/docker/review.gitlab-ci.yml
-    strategy: depend
   only:
     - branches
   except:
@@ -33,6 +32,5 @@ docker-production:
   stage: triggers
   trigger:
     include: .gitlab/ci/docker/production.gitlab-ci.yml
-    strategy: depend
   only:
     - main
