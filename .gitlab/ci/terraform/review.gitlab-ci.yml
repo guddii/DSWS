@@ -76,6 +76,16 @@ report_instance_citizen:
   dependencies:
     - apply
 
+report_instance_tax-admin:
+  stage: report
+  script:
+    - echo $INSTANCE_TAX_ADMIN_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-tax-admin
+    url: https://$INSTANCE_TAX_ADMIN_URL
+  dependencies:
+    - apply
+
 report_instance_tax-office:
   stage: report
   script:
@@ -85,3 +95,4 @@ report_instance_tax-office:
     url: https://$INSTANCE_TAX_OFFICE_URL
   dependencies:
     - apply
+

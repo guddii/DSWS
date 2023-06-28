@@ -63,6 +63,16 @@ report_instance_citizen:
   needs:
     - apply
 
+report_instance_tax-admin:
+  stage: report
+  script:
+    - echo $INSTANCE_TAX_ADMIN_URL
+  environment:
+    name: production/solid-showcase-tax-admin
+    url: https://$INSTANCE_TAX_ADMIN_URL
+  needs:
+    - apply
+
 report_instance_tax-office:
   stage: report
   script:
