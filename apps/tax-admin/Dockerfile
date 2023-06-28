@@ -45,6 +45,5 @@ COPY --from=installer /app/apps/tax-admin/package.json .
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=installer --chown=nextjs:nodejs /app/apps/tax-admin/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/apps/tax-admin/.next/static ./apps/tax-admin/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/tax-admin/public ./apps/tax-admin/public
 
 CMD node apps/tax-admin/server.js

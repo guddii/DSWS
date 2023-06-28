@@ -45,6 +45,5 @@ COPY --from=installer /app/apps/citizen/package.json .
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=installer --chown=nextjs:nodejs /app/apps/citizen/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/apps/citizen/.next/static ./apps/citizen/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/citizen/public ./apps/citizen/public
 
 CMD node apps/citizen/server.js
