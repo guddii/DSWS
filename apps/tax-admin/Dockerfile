@@ -1,7 +1,7 @@
 # This Dockerfile is copy-pasted into our main docs at /docs/handbook/deploying-with-docker.
 # Make sure you update both files!
 
-FROM node:alpine AS builder
+FROM node:19-alpine AS builder
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 RUN apk update
@@ -14,7 +14,7 @@ RUN turbo prune --scope=tax-admin --docker
 
 
 # Add lockfile and package.json's of isolated subworkspace
-FROM node:alpine AS installer
+FROM node:19-alpine AS installer
 RUN apk add --no-cache libc6-compat
 RUN apk update
 WORKDIR /app
@@ -30,7 +30,7 @@ RUN pnpm install --no-frozen-lockfile
 RUN pnpm turbo run build --filter=tax-admin...
 
 
-FROM node:alpine AS runner
+FROM node:19-alpine AS runner
 WORKDIR /app
 
 # Don't run production as root
