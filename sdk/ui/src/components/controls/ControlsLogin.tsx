@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { LoginButton, OIDC_ISSUER } from "solid";
 import { Button, Dropdown, MenuProps, Space } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
+import { Metadata } from "next";
 
 interface Item {
   key: string;
@@ -10,7 +11,11 @@ interface Item {
 
 type Items = Array<Item>;
 
-export function ControlsLogin() {
+interface IControlsLoginProperties {
+  metadata: Metadata;
+}
+
+export function ControlsLogin({ metadata }: IControlsLoginProperties) {
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
@@ -42,13 +47,15 @@ export function ControlsLogin() {
     event.preventDefault();
   };
 
+  const authOptions = { clientName: String(metadata.title) };
+
   return (
     <Space>
       <Dropdown.Button menu={menuProps} onClick={handleButtonClick}>
         {idp}
       </Dropdown.Button>
       <LoginButton
-        authOptions={{ clientName: "Solid app" }}
+        authOptions={authOptions}
         oidcIssuer={idp}
         redirectUrl={currentUrl}
         onError={console.error}

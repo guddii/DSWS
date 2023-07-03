@@ -5,11 +5,6 @@ export const SOLID_WEB_ORG = createUrl("https://solidweb.org");
 export const INRUPT_NET = createUrl("https://inrupt.net");
 export const TRINPOD_US = createUrl("https://trinpod.us");
 export const SOLID_WEB_ME = createUrl("https://solidweb.me");
+export const ID_INRUPT_COM = createUrl("https://login.inrupt.com");
 
-export const OIDC_ISSUER = [
-  SOLID_COMMUNITY_NET,
-  SOLID_WEB_ORG,
-  INRUPT_NET,
-  TRINPOD_US,
-  SOLID_WEB_ME,
-];
+export const OIDC_ISSUER = [ID_INRUPT_COM];

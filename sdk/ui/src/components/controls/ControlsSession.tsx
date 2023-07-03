@@ -1,12 +1,17 @@
 import { useSession } from "solid";
 import { ControlsLogin } from "./ControlsLogin";
 import { ControlsLogout } from "./ControlsLogout";
+import { Metadata } from "next";
 
-export function ControlsSession() {
+interface IControlsSessionProperties {
+  metadata: Metadata;
+}
+
+export function ControlsSession({ metadata }: IControlsSessionProperties) {
   const { session } = useSession();
 
   if (session.info.isLoggedIn) {
     return <ControlsLogout />;
   }
-  return <ControlsLogin />;
+  return <ControlsLogin metadata={metadata} />;
 }

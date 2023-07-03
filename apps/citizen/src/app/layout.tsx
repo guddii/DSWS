@@ -1,7 +1,8 @@
 import { SolidApp } from "ui";
 import "antd/dist/reset.css";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Citizen App",
 };
 

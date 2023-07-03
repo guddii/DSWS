@@ -16,7 +16,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "ui": "workspace:*",
-    "solid": "workspace:*"
+    "solid": "workspace:*",
+    "@inrupt/solid-client": "1.28.1",
+    "@inrupt/solid-client-access-grants": "2.2.0",
+    "@inrupt/solid-client-authn-node": "1.16.0"
   },
   "devDependencies": {
     "@types/node": "17.0.12",

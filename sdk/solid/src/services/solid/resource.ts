@@ -70,7 +70,7 @@ export const createResource = (
   }
   headers["Link"] = `<${LDP.Resource.iri.value}>; rel="type"`;
 
-  return postResource({
+  return putResource({
     url: options.url,
     headers,
     body: options.body,

@@ -1,11 +1,16 @@
-import React from "react";
+import { ReactNode } from "react";
 import { Col, Layout, Row, Space, Typography } from "antd";
 import { SessionProvider } from "solid";
 import { ControlsSession } from "./controls/ControlsSession";
-import Image from "next/image";
+import { Metadata } from "next";
 
 const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
+
+interface ISolidAppProperties {
+  children: ReactNode;
+  metadata: Metadata;
+}
 
 export const SolidApp: React.FC<any> = ({ children, metadata }) => {
   return (
@@ -29,13 +34,13 @@ export const SolidApp: React.FC<any> = ({ children, metadata }) => {
                         width={55}
                         height={55}
                       />
-                      <>{metadata?.title}</>
+                      {metadata.title}
                     </Space>
                   </Title>
                 </div>
               </Col>
               <Col span={18} style={{ textAlign: "right" }}>
-                <ControlsSession />
+                <ControlsSession metadata={metadata} />
               </Col>
             </Row>
           </Header>

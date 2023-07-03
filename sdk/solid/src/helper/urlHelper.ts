@@ -15,8 +15,8 @@ export const toUrlString = (url: UrlString | URL): UrlString => {
  * Returns a new URL
  * @param url
  */
-export const createUrl = (url: UrlString | URL) => {
-  return new URL(url);
+export const createUrl = (url: UrlString | URL, base?: UrlString | URL) => {
+  return new URL(url, base);
 };
 
 /**
