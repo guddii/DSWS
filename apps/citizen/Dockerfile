@@ -26,6 +26,12 @@ COPY .gitignore .gitignore
 COPY --from=builder /app/out/full/ .
 RUN pnpm install --no-frozen-lockfile
 
+ARG TURBO_TEAM
+ENV TURBO_TEAM=$TURBO_TEAM
+
+ARG TURBO_TOKEN
+ENV TURBO_TOKEN=$TURBO_TOKEN
+
 # Build the project
 RUN pnpm turbo run build --filter=citizen...
 
