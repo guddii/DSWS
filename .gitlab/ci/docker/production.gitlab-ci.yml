@@ -13,7 +13,6 @@ variables:
 
 stages:
   - build
-  - release
 
 before_script:
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
@@ -22,10 +21,4 @@ build:
   stage: build
   script:
     - docker compose build
-
-release:
-  stage: release
-  script:
     - docker compose push
-  only:
-    - main
