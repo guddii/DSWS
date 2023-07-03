@@ -1,9 +1,9 @@
 stages:
-  - deploy
-  - release
+  - terraform
+  - docker
 
 terraform-review:
-  stage: deploy
+  stage: terraform
   trigger:
     include: .gitlab/ci/terraform/review.gitlab-ci.yml
     strategy: depend
@@ -13,7 +13,7 @@ terraform-review:
     - main
 
 docker-review:
-  stage: release
+  stage: docker
   trigger:
     include: .gitlab/ci/docker/review.gitlab-ci.yml
     strategy: depend
@@ -23,7 +23,7 @@ docker-review:
     - main
 
 terraform-production:
-  stage: deploy
+  stage: terraform
   trigger:
     include: .gitlab/ci/terraform/production.gitlab-ci.yml
     strategy: depend
@@ -31,7 +31,7 @@ terraform-production:
     - main
 
 docker-production:
-  stage: release
+  stage: docker
   trigger:
     include: .gitlab/ci/docker/production.gitlab-ci.yml
     strategy: depend
