@@ -8,7 +8,7 @@ import {
 import { Button, Divider, message, Space } from "antd";
 import { turtleFileGenerator } from "../../helper/turtleFileGenerator";
 import { assignPropsToChildren } from "../../helper/assignPropsToChildren";
-import { useSession, createUrl, replacePathnameInUrl } from "solid";
+import { useSession, createUrl } from "solid";
 
 interface IControlButtonsProperties {
   storage: string;
@@ -41,7 +41,7 @@ const ControlButtons = ({
   };
 
   const createResourceHandler = async () => {
-    const url: URL = replacePathnameInUrl(storage, "stammdaten");
+    const url: URL = createUrl("stammdaten/stammdaten.ttl", storage);
     const defaultData = {
       subject: "#me",
       values: {
@@ -69,7 +69,7 @@ const ControlButtons = ({
   };
 
   const getResourceHandler = async () => {
-    const url: URL = replacePathnameInUrl(storage, "stammdaten/");
+    const url: URL = createUrl("stammdaten/", storage);
     try {
       const { firstContainerItem } = await getContainerItems({ url, session });
       setResource(firstContainerItem);

@@ -60,18 +60,27 @@ const WebIdLoader = ({ children }: IWebIdLoaderProperties) => {
 
 interface ILoggedInContentProperties {
   children: ReactNode;
+  alwaysShowChildren?: boolean;
 }
-export const SessionContent = ({ children }: ILoggedInContentProperties) => {
+
+export const SessionContent = ({
+  children,
+  alwaysShowChildren = false,
+}: ILoggedInContentProperties) => {
   const { session } = useSession();
   const { webId } = session.info;
 
   if (!session.info.isLoggedIn || !webId) {
-    return (
-      <Empty
-        description={"This is private content, please login first!"}
-        style={{ marginTop: 50 }}
-      />
-    );
+    if (alwaysShowChildren) {
+      return <>{children}</>;
+    } else {
+      return (
+        <Empty
+          description={"This is private content, please login first!"}
+          style={{ marginTop: 50 }}
+        />
+      );
+    }
   }
 
   return <WebIdLoader>{children}</WebIdLoader>;

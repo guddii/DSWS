@@ -4,7 +4,7 @@ import { TaxOfficeModel } from "solid";
 
 export default function Page() {
   return (
-    <SessionContent>
+    <SessionContent alwaysShowChildren>
       <TurtleEditor model={TaxOfficeModel.create({ subject: "#me" })}>
         <ControlsAutofill />
       </TurtleEditor>

@@ -1,8 +1,8 @@
 import { Session } from "@inrupt/solid-client-authn-browser";
-import { getResource, postResource } from "./resource";
+import { getResource, putResource } from "./resource";
 import { LDP } from "@inrupt/lit-generated-vocab-common";
 import { ParsedN3, parseToN3 } from "../n3";
-import { toUrlString } from "../../helper/urlHelper";
+import { createUrl, toUrlString } from "../../helper/urlHelper";
 
 export interface IContainerOptions {
   url: URL;
@@ -24,10 +24,12 @@ export const createContainer = (
 ): Promise<Response> => {
   const headers = options.headers || {};
   headers["Link"] = `<${LDP.BasicContainer.iri.value}>; rel="type"`;
-  headers["Slug"] = options.name;
+  if (!headers["Content-type"]) {
+    headers["Content-type"] = "text/turtle";
+  }
 
-  return postResource({
-    url: options.url,
+  return putResource({
+    url: createUrl(options.name + "/", options.url),
     headers,
     session: options.session,
     body: undefined,

@@ -15,7 +15,7 @@ import { ResourceLoader } from "./ResourceLoader";
 import { turtleFileGenerator } from "../helper/turtleFileGenerator";
 import { formValuesGenerator } from "../helper/formValuesGenerator";
 import { propertiesGenerator } from "../helper/propertiesGenerator";
-import { UploadToPodModal } from "./UploadToPodModal";
+import { UploadToPodModal } from "./modals/UploadToPodModal";
 import { assignPropsToChildren } from "../helper/assignPropsToChildren";
 import { hasNoDataOrError } from "../helper/hasNoDataOrError";
 import useSWR from "swr";
@@ -184,7 +184,7 @@ const ModelTurtleEditor = ({
           open={open}
           data={turtleData}
           onSuccess={onSuccess}
-          onCancel={resetState}
+          onClose={resetState}
         />
       )}
     </>
