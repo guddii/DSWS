@@ -1,18 +1,17 @@
 import { Divider, FormInstance, Space } from "antd";
 import { SessionContent } from "../SessionContent";
-import { ControlsAutofillWithSession } from "./ControlsAutofillWithSession";
 import { ControlsAutofillWithoutSession } from "./ControlsAutofillWithoutSession";
+import { ControlsRevokeAccessGrant } from "./ControlsRevokeAccessGrant";
 
 interface IControlButtonsProperties {
-  storage?: string;
   form?: FormInstance;
 }
 
-const ControlButtons = ({ storage, form }: IControlButtonsProperties) => {
+const ControlButtons = ({ form }: IControlButtonsProperties) => {
   return (
     <Space>
-      <ControlsAutofillWithSession storage={storage} form={form} />
       <ControlsAutofillWithoutSession form={form} />
+      <ControlsRevokeAccessGrant />
     </Space>
   );
 };
