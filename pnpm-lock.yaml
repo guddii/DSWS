@@ -67,49 +67,6 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
 
-  apps/tax-admin:
-    dependencies:
-      antd:
-        specifier: 5.4.3
-        version: 5.4.3(react-dom@18.2.0)(react@18.2.0)
-      next:
-        specifier: 13.4.5
-        version: 13.4.5(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: 18.2.0
-        version: 18.2.0(react@18.2.0)
-      solid:
-        specifier: workspace:*
-        version: link:../../sdk/solid
-      ui:
-        specifier: workspace:*
-        version: link:../../sdk/ui
-    devDependencies:
-      '@types/node':
-        specifier: 17.0.12
-        version: 17.0.12
-      '@types/react':
-        specifier: 18.0.22
-        version: 18.0.22
-      '@types/react-dom':
-        specifier: 18.0.7
-        version: 18.0.7
-      eslint:
-        specifier: 8.39.0
-        version: 8.39.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../sdk/eslint-config-custom
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../sdk/tsconfig
-      typescript:
-        specifier: 5.0.4
-        version: 5.0.4
-
   apps/tax-office:
     dependencies:
       '@inrupt/solid-client':

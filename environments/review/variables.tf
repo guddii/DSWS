@@ -8,10 +8,6 @@ variable "instance_citizen" {
   default = "solid-showcase-citizen"
 }
 
-variable "instance_tax-admin" {
-  default = "solid-showcase-tax-admin"
-}
-
 variable "instance_tax-office" {
   default = "solid-showcase-tax-office"
 }
