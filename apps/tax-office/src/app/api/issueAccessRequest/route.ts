@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { issueAccessRequest } from "@inrupt/solid-client-access-grants";
-import { getTaxOfficeUserSession } from "../session";
+import { getTaxOfficeUserSession } from "../../session";
 
 export async function GET(request: Request) {
   const session = await getTaxOfficeUserSession();

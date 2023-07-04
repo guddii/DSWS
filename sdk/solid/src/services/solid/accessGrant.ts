@@ -14,7 +14,7 @@ export const issueAccess = async ({ webId, resource }: IIssueAccessOptions) => {
     resource: resource.toString(),
   });
 
-  const response: Response = await fetch("/api?" + searchParams.toString());
+  const response: Response = await fetch("/api/issueAccessRequest?" + searchParams.toString());
 
   const accessRequestVc = await response.json();
 
