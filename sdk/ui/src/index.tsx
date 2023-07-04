@@ -5,7 +5,9 @@ export * from "./components/SessionContent";
 export * from "./components/controls/ControlsStorage";
 export * from "./components/controls/ControlsAutofill";
 export * from "./components/TurtleEditor";
-export * from "./helper/turtleFileGenerator";
 export * from "./helper/formValuesGenerator";
 export * from "./helper/propertiesGenerator";
 export * from "./helper/assignPropsToChildren";
+
+// Inrupt
+export * from "./inrupt";

@@ -1,4 +1,5 @@
-import { Session } from "@inrupt/solid-client-authn-browser";
+import { Session as SessionBrowser } from "@inrupt/solid-client-authn-browser";
+import { Session as SessionNode } from "@inrupt/solid-client-authn-node";
 import { getResource, putResource } from "./resource";
 import { LDP } from "@inrupt/lit-generated-vocab-common";
 import { ParsedN3, parseToN3 } from "../n3";
@@ -7,7 +8,7 @@ import { createUrl, toUrlString } from "../../helper/urlHelper";
 export interface IContainerOptions {
   url: URL;
   headers?: Record<string, string>;
-  session?: Session;
+  session?: SessionBrowser | SessionNode;
 }
 
 export interface ICreateContainerOptions extends IContainerOptions {

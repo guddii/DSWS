@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Col, Layout, Row, Space, Typography } from "antd";
-import { SessionProvider } from "solid";
+import { SessionProvider } from "@inrupt/solid-ui-react";
 import { ControlsSession } from "./controls/ControlsSession";
 import { Metadata } from "next";
 

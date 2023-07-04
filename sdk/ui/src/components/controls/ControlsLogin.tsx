@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { LoginButton, OIDC_ISSUER } from "solid";
+import { OIDC_ISSUER } from "solid";
+import { LoginButton } from "@inrupt/solid-ui-react";
 import { Button, Dropdown, MenuProps, Space } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
 import { Metadata } from "next";

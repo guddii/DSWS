@@ -1,4 +1,4 @@
-import { LogoutButton, useSession } from "solid";
+import { LogoutButton, useSession } from "@inrupt/solid-ui-react";
 import { Button, Space } from "antd";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 

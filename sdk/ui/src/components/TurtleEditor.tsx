@@ -4,22 +4,20 @@ import {
   getProperties,
   IParsedProperty,
   AbstractModel,
-  UrlString,
   toUrlString,
-  getResourceFromResponse,
   putResource,
-  useSession,
+  turtleFileGenerator,
 } from "solid";
+import { useSession } from "@inrupt/solid-ui-react";
 import { ReactNode, useMemo, useState } from "react";
 import { ResourceLoader } from "./ResourceLoader";
-import { turtleFileGenerator } from "../helper/turtleFileGenerator";
 import { formValuesGenerator } from "../helper/formValuesGenerator";
 import { propertiesGenerator } from "../helper/propertiesGenerator";
-import { UploadToPodModal } from "./modals/UploadToPodModal";
 import { assignPropsToChildren } from "../helper/assignPropsToChildren";
 import { hasNoDataOrError } from "../helper/hasNoDataOrError";
 import useSWR from "swr";
 import { Loading, LoadingFailed } from "./Loading";
+import { IWebIdModalValues, WebIdModal } from "./modals/WebIdModal";
 
 interface IFormItemProperties {
   property: IParsedProperty;
@@ -144,21 +142,27 @@ const ModelTurtleEditor = ({
   const properties = propertiesGenerator({ model });
   const propertyValues = formValuesGenerator({ properties });
   const [open, setOpen] = useState(false);
-  const [turtleData, setTurtleData] = useState<string | null>(null);
+  const [taxDataUrl, setTaxDataUrl] = useState(null);
 
-  const onFinish = (values: Record<UrlString, string>) => {
-    setTurtleData(turtleFileGenerator({ subject: model.subject, values }));
+  const onFinish = () => {
     setOpen(true);
   };
 
   const resetState = () => {
-    setTurtleData(null);
     setOpen(false);
   };
 
-  const onSuccess = (response: Response) => {
-    const resource = getResourceFromResponse(response);
-    console.log(resource);
+  const onSubmit = async ({ webId }: IWebIdModalValues) => {
+    const values = form.getFieldsValue();
+    const response: Response = await fetch(
+      `/api/submitTaxData?webId=${webId}`,
+      {
+        method: "POST",
+        body: JSON.stringify(values),
+      }
+    );
+    const { url } = await response.json();
+    setTaxDataUrl(url);
     resetState();
   };
 
@@ -179,14 +183,7 @@ const ModelTurtleEditor = ({
           <FormItem key={toUrlString(property.predicate)} property={property} />
         ))}
       </TurtleEditorForm>
-      {turtleData && (
-        <UploadToPodModal
-          open={open}
-          data={turtleData}
-          onSuccess={onSuccess}
-          onClose={resetState}
-        />
-      )}
+      <WebIdModal open={open} onCancel={resetState} onSubmit={onSubmit} />
     </>
   );
 };

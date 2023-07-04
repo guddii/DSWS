@@ -1,9 +1,10 @@
 import { getSolidDataset, SolidDataset } from "@inrupt/solid-client";
-import { Session } from "@inrupt/solid-client-authn-browser";
+import { Session as SessionBrowser } from "@inrupt/solid-client-authn-browser";
+import { Session as SessionNode } from "@inrupt/solid-client-authn-node";
 
 export interface IGetDatasetOptions {
   datasetUrl?: URL;
-  session?: Session;
+  session?: SessionBrowser | SessionNode;
 }
 
 export const getDataset = async (

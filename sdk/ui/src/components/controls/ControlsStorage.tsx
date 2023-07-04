@@ -4,11 +4,12 @@ import {
   createResource,
   getContainerItems,
   FOAF,
+  turtleFileGenerator,
 } from "solid";
 import { Button, Divider, message, Space } from "antd";
-import { turtleFileGenerator } from "../../helper/turtleFileGenerator";
 import { assignPropsToChildren } from "../../helper/assignPropsToChildren";
-import { useSession, createUrl } from "solid";
+import { createUrl } from "solid";
+import { useSession } from "@inrupt/solid-ui-react";
 
 interface IControlButtonsProperties {
   storage: string;

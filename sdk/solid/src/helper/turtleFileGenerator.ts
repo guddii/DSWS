@@ -1,4 +1,4 @@
-import { UrlString } from "solid";
+import { UrlString } from "@inrupt/solid-client";
 
 interface ITurtleFileGeneratorOptions {
   subject: UrlString | URL;

@@ -114,7 +114,7 @@ importers:
     dependencies:
       '@inrupt/solid-client':
         specifier: 1.28.1
-        version: 1.28.1
+        version: 1.28.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
         specifier: 2.2.0
         version: 2.2.0
@@ -187,19 +187,19 @@ importers:
         version: 0.3.11
       '@inrupt/solid-client':
         specifier: 1.28.1
-        version: 1.28.1
+        version: 1.28.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
         specifier: 2.2.0
         version: 2.2.0
       '@inrupt/solid-client-authn-browser':
         specifier: 1.16.0
+        version: 1.16.0(encoding@0.1.13)
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.16.0
         version: 1.16.0
       '@inrupt/solid-client-notifications':
         specifier: 1.2.0
         version: 1.2.0(@inrupt/solid-client@1.28.1)
-      '@inrupt/solid-ui-react':
-        specifier: 2.8.2
-        version: 2.8.2(react@18.2.0)
       '@inrupt/vocab-solid':
         specifier: 1.0.4
         version: 1.0.4
@@ -233,6 +233,9 @@ importers:
       '@ant-design/icons':
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-ui-react':
+        specifier: 2.8.2
+        version: 2.8.2(encoding@0.1.13)(react@18.2.0)
       antd:
         specifier: 5.4.3
         version: 5.4.3(react-dom@18.2.0)(react@18.2.0)
@@ -625,11 +628,11 @@ packages:
       '@types/rdf-js': 3.0.0
     dev: false
 
-  /@inrupt/oidc-client-ext@1.16.0:
+  /@inrupt/oidc-client-ext@1.16.0(encoding@0.1.13):
     resolution: {integrity: sha512-09fJEX64GFq6eWY5xSFsKWo9Uz2v14s2L2It49/KnzAe7O9hc8XXelNndLPxrrOOzuf38YHv4W1irFJPy4PPMw==}
     dependencies:
       '@inrupt/oidc-client': 1.11.6
-      '@inrupt/solid-client-authn-core': 1.16.0
+      '@inrupt/solid-client-authn-core': 1.16.0(encoding@0.1.13)
       jose: 4.14.4
       uuid: 9.0.0
     transitivePeerDependencies:
@@ -650,9 +653,9 @@ packages:
     resolution: {integrity: sha512-xOWzvi+uef7wHPbMhIPlTsDQXVYz3nP4dcY8mDUsUNHYLtf8JRLuN6E+TtrBgbgyBUl6FH4mcUfSzRHRvShpUA==}
     engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0}
     dependencies:
-      '@inrupt/solid-client': 1.28.1
+      '@inrupt/solid-client': 1.28.1(encoding@0.1.13)
       '@inrupt/solid-client-vc': 0.5.0
-      '@inrupt/universal-fetch': 1.0.1
+      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
       '@types/rdfjs__dataset': 1.0.5
       auth-header: 1.0.0
       base64url: 3.0.1
@@ -663,12 +666,12 @@ packages:
       - encoding
     dev: false
 
-  /@inrupt/solid-client-authn-browser@1.16.0:
+  /@inrupt/solid-client-authn-browser@1.16.0(encoding@0.1.13):
     resolution: {integrity: sha512-6Wq/e8C5RapSFTRhs7TKThwhLaQ2DdMqmAiqaNlP7XpTWKRv87Chc2sX0msPjzmM+L/Tde2+71lX1o0x6sQbKA==}
     dependencies:
-      '@inrupt/oidc-client-ext': 1.16.0
-      '@inrupt/solid-client-authn-core': 1.16.0
-      '@inrupt/universal-fetch': 1.0.1
+      '@inrupt/oidc-client-ext': 1.16.0(encoding@0.1.13)
+      '@inrupt/solid-client-authn-core': 1.16.0(encoding@0.1.13)
+      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
       '@types/lodash.clonedeep': 4.5.7
       '@types/node': 20.2.5
       '@types/uuid': 9.0.1
@@ -680,11 +683,11 @@ packages:
       - encoding
     dev: false
 
-  /@inrupt/solid-client-authn-core@1.16.0:
+  /@inrupt/solid-client-authn-core@1.16.0(encoding@0.1.13):
     resolution: {integrity: sha512-lp4p21Ob0SJwPW2mJcUkM6YBp/zj9MM+RlHRM1uUdpPgvybGDLEIgJfKjkjku0RqFFJwCSP/KtbdCgnNFk5KXw==}
     engines: {node: ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/universal-fetch': 1.0.1
+      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
       events: 3.3.0
       jose: 4.14.4
       lodash.clonedeep: 4.5.0
@@ -697,8 +700,8 @@ packages:
     resolution: {integrity: sha512-4LSYwMwNUFoXDnwVQ9sxXnMsZCLArcUiYBnCO/PxmeRIkzhGx37RMxUSpGXc26XwhJ4vGHIlbPsdjBxtrpFg9Q==}
     engines: {node: ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/solid-client-authn-core': 1.16.0
-      '@inrupt/universal-fetch': 1.0.1
+      '@inrupt/solid-client-authn-core': 1.16.0(encoding@0.1.13)
+      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
       jose: 4.14.4
       openid-client: 5.4.2
       uuid: 9.0.0
@@ -712,8 +715,8 @@ packages:
     peerDependencies:
       '@inrupt/solid-client': ^1.25.2
     dependencies:
-      '@inrupt/solid-client': 1.28.1
-      '@inrupt/universal-fetch': 1.0.1
+      '@inrupt/solid-client': 1.28.1(encoding@0.1.13)
+      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
       '@types/events': 3.0.0
       '@types/ws': 8.5.4
       events: 3.3.0
@@ -730,23 +733,23 @@ packages:
   /@inrupt/solid-client-vc@0.5.0:
     resolution: {integrity: sha512-Rglf0I47hhkZ/kOjM2Vtxph6sh8ZzxHN/vUOYOMZR/fiRtN8DotCFASBZ3qgMbRYmroKCxs8QDEHF36sq3ftrQ==}
     dependencies:
-      '@inrupt/solid-client': 1.28.1
-      cross-fetch: 3.1.6
+      '@inrupt/solid-client': 1.28.1(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@inrupt/solid-client@1.28.1:
+  /@inrupt/solid-client@1.28.1(encoding@0.1.13):
     resolution: {integrity: sha512-Nq1/ttMSU+kvxucfjIdP8CAYzHSJGBv2ECQ9bIDmyxJQqBfBA0vMX3e9osgp1J0YHWHulbzBqCl/miROi6dOYA==}
     engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/universal-fetch': 1.0.1
+      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
       '@rdfjs/dataset': 1.1.1
       '@types/rdfjs__dataset': 1.0.5
       buffer: 6.0.3
       http-link-header: 1.1.1
-      jsonld-context-parser: 2.3.0
-      jsonld-streaming-parser: 3.2.0
+      jsonld-context-parser: 2.3.0(encoding@0.1.13)
+      jsonld-streaming-parser: 3.2.0(encoding@0.1.13)
       n3: 1.16.4
       uuid: 9.0.0
     optionalDependencies:
@@ -755,14 +758,14 @@ packages:
       - encoding
     dev: false
 
-  /@inrupt/solid-ui-react@2.8.2(react@18.2.0):
+  /@inrupt/solid-ui-react@2.8.2(encoding@0.1.13)(react@18.2.0):
     resolution: {integrity: sha512-4VmzfFso37mVJQVmDCXjl0od2w0sgGWvO8KWxOHsKmKqxY89vPpMKaN4gviLSFkjShec8YqtojxLjvrTJhfrFQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       react: '>16.13.0 || ^17.0.0 || ^18.0.0'
     dependencies:
-      '@inrupt/solid-client': 1.28.1
-      '@inrupt/solid-client-authn-browser': 1.16.0
+      '@inrupt/solid-client': 1.28.1(encoding@0.1.13)
+      '@inrupt/solid-client-authn-browser': 1.16.0(encoding@0.1.13)
       core-js: 3.30.2
       react: 18.2.0
       react-table: 7.8.0(react@18.2.0)
@@ -772,10 +775,10 @@ packages:
       - encoding
     dev: false
 
-  /@inrupt/universal-fetch@1.0.1:
+  /@inrupt/universal-fetch@1.0.1(encoding@0.1.13):
     resolution: {integrity: sha512-oqbG7jS1fa6hVkjSir+u5Ab3eSbyxFyOjsgjDICL27mAd5z8oImTSETnY2hYbkRaJQYKMBOXhtm7L5/+EbeVJg==}
     dependencies:
-      node-fetch: 2.6.11
+      node-fetch: 2.6.11(encoding@0.1.13)
       undici: 5.22.1
     transitivePeerDependencies:
       - encoding
@@ -1779,10 +1782,10 @@ packages:
     requiresBuild: true
     dev: false
 
-  /cross-fetch@3.1.6:
+  /cross-fetch@3.1.6(encoding@0.1.13):
     resolution: {integrity: sha512-riRvo06crlE8HiqOwIpQhxwdOk4fOeR7FVM/wXoxchFEqMNUjvbs3bfo4OTgMEMHzppd4DxFBDbyySj8Cv781g==}
     dependencies:
-      node-fetch: 2.6.11
+      node-fetch: 2.6.11(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -2924,21 +2927,21 @@ packages:
       minimist: 1.2.8
     dev: false
 
-  /jsonld-context-parser@2.3.0:
+  /jsonld-context-parser@2.3.0(encoding@0.1.13):
     resolution: {integrity: sha512-c6w2GE57O26eWFjcPX6k6G86ootsIfpuVwhZKjCll0bVoDGBxr1P4OuU+yvgfnh1GJhAGErolfC7W1BklLjWMg==}
     hasBin: true
     dependencies:
       '@types/http-link-header': 1.0.3
       '@types/node': 18.16.16
       canonicalize: 1.0.8
-      cross-fetch: 3.1.6
+      cross-fetch: 3.1.6(encoding@0.1.13)
       http-link-header: 1.1.1
       relative-to-absolute-iri: 1.0.7
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /jsonld-streaming-parser@3.2.0:
+  /jsonld-streaming-parser@3.2.0(encoding@0.1.13):
     resolution: {integrity: sha512-lJR1SCT364PGpFrOQaY+ZQ7qDWqqiT3IMK+AvZ83fo0LvltFn8/UyXvIFc3RO7YcaEjLahAF0otCi8vOq21NtQ==}
     dependencies:
       '@bergos/jsonparse': 1.4.1
@@ -2948,7 +2951,7 @@ packages:
       buffer: 6.0.3
       canonicalize: 1.0.8
       http-link-header: 1.1.1
-      jsonld-context-parser: 2.3.0
+      jsonld-context-parser: 2.3.0(encoding@0.1.13)
       rdf-data-factory: 1.1.1
       readable-stream: 4.4.0
     transitivePeerDependencies:
@@ -3216,7 +3219,7 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /node-fetch@2.6.11:
+  /node-fetch@2.6.11(encoding@0.1.13):
     resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==}
     engines: {node: 4.x || >=6.0.0}
     peerDependencies:
@@ -3225,6 +3228,7 @@ packages:
       encoding:
         optional: true
     dependencies:
+      encoding: 0.1.13
       whatwg-url: 5.0.0
     dev: false
 

@@ -2,6 +2,7 @@
 export * from "./helper/urlHelper";
 export * from "./helper/checkResponse";
 export * from "./helper/getResourceFromResponse";
+export * from "./helper/turtleFileGenerator";
 
 // Inrupt
 export * from "./inrupt";

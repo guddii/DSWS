@@ -1,5 +1,6 @@
 import { ReactNode, useMemo } from "react";
-import { getThing, useSession } from "solid";
+import { getThing } from "solid";
+import { useSession } from "@inrupt/solid-ui-react";
 import { assignPropsToChildren } from "../helper/assignPropsToChildren";
 import { Loading, LoadingFailed } from "./Loading";
 import useSWR from "swr";
