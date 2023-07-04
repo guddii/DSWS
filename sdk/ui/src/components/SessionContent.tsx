@@ -1,4 +1,5 @@
-import { Thing, useSession, WS, getProperty, getThing } from "solid";
+import { Thing, WS, getProperty, getThing } from "solid";
+import { useSession } from "@inrupt/solid-ui-react";
 import { ReactNode, useMemo } from "react";
 import { Empty } from "antd";
 import { Loading, LoadingFailed } from "./Loading";

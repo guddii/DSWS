@@ -1,11 +1,12 @@
 import { LDP } from "@inrupt/lit-generated-vocab-common";
-import { Session } from "@inrupt/solid-client-authn-browser";
+import { Session as SessionBrowser } from "@inrupt/solid-client-authn-browser";
+import { Session as SessionNode } from "@inrupt/solid-client-authn-node";
 import { checkResponse } from "../../helper/checkResponse";
 
 export interface IResourceOptions {
   url: URL;
   headers?: Record<string, string>;
-  session?: Session;
+  session?: SessionBrowser | SessionNode;
 }
 
 export interface IResourceBodyOptions extends IResourceOptions {

@@ -1,4 +1,5 @@
-import { Session } from "@inrupt/solid-client-authn-browser";
+import { Session as SessionBrowser } from "@inrupt/solid-client-authn-browser";
+import { Session as SessionNode } from "@inrupt/solid-client-authn-node";
 import { getThing } from "./thing";
 import { createUrl, removeHashFromUrl } from "../../helper/urlHelper";
 import { getProperty } from "./property";
@@ -6,7 +7,7 @@ import { WS } from "@inrupt/vocab-solid";
 
 interface IGetStorageFromWebId {
   webId: URL;
-  session?: Session;
+  session?: SessionBrowser | SessionNode;
 }
 
 export const getStorageFromWebId = async ({

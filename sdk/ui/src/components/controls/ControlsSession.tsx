@@ -1,4 +1,4 @@
-import { useSession } from "solid";
+import { useSession } from "@inrupt/solid-ui-react";
 import { ControlsLogin } from "./ControlsLogin";
 import { ControlsLogout } from "./ControlsLogout";
 import { Metadata } from "next";

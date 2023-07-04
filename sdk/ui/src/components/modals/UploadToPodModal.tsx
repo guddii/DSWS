@@ -1,5 +1,6 @@
 import { Input, Form, message } from "antd";
-import { createResource, useSession, createUrl } from "solid";
+import { createResource, createUrl } from "solid";
+import { useSession } from "@inrupt/solid-ui-react";
 import { FormModal } from "./FormModal";
 
 interface IUploadToPodModalProperties {
