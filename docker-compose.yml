@@ -25,18 +25,6 @@ services:
     networks:
       - showcase
 
-  tax-admin:
-    container_name: tax-admin
-    build:
-      context: .
-      dockerfile: ./apps/tax-admin/Dockerfile
-    image: guddii/solid-showcase-tax-admin:latest
-    restart: always
-    ports:
-      - "5000:3000"
-    networks:
-      - showcase
-
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
 networks:
