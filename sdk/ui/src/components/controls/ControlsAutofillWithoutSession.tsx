@@ -28,10 +28,10 @@ export const ControlsAutofillWithoutSession = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAutofillClick = () => {
-    const redirectUrl = sessionStorage.getItem("redirectUrl");
+    const redirectUrl = sessionStorage.getItem("redirectUrlFromAutofill");
 
     if (redirectUrl) {
-      getAccessGrant(redirectUrl);
+      getAccessGrant(redirectUrl).catch(message.error);
     } else {
       openModal();
     }
@@ -46,10 +46,12 @@ export const ControlsAutofillWithoutSession = ({
       try {
         setIsLoading(true);
 
-        const q = new URLSearchParams({
+        const searchParams = new URLSearchParams({
           redirectUrl,
         });
-        const response = await fetch(`/api/dataFromAccessGrant?${q}`);
+        const response = await fetch(
+          `/api/dataFromAccessGrant?${searchParams}`
+        );
         const { thing } = await response.json();
 
         const properties: Array<IParsedProperty> = await getProperties({
@@ -80,11 +82,14 @@ export const ControlsAutofillWithoutSession = ({
     const hasAccessGrantUrl = params.has("accessGrantUrl");
 
     if (hasAccessGrantUrl) {
-      sessionStorage.setItem("redirectUrl", globalThis.location?.href);
-      const redirectUrl = sessionStorage.getItem("redirectUrl");
+      sessionStorage.setItem(
+        "redirectUrlFromAutofill",
+        globalThis.location?.href
+      );
+      const redirectUrl = sessionStorage.getItem("redirectUrlFromAutofill");
 
       if (redirectUrl) {
-        getAccessGrant(redirectUrl);
+        getAccessGrant(redirectUrl).catch(console.error);
       }
     }
   }, [form, getAccessGrant, router]);
@@ -102,6 +107,9 @@ export const ControlsAutofillWithoutSession = ({
       session: emptySession,
     });
     await issueAccess({
+      fetcher: (searchParams) => {
+        return fetch("/api/issueAccessRequest?" + searchParams.toString());
+      },
       webId: webIdUrl,
       resource: createUrl(STAMMDATEN_FILE_PATH, storage),
     });

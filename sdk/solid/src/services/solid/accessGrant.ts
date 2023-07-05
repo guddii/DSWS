@@ -4,17 +4,22 @@ import {
 } from "@inrupt/solid-client-access-grants";
 
 interface IIssueAccessOptions {
+  fetcher: (searchParams: URLSearchParams) => Promise<Response>;
   webId: URL;
   resource: URL;
 }
 
-export const issueAccess = async ({ webId, resource }: IIssueAccessOptions) => {
+export const issueAccess = async ({
+  webId,
+  resource,
+  fetcher,
+}: IIssueAccessOptions) => {
   const searchParams = new URLSearchParams({
     webId: webId.toString(),
     resource: resource.toString(),
   });
 
-  const response: Response = await fetch("/api/issueAccessRequest?" + searchParams.toString());
+  const response: Response = await fetcher(searchParams);
 
   const accessRequestVc = await response.json();
 
@@ -27,5 +32,5 @@ export const issueAccess = async ({ webId, resource }: IIssueAccessOptions) => {
     accessRequestVc,
     globalThis.window.location.href.toString(),
     redirectOptions
-  );
+  ).catch(console.error);
 };

@@ -1,22 +1,29 @@
 import { NextResponse } from "next/server";
 import { issueAccessRequest } from "@inrupt/solid-client-access-grants";
 import { getTaxOfficeUserSession } from "../../session";
+import { AccessModes } from "@inrupt/solid-client";
 
-export async function GET(request: Request) {
+/**
+ * A generic request handler for issue access requests
+ * @param request
+ * @param access
+ */
+const requestHandler = async (
+  request: Request,
+  access: Partial<AccessModes>
+) => {
   const session = await getTaxOfficeUserSession();
 
   if (session.info.isLoggedIn) {
     const searchParams = new URL(request.url).searchParams;
     const webId = searchParams.get("webId");
-    const resource = searchParams.get("resource");
+    const resources = searchParams.getAll("resource");
 
-    if (webId && resource) {
+    if (webId && resources.length) {
       const accessRequestVc = await issueAccessRequest(
         {
-          access: {
-            read: true,
-          },
-          resources: [resource],
+          access,
+          resources,
           resourceOwner: webId,
         },
         {
@@ -29,4 +36,15 @@ export async function GET(request: Request) {
   }
 
   return NextResponse.error();
+};
+
+/**
+ * This handles the reading of an issue access request function
+ * @param request
+ * @constructor
+ */
+export async function GET(request: Request) {
+  return await requestHandler(request, {
+    read: true,
+  });
 }
