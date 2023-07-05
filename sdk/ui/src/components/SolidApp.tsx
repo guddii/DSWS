@@ -34,7 +34,7 @@ export const SolidApp: React.FC<any> = ({ children, metadata }) => {
                         width={55}
                         height={55}
                       />
-                      {metadata.title}
+                      <div style={{ width: 320 }}> {metadata.title} </div>
                     </Space>
                   </Title>
                 </div>
