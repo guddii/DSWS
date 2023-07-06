@@ -2,9 +2,15 @@ export { WS } from "@inrupt/vocab-solid";
 
 export { FOAF, LDP } from "@inrupt/lit-generated-vocab-common";
 
-export type { UrlString, Thing } from "@inrupt/solid-client";
+export type {
+  UrlString,
+  Thing,
+  WithServerResourceInfo,
+  AccessModes,
+} from "@inrupt/solid-client";
 
 export {
+  getResourceInfo,
   buildThing,
   createThing,
   setThing,

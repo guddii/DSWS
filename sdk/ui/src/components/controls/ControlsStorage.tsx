@@ -10,6 +10,7 @@ import { Button, Divider, message, Space } from "antd";
 import { assignPropsToChildren } from "../../helper/assignPropsToChildren";
 import { createUrl } from "solid";
 import { useSession } from "@inrupt/solid-ui-react";
+import { DataVerification } from "../DataVerification";
 
 interface IControlButtonsProperties {
   storage: string;
@@ -113,11 +114,11 @@ export const ControlsStorage = ({
   });
 
   return (
-    <>
+    <DataVerification storage={storage}>
       <Divider plain>Stammdaten</Divider>
       <ControlButtons storage={storage} setResource={setResource} />
       <Divider plain />
       {resource && childrenWithProps}
-    </>
+    </DataVerification>
   );
 };
