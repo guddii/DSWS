@@ -5,12 +5,14 @@ import {
   getContainerItems,
   FOAF,
   turtleFileGenerator,
+  STAMMDATEN_FOLDER_PATH,
+  STAMMDATEN_FILE_PATH,
 } from "solid";
 import { Button, Divider, message, Space } from "antd";
 import { assignPropsToChildren } from "../../helper/assignPropsToChildren";
 import { createUrl } from "solid";
 import { useSession } from "@inrupt/solid-ui-react";
-import { DataVerification } from "../DataVerification";
+import { FolderStructureVerification } from "../FolderStructureVerification";
 
 interface IControlButtonsProperties {
   storage: string;
@@ -43,7 +45,7 @@ const ControlButtons = ({
   };
 
   const createResourceHandler = async () => {
-    const url: URL = createUrl("stammdaten/stammdaten.ttl", storage);
+    const url: URL = createUrl(STAMMDATEN_FILE_PATH, storage);
     const defaultData = {
       subject: "#me",
       values: {
@@ -71,7 +73,7 @@ const ControlButtons = ({
   };
 
   const getResourceHandler = async () => {
-    const url: URL = createUrl("stammdaten/", storage);
+    const url: URL = createUrl(STAMMDATEN_FOLDER_PATH, storage);
     try {
       const { firstContainerItem } = await getContainerItems({ url, session });
       setResource(firstContainerItem);
@@ -114,11 +116,11 @@ export const ControlsStorage = ({
   });
 
   return (
-    <DataVerification storage={storage}>
+    <FolderStructureVerification storage={storage}>
       <Divider plain>Stammdaten</Divider>
       <ControlButtons storage={storage} setResource={setResource} />
       <Divider plain />
       {resource && childrenWithProps}
-    </DataVerification>
+    </FolderStructureVerification>
   );
 };

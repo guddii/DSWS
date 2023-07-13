@@ -1,5 +1,11 @@
 import { Input, Form } from "antd";
-import { createUrl, issueAccess, getStorageFromWebId, Session } from "solid";
+import {
+  createUrl,
+  issueAccess,
+  getStorageFromWebId,
+  Session,
+  STAMMDATEN_FILE_PATH,
+} from "solid";
 import { FormModal } from "./FormModal";
 
 interface IAutofillModalProperties {
@@ -22,7 +28,7 @@ export const AutofillModal = ({ open, onClose }: IAutofillModalProperties) => {
     });
     await issueAccess({
       webId: webIdUrl,
-      resource: createUrl("stammdaten/stammdaten.ttl", storage),
+      resource: createUrl(STAMMDATEN_FILE_PATH, storage),
     });
   };
 
