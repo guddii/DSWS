@@ -21,7 +21,7 @@
     "eslint-config-custom": "workspace:*",
     "prettier": "2.8.8",
     "turbo": "1.10.6",
-    "next": "13.4.4"
+    "next": "13.4.10"
   },
   "engines": {
     "node": ">=16.0.0"
