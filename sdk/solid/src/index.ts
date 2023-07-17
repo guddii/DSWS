@@ -10,6 +10,7 @@ export * from "./inrupt";
 // Services
 export * from "./services/oidcIssuer";
 export * from "./services/citizenFolderStructureVerification";
+export * from "./services/citizenFolderStructureCreation";
 export * from "./services/solid/container";
 export * from "./services/solid/dataset";
 export * from "./services/solid/property";

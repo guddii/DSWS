@@ -1,6 +1,7 @@
 import { ReactNode, useCallback, useEffect, useState } from "react";
 import {
   ValidAndVerifiedFolderStructure,
+  createCitizenFolderStructure,
   verifyCitizenFolderStructure,
 } from "solid";
 import { Button, Result, Space, Typography } from "antd";
@@ -20,6 +21,7 @@ export const FolderStructureVerification = ({
   const { session } = useSession();
   const [verifyingFolderStructure, setVerifyingFolderStructure] =
     useState(true);
+  const [creatingFolderStructure, setCreatingFolderStructure] = useState(false);
   const [verifiedFolderStructure, setVerifiedFolderStructure] =
     useState<ValidAndVerifiedFolderStructure | null>(null);
 
@@ -34,6 +36,29 @@ export const FolderStructureVerification = ({
 
     setVerifyingFolderStructure(false);
   }, [session, storage]);
+
+  const createFolderStructureHandler = useCallback(async () => {
+    setCreatingFolderStructure(true);
+
+    if (verifiedFolderStructure) {
+      await createCitizenFolderStructure(
+        session,
+        storage,
+        verifiedFolderStructure
+      );
+
+      const updatedVerifiedFolderStructure: ValidAndVerifiedFolderStructure = {
+        stammdatenFolderExists: true,
+        stammdatenFileExists: true,
+        inboxFolderExists: true,
+        inboxFolderPublicAppendAccessExists: true,
+        validFolderStructure: true,
+      };
+      setVerifiedFolderStructure(updatedVerifiedFolderStructure);
+    }
+
+    setCreatingFolderStructure(false);
+  }, [session, storage, verifiedFolderStructure]);
 
   useEffect(() => {
     verifyFolderStructureHandler();
@@ -64,7 +89,14 @@ export const FolderStructureVerification = ({
             <VerifiedFolderStructureAlerts
               verifiedFolderStructure={verifiedFolderStructure}
             />
-            <Button type="primary">Create missing data</Button>
+            <Button
+              type="primary"
+              onClick={createFolderStructureHandler}
+              loading={creatingFolderStructure}
+              disabled={creatingFolderStructure}
+            >
+              Create missing data
+            </Button>
           </Space>
         }
       />
