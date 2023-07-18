@@ -1,7 +1,6 @@
 import { Col, Layout, Row, Space, Typography } from "antd";
 import { ControlsSession } from "../controls/ControlsSession";
 import { Metadata } from "next";
-import { ReactElement } from "react";
 import { IAuth } from "../../interfaces/IAuth";
 
 interface ILayoutMastheadProperties {

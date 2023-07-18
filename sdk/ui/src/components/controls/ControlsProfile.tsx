@@ -5,10 +5,6 @@ import { useIdentity } from "../../contexts/IdentityContext";
 export function ControlsProfile() {
   const { webId } = useIdentity();
 
-  function reload() {
-    globalThis.location.reload();
-  }
-
   function onClickHandler(event: any) {
     event.preventDefault();
     window.open(webId, "identity");

@@ -1,11 +1,7 @@
 import { ReactNode, useMemo } from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 import useSWRImmutable from "swr/immutable";
-import {
-  LoadingFailed,
-  LoadingFailedFullbleed,
-  LoadingFullbleed,
-} from "../Loading";
+import { LoadingFailedFullbleed, LoadingFullbleed } from "../Loading";
 import { hasNoDataOrError } from "../../helper/hasNoDataOrError";
 import { StorageLoader } from "./StorageLoader";
 import { createUrl, getThing, removeHashFromUrl } from "solid";

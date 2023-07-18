@@ -3,7 +3,6 @@ import { ControlsLogout } from "./ControlsLogout";
 import { Metadata } from "next";
 import { Space } from "antd";
 import { ControlsProfile } from "./ControlsProfile";
-import { ReactElement } from "react";
 import { IAuth } from "../../interfaces/IAuth";
 
 interface IControlsSessionProperties {
