@@ -1,29 +1,22 @@
-import { LogoutButton, useSession } from "@inrupt/solid-ui-react";
-import { Button, Space } from "antd";
-import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import { LogoutButton } from "@inrupt/solid-ui-react";
+import { Button } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
+import { useIdentity } from "../../contexts/IdentityContext";
 
 export function ControlsLogout() {
-  const { session } = useSession();
+  const { webId } = useIdentity();
 
   function reload() {
     globalThis.location.reload();
   }
 
-  function onClickHandler(event: any) {
-    event.preventDefault();
-    window.open(session.info.webId, "identity");
+  if (!webId) {
+    return null;
   }
 
   return (
-    <>
-      <Space wrap>
-        <Button onClick={onClickHandler} icon={<UserOutlined rev={"webId"} />}>
-          {session.info.webId}
-        </Button>
-        <LogoutButton onLogout={reload} onError={console.error}>
-          <Button icon={<LogoutOutlined rev={"solidLogout"} />}>Logout</Button>
-        </LogoutButton>
-      </Space>
-    </>
+    <LogoutButton onLogout={reload} onError={console.error}>
+      <Button icon={<LogoutOutlined rev={"solidLogout"} />}>Logout</Button>
+    </LogoutButton>
   );
 }

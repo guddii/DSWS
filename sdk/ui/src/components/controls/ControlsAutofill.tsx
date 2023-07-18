@@ -1,3 +1,4 @@
+"use client";
 import { Divider, FormInstance, Space } from "antd";
 import { SessionContent } from "../SessionContent";
 import { ControlsAutofillWithoutSession } from "./ControlsAutofillWithoutSession";

@@ -1,68 +1,93 @@
-import { useEffect, useState } from "react";
-import { OIDC_ISSUER } from "solid";
-import { LoginButton } from "@inrupt/solid-ui-react";
-import { Button, Dropdown, MenuProps, Space } from "antd";
+"use client";
+import { useState } from "react";
+import { Button, Divider, Drawer, Space } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
 import { Metadata } from "next";
+import { FormsAuthNSession } from "../forms/FormsAuthNSession";
+import { FormsAuthNWebId } from "../forms/FormsAuthNWebId";
+import { useIdentity } from "../../contexts/IdentityContext";
+import { AuthMethods, IAuth } from "../../interfaces/IAuth";
 
-interface Item {
-  key: string;
-  label: string;
+interface IFormsAuthNSessionWithTitleProperties {
+  metadata: Metadata;
+  auth: IAuth;
 }
 
-type Items = Array<Item>;
+function FormsAuthNSessionWithTitle({
+  metadata,
+  auth,
+}: IFormsAuthNSessionWithTitleProperties) {
+  if (!auth.methods.includes(AuthMethods.Session)) {
+    return null;
+  }
+
+  return (
+    <>
+      <Divider orientation="left" orientationMargin="0">
+        Full Access
+      </Divider>
+      <FormsAuthNSession metadata={metadata} />
+    </>
+  );
+}
+
+interface IFormsAuthNWebIdWithTitleProperties {
+  auth: IAuth;
+}
+
+function FormsAuthNWebIdWithTitle({
+  auth,
+}: IFormsAuthNWebIdWithTitleProperties) {
+  if (!auth.methods.includes(AuthMethods.WebId)) {
+    return null;
+  }
+
+  return (
+    <>
+      <Divider orientation="left" orientationMargin="0">
+        Secure Login
+      </Divider>
+      <FormsAuthNWebId />
+    </>
+  );
+}
 
 interface IControlsLoginProperties {
   metadata: Metadata;
+  auth: IAuth;
 }
 
-export function ControlsLogin({ metadata }: IControlsLoginProperties) {
-  const [currentUrl, setCurrentUrl] = useState("");
+export function ControlsLogin({ metadata, auth }: IControlsLoginProperties) {
+  const { webId } = useIdentity();
+  const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    setCurrentUrl(globalThis.location.href);
-  }, [setCurrentUrl]);
-
-  const items: Items = OIDC_ISSUER.map((value, index) => {
-    return {
-      key: String(index),
-      label: String(value),
-    };
-  });
-
-  const [idp, setIdp] = useState(items[0].label);
-
-  const handleMenuClick: MenuProps["onClick"] = (event) => {
-    const item: Item | undefined = items.find(
-      (value: Item) => value.key === event.key
-    );
-    if (item) setIdp(item.label);
+  const showDrawer = () => {
+    setOpen(true);
   };
 
-  const menuProps = {
-    items,
-    onClick: handleMenuClick,
+  const onClose = () => {
+    setOpen(false);
   };
 
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
-  const authOptions = { clientName: String(metadata.title) };
+  if (webId) {
+    return null;
+  }
 
   return (
-    <Space>
-      <Dropdown.Button menu={menuProps} onClick={handleButtonClick}>
-        {idp}
-      </Dropdown.Button>
-      <LoginButton
-        authOptions={authOptions}
-        oidcIssuer={idp}
-        redirectUrl={currentUrl}
-        onError={console.error}
-      >
-        <Button icon={<LoginOutlined rev={"solidLogin"} />}>Login</Button>
-      </LoginButton>
-    </Space>
+    <>
+      <Drawer title="Login" onClose={onClose} open={open}>
+        <FormsAuthNSessionWithTitle metadata={metadata} auth={auth} />
+        <FormsAuthNWebIdWithTitle auth={auth} />
+      </Drawer>
+
+      <Space>
+        <Button
+          onClick={showDrawer}
+          icon={<LoginOutlined rev={"solidLogin"} />}
+        >
+          Login
+        </Button>
+      </Space>
+    </>
   );
 }

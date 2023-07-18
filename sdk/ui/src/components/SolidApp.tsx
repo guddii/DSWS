@@ -1,31 +1,31 @@
+"use client";
 import React, { ReactNode } from "react";
 import { Layout } from "antd";
 import { Metadata } from "next";
-import { SessionProvider } from "@inrupt/solid-ui-react";
 import { LayoutMasthead } from "./layout/LayoutMasthead";
 import { LayoutContent } from "./layout/LayoutContent";
 import { LayoutFooter } from "./layout/LayoutFooter";
+import { Provider } from "./Provider";
+import { IAuth } from "../interfaces/IAuth";
 
 interface ISolidAppProperties {
   children: ReactNode;
   metadata: Metadata;
+  auth: IAuth;
 }
 
 export const SolidApp: React.FC<any> = ({
   children,
   metadata,
+  auth,
 }: ISolidAppProperties) => {
   return (
-    <SessionProvider
-      sessionId="session-provider-example"
-      onError={console.error}
-      restorePreviousSession={false}
-    >
+    <Provider>
       <Layout style={{ minHeight: "100vh" }}>
-        <LayoutMasthead metadata={metadata} />
-        <LayoutContent> {children} </LayoutContent>
+        <LayoutMasthead metadata={metadata} auth={auth} />
+        <LayoutContent>{children}</LayoutContent>
         <LayoutFooter />
       </Layout>
-    </SessionProvider>
+    </Provider>
   );
 };

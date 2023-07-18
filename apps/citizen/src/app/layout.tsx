@@ -1,9 +1,13 @@
-import { SolidApp } from "ui";
+import { SolidApp, AuthMethods, IAuth } from "ui";
 import "antd/dist/reset.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Citizen App",
+};
+
+const auth: IAuth = {
+  methods: [AuthMethods.Session],
 };
 
 export default function RootLayout({
@@ -14,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SolidApp metadata={metadata}>{children}</SolidApp>
+        <SolidApp metadata={metadata} auth={auth}>
+          {children}
+        </SolidApp>
       </body>
     </html>
   );

@@ -1,17 +1,25 @@
-import { useSession } from "@inrupt/solid-ui-react";
 import { ControlsLogin } from "./ControlsLogin";
 import { ControlsLogout } from "./ControlsLogout";
 import { Metadata } from "next";
+import { Space } from "antd";
+import { ControlsProfile } from "./ControlsProfile";
+import { ReactElement } from "react";
+import { IAuth } from "../../interfaces/IAuth";
 
 interface IControlsSessionProperties {
   metadata: Metadata;
+  auth: IAuth;
 }
 
-export function ControlsSession({ metadata }: IControlsSessionProperties) {
-  const { session } = useSession();
-
-  if (session.info.isLoggedIn) {
-    return <ControlsLogout />;
-  }
-  return <ControlsLogin metadata={metadata} />;
+export function ControlsSession({
+  metadata,
+  auth,
+}: IControlsSessionProperties) {
+  return (
+    <Space>
+      <ControlsProfile />
+      <ControlsLogout />
+      <ControlsLogin metadata={metadata} auth={auth} />
+    </Space>
+  );
 }
