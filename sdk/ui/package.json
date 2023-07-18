@@ -24,7 +24,7 @@
     "next": "13.4.10",
     "react-dom": "18.2.0",
     "solid": "workspace:*",
-    "swr": "2.1.5"
+    "swr": "2.2.0"
   },
   "devDependencies": {
     "@ant-design/icons": "5.1.2",
