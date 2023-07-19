@@ -1,4 +1,4 @@
-import { Form, Modal } from "antd";
+import { Form, Modal, ButtonProps } from "antd";
 import { ReactNode, useState } from "react";
 
 type Store = Record<string, any>;
@@ -10,6 +10,7 @@ interface IModalFormProperties<T extends Store> {
   onSubmit: (values: T) => Promise<void>;
   onCancel: () => void;
   children: ReactNode;
+  okButtonProps: ButtonProps;
 }
 
 export const ModalForm = <T extends Store>({
@@ -19,6 +20,7 @@ export const ModalForm = <T extends Store>({
   onSubmit,
   onCancel: onCancelProp,
   children,
+  okButtonProps,
 }: IModalFormProperties<T>) => {
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
@@ -41,6 +43,7 @@ export const ModalForm = <T extends Store>({
       onOk={form.submit}
       confirmLoading={isLoading}
       onCancel={onCancel}
+      okButtonProps={okButtonProps}
     >
       <Form
         name="modal form"
