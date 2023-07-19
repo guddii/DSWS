@@ -8,7 +8,7 @@ RUN apk update
 # Set working directory
 WORKDIR /app
 RUN corepack enable
-RUN npm install -g turbo@1.10.6
+RUN npm install -g turbo@1.10.8
 COPY . .
 RUN turbo prune --scope=citizen --docker
 

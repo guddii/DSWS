@@ -1,10 +1,10 @@
 import { ReactNode, useMemo } from "react";
 import { getThing } from "solid";
 import { useSession } from "@inrupt/solid-ui-react";
-import { assignPropsToChildren } from "../helper/assignPropsToChildren";
-import { Loading, LoadingFailed } from "./Loading";
+import { assignPropsToChildren } from "../../helper/assignPropsToChildren";
+import { LoadingFailedFullbleed, LoadingFullbleed } from "../Loading";
 import useSWR from "swr";
-import { hasNoDataOrError } from "../helper/hasNoDataOrError";
+import { hasNoDataOrError } from "../../helper/hasNoDataOrError";
 import { replaceHashInUrl, createUrl } from "solid";
 
 interface IResourceLoaderProperties {
@@ -28,10 +28,10 @@ export const ResourceLoader = ({
 
   const { data, error, isLoading } = useSWR(options, getThing);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <LoadingFullbleed />;
   if (hasNoDataOrError(data, error)) {
     console.error(error);
-    return <LoadingFailed />;
+    return <LoadingFailedFullbleed />;
   }
 
   const childrenWithProps = assignPropsToChildren(children, {

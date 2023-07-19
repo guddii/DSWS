@@ -4,14 +4,13 @@
   "version": "0.0.0",
   "license": "SEE LICENSE IN LICENSE",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "files": [
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts --external react",
+    "build": "tsc --build",
     "clean": "rm -rf dist",
-    "dev": "tsup src/index.ts --format esm,cjs --watch --dts --external react",
+    "dev": "tsc --watch",
     "lint": "eslint \"src/**/*.ts*\""
   },
   "sideEffects": false,

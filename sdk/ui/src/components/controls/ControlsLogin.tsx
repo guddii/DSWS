@@ -1,68 +1,34 @@
-import { useEffect, useState } from "react";
-import { OIDC_ISSUER } from "solid";
-import { LoginButton } from "@inrupt/solid-ui-react";
-import { Button, Dropdown, MenuProps, Space } from "antd";
+"use client";
+import { useState } from "react";
+import { Button, Divider, Drawer, Space } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
 import { Metadata } from "next";
+import { FormsAuthNSession } from "../forms/FormsAuthNSession";
+import { FormsAuthNWebId } from "../forms/FormsAuthNWebId";
+import { useIdentity } from "../../contexts/IdentityContext";
+import { AuthMethods, IAuth } from "../../interfaces/IAuth";
 
-interface Item {
-  key: string;
-  label: string;
-}
+export function ControlsLogin() {
+  const { webId } = useIdentity();
+  const { drawerIdentityOpen, setDrawerIdentityOpen } = useIdentity();
 
-type Items = Array<Item>;
-
-interface IControlsLoginProperties {
-  metadata: Metadata;
-}
-
-export function ControlsLogin({ metadata }: IControlsLoginProperties) {
-  const [currentUrl, setCurrentUrl] = useState("");
-
-  useEffect(() => {
-    setCurrentUrl(globalThis.location.href);
-  }, [setCurrentUrl]);
-
-  const items: Items = OIDC_ISSUER.map((value, index) => {
-    return {
-      key: String(index),
-      label: String(value),
-    };
-  });
-
-  const [idp, setIdp] = useState(items[0].label);
-
-  const handleMenuClick: MenuProps["onClick"] = (event) => {
-    const item: Item | undefined = items.find(
-      (value: Item) => value.key === event.key
-    );
-    if (item) setIdp(item.label);
+  const showDrawer = () => {
+    setDrawerIdentityOpen(true);
   };
 
-  const menuProps = {
-    items,
-    onClick: handleMenuClick,
+  const onClose = () => {
+    setDrawerIdentityOpen(false);
   };
 
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
-  const authOptions = { clientName: String(metadata.title) };
+  if (webId) {
+    return null;
+  }
 
   return (
     <Space>
-      <Dropdown.Button menu={menuProps} onClick={handleButtonClick}>
-        {idp}
-      </Dropdown.Button>
-      <LoginButton
-        authOptions={authOptions}
-        oidcIssuer={idp}
-        redirectUrl={currentUrl}
-        onError={console.error}
-      >
-        <Button icon={<LoginOutlined rev={"solidLogin"} />}>Login</Button>
-      </LoginButton>
+      <Button onClick={showDrawer} icon={<LoginOutlined rev={"solidLogin"} />}>
+        Login
+      </Button>
     </Space>
   );
 }

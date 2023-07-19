@@ -4,9 +4,9 @@ import {
   createCitizenFolderStructure,
   verifyCitizenFolderStructure,
 } from "solid";
-import { Button, Result, Space, Typography } from "antd";
+import { Button, Result, Space } from "antd";
 import { useSession } from "@inrupt/solid-ui-react";
-import { Loading } from "./Loading";
+import { LoadingFullbleed } from "./Loading";
 import { VerifiedFolderStructureAlerts } from "./VerifiedFolderStructureAlerts";
 
 interface IFolderStructureVerificationProperties {
@@ -65,17 +65,7 @@ export const FolderStructureVerification = ({
   }, [verifyFolderStructureHandler]);
 
   if (verifyingFolderStructure || !verifiedFolderStructure) {
-    return (
-      <Space
-        align="center"
-        direction="vertical"
-        size="middle"
-        style={{ width: "100%", marginTop: 50 }}
-      >
-        <Loading style={{ fontSize: 30 }} />
-        <Typography>Validating Data...</Typography>
-      </Space>
-    );
+    return <LoadingFullbleed />;
   }
 
   if (!verifiedFolderStructure.validFolderStructure) {

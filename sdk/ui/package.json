@@ -4,14 +4,13 @@
   "version": "0.0.0",
   "license": "SEE LICENSE IN LICENSE",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "files": [
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+    "build": "tsc --build",
     "clean": "rm -rf dist",
-    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
+    "dev": "tsc --watch",
     "lint": "eslint \"src/**/*.ts*\""
   },
   "sideEffects": false,
@@ -21,10 +20,10 @@
     "@inrupt/solid-ui-react": "2.8.2",
     "antd": "5.4.3",
     "encoding": "0.1.13",
-    "next": "13.4.5",
+    "next": "13.4.10",
     "react-dom": "18.2.0",
     "solid": "workspace:*",
-    "swr": "2.1.5"
+    "swr": "2.2.0"
   },
   "devDependencies": {
     "@ant-design/icons": "5.1.2",
