@@ -1,9 +1,10 @@
 import { ControlsLogin } from "./ControlsLogin";
 import { ControlsLogout } from "./ControlsLogout";
 import { Metadata } from "next";
-import { Space } from "antd";
+import { Drawer, Space } from "antd";
 import { ControlsProfile } from "./ControlsProfile";
 import { IAuth } from "../../interfaces/IAuth";
+import { DrawerIdentity } from "../drawer/DrawerIdentity";
 
 interface IControlsSessionProperties {
   metadata: Metadata;
@@ -18,7 +19,8 @@ export function ControlsSession({
     <Space>
       <ControlsProfile />
       <ControlsLogout />
-      <ControlsLogin metadata={metadata} auth={auth} />
+      <ControlsLogin />
+      <DrawerIdentity metadata={metadata} auth={auth} />
     </Space>
   );
 }

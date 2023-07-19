@@ -5,6 +5,7 @@ import { IParsedProperty, getProperties } from "solid";
 import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { useRouter } from "next/navigation";
 import { handleRevokeAccessGrant } from "./ControlsRevokeAccessGrant";
+import { useIdentity } from "../../contexts/IdentityContext";
 
 interface IControlsAutofillWithoutSessionProperties {
   form?: FormInstance;
@@ -13,6 +14,7 @@ interface IControlsAutofillWithoutSessionProperties {
 export const ControlsAutofillWithoutSession = ({
   form,
 }: IControlsAutofillWithoutSessionProperties) => {
+  const { webId } = useIdentity();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

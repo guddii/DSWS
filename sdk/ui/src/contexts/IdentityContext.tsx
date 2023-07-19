@@ -12,6 +12,8 @@ import { WebId } from "solid";
 interface IIdentityContext {
   webId: WebId;
   setWebId: Dispatch<React.SetStateAction<WebId>>;
+  drawerIdentityOpen: boolean;
+  setDrawerIdentityOpen: Dispatch<React.SetStateAction<boolean>>;
 }
 
 const IdentityContext = createContext<IIdentityContext | undefined>(undefined);
@@ -19,6 +21,7 @@ const IdentityContext = createContext<IIdentityContext | undefined>(undefined);
 export function IdentityProvider({ children }: { children: React.ReactNode }) {
   const { session } = useSession();
   const [webId, setWebId] = useState("");
+  const [drawerIdentityOpen, setDrawerIdentityOpen] = useState(false);
 
   useEffect(() => {
     if (session.info.webId) {
@@ -29,6 +32,8 @@ export function IdentityProvider({ children }: { children: React.ReactNode }) {
   const value: IIdentityContext = {
     webId,
     setWebId,
+    drawerIdentityOpen,
+    setDrawerIdentityOpen,
   };
 
   return (

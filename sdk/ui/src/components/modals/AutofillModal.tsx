@@ -7,6 +7,7 @@ import {
   STAMMDATEN_FILE_PATH,
 } from "solid";
 import { FormModal } from "./FormModal";
+import { useIdentity } from "../../contexts/IdentityContext";
 
 interface IAutofillModalProperties {
   open: boolean;
@@ -18,6 +19,7 @@ interface IAutofillModalValues {
 }
 
 export const AutofillModal = ({ open, onClose }: IAutofillModalProperties) => {
+  const { webId } = useIdentity();
   const onSubmit = async ({ webId }: IAutofillModalValues) => {
     const emptySession = new Session();
 
@@ -33,7 +35,7 @@ export const AutofillModal = ({ open, onClose }: IAutofillModalProperties) => {
   };
 
   const initialValues: IAutofillModalValues = {
-    webId: "",
+    webId: webId,
   };
 
   return (
