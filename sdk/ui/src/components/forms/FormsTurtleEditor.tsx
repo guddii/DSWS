@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Button, Form, FormInstance } from "antd";
 
-interface ITurtleEditorFormProperties {
+interface IFormsTurtleEditorProperties {
   children: ReactNode;
   initialValues: Record<string, string>;
   onFinish: (values: Record<string, string>) => void;
@@ -9,13 +9,13 @@ interface ITurtleEditorFormProperties {
   form?: FormInstance;
 }
 
-export const TurtleEditorForm = ({
+export const FormsTurtleEditor = ({
   children,
   initialValues,
   onFinish,
   disabled,
   form,
-}: ITurtleEditorFormProperties) => {
+}: IFormsTurtleEditorProperties) => {
   return (
     <Form
       name="basic"

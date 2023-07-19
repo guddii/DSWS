@@ -3,7 +3,7 @@ import { ReactNode, useState } from "react";
 
 type Store = Record<string, any>;
 
-interface IFormModalProperties<T extends Store> {
+interface IModalFormProperties<T extends Store> {
   open: boolean;
   title?: string;
   initialValues: T;
@@ -12,14 +12,14 @@ interface IFormModalProperties<T extends Store> {
   children: ReactNode;
 }
 
-export const FormModal = <T extends Store>({
+export const ModalForm = <T extends Store>({
   open,
   title = "Please enter the required data.",
   initialValues,
   onSubmit,
   onCancel: onCancelProp,
   children,
-}: IFormModalProperties<T>) => {
+}: IModalFormProperties<T>) => {
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
 

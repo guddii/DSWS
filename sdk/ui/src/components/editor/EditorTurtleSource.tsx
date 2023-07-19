@@ -5,7 +5,6 @@ import { LoadingFailedFullbleed, LoadingFullbleed } from "../Loading";
 import { hasNoDataOrError } from "../../helper/hasNoDataOrError";
 import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { message } from "antd";
-import { TurtleEditorForm } from "./TurtleEditorForm";
 import {
   getProperties,
   putResource,
@@ -14,18 +13,19 @@ import {
   Thing,
 } from "solid";
 import { FormItem } from "../formItem/FormItem";
+import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
 
-interface ISourceTurtleEditorProperties {
+interface IEditorTurtleSourceProperties {
   thing?: Thing;
   thingUrl?: URL;
   subject: string;
 }
 
-export const SourceTurtleEditor = ({
+export const EditorTurtleSource = ({
   thing,
   thingUrl,
   subject,
-}: ISourceTurtleEditorProperties) => {
+}: IEditorTurtleSourceProperties) => {
   const { session } = useSession();
 
   const options = useMemo(() => ({ thing }), [thing]);
@@ -58,10 +58,10 @@ export const SourceTurtleEditor = ({
   };
 
   return (
-    <TurtleEditorForm initialValues={propertyValues} onFinish={onFinish}>
+    <FormsTurtleEditor initialValues={propertyValues} onFinish={onFinish}>
       {data.map((property) => (
         <FormItem key={toUrlString(property.predicate)} property={property} />
       ))}
-    </TurtleEditorForm>
+    </FormsTurtleEditor>
   );
 };

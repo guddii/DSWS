@@ -8,7 +8,7 @@ import { FormItemLogin } from "../formItem/FormItemLogin";
 import { useIdentity } from "../../contexts/IdentityContext";
 
 export function FormsAuthNWebId() {
-  const { setWebId } = useIdentity();
+  const { setWebId, setDrawerIdentityOpen } = useIdentity();
 
   const onFinish = (values: any) => {
     if (values.username && webIdFactories.has(values.oidcIssuer)) {
@@ -16,6 +16,7 @@ export function FormsAuthNWebId() {
       if (webIdFactory) {
         const webId = webIdFactory(values.username);
         if (webId) setWebId(webId);
+        setDrawerIdentityOpen(false);
       } else {
         message.error("The WebID generator was not present");
       }

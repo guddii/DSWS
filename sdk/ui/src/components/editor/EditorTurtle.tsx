@@ -2,32 +2,32 @@
 import { AbstractModel } from "solid";
 import { ReactNode } from "react";
 import { ResourceLoader } from "../loader/ResourceLoader";
-import { SourceTurtleEditor } from "./SourceTurtleEditor";
-import { ModelTurtleEditor } from "./ModelTurtleEditor";
+import { EditorTurtleSource } from "./EditorTurtleSource";
+import { EditorTurtleModel } from "./EditorTurtleModel";
 
-interface ITurtleEditorProperties {
+interface IEditorTurtleProperties {
   source?: string;
   model?: AbstractModel;
   subject?: string;
   children?: ReactNode;
 }
 
-export const TurtleEditor = ({
+export const EditorTurtle = ({
   source,
   model,
   subject,
   children,
-}: ITurtleEditorProperties) => {
+}: IEditorTurtleProperties) => {
   if (source && subject) {
     return (
       <ResourceLoader dataset={source} subject={subject}>
-        <SourceTurtleEditor subject={subject} />
+        <EditorTurtleSource subject={subject} />
       </ResourceLoader>
     );
   }
 
   if (model) {
-    return <ModelTurtleEditor model={model}>{children}</ModelTurtleEditor>;
+    return <EditorTurtleModel model={model}>{children}</EditorTurtleModel>;
   }
 
   return null;

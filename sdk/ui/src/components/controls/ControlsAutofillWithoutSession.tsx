@@ -1,11 +1,19 @@
-import { Button, FormInstance, message } from "antd";
+import { Button, FormInstance, message, Typography } from "antd";
 import { useCallback, useEffect, useState } from "react";
-import { AutofillModal } from "../modals/AutofillModal";
-import { IParsedProperty, getProperties } from "solid";
+import {
+  IParsedProperty,
+  getProperties,
+  Session,
+  createUrl,
+  getStorageFromWebId,
+  issueAccess,
+  STAMMDATEN_FILE_PATH,
+} from "solid";
 import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { useRouter } from "next/navigation";
 import { handleRevokeAccessGrant } from "./ControlsRevokeAccessGrant";
 import { useIdentity } from "../../contexts/IdentityContext";
+import { IModalWebIdValues, ModalWebId } from "../modals/ModalWebId";
 
 interface IControlsAutofillWithoutSessionProperties {
   form?: FormInstance;
@@ -81,6 +89,24 @@ export const ControlsAutofillWithoutSession = ({
     }
   }, [form, getAccessGrant, router]);
 
+  const onCancel = () => {
+    setOpen(false);
+  };
+
+  const onSubmit = async ({ webId }: IModalWebIdValues) => {
+    const emptySession = new Session();
+
+    const webIdUrl = createUrl(webId);
+    const storage = await getStorageFromWebId({
+      webId: webIdUrl,
+      session: emptySession,
+    });
+    await issueAccess({
+      webId: webIdUrl,
+      resource: createUrl(STAMMDATEN_FILE_PATH, storage),
+    });
+  };
+
   return (
     <>
       <Button
@@ -90,7 +116,25 @@ export const ControlsAutofillWithoutSession = ({
       >
         Autofill Stammdaten
       </Button>
-      <AutofillModal open={open} onClose={() => setOpen(false)} />
+      <ModalWebId
+        open={open}
+        onCancel={onCancel}
+        onSubmit={onSubmit}
+        reasonElement={
+          <>
+            <Typography.Paragraph>
+              The application needs your WebId to determine the address of your
+              data vault and to retrieve the data from the
+              <Typography.Text code>{STAMMDATEN_FILE_PATH}</Typography.Text>
+              file stored there.
+            </Typography.Paragraph>
+            <Typography.Paragraph>
+              The data from this file will be used to fill the content into the
+              form.
+            </Typography.Paragraph>
+          </>
+        }
+      />
     </>
   );
 };

@@ -1,22 +1,22 @@
 import { ReactNode, useState } from "react";
-import { Form } from "antd";
+import { Form, Typography } from "antd";
 import { propertiesGenerator } from "../../helper/propertiesGenerator";
 import { formValuesGenerator } from "../../helper/formValuesGenerator";
-import { IWebIdModalValues, WebIdModal } from "../modals/WebIdModal";
+import { IModalWebIdValues, ModalWebId } from "../modals/ModalWebId";
 import { assignPropsToChildren } from "../../helper/assignPropsToChildren";
-import { TurtleEditorForm } from "./TurtleEditorForm";
 import { FormItem } from "../formItem/FormItem";
 import { AbstractModel, toUrlString } from "solid";
+import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
 
-interface IModelTurtleEditorProperties {
+interface IEditorTurtleModelProperties {
   model: AbstractModel;
   children?: ReactNode;
 }
 
-export const ModelTurtleEditor = ({
+export const EditorTurtleModel = ({
   model,
   children,
-}: IModelTurtleEditorProperties) => {
+}: IEditorTurtleModelProperties) => {
   const [form] = Form.useForm();
   const properties = propertiesGenerator({ model });
   const propertyValues = formValuesGenerator({ properties });
@@ -31,7 +31,7 @@ export const ModelTurtleEditor = ({
     setOpen(false);
   };
 
-  const onSubmit = async ({ webId }: IWebIdModalValues) => {
+  const onSubmit = async ({ webId }: IModalWebIdValues) => {
     const values = form.getFieldsValue();
     const response: Response = await fetch(
       `/api/submitTaxData?webId=${webId}`,
@@ -52,7 +52,7 @@ export const ModelTurtleEditor = ({
   return (
     <>
       {childrenWithProps}
-      <TurtleEditorForm
+      <FormsTurtleEditor
         initialValues={propertyValues}
         onFinish={onFinish}
         disabled={open}
@@ -61,8 +61,19 @@ export const ModelTurtleEditor = ({
         {properties.map((property) => (
           <FormItem key={toUrlString(property.predicate)} property={property} />
         ))}
-      </TurtleEditorForm>
-      <WebIdModal open={open} onCancel={resetState} onSubmit={onSubmit} />
+      </FormsTurtleEditor>
+      <ModalWebId
+        open={open}
+        onCancel={resetState}
+        onSubmit={onSubmit}
+        reasonElement={
+          <Typography.Paragraph>
+            The application needs your WebId to create a data vault for you or
+            to use an existing one. This vault contains your submitted forms,
+            for the inspection of the tax office.
+          </Typography.Paragraph>
+        }
+      />
     </>
   );
 };

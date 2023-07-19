@@ -1,11 +1,11 @@
 "use client";
-import { SessionContent, ControlsStorage, TurtleEditor } from "ui";
+import { SessionContent, ControlsStorage, EditorTurtle } from "ui";
 
 export default function Page() {
   return (
     <SessionContent>
       <ControlsStorage>
-        <TurtleEditor subject="#me" />
+        <EditorTurtle subject="#me" />
       </ControlsStorage>
     </SessionContent>
   );
