@@ -7,6 +7,7 @@ export function ControlsLogout() {
   const { webId } = useIdentity();
 
   function reload() {
+    sessionStorage.clear();
     globalThis.location.reload();
   }
 
