@@ -3,6 +3,7 @@ import { Form, Input } from "antd";
 export function FormItemWebId() {
   return (
     <Form.Item
+      hidden={true}
       label="WebId"
       name="webId"
       rules={[

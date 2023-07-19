@@ -2,6 +2,8 @@ import { ModalForm } from "./ModalForm";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { FormItemWebId } from "../formItem/FormItemWebId";
 import { ReactElement } from "react";
+import { Alert, Space } from "antd";
+import { ControlsLogin } from "../controls/ControlsLogin";
 
 interface IModalWebIdProperties {
   open: boolean;
@@ -32,8 +34,23 @@ export const ModalWebId = ({
       initialValues={initialValues}
       onSubmit={onSubmit}
       onCancel={onCancel}
+      okButtonProps={{
+        disabled: !webId,
+      }}
     >
       {reasonElement}
+      <div hidden={!!webId}>
+        <Alert
+          message="Login required"
+          description="A login is required to perform this action. Please click on login to activate the OK button"
+          type="info"
+          action={
+            <Space direction="vertical">
+              <ControlsLogin />
+            </Space>
+          }
+        />
+      </div>
       <FormItemWebId />
     </ModalForm>
   );
