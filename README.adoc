@@ -6,8 +6,3 @@ The production environment URLs are
 
 - https://solid-showcase-citizen.vercel.app/
 - https://solid-showcase-tax-office.vercel.app/
-
-These instances correspond to the following Docker images:
-
-- https://hub.docker.com/r/guddii/solid-showcase-citizen
-- https://hub.docker.com/r/guddii/solid-showcase-tax-office

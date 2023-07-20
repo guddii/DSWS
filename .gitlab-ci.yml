@@ -1,6 +1,5 @@
 stages:
   - terraform
-  - docker
 
 terraform-review:
   stage: terraform
@@ -12,28 +11,10 @@ terraform-review:
   except:
     - main
 
-docker-review:
-  stage: docker
-  trigger:
-    include: .gitlab/ci/docker/review.gitlab-ci.yml
-    strategy: depend
-  only:
-    - branches
-  except:
-    - main
-
 terraform-production:
   stage: terraform
   trigger:
     include: .gitlab/ci/terraform/production.gitlab-ci.yml
-    strategy: depend
-  only:
-    - main
-
-docker-production:
-  stage: docker
-  trigger:
-    include: .gitlab/ci/docker/production.gitlab-ci.yml
     strategy: depend
   only:
     - main
