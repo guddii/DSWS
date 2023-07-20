@@ -3,19 +3,18 @@ import { UserOutlined } from "@ant-design/icons";
 import { useIdentity } from "../../contexts/IdentityContext";
 
 export function ControlsProfile() {
-  const { webId } = useIdentity();
+  const { webId, setDrawerIdentityOpen } = useIdentity();
 
-  function onClickHandler(event: any) {
-    event.preventDefault();
-    window.open(webId, "identity");
-  }
+  const showDrawer = () => {
+    setDrawerIdentityOpen(true);
+  };
 
   if (!webId) {
     return null;
   }
 
   return (
-    <Button onClick={onClickHandler} icon={<UserOutlined rev={"webId"} />}>
+    <Button onClick={showDrawer} icon={<UserOutlined rev={"webId"} />}>
       {webId}
     </Button>
   );

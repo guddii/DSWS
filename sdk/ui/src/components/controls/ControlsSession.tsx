@@ -1,7 +1,7 @@
 import { ControlsLogin } from "./ControlsLogin";
 import { ControlsLogout } from "./ControlsLogout";
 import { Metadata } from "next";
-import { Drawer, Space } from "antd";
+import { Space } from "antd";
 import { ControlsProfile } from "./ControlsProfile";
 import { IAuth } from "../../interfaces/IAuth";
 import { DrawerIdentity } from "../drawer/DrawerIdentity";

@@ -1,6 +1,10 @@
-import { Form, Input } from "antd";
+import { Form, Input, FormItemProps } from "antd";
 
-export function FormItemWebId() {
+interface IFormItemWebIdProperties {
+  formItemProps?: FormItemProps;
+}
+
+export function FormItemWebId({ formItemProps }: IFormItemWebIdProperties) {
   return (
     <Form.Item
       hidden={true}
@@ -13,6 +17,7 @@ export function FormItemWebId() {
           message: `Please input a valid WebId URL!`,
         },
       ]}
+      {...formItemProps}
     >
       <Input />
     </Form.Item>

@@ -11,6 +11,7 @@ export {
   getSolidDataset,
   saveSolidDatasetAt,
   universalAccess,
+  getPodUrlAll,
 } from "@inrupt/solid-client";
 
 export { Session } from "@inrupt/solid-client-authn-browser";
