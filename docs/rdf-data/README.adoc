@@ -1,0 +1,35 @@
+= RDF File Structure
+:toc:
+:icons: font
+
+== Stammdaten
+
+This is how the 'Stammdaten' resources work in our proposed structure:
+Each Citizen has a Stammdaten container in their own pod
+As of now these contain one resource: stammdaten.ttl
+
+.Example: stammdaten.ttl
+[,ttl]
+----
+include::../rdf-data/stammdaten.ttl[]
+----
+
+The purpose of this resource is to be used with other service providers such as the Tax Office App. It is not the same as the profile resource of the WebId
+
+== Tax Data
+
+Tax form data is saved in separate pods for each citizen and can be accessed by that person, but not changed.
+
+== Messages
+
+To enable information flow between Government Apps, such as the Tax Office app and Citizens, each citizen pod has an _inbox_ Container. If there are new documents a message will be sent to the public inbox.
+
+.Example: message.ttl
+A message contains metadata using the http://schema.org/Message[Schema.org/message] type. This contains information about sender, recipient and timestamp.
+
+Additional information is given in rdf syntax
+
+[,ttl]
+----
+include::../rdf-data/message.ttl[]
+----

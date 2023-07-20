@@ -1,0 +1,10 @@
+<https://id.inrupt.com/guddii>  <http://xmlns.com/foaf/0.1/name>    "Florian Gudat".
+
+<https://id.inrupt.com/guddii>  <http://xmlns.com/foaf/0.1/firstName>   "Florian".
+
+<https://id.inrupt.com/guddii>  <http://xmlns.com/foaf/0.1/lastName>    "Gudat".
+
+<https://id.inrupt.com/guddii>  <http://xmlns.com/foaf/0.1/title>   "Sir".
+
+<https://id.inrupt.com/guddii>  <http://xmlns.com/foaf/0.1/homepage>    "flo.de".
+

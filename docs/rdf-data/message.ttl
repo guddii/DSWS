@@ -1,0 +1,10 @@
+<https://storage.inrupt.com/bc19cca5-1d8c-4b61-bd9f-287b04878050/inbox/message>
+    a                              <http://schema.org/Message> ;
+    <http://schema.org/dateSent>   "2023-07-13T12:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    <http://schema.org/recipient>  <https://id.inrupt.com/maja> ;
+    <http://schema.org/sender>     <https://id.inrupt.com/taxofficeapp> ;
+    <http://schema.org/text>       "Your Tax Data has been uploaded to your Pod at the Tax Office" .
+
+<https://id.inrupt.com/maja>
+    <http://schema.org/subjectOf>  <https://storage.inrupt.com/965f1474-6227-4601-a92a-9f1d09980adb/taxData-1688512759625.ttl> ;
+    <http://www.w3.org/ns/pim/space#storage>    <https://storage.inrupt.com/965f1474-6227-4601-a92a-9f1d09980adb/> .
