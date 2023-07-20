@@ -5,6 +5,7 @@ export * from "./components/SolidApp";
 export * from "./components/editor/EditorTurtle";
 export * from "./components/controls/ControlsAutofill";
 export * from "./components/controls/ControlsStorage";
+export * from "./components/inbox/InboxViewer";
 export * from "./components/forms/FormsAuthNWebId";
 export * from "./components/forms/FormsAuthNSession";
 // Contexts
