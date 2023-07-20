@@ -1,0 +1,5 @@
+= Documentation
+
+This is the beginning of our project documentation.
+
+You can read about the link:rdf-data/README.adoc[RDF Data Structures] used in this project
