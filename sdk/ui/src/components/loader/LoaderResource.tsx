@@ -7,17 +7,17 @@ import useSWR from "swr";
 import { hasNoDataOrError } from "../../helper/hasNoDataOrError";
 import { replaceHashInUrl, createUrl } from "solid";
 
-interface IResourceLoaderProperties {
+interface ILoaderResourceProperties {
   dataset: string;
   subject: string;
   children: ReactNode;
 }
 
-export const ResourceLoader = ({
+export const LoaderResource = ({
   dataset,
   subject,
   children,
-}: IResourceLoaderProperties) => {
+}: ILoaderResourceProperties) => {
   const { session } = useSession();
   const options = useMemo(() => {
     const datasetUrl = createUrl(dataset);
