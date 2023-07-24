@@ -1,4 +1,4 @@
-import { AuthMethods, IAuth, SolidApp } from "ui";
+import { AuthMethods, IAgent, IAuth, SolidApp } from "ui";
 import "antd/dist/reset.css";
 import { Metadata } from "next";
 
@@ -10,6 +10,10 @@ const auth: IAuth = {
   methods: [AuthMethods.WebId],
 };
 
+const agent: IAgent = {
+  webId: "https://id.inrupt.com/taxofficeapp",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -18,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SolidApp metadata={metadata} auth={auth}>
+        <SolidApp metadata={metadata} auth={auth} agent={agent}>
           {children}
         </SolidApp>
       </body>

@@ -157,12 +157,18 @@ importers:
       '@inrupt/solid-client-notifications':
         specifier: 1.2.0
         version: 1.2.0(@inrupt/solid-client@1.28.1)
+      '@inrupt/vocab-common-rdf':
+        specifier: 1.0.5
+        version: 1.0.5
       '@inrupt/vocab-solid':
         specifier: 1.0.4
         version: 1.0.4
       n3:
         specifier: 1.16.4
         version: 1.16.4
+      rdf-namespaces:
+        specifier: 1.11.0
+        version: 1.11.0
     devDependencies:
       '@types/n3':
         specifier: 1.10.4
@@ -739,6 +745,10 @@ packages:
       undici: 5.22.1
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /@inrupt/vocab-common-rdf@1.0.5:
+    resolution: {integrity: sha512-onrehQte8m0XW83WwM6T4o5WgmYGzdYUCef6FDjMKfQCF64FnARFNn5fYhKodimBaAOFKhuJ3vw1NBZV/EYqJw==}
     dev: false
 
   /@inrupt/vocab-solid@1.0.4:

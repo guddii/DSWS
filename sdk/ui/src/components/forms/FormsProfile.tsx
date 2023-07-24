@@ -5,10 +5,10 @@ import { FormItemWebId } from "../formItem/FormItemWebId";
 import { FormItemSelectedPodUrl } from "../formItem/FormItemSelectedPodUrl";
 
 export function FormsProfile() {
-  const { webId, selectedPodUrl } = useIdentity();
+  const { webId, storage } = useIdentity();
 
   return (
-    <Form initialValues={{ webId: webId, selectedPodUrl: selectedPodUrl }}>
+    <Form initialValues={{ webId: webId, selectedPodUrl: storage }}>
       <FormItemWebId formItemProps={{ hidden: false }} />
       <FormItemSelectedPodUrl />
     </Form>

@@ -3,13 +3,13 @@ import { Form, Input } from "antd";
 export function FormItemSelectedPodUrl() {
   return (
     <Form.Item
-      label="Pod"
-      name="selectedPodUrl"
+      label="Storage"
+      name="storage"
       rules={[
         {
           required: true,
           type: "url",
-          message: `Please input a valid Pod URL!`,
+          message: `Please input a valid storage URL!`,
         },
       ]}
     >

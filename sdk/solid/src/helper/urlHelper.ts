@@ -1,4 +1,5 @@
 import { UrlString } from "@inrupt/solid-client";
+import * as path from "path";
 
 /**
  * Returns a UrlString from a URLString or URL object
@@ -14,6 +15,7 @@ export const toUrlString = (url: UrlString | URL): UrlString => {
 /**
  * Returns a new URL
  * @param url
+ * @param base
  */
 export const createUrl = (url: UrlString | URL, base?: UrlString | URL) => {
   return new URL(url, base);
@@ -50,4 +52,13 @@ export const replacePathnameInUrl = (
   const modifiedUrl: URL = createUrl(url);
   modifiedUrl.pathname = pathname ?? "";
   return modifiedUrl;
+};
+
+/**
+ * Removes the filename from a URL
+ * @param url
+ */
+export const removeFilename = (url: UrlString | URL) => {
+  const { dir } = path.parse(toUrlString(url));
+  return createUrl(dir);
 };

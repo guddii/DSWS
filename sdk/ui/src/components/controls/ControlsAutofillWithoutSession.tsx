@@ -12,8 +12,9 @@ import {
 import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { useRouter } from "next/navigation";
 import { handleRevokeAccessGrant } from "./ControlsRevokeAccessGrant";
-import { useIdentity } from "../../contexts/IdentityContext";
 import { IModalWebIdValues, ModalWebId } from "../modals/ModalWebId";
+
+export const REDIRECT_URL_FROM_AUTOFILL = "redirectUrl";
 
 interface IControlsAutofillWithoutSessionProperties {
   form?: FormInstance;
@@ -22,13 +23,12 @@ interface IControlsAutofillWithoutSessionProperties {
 export const ControlsAutofillWithoutSession = ({
   form,
 }: IControlsAutofillWithoutSessionProperties) => {
-  const { webId } = useIdentity();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAutofillClick = () => {
-    const redirectUrl = sessionStorage.getItem("redirectUrlFromAutofill");
+    const redirectUrl = sessionStorage.getItem(REDIRECT_URL_FROM_AUTOFILL);
 
     if (redirectUrl) {
       getAccessGrant(redirectUrl).catch(message.error);
@@ -83,10 +83,10 @@ export const ControlsAutofillWithoutSession = ({
 
     if (hasAccessGrantUrl) {
       sessionStorage.setItem(
-        "redirectUrlFromAutofill",
+        REDIRECT_URL_FROM_AUTOFILL,
         globalThis.location?.href
       );
-      const redirectUrl = sessionStorage.getItem("redirectUrlFromAutofill");
+      const redirectUrl = sessionStorage.getItem(REDIRECT_URL_FROM_AUTOFILL);
 
       if (redirectUrl) {
         getAccessGrant(redirectUrl).catch(console.error);
