@@ -22,7 +22,6 @@ export const FormsTurtleEditor = ({
       form={form}
       labelCol={{ span: 6 }}
       wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
       initialValues={initialValues}
       onFinish={onFinish}
       autoComplete="off"

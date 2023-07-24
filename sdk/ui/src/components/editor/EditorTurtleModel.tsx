@@ -5,8 +5,11 @@ import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { IModalWebIdValues, ModalWebId } from "../modals/ModalWebId";
 import { assignPropsToChildren } from "../../helper/assignPropsToChildren";
 import { FormItem } from "../formItem/FormItem";
-import { AbstractModel, toUrlString } from "solid";
+import { AbstractModel, toUrlString, sendInboxMessage } from "solid";
 import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
+import { ModalSaveToInbox } from "../modals/ModalSaveToInbox";
+import { useIdentity } from "../../contexts/IdentityContext";
+import { useAgent } from "../../contexts/AgentContext";
 
 interface IEditorTurtleModelProperties {
   model: AbstractModel;
@@ -17,18 +20,21 @@ export const EditorTurtleModel = ({
   model,
   children,
 }: IEditorTurtleModelProperties) => {
+  const identity = useIdentity();
+  const agent = useAgent();
   const [form] = Form.useForm();
   const properties = propertiesGenerator({ model });
   const propertyValues = formValuesGenerator({ properties });
-  const [open, setOpen] = useState(false);
-  const [taxDataUrl, setTaxDataUrl] = useState(null);
+  const [openWebIdConfirm, setOpenWebIdConfirm] = useState(false);
+  const [openSaveToInbox, setOpenSaveToInbox] = useState(false);
+  const [taxDataUrlString, setTaxDataUrlString] = useState("");
 
   const onFinish = () => {
-    setOpen(true);
+    setOpenWebIdConfirm(true);
   };
 
   const resetState = () => {
-    setOpen(false);
+    setOpenWebIdConfirm(false);
   };
 
   const onSubmit = async ({ webId }: IModalWebIdValues) => {
@@ -41,7 +47,8 @@ export const EditorTurtleModel = ({
       }
     );
     const { url } = await response.json();
-    setTaxDataUrl(url);
+    setTaxDataUrlString(url);
+    setOpenSaveToInbox(true);
     resetState();
   };
 
@@ -49,13 +56,28 @@ export const EditorTurtleModel = ({
     form,
   });
 
+  const onCancelSaveToInbox = () => {
+    setOpenSaveToInbox(false);
+  };
+
+  const onSubmitSaveToInbox = async () => {
+    await sendInboxMessage({
+      recipient: identity,
+      sender: agent,
+      data: {
+        reference: taxDataUrlString,
+      },
+    });
+    setOpenSaveToInbox(false);
+  };
+
   return (
     <>
       {childrenWithProps}
       <FormsTurtleEditor
         initialValues={propertyValues}
         onFinish={onFinish}
-        disabled={open}
+        disabled={openWebIdConfirm}
         form={form}
       >
         {properties.map((property) => (
@@ -63,7 +85,7 @@ export const EditorTurtleModel = ({
         ))}
       </FormsTurtleEditor>
       <ModalWebId
-        open={open}
+        open={openWebIdConfirm}
         onCancel={resetState}
         onSubmit={onSubmit}
         reasonElement={
@@ -73,6 +95,11 @@ export const EditorTurtleModel = ({
             for the inspection of the tax office.
           </Typography.Paragraph>
         }
+      />
+      <ModalSaveToInbox
+        open={openSaveToInbox}
+        onCancel={onCancelSaveToInbox}
+        onSubmit={onSubmitSaveToInbox}
       />
     </>
   );

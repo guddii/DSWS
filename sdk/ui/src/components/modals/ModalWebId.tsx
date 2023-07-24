@@ -34,8 +34,10 @@ export const ModalWebId = ({
       initialValues={initialValues}
       onSubmit={onSubmit}
       onCancel={onCancel}
-      okButtonProps={{
-        disabled: !webId,
+      modalProps={{
+        okButtonProps: {
+          disabled: !webId,
+        },
       }}
     >
       {reasonElement}

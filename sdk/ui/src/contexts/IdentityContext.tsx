@@ -12,11 +12,11 @@ import {
 import { useSession } from "@inrupt/solid-ui-react";
 import { WebId, UrlString, getPodUrlAll } from "solid";
 
-interface IIdentityContext {
+export interface IIdentityContext {
   webId: WebId;
   setWebId: Dispatch<SetStateAction<WebId>>;
-  podUrlAll: Array<UrlString>;
-  selectedPodUrl: UrlString;
+  storageAll: Array<UrlString>;
+  storage: UrlString;
   drawerIdentityOpen: boolean;
   setDrawerIdentityOpen: Dispatch<SetStateAction<boolean>>;
 }
@@ -28,21 +28,24 @@ interface StorageKeyAndDispatcher {
 
 enum StorageKey {
   WebId = "webId",
-  PodUrlAll = "podUrlAll",
-  SelectedPodUrl = "selectedPodUrl",
+  StorageAll = "storageAll",
+  Storage = "storage",
 }
 
 type StorageSyncStates = Record<StorageKey, StorageKeyAndDispatcher>;
 
 const IdentityContext = createContext<IIdentityContext | undefined>(undefined);
 
-export function IdentityProvider({ children }: { children: ReactNode }) {
+interface IIdentityProviderProperties {
+  children: ReactNode;
+}
+export function IdentityProvider({ children }: IIdentityProviderProperties) {
   // External store data
   const { session } = useSession();
   // This store data
   const [webId, setWebId] = useState<string>("");
-  const [podUrlAll, setPodUrlAll] = useState<Array<UrlString>>([]);
-  const [selectedPodUrl, setSelectedPodUrl] = useState<UrlString>("");
+  const [storageAll, setStorageAll] = useState<Array<UrlString>>([]);
+  const [storage, setStorage] = useState<UrlString>("");
   const [drawerIdentityOpen, setDrawerIdentityOpen] = useState<boolean>(false);
 
   /**
@@ -54,13 +57,13 @@ export function IdentityProvider({ children }: { children: ReactNode }) {
         key: StorageKey.WebId,
         dispatcher: setWebId,
       },
-      [StorageKey.PodUrlAll]: {
-        key: StorageKey.PodUrlAll,
-        dispatcher: setPodUrlAll,
+      [StorageKey.StorageAll]: {
+        key: StorageKey.StorageAll,
+        dispatcher: setStorageAll,
       },
-      [StorageKey.SelectedPodUrl]: {
-        key: StorageKey.SelectedPodUrl,
-        dispatcher: setSelectedPodUrl,
+      [StorageKey.Storage]: {
+        key: StorageKey.Storage,
+        dispatcher: setStorage,
       },
     };
   }, []);
@@ -95,10 +98,10 @@ export function IdentityProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (webId) {
       getPodUrlAll(webId).then((podUrlAll) => {
-        updateStateAndStorage(storageSyncStates[StorageKey.PodUrlAll])(
+        updateStateAndStorage(storageSyncStates[StorageKey.StorageAll])(
           podUrlAll
         );
-        updateStateAndStorage(storageSyncStates[StorageKey.SelectedPodUrl])(
+        updateStateAndStorage(storageSyncStates[StorageKey.Storage])(
           podUrlAll[0]
         );
       });
@@ -127,8 +130,8 @@ export function IdentityProvider({ children }: { children: ReactNode }) {
   const value: IIdentityContext = {
     webId,
     setWebId: updateStateAndStorage(storageSyncStates[StorageKey.WebId]),
-    podUrlAll,
-    selectedPodUrl,
+    storageAll: storageAll,
+    storage: storage,
     drawerIdentityOpen,
     setDrawerIdentityOpen,
   };

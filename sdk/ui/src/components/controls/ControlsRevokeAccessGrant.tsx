@@ -1,8 +1,9 @@
 import { Button } from "antd";
 import { useEffect, useState } from "react";
+import { REDIRECT_URL_FROM_AUTOFILL } from "./ControlsAutofillWithoutSession";
 
 export const handleRevokeAccessGrant = () => {
-  sessionStorage.removeItem("redirectUrl");
+  sessionStorage.removeItem(REDIRECT_URL_FROM_AUTOFILL);
 };
 
 export const ControlsRevokeAccessGrant = () => {
@@ -14,7 +15,7 @@ export const ControlsRevokeAccessGrant = () => {
   };
 
   useEffect(() => {
-    setRedirectUrl(sessionStorage.getItem("redirectUrl"));
+    setRedirectUrl(sessionStorage.getItem(REDIRECT_URL_FROM_AUTOFILL));
   }, []);
 
   if (!redirectUrl) {
