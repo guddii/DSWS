@@ -41,8 +41,6 @@ export const InboxViewer = ({ storage }: IInboxViewerProperties) => {
 
       if (thing) {
         const messages = getUrlAll(thing, LDP.contains.iri.value);
-        console.log(messages);
-
         return messages.map((message) => toUrlString(message));
       }
 
@@ -73,11 +71,7 @@ export const InboxViewer = ({ storage }: IInboxViewerProperties) => {
   }
 
   return (
-    <Space
-      direction="vertical"
-      size="middle"
-      style={{ marginTop: 50, display: "flex" }}
-    >
+    <Space direction="vertical" size="middle" style={{ display: "flex" }}>
       {data?.map((messageUrl) => (
         <InboxMessageCard
           key={messageUrl}

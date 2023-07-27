@@ -18,3 +18,4 @@ export * from "./helper/propertiesGenerator";
 // Interfaces
 export * from "./interfaces/IAuth";
 export * from "./interfaces/IAgent";
+export * from "./interfaces/INavigation";

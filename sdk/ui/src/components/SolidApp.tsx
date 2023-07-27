@@ -10,12 +10,14 @@ import { IAuth } from "../interfaces/IAuth";
 import { Initializing } from "./Loading";
 import { DrawerIdentity } from "./drawer/DrawerIdentity";
 import { IAgent } from "../interfaces/IAgent";
+import { INavigation } from "../interfaces/INavigation";
 
 interface ISolidAppProperties {
   children: ReactNode;
   metadata: Metadata;
   auth: IAuth;
   agent?: IAgent;
+  navigation?: INavigation;
 }
 
 export const SolidApp: React.FC<any> = ({
@@ -23,13 +25,17 @@ export const SolidApp: React.FC<any> = ({
   metadata,
   auth,
   agent,
+  navigation,
 }: ISolidAppProperties) => {
   return (
     <>
       <Initializing />
       <Provider agent={agent}>
         <Layout style={{ minHeight: "100vh" }}>
-          <LayoutMasthead metadata={metadata} />
+          <LayoutMasthead
+            metadata={metadata}
+            navigation={navigation}
+          />
           <LayoutContent>{children}</LayoutContent>
           <LayoutFooter />
         </Layout>

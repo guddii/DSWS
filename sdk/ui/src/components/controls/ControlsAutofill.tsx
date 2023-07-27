@@ -23,7 +23,6 @@ interface IControlsAutofillProperties {
 export const ControlsAutofill = ({ form }: IControlsAutofillProperties) => {
   return (
     <SessionContent alwaysShowChildren>
-      <Divider plain>Steuererklärung</Divider>
       <ControlButtons form={form} />
       <Divider plain />
     </SessionContent>

@@ -4,9 +4,11 @@ import { InboxViewer, SessionContent } from "ui";
 
 export default function Page() {
   return (
-    <SessionContent>
+    <>
       <Divider>Inbox</Divider>
-      <InboxViewer />
-    </SessionContent>
+      <SessionContent>
+        <InboxViewer />
+      </SessionContent>
+    </>
   );
 }
