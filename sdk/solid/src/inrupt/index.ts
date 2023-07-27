@@ -16,6 +16,7 @@ export {
   getThingAll,
   getSolidDataset,
   saveSolidDatasetAt,
+  deleteSolidDataset,
   universalAccess,
   getPodUrlAll,
   createSolidDataset,

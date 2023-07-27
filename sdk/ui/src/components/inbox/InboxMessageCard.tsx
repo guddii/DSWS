@@ -1,70 +1,34 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import { Card, Divider, Space, Typography } from "antd";
-import { useCallback } from "react";
+import { Button, Card, Skeleton, message } from "antd";
+import { useCallback, useState } from "react";
 import {
   Thing,
   UrlString,
-  createUrl,
-  getDatetime,
+  deleteSolidDataset,
   getSolidDataset,
-  getStringNoLocale,
   getThing,
-  getUrl,
-  toUrlString,
 } from "solid";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 import { LoadingFailedFullbleed } from "../Loading";
 import { useIdentity } from "../../contexts/IdentityContext";
+import { InboxMessageCardHeader } from "./InboxMessageCardHeader";
+import { InboxMessageCardText } from "./InboxMessageCardText";
+import { InboxMessageCardContent } from "./InboxMessageCardContent";
+import { InboxMessageCardRaw } from "./InboxMessageCardRaw";
+import { InboxMessageCardSaveButton } from "./InboxMessageCardSaveButton";
 
-const { Text, Title, Paragraph } = Typography;
+export type Message = Thing;
+export type Content = Thing;
+
+interface IMessageData {
+  message?: Message;
+  content?: Content;
+}
 
 interface IInboxMessageCardProperties {
   messageUrl: UrlString;
   inboxUrl: UrlString;
 }
-
-interface IMessage {
-  message: Thing | null;
-  content: Thing | null;
-}
-
-interface IInboxMessageCardContentProperties {
-  data?: IMessage;
-}
-
-const InboxMessageCardContent = ({
-  data,
-}: IInboxMessageCardContentProperties) => {
-  if (!data || !data.message || !data.content) {
-    return null;
-  }
-  console.log(data);
-
-  const dateTime = getDatetime(data.message, "http://schema.org/dateSent");
-  let formattedDateTime = "";
-  if (dateTime) {
-    formattedDateTime = new Intl.DateTimeFormat("en-GB", {
-      dateStyle: "long",
-      timeStyle: "long",
-    }).format(dateTime);
-  }
-
-  return (
-    <Typography>
-      <Title level={5}>
-        From: {getUrl(data.message, "http://schema.org/sender")}
-      </Title>
-      <Text type="secondary">{formattedDateTime}</Text>
-      <Divider />
-      <Paragraph>
-        {getStringNoLocale(data.message, "http://schema.org/text")}
-      </Paragraph>
-      <Paragraph>
-        {getUrl(data.content, "http://schema.org/subjectOf")}
-      </Paragraph>
-    </Typography>
-  );
-};
 
 export const InboxMessageCard = ({
   messageUrl,
@@ -72,6 +36,8 @@ export const InboxMessageCard = ({
 }: IInboxMessageCardProperties) => {
   const { session } = useSession();
   const { webId } = useIdentity();
+  const { mutate } = useSWRConfig();
+  const [openRawMessage, setOpenRawMessage] = useState<boolean>(false);
 
   /**
    * Gets the meta information and content of the given message.
@@ -79,22 +45,43 @@ export const InboxMessageCard = ({
    * @returns message meta info and content
    */
   const getMessage = useCallback(
-    async (url: UrlString): Promise<IMessage> => {
+    async ({
+      url,
+      webId,
+    }: {
+      url: UrlString;
+      webId: string;
+    }): Promise<IMessageData> => {
       const dataset = await getSolidDataset(url, {
         fetch: session.fetch,
       });
 
-      const messageInfoUrl = toUrlString(createUrl("message", inboxUrl));
-      const message = getThing(dataset, messageInfoUrl);
-
+      const message = getThing(dataset, url);
       const content = getThing(dataset, webId);
 
-      return { message, content };
+      return {
+        message: message ?? undefined,
+        content: content ?? undefined,
+      };
     },
-    [inboxUrl, session.fetch, webId]
+    [session.fetch]
   );
 
-  const { data, error, isLoading } = useSWR<IMessage>(messageUrl, getMessage);
+  const { data, error, isLoading } = useSWR<IMessageData>(
+    { url: messageUrl, webId },
+    getMessage
+  );
+
+  const deleteMessage = async () => {
+    try {
+      await deleteSolidDataset(messageUrl, { fetch: session.fetch });
+      mutate(inboxUrl);
+      message.success("Successfully deleted message");
+    } catch (error: any) {
+      console.error(error);
+      message.error(error.message || "Error while deleting message");
+    }
+  };
 
   if (error) {
     console.error(error);
@@ -106,8 +93,54 @@ export const InboxMessageCard = ({
   }
 
   return (
-    <Card style={{ width: 600 }} loading={isLoading}>
-      <InboxMessageCardContent data={data} />
-    </Card>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <Card
+        style={{
+          maxWidth: openRawMessage ? 900 : 600,
+          width: "100%",
+        }}
+        headStyle={{ paddingTop: 16, paddingBottom: 16 }}
+        loading={isLoading}
+        title={
+          isLoading ? (
+            <Skeleton paragraph={false} active />
+          ) : (
+            <InboxMessageCardHeader message={data?.message} />
+          )
+        }
+        actions={[
+          <Button
+            key="show-raw-button"
+            onClick={() => setOpenRawMessage((previous) => !previous)}
+            disabled={isLoading}
+          >
+            Raw Message
+          </Button>,
+          <InboxMessageCardSaveButton
+            key="save-data-button"
+            message={data?.message}
+            content={data?.content}
+            disabled={isLoading}
+          />,
+          <Button
+            key="delete-button"
+            danger
+            onClick={deleteMessage}
+            disabled={isLoading}
+          >
+            Delete
+          </Button>,
+        ]}
+      >
+        <InboxMessageCardText message={data?.message} />
+        <InboxMessageCardContent content={data?.content} />
+        {openRawMessage && <InboxMessageCardRaw url={messageUrl} />}
+      </Card>
+    </div>
   );
 };

@@ -66,7 +66,7 @@ export const InboxViewer = ({ storage }: IInboxViewerProperties) => {
     return <LoadingFailedFullbleed />;
   }
 
-  if (!data) {
+  if (!data || data.length === 0) {
     return (
       <Empty description={"Your inbox is empty."} style={{ marginTop: 50 }} />
     );
@@ -75,7 +75,6 @@ export const InboxViewer = ({ storage }: IInboxViewerProperties) => {
   return (
     <Space
       direction="vertical"
-      align="center"
       size="middle"
       style={{ marginTop: 50, display: "flex" }}
     >
