@@ -8,6 +8,7 @@ import { LayoutFooter } from "./layout/LayoutFooter";
 import { Provider } from "./Provider";
 import { IAuth } from "../interfaces/IAuth";
 import { Initializing } from "./Loading";
+import { DrawerIdentity } from "./drawer/DrawerIdentity";
 import { IAgent } from "../interfaces/IAgent";
 
 interface ISolidAppProperties {
@@ -28,10 +29,11 @@ export const SolidApp: React.FC<any> = ({
       <Initializing />
       <Provider agent={agent}>
         <Layout style={{ minHeight: "100vh" }}>
-          <LayoutMasthead metadata={metadata} auth={auth} />
+          <LayoutMasthead metadata={metadata} />
           <LayoutContent>{children}</LayoutContent>
           <LayoutFooter />
         </Layout>
+        <DrawerIdentity metadata={metadata} auth={auth} />
       </Provider>
     </>
   );

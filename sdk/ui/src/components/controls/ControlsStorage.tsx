@@ -14,6 +14,7 @@ import { assignPropsToChildren } from "../../helper/assignPropsToChildren";
 import { createUrl } from "solid";
 import { useSession } from "@inrupt/solid-ui-react";
 import { FolderStructureVerification } from "../FolderStructureVerification";
+import { useIdentity } from "../../contexts/IdentityContext";
 
 interface IControlButtonsProperties {
   storage: string;
@@ -98,14 +99,11 @@ const ControlButtons = ({
 };
 
 interface IControlsStorageProperties {
-  storage?: string;
   children: ReactNode;
 }
 
-export const ControlsStorage = ({
-  storage,
-  children,
-}: IControlsStorageProperties) => {
+export const ControlsStorage = ({ children }: IControlsStorageProperties) => {
+  const { storage } = useIdentity();
   const [resource, setResource] = useState("");
 
   if (!storage) {

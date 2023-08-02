@@ -8,7 +8,7 @@ export function FormsProfile() {
   const { webId, storage } = useIdentity();
 
   return (
-    <Form initialValues={{ webId: webId, selectedPodUrl: storage }}>
+    <Form initialValues={{ webId: webId, storage: storage }}>
       <FormItemWebId formItemProps={{ hidden: false }} />
       <FormItemSelectedPodUrl />
     </Form>

@@ -1,7 +1,7 @@
 "use client";
 import { AbstractModel } from "solid";
 import { ReactNode } from "react";
-import { ResourceLoader } from "../loader/ResourceLoader";
+import { LoaderResource } from "../loader/LoaderResource";
 import { EditorTurtleSource } from "./EditorTurtleSource";
 import { EditorTurtleModel } from "./EditorTurtleModel";
 
@@ -20,9 +20,9 @@ export const EditorTurtle = ({
 }: IEditorTurtleProperties) => {
   if (source && subject) {
     return (
-      <ResourceLoader dataset={source} subject={subject}>
+      <LoaderResource dataset={source} subject={subject}>
         <EditorTurtleSource subject={subject} />
-      </ResourceLoader>
+      </LoaderResource>
     );
   }
 
