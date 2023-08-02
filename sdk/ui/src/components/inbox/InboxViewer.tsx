@@ -15,13 +15,11 @@ import useSWR from "swr";
 import { LoadingFailedFullbleed, LoadingFullbleed } from "../Loading";
 import { Empty, Space } from "antd";
 import { InboxMessageCard } from "./InboxMessageCard";
+import { useIdentity } from "../../contexts/IdentityContext";
 
-interface IInboxViewerProperties {
-  storage?: string;
-}
-
-export const InboxViewer = ({ storage }: IInboxViewerProperties) => {
+export const InboxViewer = () => {
   const { session } = useSession();
+  const { storage } = useIdentity();
   const inboxUrl: UrlString | null = storage
     ? toUrlString(createUrl(INBOX_FOLDER_PATH, storage))
     : null;
