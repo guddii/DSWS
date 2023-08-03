@@ -2,15 +2,17 @@
 export * from "./components/Loading";
 export * from "./components/SessionContent";
 export * from "./components/SolidApp";
+export * from "./components/FolderStructureVerification";
 export * from "./components/editor/EditorTurtle";
 export * from "./components/controls/ControlsAutofill";
-export * from "./components/controls/ControlsStorage";
+export * from "./components/controls/ControlsDataset";
 export * from "./components/inbox/InboxViewer";
 export * from "./components/forms/FormsAuthNWebId";
 export * from "./components/forms/FormsAuthNSession";
 // Contexts
 export * from "./contexts/AgentContext";
 export * from "./contexts/IdentityContext";
+export * from "./contexts/PageContext";
 // Helper
 export * from "./helper/assignPropsToChildren";
 export * from "./helper/formValuesGenerator";

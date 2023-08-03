@@ -49,9 +49,7 @@ const getNamedNode = (predicateValue: any) => {
   return predicateValue.namedNodes ?? [];
 };
 
-export const getProperty = async (
-  options: IGetPropertyOptions
-): Promise<IParsedProperty> => {
+export const getProperty = (options: IGetPropertyOptions): IParsedProperty => {
   if (!options.thing) {
     throw new Error("thing missing");
   }
@@ -83,16 +81,14 @@ export const getProperty = async (
   return parsedPropertyObject;
 };
 
-export const getProperties = async (
+export const getProperties = (
   options: IGetPropertiesOptions
-): Promise<Array<IParsedProperty>> => {
+): Array<IParsedProperty> => {
   if (!options.thing) {
     throw new Error("thing missing");
   }
 
-  const promises = Object.keys(options.thing.predicates).map((predicate) =>
+  return Object.keys(options.thing.predicates).map((predicate) =>
     getProperty({ thing: options.thing, predicate: createUrl(predicate) })
   );
-
-  return Promise.all(promises);
 };
