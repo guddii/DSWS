@@ -1,5 +1,5 @@
 import { ReactNode, useMemo } from "react";
-import { getThing } from "solid";
+import { legacyGetThing } from "solid";
 import { useSession } from "@inrupt/solid-ui-react";
 import { assignPropsToChildren } from "../../helper/assignPropsToChildren";
 import { LoadingFailedFullbleed, LoadingFullbleed } from "../Loading";
@@ -26,7 +26,7 @@ export const LoaderResource = ({
     return { datasetUrl, thingUrl, session };
   }, [dataset, session, subject]);
 
-  const { data, error, isLoading } = useSWR(options, getThing);
+  const { data, error, isLoading } = useSWR(options, legacyGetThing);
 
   if (isLoading) return <LoadingFullbleed />;
   if (hasNoDataOrError(data, error)) {

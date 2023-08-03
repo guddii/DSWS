@@ -10,7 +10,7 @@ import {
   getProperty,
   getResourceFromResponse,
   getSolidDataset,
-  getThing,
+  legacyGetThing,
   removeHashFromUrl,
   replaceHashInUrl,
   saveSolidDatasetAt,
@@ -25,7 +25,7 @@ const getMainPod = async (session: Session) => {
   const datasetUrl = webId ? removeHashFromUrl(webId) : undefined;
   const thingUrl = webId ? createUrl(webId) : undefined;
 
-  const thing = await getThing({ session, datasetUrl, thingUrl });
+  const thing = await legacyGetThing({ session, datasetUrl, thingUrl });
   const data = await getProperty({ thing, predicate: createUrl(WS.storage) });
   return data.firstProperty;
 };
@@ -75,7 +75,7 @@ const getUserPod = async (session: Session, storage: string, webId: string) => {
   const thingUrl = replaceHashInUrl(datasetUrl, `#${webId}`);
 
   try {
-    const thing = await getThing({ session, datasetUrl, thingUrl });
+    const thing = await legacyGetThing({ session, datasetUrl, thingUrl });
     const data = await getProperty({
       thing,
       predicate: createUrl(FOAF.page.iri.value),

@@ -116,7 +116,6 @@ export const ControlsStorage = ({ children }: IControlsStorageProperties) => {
 
   return (
     <FolderStructureVerification storage={storage}>
-      <Divider plain>Stammdaten</Divider>
       <ControlButtons storage={storage} setResource={setResource} />
       <Divider plain />
       {resource && childrenWithProps}

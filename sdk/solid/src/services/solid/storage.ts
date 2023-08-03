@@ -1,6 +1,6 @@
 import { Session as SessionBrowser } from "@inrupt/solid-client-authn-browser";
 import { Session as SessionNode } from "@inrupt/solid-client-authn-node";
-import { getThing } from "./thing";
+import { legacyGetThing } from "./thing";
 import { createUrl, removeHashFromUrl } from "../../helper/urlHelper";
 import { getProperty } from "./property";
 import { WS } from "@inrupt/vocab-solid";
@@ -14,7 +14,7 @@ export const getStorageFromWebId = async ({
   webId,
   session,
 }: IGetStorageFromWebId): Promise<string> => {
-  const thing = await getThing({
+  const thing = await legacyGetThing({
     datasetUrl: removeHashFromUrl(webId),
     thingUrl: webId,
     session,

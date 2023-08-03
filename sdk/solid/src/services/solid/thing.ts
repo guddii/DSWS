@@ -6,7 +6,9 @@ export interface IGetThingOptions extends IGetDatasetOptions {
   thingUrl?: URL;
 }
 
-export const getThing = async (options: IGetThingOptions): Promise<Thing> => {
+export const legacyGetThing = async (
+  options: IGetThingOptions
+): Promise<Thing> => {
   try {
     if (!options.thingUrl) {
       throw new Error("thingUrl missing");
