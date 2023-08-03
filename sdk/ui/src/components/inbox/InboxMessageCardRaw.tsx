@@ -8,7 +8,7 @@ import { Loading, LoadingFailed } from "../Loading";
 const { Paragraph } = Typography;
 
 interface IInboxMessageCardRawProperties {
-  url: UrlString;
+  inboxMessageUrl: UrlString;
 }
 
 const InboxMessageCardRawTitle = () => (
@@ -16,7 +16,7 @@ const InboxMessageCardRawTitle = () => (
 );
 
 export const InboxMessageCardRaw = ({
-  url,
+  inboxMessageUrl,
 }: IInboxMessageCardRawProperties) => {
   const { session } = useSession();
 
@@ -34,7 +34,10 @@ export const InboxMessageCardRaw = ({
     [session]
   );
 
-  const { data, error, isLoading } = useSWR<string>(url, getRawMessage);
+  const { data, error, isLoading } = useSWR<string>(
+    inboxMessageUrl,
+    getRawMessage
+  );
 
   if (isLoading)
     return (

@@ -17,21 +17,21 @@ import { InboxMessageCardContent } from "./InboxMessageCardContent";
 import { InboxMessageCardRaw } from "./InboxMessageCardRaw";
 import { InboxMessageCardSaveButton } from "./InboxMessageCardSaveButton";
 
-export type Message = Thing;
-export type Content = Thing;
+export type InboxMessage = Thing;
+export type InboxContent = Thing;
 
 interface IMessageData {
-  message?: Message;
-  content?: Content;
+  inboxMessage?: InboxMessage;
+  inboxContent?: InboxContent;
 }
 
 interface IInboxMessageCardProperties {
-  messageUrl: UrlString;
+  inboxMessageUrl: UrlString;
   inboxUrl: UrlString;
 }
 
 export const InboxMessageCard = ({
-  messageUrl,
+  inboxMessageUrl,
   inboxUrl,
 }: IInboxMessageCardProperties) => {
   const { session } = useSession();
@@ -56,25 +56,25 @@ export const InboxMessageCard = ({
         fetch: session.fetch,
       });
 
-      const message = getThing(dataset, url);
-      const content = getThing(dataset, webId);
+      const inboxMessage = getThing(dataset, url);
+      const inboxContent = getThing(dataset, webId);
 
       return {
-        message: message ?? undefined,
-        content: content ?? undefined,
+        inboxMessage: inboxMessage ?? undefined,
+        inboxContent: inboxContent ?? undefined,
       };
     },
     [session.fetch]
   );
 
   const { data, error, isLoading } = useSWR<IMessageData>(
-    { url: messageUrl, webId },
+    { url: inboxMessageUrl, webId },
     getMessage
   );
 
   const deleteMessage = async () => {
     try {
-      await deleteSolidDataset(messageUrl, { fetch: session.fetch });
+      await deleteSolidDataset(inboxMessageUrl, { fetch: session.fetch });
       mutate(inboxUrl);
       message.success("Successfully deleted message");
     } catch (error: any) {
@@ -87,8 +87,8 @@ export const InboxMessageCard = ({
     console.error(error);
     return <LoadingFailedFullbleed />;
   }
-  if (!messageUrl) {
-    console.error("messageUrl missing");
+  if (!inboxMessageUrl) {
+    console.error("inboxMessageUrl missing");
     return null;
   }
 
@@ -110,7 +110,7 @@ export const InboxMessageCard = ({
           isLoading ? (
             <Skeleton paragraph={false} active />
           ) : (
-            <InboxMessageCardHeader message={data?.message} />
+            <InboxMessageCardHeader inboxMessage={data?.inboxMessage} />
           )
         }
         actions={[
@@ -123,8 +123,8 @@ export const InboxMessageCard = ({
           </Button>,
           <InboxMessageCardSaveButton
             key="save-data-button"
-            message={data?.message}
-            content={data?.content}
+            inboxMessage={data?.inboxMessage}
+            inboxContent={data?.inboxContent}
             disabled={isLoading}
           />,
           <Button
@@ -137,9 +137,11 @@ export const InboxMessageCard = ({
           </Button>,
         ]}
       >
-        <InboxMessageCardText message={data?.message} />
-        <InboxMessageCardContent content={data?.content} />
-        {openRawMessage && <InboxMessageCardRaw url={messageUrl} />}
+        <InboxMessageCardText inboxMessage={data?.inboxMessage} />
+        <InboxMessageCardContent inboxContent={data?.inboxContent} />
+        {openRawMessage && (
+          <InboxMessageCardRaw inboxMessageUrl={inboxMessageUrl} />
+        )}
       </Card>
     </div>
   );

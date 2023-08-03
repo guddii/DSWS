@@ -1,19 +1,19 @@
 import { Typography } from "antd";
 import { getStringNoLocale, schema } from "solid";
-import { Message } from "./InboxMessageCard";
+import { InboxMessage } from "./InboxMessageCard";
 
 const { Paragraph } = Typography;
 
 interface IInboxMessageCardTextProperties {
-  message?: Message;
+  inboxMessage?: InboxMessage;
 }
 
 export const InboxMessageCardText = ({
-  message,
+  inboxMessage,
 }: IInboxMessageCardTextProperties) => {
-  if (!message) {
+  if (!inboxMessage) {
     return <Paragraph>Message is empty.</Paragraph>;
   }
 
-  return <Paragraph>{getStringNoLocale(message, schema.text)}</Paragraph>;
+  return <Paragraph>{getStringNoLocale(inboxMessage, schema.text)}</Paragraph>;
 };

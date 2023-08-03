@@ -1,21 +1,21 @@
 import { Typography } from "antd";
 import { getDatetime, getUrl, schema } from "solid";
-import { Message } from "./InboxMessageCard";
+import { InboxMessage } from "./InboxMessageCard";
 
 const { Text, Title } = Typography;
 
 interface IInboxMessageCardHeaderProperties {
-  message?: Message;
+  inboxMessage?: InboxMessage;
 }
 
 export const InboxMessageCardHeader = ({
-  message,
+  inboxMessage,
 }: IInboxMessageCardHeaderProperties) => {
-  if (!message) {
+  if (!inboxMessage) {
     return <>Message Information could not be read!</>;
   }
 
-  const dateTime = getDatetime(message, schema.dateSent);
+  const dateTime = getDatetime(inboxMessage, schema.dateSent);
   let formattedDateTime = "";
   if (dateTime) {
     formattedDateTime = new Intl.DateTimeFormat("en-GB", {
@@ -27,7 +27,7 @@ export const InboxMessageCardHeader = ({
   return (
     <>
       <Title level={5} style={{ marginBottom: 0 }}>
-        From: {getUrl(message, schema.sender)}
+        From: {getUrl(inboxMessage, schema.sender)}
       </Title>
       <Text type="secondary" style={{ fontWeight: 400 }}>
         {formattedDateTime}

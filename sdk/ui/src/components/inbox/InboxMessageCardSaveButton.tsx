@@ -1,25 +1,28 @@
-import { Button, message as antMessage } from "antd";
+import { Button, message } from "antd";
 import { getUrl, schema } from "solid";
-import { Content, Message } from "./InboxMessageCard";
+import { InboxContent, InboxMessage } from "./InboxMessageCard";
 
 interface IInboxMessageCardSaveButtonProperties {
-  message?: Message;
-  content?: Content;
+  inboxMessage?: InboxMessage;
+  inboxContent?: InboxContent;
   disabled?: boolean;
 }
 
 export const InboxMessageCardSaveButton = ({
-  message,
-  content,
+  inboxMessage,
+  inboxContent,
   disabled,
 }: IInboxMessageCardSaveButtonProperties) => {
   return (
     <Button
       onClick={() =>
-        antMessage.info("Save to data functionality not yet implemented")
+        message.info("Save to data functionality not yet implemented")
       }
       disabled={
-        !message || !content || !getUrl(content, schema.subjectOf) || disabled
+        !inboxMessage ||
+        !inboxContent ||
+        !getUrl(inboxContent, schema.subjectOf) ||
+        disabled
       }
     >
       Save To Data

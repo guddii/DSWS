@@ -1,19 +1,19 @@
 import { Typography } from "antd";
 import { getUrl, schema } from "solid";
-import { Content } from "./InboxMessageCard";
+import { InboxContent } from "./InboxMessageCard";
 
 const { Paragraph } = Typography;
 
 interface IInboxMessageCardContentProperties {
-  content?: Content;
+  inboxContent?: InboxContent;
 }
 
 export const InboxMessageCardContent = ({
-  content,
+  inboxContent,
 }: IInboxMessageCardContentProperties) => {
-  if (!content) {
+  if (!inboxContent) {
     return null;
   }
 
-  return <Paragraph>{getUrl(content, schema.subjectOf)}</Paragraph>;
+  return <Paragraph>{getUrl(inboxContent, schema.subjectOf)}</Paragraph>;
 };

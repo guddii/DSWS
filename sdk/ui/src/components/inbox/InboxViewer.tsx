@@ -38,8 +38,10 @@ export const InboxViewer = () => {
       const thing = getThing(dataset, url);
 
       if (thing) {
-        const messages = getUrlAll(thing, LDP.contains.iri.value);
-        return messages.map((message) => toUrlString(message));
+        const inboxMessages = getUrlAll(thing, LDP.contains.iri.value);
+        return inboxMessages.map((inboxMessageUrl) =>
+          toUrlString(inboxMessageUrl)
+        );
       }
 
       return [];
@@ -70,10 +72,10 @@ export const InboxViewer = () => {
 
   return (
     <Space direction="vertical" size="middle" style={{ display: "flex" }}>
-      {data?.map((messageUrl) => (
+      {data?.map((inboxMessageUrl) => (
         <InboxMessageCard
-          key={messageUrl}
-          messageUrl={messageUrl}
+          key={inboxMessageUrl}
+          inboxMessageUrl={inboxMessageUrl}
           inboxUrl={inboxUrl}
         />
       ))}
