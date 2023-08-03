@@ -1,41 +1,23 @@
 "use client";
-import { useSession } from "@inrupt/solid-ui-react";
-import { useCallback } from "react";
-import {
-  INBOX_FOLDER_PATH,
-  LDP,
-  createUrl,
-  getSolidDataset,
-  getUrlAll,
-  getThing,
-  toUrlString,
-  UrlString,
-} from "solid";
-import useSWR from "swr";
-import { LoadingFailedFullbleed, LoadingFullbleed } from "../Loading";
+import { useCallback, useMemo } from "react";
+import { LDP, getUrlAll, getThing, toUrlString } from "solid";
+import { LoadingFailedFullbleed } from "../Loading";
 import { Empty, Space } from "antd";
 import { InboxMessageCard } from "./InboxMessageCard";
-import { useIdentity } from "../../contexts/IdentityContext";
+import { usePage } from "../../contexts/PageContext";
 
 export const InboxViewer = () => {
-  const { session } = useSession();
-  const { storage } = useIdentity();
-  const inboxUrl: UrlString | null = storage
-    ? toUrlString(createUrl(INBOX_FOLDER_PATH, storage))
-    : null;
+  const { dataset } = usePage();
+  const inboxUrl = dataset?.internal_resourceInfo.sourceIri;
 
   /**
    * Gets a list of all entries inside the given inbox folder.
    * @param url inbox url
    * @returns array of entries inside inbox
    */
-  const getInboxEntries = useCallback(
-    async (url: UrlString) => {
-      const dataset = await getSolidDataset(url, {
-        fetch: session.fetch,
-      });
-
-      const thing = getThing(dataset, url);
+  const getInboxEntries = useCallback(() => {
+    if (dataset && inboxUrl) {
+      const thing = getThing(dataset, inboxUrl);
 
       if (thing) {
         const inboxMessages = getUrlAll(thing, LDP.contains.iri.value);
@@ -43,28 +25,18 @@ export const InboxViewer = () => {
           toUrlString(inboxMessageUrl)
         );
       }
-
       return [];
-    },
-    [session.fetch]
-  );
+    }
 
-  const { data, error, isLoading } = useSWR<Array<UrlString> | null>(
-    inboxUrl,
-    getInboxEntries
-  );
+    return undefined;
+  }, [dataset, inboxUrl]);
 
-  if (isLoading) return <LoadingFullbleed />;
-  if (error) {
-    console.error(error);
-    return <LoadingFailedFullbleed />;
-  }
-  if (!storage || !inboxUrl) {
-    console.error("storage missing");
-    return <LoadingFailedFullbleed />;
-  }
+  const data = useMemo(getInboxEntries, [getInboxEntries]);
 
-  if (!data || data.length === 0) {
+  if (!dataset || !inboxUrl) return null;
+  if (data === undefined) return <LoadingFailedFullbleed />;
+
+  if (data.length === 0) {
     return (
       <Empty description={"Your inbox is empty."} style={{ marginTop: 50 }} />
     );
@@ -72,7 +44,7 @@ export const InboxViewer = () => {
 
   return (
     <Space direction="vertical" size="middle" style={{ display: "flex" }}>
-      {data?.map((inboxMessageUrl) => (
+      {data.map((inboxMessageUrl) => (
         <InboxMessageCard
           key={inboxMessageUrl}
           inboxMessageUrl={inboxMessageUrl}

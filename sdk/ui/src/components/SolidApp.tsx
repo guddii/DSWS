@@ -32,10 +32,7 @@ export const SolidApp: React.FC<any> = ({
       <Initializing />
       <Provider agent={agent}>
         <Layout style={{ minHeight: "100vh" }}>
-          <LayoutMasthead
-            metadata={metadata}
-            navigation={navigation}
-          />
+          <LayoutMasthead metadata={metadata} navigation={navigation} />
           <LayoutContent>{children}</LayoutContent>
           <LayoutFooter />
         </Layout>

@@ -1,3 +1,4 @@
+"use client";
 import { ReactNode, useCallback, useEffect, useState } from "react";
 import {
   ValidAndVerifiedFolderStructure,
@@ -8,16 +9,16 @@ import { Button, Result, Space } from "antd";
 import { useSession } from "@inrupt/solid-ui-react";
 import { LoadingFullbleed } from "./Loading";
 import { VerifiedFolderStructureAlerts } from "./VerifiedFolderStructureAlerts";
+import { useIdentity } from "../contexts/IdentityContext";
 
 interface IFolderStructureVerificationProperties {
-  storage: string;
   children: ReactNode;
 }
 
 export const FolderStructureVerification = ({
-  storage,
   children,
 }: IFolderStructureVerificationProperties) => {
+  const { storage } = useIdentity();
   const { session } = useSession();
   const [verifyingFolderStructure, setVerifyingFolderStructure] =
     useState(true);
@@ -61,8 +62,14 @@ export const FolderStructureVerification = ({
   }, [session, storage, verifiedFolderStructure]);
 
   useEffect(() => {
-    verifyFolderStructureHandler();
-  }, [verifyFolderStructureHandler]);
+    if (storage) {
+      verifyFolderStructureHandler();
+    }
+  }, [storage, verifyFolderStructureHandler]);
+
+  if (!storage) {
+    return null;
+  }
 
   if (verifyingFolderStructure || !verifiedFolderStructure) {
     return <LoadingFullbleed />;

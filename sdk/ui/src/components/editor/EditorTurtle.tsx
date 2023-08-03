@@ -1,29 +1,25 @@
 "use client";
 import { AbstractModel } from "solid";
 import { ReactNode } from "react";
-import { LoaderResource } from "../loader/LoaderResource";
-import { EditorTurtleSource } from "./EditorTurtleSource";
+import { EditorTurtleDataset } from "./EditorTurtleDataset";
 import { EditorTurtleModel } from "./EditorTurtleModel";
+import { Dataset } from "../../contexts/PageContext";
 
 interface IEditorTurtleProperties {
-  source?: string;
+  dataset?: Dataset;
   model?: AbstractModel;
   subject?: string;
   children?: ReactNode;
 }
 
 export const EditorTurtle = ({
-  source,
+  dataset,
   model,
   subject,
   children,
 }: IEditorTurtleProperties) => {
-  if (source && subject) {
-    return (
-      <LoaderResource dataset={source} subject={subject}>
-        <EditorTurtleSource subject={subject} />
-      </LoaderResource>
-    );
+  if (dataset && subject) {
+    return <EditorTurtleDataset dataset={dataset} subject={subject} />;
   }
 
   if (model) {

@@ -1,13 +1,29 @@
 "use client";
 import { Divider } from "antd";
-import { InboxViewer, SessionContent } from "ui";
+import { INBOX_FOLDER_PATH } from "solid";
+import {
+  ControlsDataset,
+  FolderStructureVerification,
+  InboxViewer,
+  PageProvider,
+  SessionContent,
+} from "ui";
 
 export default function Page() {
   return (
     <>
       <Divider>Inbox</Divider>
       <SessionContent>
-        <InboxViewer />
+        <PageProvider>
+          <FolderStructureVerification>
+            <ControlsDataset
+              datasetPath={INBOX_FOLDER_PATH}
+              enableSwrLoading
+              buttonLabel="Reload Inbox"
+            />
+            <InboxViewer />
+          </FolderStructureVerification>
+        </PageProvider>
       </SessionContent>
     </>
   );
