@@ -1,7 +1,6 @@
-import { Menu } from "antd";
+import { Button, Divider, Space } from "antd";
 import { INavigation } from "../interfaces/INavigation";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface INavigationMenuProperties {
   navigation: INavigation;
@@ -9,25 +8,33 @@ interface INavigationMenuProperties {
 
 export function NavigationMenu({ navigation }: INavigationMenuProperties) {
   const pathname = usePathname();
+  const router = useRouter();
   const active = navigation.routes.find(
     (navigationMenuEntry) => navigationMenuEntry.key === pathname
   );
 
+  const isActive = (key: string) => {
+    return active?.key === key;
+  };
+
+  const onClick = (key: string) => {
+    router.push(key);
+  };
+
+  const buttons = navigation.routes.map((navigation) => (
+    <Button
+      type={isActive(navigation.key) ? "link" : "text"}
+      onClick={() => onClick(navigation.key)}
+      key={navigation.key}
+    >
+      {navigation.label}
+    </Button>
+  ));
+
   return (
-    <Menu
-      mode="horizontal"
-      defaultSelectedKeys={active ? [active.key] : undefined}
-      items={navigation.routes.map(({ key, label }) => {
-        return {
-          key,
-          label: <Link href={key}>{label}</Link>,
-        };
-      })}
-      style={{
-        background: "transparent",
-        border: "none",
-        lineHeight: "46px",
-      }}
-    />
+    <Space>
+      {buttons}
+      <Divider type="vertical" />
+    </Space>
   );
 }
