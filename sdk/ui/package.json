@@ -12,7 +12,7 @@
   "dependencies": {
     "@ant-design/icons": "5.1.2",
     "@inrupt/solid-ui-react": "2.8.2",
-    "antd": "5.4.3",
+    "antd": "5.8.2",
     "encoding": "0.1.13",
     "next": "13.4.10",
     "react-dom": "18.2.0",
