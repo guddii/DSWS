@@ -8,7 +8,7 @@ RUN apk update
 # Set working directory
 WORKDIR /app
 RUN corepack enable
-RUN npm install -g turbo@1.10.8
+RUN npm install -g turbo@1.10.12
 COPY . .
 RUN turbo prune --scope=citizen --docker
 
@@ -19,7 +19,7 @@ RUN apk add --no-cache libc6-compat
 RUN apk update
 WORKDIR /app
 RUN corepack enable
-RUN npm install -g turbo@1.10.6
+RUN npm install -g turbo@1.10.12
 
 # First install the dependencies (as they change less often)
 COPY .gitignore .gitignore
