@@ -42,6 +42,7 @@ apply:
     - gitlab-terraform apply
     - echo "INSTANCE_CITIZEN_URL=$(gitlab-terraform output -raw instance_citizen_url)" >> build.env
     - echo "INSTANCE_TAX_OFFICE_URL=$(gitlab-terraform output -raw instance_tax-office_url)" >> build.env
+    - echo "INSTANCE_LAND_REGISTRY_OFFICE_URL=$(gitlab-terraform output -raw instance_land-registry-office_url)" >> build.env
   artifacts:
     name: apply
     paths:
@@ -70,5 +71,15 @@ report_instance_tax-office:
   environment:
     name: production/solid-showcase-tax-office
     url: https://$INSTANCE_TAX_OFFICE_URL
+  needs:
+    - apply
+
+report_instance_land-registry-office:
+  stage: report
+  script:
+    - echo $INSTANCE_LAND_REGISTRY_OFFICE_URL
+  environment:
+    name: production/solid-showcase-land-registry-office
+    url: https://$INSTANCE_LAND_REGISTRY_OFFICE_URL
   needs:
     - apply

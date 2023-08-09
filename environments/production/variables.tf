@@ -11,3 +11,7 @@ variable "instance_citizen" {
 variable "instance_tax-office" {
   default = "solid-showcase-tax-office"
 }
+
+variable "instance_land-registry-office" {
+  default = "solid-showcase-land-registry-office"
+}

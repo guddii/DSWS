@@ -22,7 +22,7 @@ export function LayoutMasthead({
             <Typography.Title style={{ marginTop: "-16px" }}>
               <Space>
                 <img src={"/icon"} alt="App brand" width={55} height={55} />
-                <div style={{ width: 320 }}> {String(metadata.title)} </div>
+                <div style={{ width: 430 }}> {String(metadata.title)} </div>
               </Space>
             </Typography.Title>
           </div>

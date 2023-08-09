@@ -9,8 +9,8 @@ export const getAgentUserSession = async () => {
 
   // get your own client id and secret from https://login.inrupt.com/registration.html
   await session.login({
-    clientId: "1172f8fb-911d-4a3f-b4fd-2a706201d510",
-    clientSecret: "83abc881-667f-43b1-a1b3-91790a96870d",
+    clientId: "5667120c-ece3-4261-ba75-8c31c22e15d4",
+    clientSecret: "fe6e0c90-9a08-406f-a632-b243cd312512",
     oidcIssuer: "https://login.inrupt.com",
     tokenType: "Bearer",
   });

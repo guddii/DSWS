@@ -2,37 +2,22 @@ import { FOAF } from "@inrupt/lit-generated-vocab-common";
 import { AbstractModel } from "./AbstractModel";
 import { UrlString } from "@inrupt/solid-client";
 import { createUrl } from "../helper/urlHelper";
-import { HAS_LAND_REGISTRY_DATA } from "../config";
 
 interface ITaxOfficeModelFactoryOptions {
   subject: UrlString | URL;
 }
 
-export class TaxOfficeModel extends AbstractModel {
+export class LandRegistryOfficeModel extends AbstractModel {
   static create(options: ITaxOfficeModelFactoryOptions) {
-    return new TaxOfficeModel({
+    return new LandRegistryOfficeModel({
       subject: options.subject,
       values: [
         {
           predicate: createUrl(FOAF.firstName.iri.value),
           value: "",
-          rules: { required: true },
         },
         {
           predicate: createUrl(FOAF.lastName.iri.value),
-          value: "",
-          rules: { required: true },
-        },
-        {
-          predicate: createUrl(FOAF.title.iri.value),
-          value: "",
-        },
-        {
-          predicate: createUrl(FOAF.homepage.iri.value),
-          value: "",
-        },
-        {
-          predicate: createUrl(HAS_LAND_REGISTRY_DATA),
           value: "",
         },
       ],

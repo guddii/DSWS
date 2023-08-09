@@ -39,13 +39,10 @@ export const EditorTurtleModel = ({
 
   const onSubmit = async ({ webId }: IModalWebIdValues) => {
     const values = form.getFieldsValue();
-    const response: Response = await fetch(
-      `/api/submitTaxData?webId=${webId}`,
-      {
-        method: "POST",
-        body: JSON.stringify(values),
-      }
-    );
+    const response: Response = await fetch(`/api/submitData?webId=${webId}`, {
+      method: "POST",
+      body: JSON.stringify(values),
+    });
     const { url } = await response.json();
     setTaxDataUrlString(url);
     setOpenSaveToInbox(true);

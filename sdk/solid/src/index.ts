@@ -1,3 +1,6 @@
+export * from "./controller/controllerDataFromAccessGrant";
+export * from "./controller/controllerIssueAccessRequest";
+export * from "./controller/controllerSubmitData";
 // Helper
 export * from "./helper/urlHelper";
 export * from "./helper/checkResponse";
@@ -20,5 +23,6 @@ export * from "./services/solid/thing";
 // Models
 export * from "./models/AbstractModel";
 export * from "./models/TaxOfficeModel";
+export * from "./models/LandRegistryOfficeModel";
 // Config
 export * from "./config";
