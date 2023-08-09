@@ -18,7 +18,6 @@ export const FormsTurtleEditor = ({
 }: IFormsTurtleEditorProperties) => {
   return (
     <Form
-      name="basic"
       form={form}
       labelCol={{ span: 6 }}
       wrapperCol={{ span: 16 }}

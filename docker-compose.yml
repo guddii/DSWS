@@ -6,7 +6,6 @@ services:
     build:
       context: .
       dockerfile: ./apps/citizen/Dockerfile
-    image: guddii/solid-showcase-citizen:latest
     restart: always
     ports:
       - "3000:3000"
@@ -18,10 +17,20 @@ services:
     build:
       context: .
       dockerfile: ./apps/tax-office/Dockerfile
-    image: guddii/solid-showcase-tax-office:latest
     restart: always
     ports:
-      - "4000:3000"
+      - "4000:4000"
+    networks:
+      - showcase
+
+  land-registry-office:
+    container_name: land-registry-office
+    build:
+      context: .
+      dockerfile: ./apps/land-registry-office/Dockerfile
+    restart: always
+    ports:
+      - "5000:5000"
     networks:
       - showcase
 

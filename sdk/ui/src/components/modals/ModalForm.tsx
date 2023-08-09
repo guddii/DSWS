@@ -57,7 +57,6 @@ export const ModalForm = <T extends Store>({
       {...modalProps}
     >
       <Form
-        name="modal form"
         form={form}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 16 }}

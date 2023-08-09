@@ -1,8 +1,9 @@
 import { Form, Input } from "antd";
-import { toUrlString, IParsedProperty } from "solid";
+import { toUrlString } from "solid";
+import { IParsedPropertyWithRules } from "../../helper/propertiesGenerator";
 
 interface IFormItemProperties {
-  property: IParsedProperty;
+  property: IParsedPropertyWithRules;
 }
 
 export const FormItem = ({ property }: IFormItemProperties) => {
@@ -14,7 +15,10 @@ export const FormItem = ({ property }: IFormItemProperties) => {
       label={propertyName}
       name={predicateString}
       rules={[
-        { required: true, message: `Please input your ${propertyName}!` },
+        {
+          ...property.rules,
+          message: `Please input your ${propertyName}!`,
+        },
       ]}
       extra={predicateString}
     >

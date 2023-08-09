@@ -10,7 +10,7 @@ WORKDIR /app
 RUN corepack enable
 RUN npm install -g turbo@1.10.12
 COPY . .
-RUN turbo prune --scope=citizen --docker
+RUN turbo prune --scope=land-registry-office --docker
 
 
 # Add lockfile and package.json's of isolated subworkspace
@@ -33,7 +33,7 @@ ARG TURBO_TOKEN
 ENV TURBO_TOKEN=$TURBO_TOKEN
 
 # Build the project
-RUN pnpm turbo run build --filter=citizen...
+RUN pnpm turbo run build --filter=land-registry-office...
 
 
 FROM node:19-alpine AS runner
@@ -44,12 +44,12 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
-COPY --from=installer /app/apps/citizen/next.config.js .
-COPY --from=installer /app/apps/citizen/package.json .
+COPY --from=installer /app/apps/land-registry-office/next.config.js .
+COPY --from=installer /app/apps/land-registry-office/package.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/apps/citizen/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/citizen/.next/static ./apps/citizen/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/land-registry-office/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/apps/land-registry-office/.next/static ./apps/land-registry-office/.next/static
 
-CMD node apps/citizen/server.js
+CMD node apps/land-registry-office/server.js

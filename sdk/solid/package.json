@@ -3,18 +3,12 @@
   "name": "solid",
   "version": "0.0.0",
   "license": "SEE LICENSE IN LICENSE",
-  "main": "./dist/index.js",
-  "files": [
-    "dist/**"
-  ],
+  "main": "./src/index.ts",
   "scripts": {
-    "build": "tsc --build",
     "clean": "rm -rf dist",
-    "dev": "tsc --watch",
     "lint": "eslint \"src/**/*.ts*\""
   },
-  "sideEffects": false,
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "dependencies": {
     "@inrupt/lit-generated-vocab-common": "0.3.11",
     "@inrupt/solid-client": "1.28.1",
@@ -32,7 +26,6 @@
     "eslint": "8.39.0",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",
-    "tsup": "6.7.0",
     "typescript": "5.0.4"
   }
 }

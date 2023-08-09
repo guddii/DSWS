@@ -1,24 +1,25 @@
-import { NextResponse } from "next/server";
-import { getTaxOfficeUserSession } from "../../session";
+import { Session } from "@inrupt/solid-client-authn-node";
 import {
-  FOAF,
-  WS,
+  createUrl,
+  removeHashFromUrl,
+  replaceHashInUrl,
+} from "../helper/urlHelper";
+import { legacyGetThing } from "../services/solid/thing";
+import { getProperty } from "../services/solid/property";
+import {
   buildThing,
   createResource,
   createThing,
-  createUrl,
-  getProperty,
+  FOAF,
   getResourceFromResponse,
   getSolidDataset,
-  legacyGetThing,
-  removeHashFromUrl,
-  replaceHashInUrl,
   saveSolidDatasetAt,
   setThing,
   turtleFileGenerator,
   universalAccess,
-} from "solid";
-import { Session } from "@inrupt/solid-client-authn-node";
+  WS,
+} from "../index";
+import { NextResponse } from "next/server";
 
 const getMainPod = async (session: Session) => {
   const { webId } = session.info;
@@ -118,20 +119,26 @@ const createTaxData = async (
   storage: string,
   values: Record<string, string>
 ) => {
-  const url: URL = createUrl(`taxData-${Date.now()}.ttl`, storage);
+  const url: URL = createUrl(`submission-${Date.now()}.ttl`, storage);
 
   const response = await createResource({
     url,
-    body: turtleFileGenerator({ subject: "#taxForm", values }),
+    body: turtleFileGenerator({ subject: "#office", values }),
     session,
   });
 
   return response.url;
 };
 
-export async function POST(request: Request) {
-  const session = await getTaxOfficeUserSession();
+interface IControllerSubmitData {
+  request: Request;
+  session: Session;
+}
 
+export const controllerSubmitData = async ({
+  request,
+  session,
+}: IControllerSubmitData) => {
   if (session.info.isLoggedIn) {
     const searchParams = new URL(request.url).searchParams;
     const webId = searchParams.get("webId");
@@ -166,4 +173,4 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.error();
-}
+};

@@ -5,6 +5,7 @@ type AbstractModelValue = string;
 interface IAbstractModelValues {
   predicate: URL;
   value: AbstractModelValue;
+  rules?: { required: boolean };
 }
 
 interface IAbstractModelOptions {

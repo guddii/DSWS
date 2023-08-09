@@ -6,3 +6,4 @@ The production environment URLs are
 
 - https://solid-showcase-citizen.vercel.app/
 - https://solid-showcase-tax-office.vercel.app/
+- https://solid-showcase-land-registry-office.vercel.app/
