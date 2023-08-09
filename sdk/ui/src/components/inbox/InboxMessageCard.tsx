@@ -16,6 +16,7 @@ import { InboxMessageCardText } from "./InboxMessageCardText";
 import { InboxMessageCardContent } from "./InboxMessageCardContent";
 import { InboxMessageCardRaw } from "./InboxMessageCardRaw";
 import { InboxMessageCardSaveButton } from "./InboxMessageCardSaveButton";
+import { ModalDeleteMessageFromInbox } from "../modals/ModalDeleteMessageFromInbox";
 
 export type InboxMessage = Thing;
 export type InboxContent = Thing;
@@ -38,6 +39,7 @@ export const InboxMessageCard = ({
   const { webId } = useIdentity();
   const { mutate } = useSWRConfig();
   const [openRawMessage, setOpenRawMessage] = useState<boolean>(false);
+  const [openDeleteMessage, setOpenDeleteMessage] = useState<boolean>(false);
 
   /**
    * Gets the meta information and content of the given message.
@@ -76,7 +78,6 @@ export const InboxMessageCard = ({
     try {
       await deleteSolidDataset(inboxMessageUrl, { fetch: session.fetch });
       mutate(inboxUrl);
-      message.success("Successfully deleted message");
     } catch (error: any) {
       console.error(error);
       message.error(error.message || "Error while deleting message");
@@ -126,11 +127,12 @@ export const InboxMessageCard = ({
             inboxMessage={data?.inboxMessage}
             inboxContent={data?.inboxContent}
             disabled={isLoading}
+            onSuccess={() => setOpenDeleteMessage(true)}
           />,
           <Button
             key="delete-button"
             danger
-            onClick={deleteMessage}
+            onClick={() => setOpenDeleteMessage(true)}
             disabled={isLoading}
           >
             Delete
@@ -142,6 +144,11 @@ export const InboxMessageCard = ({
         {openRawMessage && (
           <InboxMessageCardRaw inboxMessageUrl={inboxMessageUrl} />
         )}
+        <ModalDeleteMessageFromInbox
+          open={openDeleteMessage}
+          onSubmit={deleteMessage}
+          onCancel={() => setOpenDeleteMessage(false)}
+        />
       </Card>
     </div>
   );

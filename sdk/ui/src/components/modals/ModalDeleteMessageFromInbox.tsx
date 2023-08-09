@@ -1,20 +1,20 @@
 import { ModalForm } from "./ModalForm";
 
-interface IModalSaveToInboxProperties {
+interface IModalDeleteMessageFromInboxProperties {
   open: boolean;
   onCancel: () => void;
   onSubmit: () => Promise<void>;
 }
 
-export const ModalSaveToInbox = ({
+export const ModalDeleteMessageFromInbox = ({
   open,
   onCancel,
   onSubmit,
-}: IModalSaveToInboxProperties) => {
+}: IModalDeleteMessageFromInboxProperties) => {
   return (
     <ModalForm<{}>
-      title="Save to your inbox"
-      successMessage="Successfully saved data to inbox"
+      title="Delete message from inbox"
+      successMessage="Successfully deleted message"
       open={open}
       initialValues={{}}
       onSubmit={onSubmit}
@@ -24,8 +24,7 @@ export const ModalSaveToInbox = ({
         okText: "Yes",
       }}
     >
-      You have received data from the previous process. Do you want to store
-      this data in the inbox of your data vault?
+      Do you want to delete this message with all its data from your inbox?
     </ModalForm>
   );
 };

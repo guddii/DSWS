@@ -6,6 +6,7 @@ type Store = Record<string, any>;
 interface IModalFormProperties<T extends Store> {
   open: boolean;
   title?: string;
+  successMessage?: string;
   initialValues: T;
   onSubmit: (values: T) => Promise<void>;
   onCancel: () => void;
@@ -17,6 +18,7 @@ interface IModalFormProperties<T extends Store> {
 export const ModalForm = <T extends Store>({
   open,
   title = "Please enter the required data.",
+  successMessage = "The task has been successfully performed",
   initialValues,
   onSubmit,
   onCancel: onCancelProp,
@@ -31,7 +33,7 @@ export const ModalForm = <T extends Store>({
     setIsLoading(true);
     try {
       await onSubmit(values);
-      message.success("The task has been successfully performed");
+      message.success(successMessage);
     } catch (error: any) {
       message.error(error.message || "An error has occurred");
       console.error(error);
