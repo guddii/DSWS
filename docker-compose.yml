@@ -6,7 +6,6 @@ services:
     build:
       context: .
       dockerfile: ./apps/citizen/Dockerfile
-    image: guddii/solid-showcase-citizen:latest
     restart: always
     ports:
       - "3000:3000"
@@ -18,7 +17,6 @@ services:
     build:
       context: .
       dockerfile: ./apps/tax-office/Dockerfile
-    image: guddii/solid-showcase-tax-office:latest
     restart: always
     ports:
       - "4000:3000"
