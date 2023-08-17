@@ -1,37 +1,39 @@
-import { Col, Layout, Row, Space, Typography } from "antd";
+import { Col, Layout, Row, Space } from "antd";
 import { ControlsSession } from "../controls/ControlsSession";
+import { IUserMenu } from "../../interfaces/IUserMenu";
+import { Brand } from "../brand/Brand";
 import { Metadata } from "next";
-import { INavigation } from "../../interfaces/INavigation";
-import { NavigationMenu } from "../NavigationMenu";
+import { ControlsSiderToggle } from "../controls/ControlsSiderToggle";
 
 interface ILayoutMastheadProperties {
+  userMenu?: IUserMenu;
   metadata: Metadata;
-  navigation?: INavigation;
 }
 
 export function LayoutMasthead({
+  userMenu,
   metadata,
-  navigation,
 }: ILayoutMastheadProperties) {
   return (
-    <Layout.Header style={{ background: "transparent", padding: "0 16px" }}>
+    <Layout.Header
+      style={{
+        background: "transparent",
+        borderBottom: "1px solid rgba(0, 0, 0, 0.10)",
+        paddingInlineEnd: 16,
+        paddingInlineStart: 0,
+      }}
+    >
       <Row>
-        <Col span={6}>
-          <div style={{ width: "100%", textOverflow: "ellipsis" }}>
-            Solid Showcase
-            <Typography.Title style={{ marginTop: "-16px" }}>
-              <Space>
-                <img src={"/icon"} alt="App brand" width={55} height={55} />
-                <div style={{ width: 430 }}> {String(metadata.title)} </div>
-              </Space>
-            </Typography.Title>
-          </div>
-        </Col>
-        <Col span={18} style={{ textAlign: "right" }}>
+        <Col span={16}>
           <Space>
-            {navigation && <NavigationMenu navigation={navigation} />}
-            <ControlsSession />
+            <ControlsSiderToggle />
+            <span style={{ height: 64, padding: 16 }}>
+              <Brand metadata={metadata} />
+            </span>
           </Space>
+        </Col>
+        <Col span={8} style={{ textAlign: "right" }}>
+          <ControlsSession userMenu={userMenu} />
         </Col>
       </Row>
     </Layout.Header>

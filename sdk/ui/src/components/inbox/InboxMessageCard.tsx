@@ -1,5 +1,5 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import { Button, Card, Skeleton, message } from "antd";
+import { Button, Card, Skeleton, App } from "antd";
 import { useCallback, useState } from "react";
 import {
   Thing,
@@ -35,6 +35,7 @@ export const InboxMessageCard = ({
   inboxMessageUrl,
   inboxUrl,
 }: IInboxMessageCardProperties) => {
+  const { message } = App.useApp();
   const { session } = useSession();
   const { webId } = useIdentity();
   const { mutate } = useSWRConfig();
@@ -101,10 +102,7 @@ export const InboxMessageCard = ({
       }}
     >
       <Card
-        style={{
-          maxWidth: openRawMessage ? 900 : 600,
-          width: "100%",
-        }}
+        style={{ width: "100%" }}
         headStyle={{ paddingTop: 16, paddingBottom: 16 }}
         loading={isLoading}
         title={

@@ -1,5 +1,5 @@
 "use client";
-import { Form, Input, message } from "antd";
+import { Form, Input, App } from "antd";
 import { webIdFactories, DEFAULT_OIDC_ISSUER, toUrlString } from "solid";
 import { UserOutlined } from "@ant-design/icons";
 
@@ -8,6 +8,7 @@ import { FormItemLogin } from "../formItem/FormItemLogin";
 import { useIdentity } from "../../contexts/IdentityContext";
 
 export function FormsAuthNWebId() {
+  const { message } = App.useApp();
   const { setWebId, setDrawerIdentityOpen } = useIdentity();
 
   const onFinish = (values: any) => {

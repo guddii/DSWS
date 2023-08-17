@@ -1,4 +1,4 @@
-import { Button, message } from "antd";
+import { Button, App } from "antd";
 import {
   SENDER_TO_PROPERTY_MAP,
   STAMMDATEN_FILE_PATH,
@@ -30,6 +30,7 @@ export const InboxMessageCardSaveButton = ({
   disabled,
   onSuccess,
 }: IInboxMessageCardSaveButtonProperties) => {
+  const { message } = App.useApp();
   const { session } = useSession();
   const { storage } = useIdentity();
 

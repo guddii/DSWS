@@ -1,26 +1,17 @@
-import { SolidApp, AuthMethods, IAuth, INavigation } from "ui";
-import "antd/dist/reset.css";
+import { SolidApp, AuthMethods, IAuth, IUserMenu } from "ui";
 import { Metadata } from "next";
+import { navigation } from "./navigation";
 
 export const metadata: Metadata = {
-  title: "Citizen App",
+  title: "Citizen",
 };
 
 const auth: IAuth = {
   methods: [AuthMethods.Session],
 };
 
-const navigation: INavigation = {
-  routes: [
-    {
-      key: "/",
-      label: "Stammdaten",
-    },
-    {
-      key: "/inbox",
-      label: "Inbox",
-    },
-  ],
+const userMenu: IUserMenu = {
+  hasInbox: true,
 };
 
 export default function RootLayout({
@@ -31,7 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SolidApp metadata={metadata} auth={auth} navigation={navigation}>
+        <SolidApp
+          metadata={metadata}
+          auth={auth}
+          userMenu={userMenu}
+          navigation={navigation}
+        >
           {children}
         </SolidApp>
       </body>

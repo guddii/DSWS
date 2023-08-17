@@ -1,5 +1,6 @@
 import { Form, Input, FormItemProps } from "antd";
 import { useIdentity } from "../../contexts/IdentityContext";
+import { useEffect } from "react";
 
 interface IFormItemWebIdProperties {
   formItemProps?: FormItemProps;
@@ -8,7 +9,12 @@ interface IFormItemWebIdProperties {
 export function FormItemWebId({ formItemProps }: IFormItemWebIdProperties) {
   const { webId } = useIdentity();
   const form = Form.useFormInstance();
-  form.setFieldsValue({ webId });
+
+  useEffect(() => {
+    form.setFieldsValue({
+      webId,
+    });
+  }, [form, webId]);
 
   return (
     <Form.Item

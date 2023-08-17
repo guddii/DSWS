@@ -1,6 +1,6 @@
 {
-  "name": "land-registry-office",
   "private": true,
+  "name": "land-registry-office",
   "version": "0.0.0",
   "license": "SEE LICENSE IN LICENSE",
   "main": "dist/index.js",
@@ -12,15 +12,16 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@ant-design/icons": "5.1.2",
+    "@inrupt/solid-client": "1.28.1",
+    "@inrupt/solid-client-access-grants": "2.2.0",
+    "@inrupt/solid-client-authn-node": "1.16.0",
     "antd": "5.8.2",
     "next": "13.4.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "ui": "workspace:*",
     "solid": "workspace:*",
-    "@inrupt/solid-client": "1.28.1",
-    "@inrupt/solid-client-access-grants": "2.2.0",
-    "@inrupt/solid-client-authn-node": "1.16.0"
+    "ui": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "17.0.12",

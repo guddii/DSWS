@@ -1,6 +1,6 @@
 {
-  "name": "citizen",
   "private": true,
+  "name": "citizen",
   "version": "0.0.0",
   "license": "SEE LICENSE IN LICENSE",
   "main": "dist/index.js",
@@ -12,12 +12,13 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@ant-design/icons": "5.1.2",
     "antd": "5.8.2",
     "next": "13.4.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "ui": "workspace:*",
-    "solid": "workspace:*"
+    "solid": "workspace:*",
+    "ui": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "17.0.12",

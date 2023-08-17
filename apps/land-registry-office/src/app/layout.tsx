@@ -1,9 +1,9 @@
 import { AuthMethods, IAgent, IAuth, SolidApp } from "ui";
-import "antd/dist/reset.css";
 import { Metadata } from "next";
+import { navigation } from "./navigation";
 
 export const metadata: Metadata = {
-  title: "Land Registry Office App",
+  title: "Land Registry Office",
 };
 
 const auth: IAuth = {
@@ -22,7 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SolidApp metadata={metadata} auth={auth} agent={agent}>
+        <SolidApp
+          metadata={metadata}
+          auth={auth}
+          agent={agent}
+          navigation={navigation}
+        >
           {children}
         </SolidApp>
       </body>

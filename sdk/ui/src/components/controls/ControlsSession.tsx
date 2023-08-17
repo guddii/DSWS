@@ -1,14 +1,29 @@
-import { ControlsLogin } from "./ControlsLogin";
-import { ControlsLogout } from "./ControlsLogout";
 import { Space } from "antd";
 import { ControlsProfile } from "./ControlsProfile";
+import React from "react";
+import { ControlsHelp } from "./ControlsHelp";
+import { ControlsInbox } from "./ControlsInbox";
+import { IUserMenu } from "../../interfaces/IUserMenu";
 
-export function ControlsSession() {
+interface IControlsSessionProperties {
+  userMenu?: IUserMenu;
+}
+
+export function ControlsSession({ userMenu }: IControlsSessionProperties) {
+  if (userMenu?.hasInbox) {
+    return (
+      <Space>
+        <ControlsHelp />
+        <ControlsInbox />
+        <ControlsProfile />
+      </Space>
+    );
+  }
+
   return (
     <Space>
+      <ControlsHelp />
       <ControlsProfile />
-      <ControlsLogout />
-      <ControlsLogin />
     </Space>
   );
 }

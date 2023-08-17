@@ -1,10 +1,10 @@
 "use client";
-import React, { CSSProperties, ReactNode } from "react";
-import { Button, Empty, Space, Typography } from "antd";
+import React, { ReactNode } from "react";
+import { Empty, Space, Typography } from "antd";
 import { useIdentity } from "../contexts/IdentityContext";
 import { ControlsLogin } from "./controls/ControlsLogin";
-import { DatabaseOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import { ControlsCreate } from "./controls/ControlsCreate";
 
 interface ILoggedInContentProperties {
   children: ReactNode;
@@ -18,40 +18,28 @@ export const SessionContent = ({
   const { webId } = useIdentity();
 
   if (!alwaysShowChildren && !webId) {
-    const style: CSSProperties = {
-      width: 350,
-      marginLeft: "auto",
-      marginRight: "auto",
-    };
     return (
       <Empty
-        style={{ marginTop: 50 }}
+        style={{ margin: "50px auto" }}
         description={
-          <div>
-            <Typography.Paragraph style={style}>
+          <Space direction="vertical" size="middle">
+            <Typography.Paragraph style={{ maxWidth: 250 }}>
               This application requires a Pod as data storage and a WebId to
               identify yourself in the web.
             </Typography.Paragraph>
-            <Typography.Paragraph style={style}>
+            <Typography.Paragraph>
               Find out more at{" "}
               <Link href="https://solidproject.org/" target={"_blank"}>
                 https://solidproject.org/
               </Link>
               .
             </Typography.Paragraph>
-          </div>
+          </Space>
         }
       >
         <Space>
-          <ControlsLogin />
-          <Button
-            type="primary"
-            icon={<DatabaseOutlined rev={"solidGetAPod"} />}
-            href={"https://solidproject.org/users/get-a-pod"}
-            target={"_blank"}
-          >
-            Get a Pod
-          </Button>
+          <ControlsCreate />
+          <ControlsLogin size={"middle"} />
         </Space>
       </Empty>
     );

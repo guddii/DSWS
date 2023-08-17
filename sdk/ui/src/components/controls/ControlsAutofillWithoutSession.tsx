@@ -1,4 +1,4 @@
-import { Button, FormInstance, message, Typography } from "antd";
+import { Button, FormInstance, App, Typography } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import {
   IParsedProperty,
@@ -23,6 +23,7 @@ interface IControlsAutofillWithoutSessionProperties {
 export const ControlsAutofillWithoutSession = ({
   form,
 }: IControlsAutofillWithoutSessionProperties) => {
+  const { message } = App.useApp();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -73,7 +74,7 @@ export const ControlsAutofillWithoutSession = ({
         setIsLoading(false);
       }
     },
-    [form, router]
+    [form, message, router]
   );
 
   useEffect(() => {
@@ -122,7 +123,7 @@ export const ControlsAutofillWithoutSession = ({
         disabled={isLoading}
         loading={isLoading}
       >
-        Autofill Stammdaten
+        Autofill
       </Button>
       <ModalWebId
         open={open}

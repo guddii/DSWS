@@ -2,8 +2,11 @@
 import { Button } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
 import { useIdentity } from "../../contexts/IdentityContext";
+import { ButtonProps } from "antd/es/button/button";
 
-export function ControlsLogin() {
+interface IControlsLoginProperties extends ButtonProps {}
+
+export function ControlsLogin(options: IControlsLoginProperties) {
   const { webId, setDrawerIdentityOpen } = useIdentity();
 
   const showDrawer = () => {
@@ -15,7 +18,14 @@ export function ControlsLogin() {
   }
 
   return (
-    <Button onClick={showDrawer} icon={<LoginOutlined rev={"solidLogin"} />}>
+    <Button
+      type="primary"
+      size="large"
+      style={{ width: "100%" }}
+      onClick={showDrawer}
+      icon={<LoginOutlined rev={"solidLogin"} />}
+      {...options}
+    >
       Login
     </Button>
   );
