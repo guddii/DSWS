@@ -4,5 +4,9 @@ export interface INavigationEntry {
 }
 
 export interface INavigation {
-  routes: Array<INavigationEntry>;
+  mainNavigation?: {
+    hasInbox: boolean;
+  };
+  contextActions?: Array<INavigationEntry>;
+  contextNavigation?: Array<INavigationEntry>;
 }

@@ -5,6 +5,7 @@ import { FormsAuthNSessionWithTitle } from "../forms/FormsAuthNSessionWithTitle"
 import { FormsAuthNWebIdWithTitle } from "../forms/FormsAuthNWebIdWithTitle";
 import { FormsProfileWithTitle } from "../forms/FormsProfileWithTitle";
 import { useIdentity } from "../../contexts/IdentityContext";
+import { ControlsLogout } from "../controls/ControlsLogout";
 
 interface IDrawerIdentityProperties {
   metadata: Metadata;
@@ -23,6 +24,7 @@ export function DrawerIdentity({ metadata, auth }: IDrawerIdentityProperties) {
       <FormsAuthNSessionWithTitle metadata={metadata} auth={auth} />
       <FormsAuthNWebIdWithTitle auth={auth} />
       <FormsProfileWithTitle />
+      <ControlsLogout />
     </Drawer>
   );
 }

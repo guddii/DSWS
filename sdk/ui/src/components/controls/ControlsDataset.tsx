@@ -1,6 +1,6 @@
 "use client";
 import { getSolidDataset, toUrlString } from "solid";
-import { Button, Divider, message } from "antd";
+import { Button, App } from "antd";
 import { createUrl } from "solid";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { Dataset, usePage } from "../../contexts/PageContext";
@@ -19,6 +19,7 @@ const DatasetSwrLoader = ({
   fetcher,
   onSuccess,
 }: IDatasetSwrLoader) => {
+  const { message } = App.useApp();
   const { error } = useSWR(swrKey, fetcher, {
     onSuccess,
   });
@@ -44,6 +45,7 @@ export const ControlsDataset = ({
   enableSwrLoading = false,
   buttonLabel = "Load Dataset",
 }: IControlsDatasetProperties) => {
+  const { message } = App.useApp();
   const { session } = useSession();
   const { storage } = useIdentity();
   const { setDataset } = usePage();
@@ -67,7 +69,7 @@ export const ControlsDataset = ({
       setIsLoading(false);
       return;
     }
-  }, [datasetUrl, session.fetch]);
+  }, [datasetUrl, message, session.fetch]);
 
   const loadAndSetDataset = useCallback(async () => {
     const dataset = await loadDataset();
@@ -103,7 +105,6 @@ export const ControlsDataset = ({
           onSuccess={setDataset}
         />
       )}
-      <Divider plain />
     </>
   );
 };

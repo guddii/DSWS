@@ -78,6 +78,7 @@ export const FolderStructureVerification = ({
   if (!verifiedFolderStructure.validFolderStructure) {
     return (
       <Result
+        style={{ margin: "50px auto" }}
         status="warning"
         title="Some of the necessary data is missing."
         subTitle="To ensure correct functionality across all applications certain data and access configurations need to be created."

@@ -9,6 +9,7 @@ export * from "./components/controls/ControlsDataset";
 export * from "./components/inbox/InboxViewer";
 export * from "./components/forms/FormsAuthNWebId";
 export * from "./components/forms/FormsAuthNSession";
+export * from "./components/layout/LayoutContent";
 // Contexts
 export * from "./contexts/AgentContext";
 export * from "./contexts/IdentityContext";
@@ -21,3 +22,4 @@ export * from "./helper/propertiesGenerator";
 export * from "./interfaces/IAuth";
 export * from "./interfaces/IAgent";
 export * from "./interfaces/INavigation";
+export * from "./interfaces/IUserMenu";

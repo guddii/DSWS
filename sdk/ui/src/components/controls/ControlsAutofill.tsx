@@ -1,6 +1,5 @@
 "use client";
-import { Divider, FormInstance, Space } from "antd";
-import { SessionContent } from "../SessionContent";
+import { FormInstance, Space } from "antd";
 import { ControlsAutofillWithoutSession } from "./ControlsAutofillWithoutSession";
 import { ControlsRevokeAccessGrant } from "./ControlsRevokeAccessGrant";
 
@@ -18,13 +17,8 @@ const ControlButtons = ({ form }: IControlButtonsProperties) => {
 };
 
 interface IControlsAutofillProperties {
-  form?: FormInstance;
+  form: FormInstance;
 }
 export const ControlsAutofill = ({ form }: IControlsAutofillProperties) => {
-  return (
-    <SessionContent alwaysShowChildren>
-      <ControlButtons form={form} />
-      <Divider plain />
-    </SessionContent>
-  );
+  return <ControlButtons form={form} />;
 };

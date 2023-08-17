@@ -1,9 +1,8 @@
 import { ReactNode, useState } from "react";
-import { Form, Typography } from "antd";
+import { Typography } from "antd";
 import { propertiesGenerator } from "../../helper/propertiesGenerator";
 import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { IModalWebIdValues, ModalWebId } from "../modals/ModalWebId";
-import { assignPropsToChildren } from "../../helper/assignPropsToChildren";
 import { FormItem } from "../formItem/FormItem";
 import { AbstractModel, toUrlString, sendInboxMessage } from "solid";
 import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
@@ -14,15 +13,16 @@ import { useAgent } from "../../contexts/AgentContext";
 interface IEditorTurtleModelProperties {
   model: AbstractModel;
   children?: ReactNode;
+  form: any;
 }
 
 export const EditorTurtleModel = ({
   model,
+  form,
   children,
 }: IEditorTurtleModelProperties) => {
   const identity = useIdentity();
   const agent = useAgent();
-  const [form] = Form.useForm();
   const properties = propertiesGenerator({ model });
   const propertyValues = formValuesGenerator({ properties });
   const [openWebIdConfirm, setOpenWebIdConfirm] = useState(false);
@@ -49,10 +49,6 @@ export const EditorTurtleModel = ({
     resetState();
   };
 
-  const childrenWithProps = assignPropsToChildren(children, {
-    form,
-  });
-
   const onCancelSaveToInbox = () => {
     setOpenSaveToInbox(false);
   };
@@ -70,7 +66,7 @@ export const EditorTurtleModel = ({
 
   return (
     <>
-      {childrenWithProps}
+      {children}
       <FormsTurtleEditor
         initialValues={propertyValues}
         onFinish={onFinish}
@@ -89,7 +85,7 @@ export const EditorTurtleModel = ({
           <Typography.Paragraph>
             The application needs your WebId to create a data vault for you or
             to use an existing one. This vault contains your submitted forms,
-            for the inspection of the tax office.
+            for the inspection of the office.
           </Typography.Paragraph>
         }
       />

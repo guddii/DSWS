@@ -1,8 +1,8 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo } from "react";
 import { LoadingFailedFullbleed } from "../Loading";
 import { formValuesGenerator } from "../../helper/formValuesGenerator";
-import { Form, message } from "antd";
+import { Form, App } from "antd";
 import {
   getProperties,
   putResource,
@@ -26,6 +26,7 @@ export const EditorTurtleDataset = ({
 }: IEditorTurtleDatasetProperties) => {
   const { session } = useSession();
   const [form] = Form.useForm();
+  const { message } = App.useApp();
 
   const data = useMemo(() => {
     const datasetUrl = dataset.internal_resourceInfo.sourceIri;
@@ -58,7 +59,7 @@ export const EditorTurtleDataset = ({
         body: turtleFileGenerator({ subject, values }),
         session,
       });
-      message.success(response.statusText || "Successfully updated data");
+      message.success("Successfully updated data");
     } catch (error: any) {
       console.error(error);
       message.error(error.message || "Error while updating data");

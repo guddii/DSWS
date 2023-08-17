@@ -17,7 +17,14 @@ export function ControlsLogout() {
 
   return (
     <LogoutButton onLogout={reload} onError={console.error}>
-      <Button icon={<LogoutOutlined rev={"solidLogout"} />}>Logout</Button>
+      <Button
+        type="primary"
+        size="large"
+        style={{ width: "100%" }}
+        icon={<LogoutOutlined rev={"solidLogout"} />}
+      >
+        Logout
+      </Button>
     </LogoutButton>
   );
 }

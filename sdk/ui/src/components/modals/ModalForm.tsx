@@ -1,4 +1,4 @@
-import { Form, Modal, message, ModalProps } from "antd";
+import { Form, Modal, App, ModalProps } from "antd";
 import { ReactNode, useState } from "react";
 
 type Store = Record<string, any>;
@@ -24,6 +24,7 @@ export const ModalForm = <T extends Store>({
   children,
   modalProps,
 }: IModalFormProperties<T>) => {
+  const { message } = App.useApp();
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
 

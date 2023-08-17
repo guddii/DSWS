@@ -1,14 +1,14 @@
 {
   "name": "eslint-config-custom",
   "version": "0.0.0",
-  "license" : "SEE LICENSE IN LICENSE",
+  "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
   "dependencies": {
-    "next": "13.4.10",
     "eslint-config-next": "13.3.4",
     "eslint-config-prettier": "8.8.0",
+    "eslint-config-turbo": "1.9.3",
     "eslint-plugin-react": "7.32.2",
-    "eslint-config-turbo": "1.9.3"
+    "next": "13.4.10"
   },
   "publishConfig": {
     "access": "public"

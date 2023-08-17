@@ -1,5 +1,5 @@
 "use client";
-import { Divider } from "antd";
+
 import { INBOX_FOLDER_PATH } from "solid";
 import {
   ControlsDataset,
@@ -7,24 +7,37 @@ import {
   InboxViewer,
   PageProvider,
   SessionContent,
+  LayoutContent,
 } from "ui";
+
+const currentItem = {
+  title: "Inbox",
+  key: "inbox",
+};
+
+const breadcrumbItems = [currentItem];
+
+const metadata = { title: "Citizen" };
 
 export default function Page() {
   return (
-    <>
-      <Divider>Inbox</Divider>
-      <SessionContent>
-        <PageProvider>
-          <FolderStructureVerification>
-            <ControlsDataset
-              datasetPath={INBOX_FOLDER_PATH}
-              enableSwrLoading
-              buttonLabel="Reload Inbox"
-            />
+    <SessionContent>
+      <PageProvider>
+        <FolderStructureVerification>
+          <LayoutContent
+            options={{ breadcrumbItems, currentItem, metadata }}
+            extra={
+              <ControlsDataset
+                datasetPath={INBOX_FOLDER_PATH}
+                enableSwrLoading
+                buttonLabel="Reload Inbox"
+              />
+            }
+          >
             <InboxViewer />
-          </FolderStructureVerification>
-        </PageProvider>
-      </SessionContent>
-    </>
+          </LayoutContent>
+        </FolderStructureVerification>
+      </PageProvider>
+    </SessionContent>
   );
 }

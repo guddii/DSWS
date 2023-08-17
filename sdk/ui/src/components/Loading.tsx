@@ -1,6 +1,6 @@
 "use client";
 import { Space, Typography } from "antd";
-import { LoadingOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { CSSProperties, useEffect, useState } from "react";
 
 const Spinner = () => {
@@ -64,6 +64,12 @@ export const Initializing = () => {
         height: "100%",
         backgroundColor: "#f5f5f5",
         color: "rgba(0, 0, 0, 0.88)",
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        zIndex: 999,
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
@@ -82,7 +88,7 @@ export const LoadingFullbleed = () => {
       size="middle"
       style={{ width: "100%", marginTop: 50 }}
     >
-      <Loading style={{ fontSize: 30 }} />
+      <Loading />
       <Typography>Validating Data...</Typography>
     </Space>
   );
@@ -102,11 +108,7 @@ export const LoadingFailedFullbleed = () => {
   );
 };
 
-interface ILoadingProperties {
-  style?: CSSProperties;
-}
-
-export const Loading = ({ style }: ILoadingProperties) => {
+export const Loading = () => {
   return (
     <Space>
       <Spinner />

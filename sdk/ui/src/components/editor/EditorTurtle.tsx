@@ -10,6 +10,7 @@ interface IEditorTurtleProperties {
   model?: AbstractModel;
   subject?: string;
   children?: ReactNode;
+  form?: any;
 }
 
 export const EditorTurtle = ({
@@ -17,13 +18,18 @@ export const EditorTurtle = ({
   model,
   subject,
   children,
+  form,
 }: IEditorTurtleProperties) => {
   if (dataset && subject) {
     return <EditorTurtleDataset dataset={dataset} subject={subject} />;
   }
 
   if (model) {
-    return <EditorTurtleModel model={model}>{children}</EditorTurtleModel>;
+    return (
+      <EditorTurtleModel model={model} form={form}>
+        {children}
+      </EditorTurtleModel>
+    );
   }
 
   return null;

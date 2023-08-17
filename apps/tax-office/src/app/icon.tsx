@@ -5,8 +5,8 @@ export const runtime = "edge";
 
 // Image metadata
 export const size = {
-  width: 55,
-  height: 55,
+  width: 64,
+  height: 64,
 };
 export const contentType = "image/png";
 
@@ -17,8 +17,8 @@ export default function Icon() {
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 40,
-          background: "white",
+          fontSize: 64,
+          background: "#ebebeb",
           width: "100%",
           height: "100%",
           display: "flex",
