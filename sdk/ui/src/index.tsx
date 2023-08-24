@@ -18,6 +18,7 @@ export * from "./contexts/PageContext";
 export * from "./helper/assignPropsToChildren";
 export * from "./helper/formValuesGenerator";
 export * from "./helper/propertiesGenerator";
+export * from "./helper/deepmerge";
 // Interfaces
 export * from "./interfaces/IAuth";
 export * from "./interfaces/IAgent";
