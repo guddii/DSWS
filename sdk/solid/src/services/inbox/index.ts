@@ -5,19 +5,28 @@ import {
   IInboxMessageData,
   IInboxMessageRecipient,
   IInboxMessageSender,
+  IInboxMessageType,
 } from "./InboxMessage";
 
 export type SendInboxMessage = IInboxMessageRecipient &
   IInboxMessageSender &
+  IInboxMessageType &
   IInboxMessageData;
 
 export const sendInboxMessage = async ({
   recipient,
   sender,
+  messageType,
   data,
 }: SendInboxMessage) => {
   const { config } = createInboxMessageConfig({ recipient });
-  const dataset = createInboxMessage({ config, recipient, sender, data: data });
+  const dataset = createInboxMessage({
+    config,
+    recipient,
+    sender,
+    messageType,
+    data,
+  });
 
   await saveSolidDatasetInContainer(config.container, dataset, {
     slugSuggestion: config.filename,

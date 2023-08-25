@@ -170,7 +170,7 @@ export const controllerSubmitData = async ({
       await universalAccess.setAgentAccess(
         submittedDataUrl,
         webId,
-        { read: true, write: false },
+        { read: true, write: false, controlRead: true, controlWrite: true },
         { fetch: session.fetch }
       );
 
@@ -178,5 +178,5 @@ export const controllerSubmitData = async ({
     }
   }
 
-  return NextResponse.error();
+  return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
 };

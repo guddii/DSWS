@@ -1,37 +1,41 @@
-import { SolidDataset } from "@inrupt/solid-client";
 import {
-  buildThing,
+  addBoolean,
+  addStringNoLocale,
+  addUrl,
   createThing,
-  removeFilename,
-  schema,
   setThing,
-  toUrlString,
-  WS,
-} from "../../index";
-import {
-  IInboxMessageData,
-  IInboxMessageRecipient,
-  IInboxMessageSender,
-} from "./InboxMessage";
+  SolidDataset,
+  Thing,
+} from "@inrupt/solid-client";
+import { IInboxMessageData } from "./InboxMessage";
 
-type ICreateMessageBody = IInboxMessageRecipient &
-  IInboxMessageSender &
-  IInboxMessageData;
+type ICreateMessageBody = IInboxMessageData;
+
+const typeToFunctionMap: Record<
+  string,
+  (thing: Thing, predicate: string, value: any) => Thing
+> = {
+  url: addUrl,
+  string: addStringNoLocale,
+  boolean: addBoolean,
+};
 
 /**
- * Creates the header of an inbox message
- * @param dataset
- * @param recipient
- * @param message
+ * Creates the body of an inbox message
+ * @param data
  */
 export const createInboxMessageBody = (
   dataset: SolidDataset,
-  { recipient, data }: ICreateMessageBody
+  { data }: ICreateMessageBody
 ): SolidDataset => {
-  const messageBody = buildThing(createThing({ url: recipient.webId }))
-    .addUrl(schema.subjectOf, data.reference)
-    .addUrl(WS.storage, toUrlString(removeFilename(data.reference)))
-    .build();
+  let messageBody = createThing({ url: data.subject });
+
+  data.entries.forEach((entry) => {
+    const addEntry = typeToFunctionMap[entry.type];
+    if (addEntry) {
+      messageBody = addEntry(messageBody, entry.predicate, entry.value);
+    }
+  });
 
   return setThing(dataset, messageBody);
 };

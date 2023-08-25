@@ -28,6 +28,7 @@ export class TaxOfficeModel extends AbstractModel {
         {
           predicate: createUrl(HAS_LAND_REGISTRY_DATA),
           value: "",
+          options: { reference: true },
         },
       ],
     });

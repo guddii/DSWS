@@ -13,9 +13,8 @@ import { LoadingFailedFullbleed } from "../Loading";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { InboxMessageCardHeader } from "./InboxMessageCardHeader";
 import { InboxMessageCardText } from "./InboxMessageCardText";
-import { InboxMessageCardContent } from "./InboxMessageCardContent";
 import { InboxMessageCardRaw } from "./InboxMessageCardRaw";
-import { InboxMessageCardSaveButton } from "./InboxMessageCardSaveButton";
+import { InboxMessageCardActionButton } from "./InboxMessageCardActionButton";
 import { ModalDeleteMessageFromInbox } from "../modals/ModalDeleteMessageFromInbox";
 import { useTranslation } from "i18n/client";
 
@@ -122,8 +121,8 @@ export const InboxMessageCard = ({
           >
             {t("_.rawMessage")}
           </Button>,
-          <InboxMessageCardSaveButton
-            key="save-data-button"
+          <InboxMessageCardActionButton
+            key="action-button"
             inboxMessage={data?.inboxMessage}
             inboxContent={data?.inboxContent}
             disabled={isLoading}
@@ -140,7 +139,8 @@ export const InboxMessageCard = ({
         ]}
       >
         <InboxMessageCardText inboxMessage={data?.inboxMessage} />
-        <InboxMessageCardContent inboxContent={data?.inboxContent} />
+        {/* TODO: add a display of the data to allow the user to actually see what
+        they write into their data or what they grant access to */}
         {openRawMessage && (
           <InboxMessageCardRaw inboxMessageUrl={inboxMessageUrl} />
         )}

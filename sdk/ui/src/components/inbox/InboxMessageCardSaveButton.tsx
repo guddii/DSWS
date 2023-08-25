@@ -6,27 +6,23 @@ import {
   createUrl,
   getSolidDataset,
   getThing,
-  getUrl,
   mergeThings,
   saveSolidDatasetAt,
-  schema,
   setThing,
   toUrlString,
 } from "solid";
-import { InboxContent, InboxMessage } from "./InboxMessageCard";
+import { InboxContent } from "./InboxMessageCard";
 import { useSession } from "@inrupt/solid-ui-react";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { useTranslation } from "i18n/client";
 
-interface IInboxMessageCardSaveButtonProperties {
-  inboxMessage?: InboxMessage;
+export interface IInboxMessageCardSaveButtonProperties {
   inboxContent?: InboxContent;
   disabled?: boolean;
   onSuccess: () => void;
 }
 
 export const InboxMessageCardSaveButton = ({
-  inboxMessage,
   inboxContent,
   disabled,
   onSuccess,
@@ -38,7 +34,7 @@ export const InboxMessageCardSaveButton = ({
 
   const onClick = async () => {
     try {
-      if (!inboxMessage || !inboxContent) {
+      if (!inboxContent) {
         throw new Error();
       }
 
@@ -72,15 +68,7 @@ export const InboxMessageCardSaveButton = ({
   };
 
   return (
-    <Button
-      onClick={onClick}
-      disabled={
-        !inboxMessage ||
-        !inboxContent ||
-        !getUrl(inboxContent, schema.subjectOf) ||
-        disabled
-      }
-    >
+    <Button onClick={onClick} disabled={!inboxContent || disabled}>
       {t("_.save")}
     </Button>
   );

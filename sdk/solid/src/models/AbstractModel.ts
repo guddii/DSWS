@@ -3,7 +3,12 @@ type AbstractModelValue = string;
 interface IAbstractModelValues {
   predicate: URL;
   value: AbstractModelValue;
-  rules?: { required: boolean };
+  rules?: {
+    required: boolean;
+  };
+  options?: {
+    reference?: boolean;
+  };
 }
 
 interface IAbstractModelOptions {

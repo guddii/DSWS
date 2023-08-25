@@ -6,11 +6,13 @@ import {
   IInboxMessageData,
   IInboxMessageRecipient,
   IInboxMessageSender,
+  IInboxMessageType,
 } from "./InboxMessage";
 
 export type ICreateInboxMessage = IInboxMessageConfig &
   IInboxMessageRecipient &
   IInboxMessageSender &
+  IInboxMessageType &
   IInboxMessageData;
 
 /**
@@ -18,20 +20,27 @@ export type ICreateInboxMessage = IInboxMessageConfig &
  * @param config
  * @param recipient
  * @param sender
+ * @param messageType
  * @param data
  */
 export const createInboxMessage = ({
   config,
   recipient,
   sender,
+  messageType,
   data,
 }: ICreateInboxMessage) => {
   const { date, target } = config;
   const header = { date, target };
 
   let dataset = createSolidDataset();
-  dataset = createInboxMessageHeader(dataset, { recipient, sender, header });
-  dataset = createInboxMessageBody(dataset, { recipient, sender, data: data });
+  dataset = createInboxMessageHeader(dataset, {
+    recipient,
+    sender,
+    messageType,
+    header,
+  });
+  dataset = createInboxMessageBody(dataset, { data: data });
 
   return dataset;
 };

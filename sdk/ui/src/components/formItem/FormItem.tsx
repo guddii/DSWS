@@ -1,10 +1,10 @@
 import { Form, Input } from "antd";
 import { toUrlString } from "solid";
-import { IParsedPropertyWithRules } from "../../helper/propertiesGenerator";
+import { IParsedPropertyWithRulesAndOptions } from "../../helper/propertiesGenerator";
 import { useTranslation, I18nKey } from "i18n/client";
 
 interface IFormItemProperties {
-  property: IParsedPropertyWithRules;
+  property: IParsedPropertyWithRulesAndOptions;
 }
 
 export const FormItem = ({ property }: IFormItemProperties) => {

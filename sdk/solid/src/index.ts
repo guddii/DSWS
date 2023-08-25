@@ -1,6 +1,7 @@
 export * from "./controller/controllerDataFromAccessGrant";
 export * from "./controller/controllerIssueAccessRequest";
 export * from "./controller/controllerSubmitData";
+export * from "./controller/controllerGetReferenceDataset";
 // Helper
 export * from "./helper/urlHelper";
 export * from "./helper/checkResponse";
@@ -14,6 +15,7 @@ export * from "./inrupt";
 export * from "./services/citizenFolderStructureCreation";
 export * from "./services/citizenFolderStructureVerification";
 export * from "./services/inbox";
+export * from "./services/inbox/InboxMessage";
 export * from "./services/oidcIssuer";
 export * from "./services/solid/accessGrant";
 export * from "./services/solid/container";
