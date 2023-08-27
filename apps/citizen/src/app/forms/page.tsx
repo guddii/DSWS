@@ -8,6 +8,7 @@ import {
   ControlsDataset,
   usePage,
   LayoutContent,
+  useIdentity,
 } from "ui";
 import { Card } from "antd";
 
@@ -26,8 +27,13 @@ const breadcrumbItems = [
 
 const EditorTurtleWithPageDataset = () => {
   const { dataset } = usePage();
+  const { webId } = useIdentity();
 
-  return <EditorTurtle dataset={dataset} subject="#me" />;
+  if (!webId) {
+    console.error("WebId is not available.");
+  }
+
+  return <EditorTurtle dataset={dataset} subject={webId} />;
 };
 
 const metadata = { title: "Citizen" };

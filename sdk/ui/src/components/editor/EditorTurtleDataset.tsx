@@ -5,15 +5,16 @@ import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { Form, App } from "antd";
 import {
   getProperties,
-  putResource,
   toUrlString,
-  turtleFileGenerator,
   createUrl,
   getThing,
+  setStringNoLocale,
+  setThing,
+  saveSolidDatasetAt,
 } from "solid";
 import { FormItem } from "../formItem/FormItem";
 import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
-import { Dataset } from "../../contexts/PageContext";
+import { Dataset, useLoadAndSetDataset } from "../../contexts/PageContext";
 
 interface IEditorTurtleDatasetProperties {
   dataset: Dataset;
@@ -27,6 +28,7 @@ export const EditorTurtleDataset = ({
   const { session } = useSession();
   const [form] = Form.useForm();
   const { message } = App.useApp();
+  const loadAndSetDataset = useLoadAndSetDataset();
 
   const data = useMemo(() => {
     const datasetUrl = dataset.internal_resourceInfo.sourceIri;
@@ -39,7 +41,7 @@ export const EditorTurtleDataset = ({
       ? formValuesGenerator({ properties: properties })
       : undefined;
 
-    return { thingUrl, thing, properties, propertyValues };
+    return { datasetUrl, thingUrl, thing, properties, propertyValues };
   }, [dataset, subject]);
 
   useEffect(() => {
@@ -54,11 +56,24 @@ export const EditorTurtleDataset = ({
 
   const onFinish = async (values: Record<string, string>) => {
     try {
-      const response = await putResource({
-        url: data.thingUrl,
-        body: turtleFileGenerator({ subject, values }),
-        session,
+      if (data.thing == null) {
+        return;
+      }
+      let updatedThing = data.thing;
+
+      Object.entries(values).forEach(([predicate, value]) => {
+        updatedThing = setStringNoLocale(updatedThing, predicate, value);
       });
+
+      const updatedDataset = setThing(dataset, updatedThing);
+
+      await saveSolidDatasetAt(data.datasetUrl, updatedDataset, {
+        fetch: session.fetch,
+      });
+
+      // reload dataset to get newest changes to prevent problems with multiple updates
+      await loadAndSetDataset(data.datasetUrl);
+
       message.success("Successfully updated data");
     } catch (error: any) {
       console.error(error);

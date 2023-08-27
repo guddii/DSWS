@@ -15,6 +15,7 @@ export type {
 export { schema } from "rdf-namespaces";
 
 export {
+  asUrl,
   getThing,
   buildThing,
   createThing,
@@ -31,6 +32,8 @@ export {
   getUrlAll,
   getDatetime,
   getStringNoLocale,
+  setStringNoLocale,
+  addStringNoLocale,
 } from "@inrupt/solid-client";
 
 export { Session, fetch } from "@inrupt/solid-client-authn-browser";

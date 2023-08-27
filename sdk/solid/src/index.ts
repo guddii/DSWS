@@ -6,6 +6,8 @@ export * from "./helper/urlHelper";
 export * from "./helper/checkResponse";
 export * from "./helper/getResourceFromResponse";
 export * from "./helper/turtleFileGenerator";
+export * from "./helper/deepmerge";
+export * from "./helper/mergeThings";
 // Inrupt
 export * from "./inrupt";
 // Services

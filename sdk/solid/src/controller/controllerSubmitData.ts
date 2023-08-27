@@ -114,16 +114,17 @@ const addUserPodToList = async (
   );
 };
 
-const createTaxData = async (
+const createTurtleData = async (
   session: Session,
   storage: string,
+  webId: string,
   values: Record<string, string>
 ) => {
   const url: URL = createUrl(`submission-${Date.now()}.ttl`, storage);
 
   const response = await createResource({
     url,
-    body: turtleFileGenerator({ subject: "#office", values }),
+    body: turtleFileGenerator({ subject: webId, values }),
     session,
   });
 
@@ -158,17 +159,22 @@ export const controllerSubmitData = async ({
         await addUserPodToList(session, mainPod, webId, userPod);
       }
 
-      const taxData = await request.json();
-      const taxDataUrl = await createTaxData(session, userPod, taxData);
+      const submittedData = await request.json();
+      const submittedDataUrl = await createTurtleData(
+        session,
+        userPod,
+        webId,
+        submittedData
+      );
 
       await universalAccess.setAgentAccess(
-        taxDataUrl,
+        submittedDataUrl,
         webId,
         { read: true, write: false },
         { fetch: session.fetch }
       );
 
-      return NextResponse.json({ url: taxDataUrl }, { status: 200 });
+      return NextResponse.json({ url: submittedDataUrl }, { status: 200 });
     }
   }
 
