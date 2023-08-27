@@ -7,6 +7,7 @@ import {
   createSolidDataset,
   createThing,
   getSolidDataset,
+  getSourceUrl,
   saveSolidDatasetInContainer,
   setThing,
   universalAccess,
@@ -66,6 +67,7 @@ const createRequestFile = async (
     .addUrl(schema.target, requestData.target)
     .addUrl(schema.subjectOf, requestData.owner)
     .addStringNoLocale(DCTERMS.accessRights, JSON.stringify(requestData.access))
+    .addStringNoLocale(schema.actionStatus, "pending")
     .build();
 
   dataset = setThing(dataset, newRequestThing);
@@ -91,15 +93,23 @@ export interface IRequestReferenceAccessBody extends Partial<IRequestData> {}
 interface IControllerRequestReferenceAccess {
   request: Request;
   session: Session;
+  serviceProvider: UrlString;
 }
 
 export const controllerRequestReferenceAccess = async ({
   request,
   session,
+  serviceProvider,
 }: IControllerRequestReferenceAccess) => {
   if (session.info.isLoggedIn) {
-    const requestData: IRequestReferenceAccessBody = await request.json();
+    if (!session.info.webId) {
+      return NextResponse.json(
+        { error: "Could not retrieve agent pod" },
+        { status: 500 }
+      );
+    }
 
+    const requestData: IRequestReferenceAccessBody = await request.json();
     if (!requestData.requestor) {
       return NextResponse.json(
         { error: "Required requestor webId is missing in request body" },
@@ -122,12 +132,6 @@ export const controllerRequestReferenceAccess = async ({
       return NextResponse.json(
         { error: "Required access mode is missing in request body" },
         { status: 400 }
-      );
-    }
-    if (!session.info.webId) {
-      return NextResponse.json(
-        { error: "Could not retrieve agent pod" },
-        { status: 500 }
       );
     }
 
@@ -179,12 +183,12 @@ export const controllerRequestReferenceAccess = async ({
         );
       }
 
-      const file = await createRequestFile(
+      const requestFile = await createRequestFile(
         session,
         agentPod,
         requestData as IRequestData
       );
-      if (!file) {
+      if (!requestFile) {
         return NextResponse.json(
           { error: "Could not create request file" },
           { status: 500 }
@@ -215,14 +219,21 @@ export const controllerRequestReferenceAccess = async ({
               value: requestData.target,
             },
             {
-              type: "url",
-              predicate: schema.identifier,
-              value: file.internal_resourceInfo.sourceIri,
-            },
-            {
               type: "string",
               predicate: DCTERMS.accessRights,
               value: JSON.stringify(requestData.access),
+            },
+            {
+              type: "url",
+              predicate: schema.identifier,
+              value: getSourceUrl(requestFile),
+            },
+            {
+              type: "url",
+              predicate: DCTERMS.mediator,
+              value: toUrlString(
+                createUrl("api/grantReferenceAccess", serviceProvider)
+              ),
             },
           ],
         },

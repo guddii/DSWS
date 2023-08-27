@@ -34,6 +34,7 @@ export {
   getStringNoLocale,
   setStringNoLocale,
   addStringNoLocale,
+  getSourceUrl,
 } from "@inrupt/solid-client";
 
 export { Session, fetch } from "@inrupt/solid-client-authn-browser";

@@ -1,26 +1,26 @@
 import { MESSAGE_TYPE, MessageTypes, getStringNoLocale } from "solid";
-import { InboxContent, InboxMessage } from "./InboxMessageCard";
+import { InboxMessageContent, InboxMessageHeader } from "./InboxMessageCard";
 import { InboxMessageCardSaveButton } from "./InboxMessageCardSaveButton";
 import { InboxMessageCardGrantAccessButton } from "./InboxMessageCardGrantAccessButton";
 
 interface IInboxMessageCardActionButtonProperties {
-  inboxMessage?: InboxMessage;
-  inboxContent?: InboxContent;
+  inboxMessageHeader?: InboxMessageHeader;
+  inboxMessageContent?: InboxMessageContent;
   disabled?: boolean;
   onSuccess: () => void;
 }
 
 export const InboxMessageCardActionButton = ({
-  inboxMessage,
-  inboxContent,
+  inboxMessageHeader,
+  inboxMessageContent,
   disabled,
   onSuccess,
 }: IInboxMessageCardActionButtonProperties) => {
-  if (!inboxMessage) {
+  if (!inboxMessageHeader) {
     return <span />;
   }
 
-  const messageType = getStringNoLocale(inboxMessage, MESSAGE_TYPE);
+  const messageType = getStringNoLocale(inboxMessageHeader, MESSAGE_TYPE);
   if (!messageType) {
     return <span />;
   }
@@ -28,7 +28,7 @@ export const InboxMessageCardActionButton = ({
   if (messageType === MessageTypes.SAVE_TO_DATA_MESSAGE) {
     return (
       <InboxMessageCardSaveButton
-        inboxContent={inboxContent}
+        inboxMessageContent={inboxMessageContent}
         disabled={disabled}
         onSuccess={onSuccess}
       />
@@ -38,8 +38,7 @@ export const InboxMessageCardActionButton = ({
   if (messageType === MessageTypes.REQUEST_ACCESS_MESSAGE) {
     return (
       <InboxMessageCardGrantAccessButton
-        inboxMessage={inboxMessage}
-        inboxContent={inboxContent}
+        inboxMessageContent={inboxMessageContent}
         disabled={disabled}
         onSuccess={onSuccess}
       />

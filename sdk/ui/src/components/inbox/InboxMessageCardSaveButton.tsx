@@ -11,19 +11,19 @@ import {
   setThing,
   toUrlString,
 } from "solid";
-import { InboxContent } from "./InboxMessageCard";
+import { InboxMessageContent } from "./InboxMessageCard";
 import { useSession } from "@inrupt/solid-ui-react";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { useTranslation } from "i18n/client";
 
 export interface IInboxMessageCardSaveButtonProperties {
-  inboxContent?: InboxContent;
+  inboxMessageContent?: InboxMessageContent;
   disabled?: boolean;
   onSuccess: () => void;
 }
 
 export const InboxMessageCardSaveButton = ({
-  inboxContent,
+  inboxMessageContent,
   disabled,
   onSuccess,
 }: IInboxMessageCardSaveButtonProperties) => {
@@ -34,7 +34,7 @@ export const InboxMessageCardSaveButton = ({
 
   const onClick = async () => {
     try {
-      if (!inboxContent) {
+      if (!inboxMessageContent) {
         throw new Error();
       }
 
@@ -43,10 +43,10 @@ export const InboxMessageCardSaveButton = ({
         fetch: session.fetch,
       });
 
-      let thingToAdd: Thing = inboxContent;
-      const existingThing = getThing(dataset, asUrl(inboxContent));
+      let thingToAdd: Thing = inboxMessageContent;
+      const existingThing = getThing(dataset, asUrl(inboxMessageContent));
       if (existingThing) {
-        thingToAdd = mergeThings(existingThing, inboxContent);
+        thingToAdd = mergeThings(existingThing, inboxMessageContent);
       }
       const updatedDataset = setThing(dataset, thingToAdd);
 
@@ -68,7 +68,7 @@ export const InboxMessageCardSaveButton = ({
   };
 
   return (
-    <Button onClick={onClick} disabled={!inboxContent || disabled}>
+    <Button onClick={onClick} disabled={!inboxMessageContent || disabled}>
       {t("_.save")}
     </Button>
   );

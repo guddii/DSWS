@@ -1,12 +1,5 @@
 import { App, Button, Form, Input, Space } from "antd";
-import {
-  IRequestReferenceAccessBody,
-  MessageTypes,
-  checkResponse,
-  schema,
-  sendInboxMessage,
-  toUrlString,
-} from "solid";
+import { IRequestReferenceAccessBody, checkResponse, toUrlString } from "solid";
 import { IParsedPropertyWithRulesAndOptions } from "../../helper/propertiesGenerator";
 import { useCallback, useState } from "react";
 import { ModalAccessRequestToInbox } from "../modals/ModalAccessRequestToInbox";
@@ -47,7 +40,7 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
         return;
       }
 
-      checkResponse(response);
+      await checkResponse(response);
 
       const dataset = await response.json();
       // TODO: display data in form instead of logging it

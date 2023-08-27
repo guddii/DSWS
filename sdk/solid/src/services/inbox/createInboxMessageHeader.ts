@@ -11,6 +11,7 @@ import {
   IInboxMessageHeader,
   IInboxMessageType,
   MessageTypes,
+  IInboxMessageData,
 } from "./InboxMessage";
 import {
   LAND_REGISTRY_OFFICE_WEB_ID,
@@ -43,7 +44,7 @@ const generateMessageText = ({
         agentTexts[sender.webId].officeName
       }.`;
     case MessageTypes.REQUEST_ACCESS_MESSAGE:
-      return "To access data references in you data vault access permission is required.";
+      return "To access a data reference in you data vault access permission is required.";
     default:
       return "";
   }
@@ -52,11 +53,12 @@ const generateMessageText = ({
 type ICreateMessageHeader = IInboxMessageRecipient &
   IInboxMessageSender &
   IInboxMessageType &
-  IInboxMessageHeader;
+  IInboxMessageHeader &
+  IInboxMessageData;
 
 export const createInboxMessageHeader = (
   dataset: SolidDataset,
-  { recipient, sender, messageType, header }: ICreateMessageHeader
+  { recipient, sender, messageType, header, data }: ICreateMessageHeader
 ): SolidDataset => {
   const messageHeader = buildThing(createThing({ url: header.target }))
     .addUrl(RDF.type, schema.Message)
@@ -68,6 +70,7 @@ export const createInboxMessageHeader = (
       schema.text,
       generateMessageText({ sender, messageType })
     )
+    .addUrl(schema.object, data.subject)
     .build();
 
   return setThing(dataset, messageHeader);

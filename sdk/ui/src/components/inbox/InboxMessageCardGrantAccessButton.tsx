@@ -1,51 +1,58 @@
-import { Button, App } from "antd";
-import { getUrl, schema, universalAccess } from "solid";
-import { InboxContent, InboxMessage } from "./InboxMessageCard";
-import { useSession } from "@inrupt/solid-ui-react";
+import { Button, App, Space } from "antd";
+import {
+  DCTERMS,
+  IGrantReferenceAccessBody,
+  checkResponse,
+  getUrl,
+  schema,
+} from "solid";
+import { InboxMessageContent } from "./InboxMessageCard";
+import { useState } from "react";
 
 interface IInboxMessageCardGrantAccessButtonProperties {
-  inboxMessage: InboxMessage;
-  inboxContent?: InboxContent;
+  inboxMessageContent?: InboxMessageContent;
   disabled?: boolean;
   onSuccess: () => void;
 }
 
 export const InboxMessageCardGrantAccessButton = ({
-  inboxMessage,
-  inboxContent,
+  inboxMessageContent,
   disabled,
   onSuccess,
 }: IInboxMessageCardGrantAccessButtonProperties) => {
   const { message } = App.useApp();
-  const { session } = useSession();
+  const [isLoadingGrant, setIsLoadingGrant] = useState(false);
+  const [isLoadingDeny, setIsLoadingDeny] = useState(false);
 
-  const onClick = async () => {
+  const processAccessRequest = async (granted: boolean) => {
     try {
-      if (!inboxContent) {
+      if (!inboxMessageContent) {
         throw new Error();
       }
 
-      const senderWebId = getUrl(inboxMessage, schema.sender);
-      if (!senderWebId) {
+      const requestUrl = getUrl(inboxMessageContent, schema.identifier);
+      if (!requestUrl) {
+        throw new Error();
+      }
+      const serviceProvider = getUrl(inboxMessageContent, DCTERMS.mediator);
+      if (!serviceProvider) {
         throw new Error();
       }
 
-      const targetUrl = getUrl(inboxContent, schema.target);
-      if (!targetUrl) {
-        throw new Error();
-      }
+      const requestBody: IGrantReferenceAccessBody = {
+        request: requestUrl,
+        granted,
+      };
 
-      const grantedAccessPermissions = await universalAccess.setAgentAccess(
-        targetUrl,
-        senderWebId,
-        { read: true },
-        { fetch: session.fetch }
+      const response: Response = await fetch(serviceProvider, {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+      });
+      await checkResponse(response);
+
+      message.success(
+        `Successfully ${granted ? "granted" : "denied"} access permission.`
       );
-      if (grantedAccessPermissions == null) {
-        throw new Error("Granting access permissions failed.");
-      }
-
-      message.success("Successfully granted message sender access permission.");
       onSuccess();
     } catch (error: any) {
       message.error(
@@ -55,9 +62,33 @@ export const InboxMessageCardGrantAccessButton = ({
     }
   };
 
+  const onClickGrant = async () => {
+    setIsLoadingGrant(true);
+    await processAccessRequest(true);
+    setIsLoadingGrant(false);
+  };
+  const onClickDeny = async () => {
+    setIsLoadingDeny(true);
+    await processAccessRequest(false);
+    setIsLoadingDeny(false);
+  };
+
   return (
-    <Button onClick={onClick} disabled={!inboxContent || disabled}>
-      Grant Access
-    </Button>
+    <Space.Compact>
+      <Button
+        onClick={onClickDeny}
+        disabled={!inboxMessageContent || disabled || isLoadingGrant}
+        loading={isLoadingDeny}
+      >
+        Deny Access
+      </Button>
+      <Button
+        onClick={onClickGrant}
+        disabled={!inboxMessageContent || disabled || isLoadingDeny}
+        loading={isLoadingGrant}
+      >
+        Grant Access
+      </Button>
+    </Space.Compact>
   );
 };

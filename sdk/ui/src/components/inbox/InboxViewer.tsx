@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useMemo } from "react";
-import { LDP, getUrlAll, getThing, toUrlString } from "solid";
+import { LDP, getUrlAll, getThing, toUrlString, getSourceUrl } from "solid";
 import { LoadingFailedFullbleed } from "../Loading";
 import { Empty, Space } from "antd";
 import { InboxMessageCard } from "./InboxMessageCard";
@@ -10,7 +10,7 @@ import { useTranslation } from "i18n/client";
 export const InboxViewer = () => {
   const t = useTranslation();
   const { dataset } = usePage();
-  const inboxUrl = dataset?.internal_resourceInfo.sourceIri;
+  const inboxUrl = dataset ? getSourceUrl(dataset) : undefined;
 
   /**
    * Gets a list of all entries inside the given inbox folder.

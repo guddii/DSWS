@@ -39,8 +39,9 @@ export const createInboxMessage = ({
     sender,
     messageType,
     header,
+    data,
   });
-  dataset = createInboxMessageBody(dataset, { data: data });
+  dataset = createInboxMessageBody(dataset, { data });
 
   return dataset;
 };

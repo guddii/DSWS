@@ -1,14 +1,10 @@
 import { getAgentUserSession } from "../../session";
-import {
-  LAND_REGISTRY_OFFICE_URL,
-  controllerRequestReferenceAccess,
-} from "solid";
+import { controllerGrantReferenceAccess } from "solid";
 
 export async function POST(request: Request) {
   const session = await getAgentUserSession();
-  return controllerRequestReferenceAccess({
+  return controllerGrantReferenceAccess({
     request,
     session,
-    serviceProvider: LAND_REGISTRY_OFFICE_URL,
   });
 }
