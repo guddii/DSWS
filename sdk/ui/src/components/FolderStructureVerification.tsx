@@ -18,7 +18,7 @@ interface IFolderStructureVerificationProperties {
 export const FolderStructureVerification = ({
   children,
 }: IFolderStructureVerificationProperties) => {
-  const { storage } = useIdentity();
+  const { storage, webId } = useIdentity();
   const { session } = useSession();
   const [verifyingFolderStructure, setVerifyingFolderStructure] =
     useState(true);
@@ -45,6 +45,7 @@ export const FolderStructureVerification = ({
       await createCitizenFolderStructure(
         session,
         storage,
+        webId,
         verifiedFolderStructure
       );
 
@@ -59,7 +60,7 @@ export const FolderStructureVerification = ({
     }
 
     setCreatingFolderStructure(false);
-  }, [session, storage, verifiedFolderStructure]);
+  }, [session, storage, verifiedFolderStructure, webId]);
 
   useEffect(() => {
     if (storage) {

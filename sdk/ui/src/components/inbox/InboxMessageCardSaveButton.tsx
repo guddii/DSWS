@@ -1,13 +1,13 @@
 import { Button, App } from "antd";
 import {
-  SENDER_TO_PROPERTY_MAP,
   STAMMDATEN_FILE_PATH,
-  UrlString,
-  buildThing,
+  Thing,
+  asUrl,
   createUrl,
   getSolidDataset,
   getThing,
   getUrl,
+  mergeThings,
   saveSolidDatasetAt,
   schema,
   setThing,
@@ -40,31 +40,17 @@ export const InboxMessageCardSaveButton = ({
         throw new Error();
       }
 
-      const sender = getUrl(inboxMessage, schema.sender);
-      const referenceUrl = getUrl(inboxContent, schema.subjectOf);
-      if (
-        !sender ||
-        !referenceUrl ||
-        !SENDER_TO_PROPERTY_MAP.hasOwnProperty(sender)
-      ) {
-        throw new Error();
-      }
-      const predicate: UrlString = SENDER_TO_PROPERTY_MAP[sender];
-
       const datasetUrl = toUrlString(createUrl(STAMMDATEN_FILE_PATH, storage));
       const dataset = await getSolidDataset(datasetUrl, {
         fetch: session.fetch,
       });
 
-      let thing = getThing(dataset, `${datasetUrl}#me`);
-      if (!thing) {
-        throw new Error();
+      let thingToAdd: Thing = inboxContent;
+      const existingThing = getThing(dataset, asUrl(inboxContent));
+      if (existingThing) {
+        thingToAdd = mergeThings(existingThing, inboxContent);
       }
-
-      const updatedThing = buildThing(thing)
-        .addUrl(predicate, referenceUrl)
-        .build();
-      const updatedDataset = setThing(dataset, updatedThing);
+      const updatedDataset = setThing(dataset, thingToAdd);
 
       await saveSolidDatasetAt(datasetUrl, updatedDataset, {
         fetch: session.fetch,

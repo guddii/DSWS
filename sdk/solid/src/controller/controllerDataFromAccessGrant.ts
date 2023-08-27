@@ -2,9 +2,14 @@ import {
   getAccessGrantFromRedirectUrl,
   getSolidDataset,
 } from "@inrupt/solid-client-access-grants";
-import { getThing } from "@inrupt/solid-client";
+import { getThing, getThingAll } from "@inrupt/solid-client";
 import { NextResponse } from "next/server";
 import { Session } from "@inrupt/solid-client-authn-node";
+
+enum DataFromAccessGrantSearchParams {
+  RedirectUrl = "redirectUrl",
+  WebId = "webId",
+}
 
 interface IControllerDataFromAccessGrant {
   request: Request;
@@ -17,7 +22,9 @@ export const controllerDataFromAccessGrant = async ({
 }: IControllerDataFromAccessGrant) => {
   const searchParams = new URL(request.url).searchParams;
 
-  const redirectUrl = searchParams.get("redirectUrl");
+  const redirectUrl = searchParams.get(
+    DataFromAccessGrantSearchParams.RedirectUrl
+  );
 
   if (redirectUrl) {
     const accessGrantVc = await getAccessGrantFromRedirectUrl(redirectUrl, {
@@ -30,7 +37,13 @@ export const controllerDataFromAccessGrant = async ({
       fetch: session.fetch,
     });
 
-    const thing = getThing(mySolidDataset, `${datasetUrl}#me`);
+    const webId = searchParams.get(DataFromAccessGrantSearchParams.WebId);
+    let thing;
+    if (webId) {
+      thing = getThing(mySolidDataset, webId);
+    } else {
+      thing = getThingAll(mySolidDataset)[0];
+    }
 
     return NextResponse.json({ thing }, { status: 200 });
   }

@@ -1,13 +1,21 @@
 "use client";
+import { useSession } from "@inrupt/solid-ui-react";
+import { App } from "antd";
 import {
   createContext,
   Dispatch,
   ReactNode,
   SetStateAction,
+  useCallback,
   useContext,
   useState,
 } from "react";
-import { SolidDataset, WithServerResourceInfo } from "solid";
+import {
+  getSolidDataset,
+  SolidDataset,
+  UrlString,
+  WithServerResourceInfo,
+} from "solid";
 
 export type Dataset = SolidDataset & WithServerResourceInfo;
 
@@ -45,4 +53,38 @@ export function usePage() {
     throw new Error("usePage must be used within a PageProvider");
   }
   return context;
+}
+
+export function useLoadDataset() {
+  const { message } = App.useApp();
+  const { session } = useSession();
+
+  return useCallback(
+    async (datasetUrl: UrlString): Promise<Dataset | undefined> => {
+      try {
+        return await getSolidDataset(datasetUrl, {
+          fetch: session.fetch,
+        });
+      } catch (error: any) {
+        console.error(error);
+        message.error(error.message || "Error while fetching dataset");
+
+        return;
+      }
+    },
+    [message, session.fetch]
+  );
+}
+
+export function useLoadAndSetDataset() {
+  const { setDataset } = usePage();
+  const loadDataset = useLoadDataset();
+
+  return useCallback(
+    async (datasetUrl: UrlString): Promise<void> => {
+      const dataset = await loadDataset(datasetUrl);
+      setDataset(dataset);
+    },
+    [loadDataset, setDataset]
+  );
 }

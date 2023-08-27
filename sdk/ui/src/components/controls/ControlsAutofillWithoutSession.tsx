@@ -13,6 +13,7 @@ import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { useRouter } from "next/navigation";
 import { handleRevokeAccessGrant } from "./ControlsRevokeAccessGrant";
 import { IModalWebIdValues, ModalWebId } from "../modals/ModalWebId";
+import { useIdentity } from "../../contexts/IdentityContext";
 
 export const REDIRECT_URL_FROM_AUTOFILL = "redirectUrl";
 
@@ -24,6 +25,7 @@ export const ControlsAutofillWithoutSession = ({
   form,
 }: IControlsAutofillWithoutSessionProperties) => {
   const { message } = App.useApp();
+  const { webId } = useIdentity();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,6 +51,7 @@ export const ControlsAutofillWithoutSession = ({
 
         const searchParams = new URLSearchParams({
           redirectUrl,
+          webId,
         });
         const response = await fetch(
           `/api/dataFromAccessGrant?${searchParams}`
@@ -74,7 +77,7 @@ export const ControlsAutofillWithoutSession = ({
         setIsLoading(false);
       }
     },
-    [form, message, router]
+    [form, message, router, webId]
   );
 
   useEffect(() => {

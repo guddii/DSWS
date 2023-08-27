@@ -1,5 +1,3 @@
-import { UrlString } from "@inrupt/solid-client";
-
 type AbstractModelValue = string;
 
 interface IAbstractModelValues {
@@ -9,16 +7,13 @@ interface IAbstractModelValues {
 }
 
 interface IAbstractModelOptions {
-  subject: UrlString | URL;
   values?: Array<IAbstractModelValues>;
 }
 
 export abstract class AbstractModel {
-  subject: UrlString | URL;
   values: Array<IAbstractModelValues>;
 
   constructor(options: IAbstractModelOptions) {
-    this.subject = options.subject;
     this.values = options.values ?? [];
   }
 }

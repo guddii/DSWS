@@ -1,10 +1,9 @@
 "use client";
-import { getSolidDataset, toUrlString } from "solid";
+import { toUrlString } from "solid";
 import { Button, App } from "antd";
 import { createUrl } from "solid";
 import { useIdentity } from "../../contexts/IdentityContext";
-import { Dataset, usePage } from "../../contexts/PageContext";
-import { useSession } from "@inrupt/solid-ui-react";
+import { Dataset, useLoadDataset, usePage } from "../../contexts/PageContext";
 import { useCallback, useEffect, useState } from "react";
 import useSWR, { Fetcher } from "swr";
 
@@ -45,36 +44,25 @@ export const ControlsDataset = ({
   enableSwrLoading = false,
   buttonLabel = "Load Dataset",
 }: IControlsDatasetProperties) => {
-  const { message } = App.useApp();
-  const { session } = useSession();
   const { storage } = useIdentity();
   const { setDataset } = usePage();
   const [isLoading, setIsLoading] = useState(false);
   const datasetUrl = toUrlString(createUrl(datasetPath, storage));
+  const loadDataset = useLoadDataset();
 
-  const loadDataset = useCallback(async (): Promise<Dataset | undefined> => {
+  const loadDatasetWithLoadingState = useCallback(async (): Promise<
+    Dataset | undefined
+  > => {
     setIsLoading(true);
+    const dataset = await loadDataset(datasetUrl);
+    setIsLoading(false);
+    return dataset;
+  }, [datasetUrl, loadDataset]);
 
-    try {
-      const dataset = await getSolidDataset(datasetUrl, {
-        fetch: session.fetch,
-      });
-
-      setIsLoading(false);
-      return dataset;
-    } catch (error: any) {
-      console.error(error);
-      message.error(error.message || "Error while fetching dataset");
-
-      setIsLoading(false);
-      return;
-    }
-  }, [datasetUrl, message, session.fetch]);
-
-  const loadAndSetDataset = useCallback(async () => {
-    const dataset = await loadDataset();
+  const loadAndSetDatasetWithLoadingState = useCallback(async () => {
+    const dataset = await loadDatasetWithLoadingState();
     setDataset(dataset);
-  }, [loadDataset, setDataset]);
+  }, [loadDatasetWithLoadingState, setDataset]);
 
   useEffect(() => {
     if (enableInitialLoading && enableSwrLoading) {
@@ -84,9 +72,13 @@ export const ControlsDataset = ({
     }
 
     if (enableInitialLoading && !enableSwrLoading) {
-      loadAndSetDataset();
+      loadAndSetDatasetWithLoadingState();
     }
-  }, [enableInitialLoading, enableSwrLoading, loadAndSetDataset]);
+  }, [
+    enableInitialLoading,
+    enableSwrLoading,
+    loadAndSetDatasetWithLoadingState,
+  ]);
 
   if (!storage) {
     console.error("storage missing");
@@ -95,7 +87,7 @@ export const ControlsDataset = ({
 
   return (
     <>
-      <Button onClick={loadAndSetDataset} loading={isLoading}>
+      <Button onClick={loadAndSetDatasetWithLoadingState} loading={isLoading}>
         {buttonLabel}
       </Button>
       {enableSwrLoading && (

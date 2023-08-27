@@ -19,15 +19,17 @@ import {
  * the created file with a basic data skeleton.
  * @param session running solid session
  * @param storage url of storage to create the new file in
+ * @param webId user webId used as subject in created data
  * @returns response object of file creation
  */
 const createStammdatenFile = async (
   session: Session,
+  webId: string,
   storage: URL
 ): Promise<Response> => {
   const stammdatenFileUrl = createUrl(STAMMDATEN_FILE_NAME, storage);
   const defaultData = {
-    subject: "#me",
+    subject: webId,
     values: {
       [FOAF.firstName.iri.value]: "",
       [FOAF.lastName.iri.value]: "",
@@ -65,11 +67,13 @@ const addPublicAppendAccess = async (
  * if they are missing.
  * @param session running solid session
  * @param storage url of storage to use for data creation
+ * @param webId user webId used as subject in created data
  * @param verifiedFolderStructure object containing info about existing and missing data
  */
 export const createCitizenFolderStructure = async (
   session: Session,
   storage: string,
+  webId: string,
   verifiedFolderStructure: ValidAndVerifiedFolderStructure
 ): Promise<void> => {
   const storageUrl = createUrl(storage);
@@ -85,7 +89,7 @@ export const createCitizenFolderStructure = async (
   }
 
   if (!verifiedFolderStructure.stammdatenFileExists) {
-    await createStammdatenFile(session, stammdatenFolderUrl);
+    await createStammdatenFile(session, webId, stammdatenFolderUrl);
   }
 
   if (!verifiedFolderStructure.inboxFolderExists) {
