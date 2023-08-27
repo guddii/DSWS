@@ -1,4 +1,4 @@
-import { AbstractModel, IParsedProperty } from "solid";
+import { AbstractModel, IParsedProperty, UrlString } from "solid";
 
 interface IPropertiesGeneratorOptions {
   model: AbstractModel;
@@ -10,6 +10,7 @@ export interface IParsedPropertyRules {
 
 export interface IParsedPropertyOptions {
   reference?: boolean;
+  creator?: UrlString;
 }
 
 export interface IParsedPropertyWithRulesAndOptions extends IParsedProperty {

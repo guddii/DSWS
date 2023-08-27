@@ -1,7 +1,7 @@
 import { FOAF } from "@inrupt/lit-generated-vocab-common";
 import { AbstractModel } from "./AbstractModel";
 import { createUrl } from "../helper/urlHelper";
-import { HAS_LAND_REGISTRY_DATA } from "../config";
+import { HAS_LAND_REGISTRY_DATA, LAND_REGISTRY_OFFICE_URL } from "../config";
 
 export class TaxOfficeModel extends AbstractModel {
   static create() {
@@ -28,7 +28,7 @@ export class TaxOfficeModel extends AbstractModel {
         {
           predicate: createUrl(HAS_LAND_REGISTRY_DATA),
           value: "",
-          options: { reference: true },
+          options: { reference: true, creator: LAND_REGISTRY_OFFICE_URL },
         },
       ],
     });

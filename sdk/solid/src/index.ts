@@ -2,6 +2,7 @@ export * from "./controller/controllerDataFromAccessGrant";
 export * from "./controller/controllerIssueAccessRequest";
 export * from "./controller/controllerSubmitData";
 export * from "./controller/controllerGetReferenceDataset";
+export * from "./controller/controllerRequestReferenceAccess";
 // Helper
 export * from "./helper/urlHelper";
 export * from "./helper/checkResponse";

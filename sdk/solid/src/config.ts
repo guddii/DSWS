@@ -21,6 +21,9 @@ export const TAX_OFFICE_WEB_ID: WebId = "https://id.inrupt.com/taxofficeapp";
 export const LAND_REGISTRY_OFFICE_WEB_ID: WebId =
   "https://id.inrupt.com/landregistryofficeapp";
 
+export const TAX_OFFICE_URL: UrlString = "http://localhost:4000";
+export const LAND_REGISTRY_OFFICE_URL: UrlString = "http://localhost:5000";
+
 export const SENDER_TO_PROPERTY_MAP: Record<WebId, UrlString> = {
   [TAX_OFFICE_WEB_ID]: HAS_TAX_DATA,
   [LAND_REGISTRY_OFFICE_WEB_ID]: HAS_LAND_REGISTRY_DATA,

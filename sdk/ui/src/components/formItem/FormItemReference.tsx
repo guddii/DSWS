@@ -1,5 +1,6 @@
 import { App, Button, Form, Input, Space } from "antd";
 import {
+  IRequestReferenceAccessBody,
   MessageTypes,
   checkResponse,
   schema,
@@ -63,23 +64,28 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
    * Sends an inbox message with a request to access the reference currently in the form item.
    */
   const onSubmit = async () => {
-    await sendInboxMessage({
-      recipient: identity,
-      sender: agent,
-      messageType: MessageTypes.REQUEST_ACCESS_MESSAGE,
-      data: {
-        // TODO: find better subject than the user webId (also needs a refactor
-        // of inbox as it currently only checks for webId subject for data)
-        subject: identity.webId,
-        entries: [
-          {
-            type: "url",
-            predicate: schema.target,
-            value: form.getFieldValue(property.predicate),
-          },
-        ],
-      },
-    });
+    if (!property?.options?.creator) {
+      message.error(
+        "No creator found for reference. Sending access request not possible"
+      );
+      return;
+    }
+
+    const requestBody: IRequestReferenceAccessBody = {
+      requestor: agent.webId,
+      owner: identity.webId,
+      target: form.getFieldValue(property.predicate),
+      access: { read: true },
+    };
+
+    const response: Response = await fetch(
+      `${property.options.creator}/api/requestReferenceAccess`,
+      {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+      }
+    );
+    console.log("🚀 | file: FormItemReference.tsx:86 | response:", response);
     setOpen(false);
   };
 
@@ -99,7 +105,12 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
           >
             <Input />
           </Form.Item>
-          <Button onClick={loadReference} loading={isLoading} type="primary">
+          <Button
+            onClick={loadReference}
+            loading={isLoading}
+            type="primary"
+            disabled={!form.getFieldValue(property.predicate)}
+          >
             Load Data
           </Button>
         </Space.Compact>

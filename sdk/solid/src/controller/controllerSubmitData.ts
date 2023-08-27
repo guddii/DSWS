@@ -1,9 +1,5 @@
 import { Session } from "@inrupt/solid-client-authn-node";
-import {
-  createUrl,
-  removeHashFromUrl,
-  replaceHashInUrl,
-} from "../helper/urlHelper";
+import { createUrl, replaceHashInUrl } from "../helper/urlHelper";
 import { legacyGetThing } from "../services/solid/thing";
 import { getProperty } from "../services/solid/property";
 import {
@@ -17,19 +13,9 @@ import {
   setThing,
   turtleFileGenerator,
   universalAccess,
-  WS,
 } from "../index";
 import { NextResponse } from "next/server";
-
-const getMainPod = async (session: Session) => {
-  const { webId } = session.info;
-  const datasetUrl = webId ? removeHashFromUrl(webId) : undefined;
-  const thingUrl = webId ? createUrl(webId) : undefined;
-
-  const thing = await legacyGetThing({ session, datasetUrl, thingUrl });
-  const data = await getProperty({ thing, predicate: createUrl(WS.storage) });
-  return data.firstProperty;
-};
+import { getPodFromWebId } from "../helper/getPodFromWebId";
 
 const createNewPod = async (session: Session) => {
   const response = await session.fetch("https://provision.inrupt.com/", {
@@ -144,8 +130,14 @@ export const controllerSubmitData = async ({
     const searchParams = new URL(request.url).searchParams;
     const webId = searchParams.get("webId");
 
-    if (webId) {
-      const mainPod = await getMainPod(session);
+    if (webId && session.info.webId) {
+      const mainPod = await getPodFromWebId(session, session.info.webId);
+      if (!mainPod) {
+        return NextResponse.json(
+          { error: "Internal Server Error" },
+          { status: 500 }
+        );
+      }
       const podList = await getPodList(session, mainPod);
 
       if (!podList) {
@@ -170,7 +162,7 @@ export const controllerSubmitData = async ({
       await universalAccess.setAgentAccess(
         submittedDataUrl,
         webId,
-        { read: true, write: false, controlRead: true, controlWrite: true },
+        { read: true },
         { fetch: session.fetch }
       );
 

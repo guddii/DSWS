@@ -8,6 +8,7 @@ interface IAbstractModelValues {
   };
   options?: {
     reference?: boolean;
+    creator?: UrlString;
   };
 }
 
