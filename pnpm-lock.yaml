@@ -32,6 +32,9 @@ importers:
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
       next:
         specifier: 13.4.10
         version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
@@ -87,6 +90,9 @@ importers:
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
       next:
         specifier: 13.4.10
         version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
@@ -142,6 +148,9 @@ importers:
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
       next:
         specifier: 13.4.10
         version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
@@ -197,6 +206,52 @@ importers:
       next:
         specifier: 13.4.10
         version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+
+  sdk/i18n:
+    dependencies:
+      '@formatjs/intl-localematcher':
+        specifier: 0.2.32
+        version: 0.2.32
+      negotiator:
+        specifier: 0.6.3
+        version: 0.6.3
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      server-only:
+        specifier: 0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/negotiator':
+        specifier: 0.6.1
+        version: 0.6.1
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
 
   sdk/solid:
     dependencies:
@@ -266,6 +321,9 @@ importers:
       encoding:
         specifier: 0.1.13
         version: 0.1.13
+      i18n:
+        specifier: workspace:*
+        version: link:../i18n
       next:
         specifier: 13.4.10
         version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
@@ -442,6 +500,12 @@ packages:
   /@eslint/js@8.39.0:
     resolution: {integrity: sha512-kf9RB0Fg7NZfap83B3QOqOGg9QmD9yBudqQXzzOtn3i4y7ZUXe5ONeW34Gwi+TxhH4mvj72R1Zc300KUMa9Bng==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  /@formatjs/intl-localematcher@0.2.32:
+    resolution: {integrity: sha512-k/MEBstff4sttohyEpXxCmC3MqbUn9VvHGlZ8fauLzkbwXmVrEeyzS+4uhrvAk9DWU9/7otYWxyDox4nT/KVLQ==}
+    dependencies:
+      tslib: 2.5.2
+    dev: false
 
   /@humanwhocodes/config-array@0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -910,6 +974,10 @@ packages:
     dependencies:
       '@types/node': 17.0.12
       rdf-js: 4.0.2
+    dev: true
+
+  /@types/negotiator@0.6.1:
+    resolution: {integrity: sha512-c4mvXFByghezQ/eVGN5HvH/jI63vm3B7FiE81BUzDAWmuiohRecCO6ddU60dfq29oKUMiQujsoB2h0JQC7JHKA==}
     dev: true
 
   /@types/node@17.0.12:
@@ -2629,6 +2697,11 @@ packages:
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
+  /negotiator@0.6.3:
+    resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
+    engines: {node: '>= 0.6'}
+    dev: false
+
   /next@13.4.10(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-4ep6aKxVTQ7rkUW2fBLhpBr/5oceCuf4KmlUpvG/aXuDTIf9mexNSpabUD6RWPspu6wiJJvozZREhXhueYO36A==}
     engines: {node: '>=16.8.0'}
@@ -3632,6 +3705,10 @@ packages:
     resolution: {integrity: sha512-GaNA54380uFefWghODBWEGisLZFj00nS5ACs6yHa9nLqlLpVLO8ChDGeKRjZnV4Nh4n0Qi7nhYZD/9fCPzEqkw==}
     dependencies:
       randombytes: 2.1.0
+    dev: false
+
+  /server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
     dev: false
 
   /shebang-command@2.0.0:
