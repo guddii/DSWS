@@ -4,7 +4,6 @@ import {
   ControlsAutofill,
   EditorTurtle,
   LayoutContent,
-  useIdentity,
 } from "ui";
 import { TaxOfficeModel } from "solid";
 import { Card, Form } from "antd";
@@ -26,7 +25,6 @@ const metadata = { title: "Tax Office" };
 
 export default function Page() {
   const [form] = Form.useForm();
-  const { webId } = useIdentity();
 
   return (
     <SessionContent alwaysShowChildren>
