@@ -5,6 +5,7 @@ import { useIdentity } from "../contexts/IdentityContext";
 import { ControlsLogin } from "./controls/ControlsLogin";
 import Link from "next/link";
 import { ControlsCreate } from "./controls/ControlsCreate";
+import { useTranslation } from "i18n/client";
 
 interface ILoggedInContentProperties {
   children: ReactNode;
@@ -15,6 +16,7 @@ export const SessionContent = ({
   children,
   alwaysShowChildren = false,
 }: ILoggedInContentProperties) => {
+  const t = useTranslation();
   const { webId } = useIdentity();
 
   if (!alwaysShowChildren && !webId) {
@@ -23,12 +25,11 @@ export const SessionContent = ({
         style={{ margin: "50px auto" }}
         description={
           <Space direction="vertical" size="middle">
-            <Typography.Paragraph style={{ maxWidth: 250 }}>
-              This application requires a Pod as data storage and a WebId to
-              identify yourself in the web.
+            <Typography.Paragraph style={{ maxWidth: 250, margin: "auto" }}>
+              {t("sdk.ui.components.SessionContent.1")}
             </Typography.Paragraph>
-            <Typography.Paragraph>
-              Find out more at{" "}
+            <Typography.Paragraph style={{ maxWidth: 250, margin: "auto" }}>
+              {t("sdk.ui.components.SessionContent.2")}{" "}
               <Link href="https://solidproject.org/" target={"_blank"}>
                 https://solidproject.org/
               </Link>

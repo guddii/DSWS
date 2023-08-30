@@ -1,6 +1,9 @@
 import { Button, Form } from "antd";
+import { useTranslation } from "i18n/client";
 
 export function FormItemLogin() {
+  const t = useTranslation();
+
   return (
     <Form.Item>
       <Button
@@ -9,7 +12,7 @@ export function FormItemLogin() {
         size="large"
         style={{ width: "100%" }}
       >
-        Login
+        {t("_.login")}
       </Button>
     </Form.Item>
   );

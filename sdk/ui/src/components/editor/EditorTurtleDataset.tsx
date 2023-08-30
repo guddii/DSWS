@@ -15,6 +15,7 @@ import {
 import { FormItem } from "../formItem/FormItem";
 import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
 import { Dataset, useLoadAndSetDataset } from "../../contexts/PageContext";
+import { useTranslation } from "i18n/client";
 
 interface IEditorTurtleDatasetProperties {
   dataset: Dataset;
@@ -25,6 +26,7 @@ export const EditorTurtleDataset = ({
   dataset,
   subject,
 }: IEditorTurtleDatasetProperties) => {
+  const t = useTranslation();
   const { session } = useSession();
   const [form] = Form.useForm();
   const { message } = App.useApp();
@@ -74,10 +76,10 @@ export const EditorTurtleDataset = ({
       // reload dataset to get newest changes to prevent problems with multiple updates
       await loadAndSetDataset(data.datasetUrl);
 
-      message.success("Successfully updated data");
+      message.success(t("_.success"));
     } catch (error: any) {
       console.error(error);
-      message.error(error.message || "Error while updating data");
+      message.error(error.message || t("_.errorMessage"));
     }
   };
 

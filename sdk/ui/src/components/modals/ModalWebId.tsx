@@ -4,6 +4,7 @@ import { FormItemWebId } from "../formItem/FormItemWebId";
 import { ReactElement } from "react";
 import { Alert, Space } from "antd";
 import { ControlsLogin } from "../controls/ControlsLogin";
+import { useTranslation } from "i18n/client";
 
 interface IModalWebIdProperties {
   open: boolean;
@@ -22,6 +23,7 @@ export const ModalWebId = ({
   onSubmit,
   reasonElement,
 }: IModalWebIdProperties) => {
+  const t = useTranslation();
   const { webId } = useIdentity();
   const initialValues: IModalWebIdValues = {
     webId: webId,
@@ -29,7 +31,7 @@ export const ModalWebId = ({
 
   return (
     <ModalForm<IModalWebIdValues>
-      title="WebId Usage"
+      title={t("sdk.ui.components.modals.ModalWebId.title")}
       open={open}
       initialValues={initialValues}
       onSubmit={onSubmit}
@@ -43,8 +45,8 @@ export const ModalWebId = ({
       {reasonElement}
       <div hidden={!!webId}>
         <Alert
-          message="Login required"
-          description="A login is required to perform this action. Please click on login to activate the OK button"
+          message={t("sdk.ui.components.modals.ModalWebId.message")}
+          description={t("sdk.ui.components.modals.ModalWebId.description")}
           type="info"
           action={
             <Space direction="vertical">

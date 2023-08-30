@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { handleRevokeAccessGrant } from "./ControlsRevokeAccessGrant";
 import { IModalWebIdValues, ModalWebId } from "../modals/ModalWebId";
 import { useIdentity } from "../../contexts/IdentityContext";
+import { useTranslation } from "i18n/client";
 
 export const REDIRECT_URL_FROM_AUTOFILL = "redirectUrl";
 
@@ -24,6 +25,7 @@ interface IControlsAutofillWithoutSessionProperties {
 export const ControlsAutofillWithoutSession = ({
   form,
 }: IControlsAutofillWithoutSessionProperties) => {
+  const t = useTranslation();
   const { message } = App.useApp();
   const { webId } = useIdentity();
   const router = useRouter();
@@ -72,12 +74,12 @@ export const ControlsAutofillWithoutSession = ({
         setIsLoading(false);
       } catch (error: any) {
         console.error(error);
-        message.error(error.message || "Error while fetching data");
+        message.error(error.message || t("_.errorMessage"));
         handleRevokeAccessGrant();
         setIsLoading(false);
       }
     },
-    [form, message, router, webId]
+    [form, message, router, t, webId]
   );
 
   useEffect(() => {
@@ -126,7 +128,7 @@ export const ControlsAutofillWithoutSession = ({
         disabled={isLoading}
         loading={isLoading}
       >
-        Autofill
+        {t("_.autofill")}
       </Button>
       <ModalWebId
         open={open}
@@ -135,14 +137,18 @@ export const ControlsAutofillWithoutSession = ({
         reasonElement={
           <>
             <Typography.Paragraph>
-              The application needs your WebId to determine the address of your
-              data vault and to retrieve the data from the
+              {t(
+                "sdk.ui.components.controls.ControlsAutofillWithoutSession.reasonElement.1"
+              )}
               <Typography.Text code>{STAMMDATEN_FILE_PATH}</Typography.Text>
-              file stored there.
+              {t(
+                "sdk.ui.components.controls.ControlsAutofillWithoutSession.reasonElement.2"
+              )}
             </Typography.Paragraph>
             <Typography.Paragraph>
-              The data from this file will be used to fill the content into the
-              form.
+              {t(
+                "sdk.ui.components.controls.ControlsAutofillWithoutSession.reasonElement.3"
+              )}
             </Typography.Paragraph>
           </>
         }

@@ -9,6 +9,7 @@ import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
 import { ModalSaveToInbox } from "../modals/ModalSaveToInbox";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { useAgent } from "../../contexts/AgentContext";
+import { useTranslation } from "i18n/client";
 
 interface IEditorTurtleModelProperties {
   model: AbstractModel;
@@ -21,6 +22,7 @@ export const EditorTurtleModel = ({
   form,
   children,
 }: IEditorTurtleModelProperties) => {
+  const t = useTranslation();
   const identity = useIdentity();
   const agent = useAgent();
   const properties = propertiesGenerator({ model });
@@ -83,9 +85,7 @@ export const EditorTurtleModel = ({
         onSubmit={onSubmit}
         reasonElement={
           <Typography.Paragraph>
-            The application needs your WebId to create a data vault for you or
-            to use an existing one. This vault contains your submitted forms,
-            for the inspection of the office.
+            {t("sdk.ui.components.editor.EditorTurtleModel.reasonElement.1")}
           </Typography.Paragraph>
         }
       />

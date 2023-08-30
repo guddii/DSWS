@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/apps/tax-office/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/apps/tax-admin/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/apps/land-registry-office/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/sdk/i18n/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/apps/citizen/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/sdk/solid/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/sdk/solid/dist" />

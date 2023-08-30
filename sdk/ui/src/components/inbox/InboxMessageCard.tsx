@@ -17,6 +17,7 @@ import { InboxMessageCardContent } from "./InboxMessageCardContent";
 import { InboxMessageCardRaw } from "./InboxMessageCardRaw";
 import { InboxMessageCardSaveButton } from "./InboxMessageCardSaveButton";
 import { ModalDeleteMessageFromInbox } from "../modals/ModalDeleteMessageFromInbox";
+import { useTranslation } from "i18n/client";
 
 export type InboxMessage = Thing;
 export type InboxContent = Thing;
@@ -35,6 +36,7 @@ export const InboxMessageCard = ({
   inboxMessageUrl,
   inboxUrl,
 }: IInboxMessageCardProperties) => {
+  const t = useTranslation();
   const { message } = App.useApp();
   const { session } = useSession();
   const { webId } = useIdentity();
@@ -81,7 +83,7 @@ export const InboxMessageCard = ({
       mutate(inboxUrl);
     } catch (error: any) {
       console.error(error);
-      message.error(error.message || "Error while deleting message");
+      message.error(error.message || t("_.errorMessage"));
     }
   };
 
@@ -118,7 +120,7 @@ export const InboxMessageCard = ({
             onClick={() => setOpenRawMessage((previous) => !previous)}
             disabled={isLoading}
           >
-            Raw Message
+            {t("_.rawMessage")}
           </Button>,
           <InboxMessageCardSaveButton
             key="save-data-button"
@@ -133,7 +135,7 @@ export const InboxMessageCard = ({
             onClick={() => setOpenDeleteMessage(true)}
             disabled={isLoading}
           >
-            Delete
+            {t("_.delete")}
           </Button>,
         ]}
       >

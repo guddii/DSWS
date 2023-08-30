@@ -1,12 +1,14 @@
 import { Form, Input, FormItemProps } from "antd";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { useEffect } from "react";
+import { useTranslation } from "i18n/client";
 
 interface IFormItemWebIdProperties {
   formItemProps?: FormItemProps;
 }
 
 export function FormItemWebId({ formItemProps }: IFormItemWebIdProperties) {
+  const t = useTranslation();
   const { webId } = useIdentity();
   const form = Form.useFormInstance();
 
@@ -25,7 +27,7 @@ export function FormItemWebId({ formItemProps }: IFormItemWebIdProperties) {
         {
           required: true,
           type: "url",
-          message: `Please input a valid WebId URL!`,
+          message: t("_.pleaseEnter", "WebId"),
         },
       ]}
       {...formItemProps}

@@ -16,6 +16,7 @@ import {
 import { InboxContent, InboxMessage } from "./InboxMessageCard";
 import { useSession } from "@inrupt/solid-ui-react";
 import { useIdentity } from "../../contexts/IdentityContext";
+import { useTranslation } from "i18n/client";
 
 interface IInboxMessageCardSaveButtonProperties {
   inboxMessage?: InboxMessage;
@@ -30,6 +31,7 @@ export const InboxMessageCardSaveButton = ({
   disabled,
   onSuccess,
 }: IInboxMessageCardSaveButtonProperties) => {
+  const t = useTranslation();
   const { message } = App.useApp();
   const { session } = useSession();
   const { storage } = useIdentity();
@@ -56,11 +58,14 @@ export const InboxMessageCardSaveButton = ({
         fetch: session.fetch,
       });
 
-      message.success("Successfully saved message data to stammdaten.");
+      message.success(
+        t("sdk.ui.components.inbox.InboxMessageCardSaveButton.success")
+      );
       onSuccess();
     } catch (error: any) {
       message.error(
-        error.message || "Some necessary data is missing in message."
+        error.message ||
+          t("sdk.ui.components.inbox.InboxMessageCardSaveButton.success")
       );
       console.error(error);
     }
@@ -76,7 +81,7 @@ export const InboxMessageCardSaveButton = ({
         disabled
       }
     >
-      Save To Data
+      {t("_.save")}
     </Button>
   );
 };

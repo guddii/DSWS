@@ -4,7 +4,7 @@
 const nextConfig = {
   output: "standalone",
   reactStrictMode: true,
-  transpilePackages: ["ui", "solid"],
+  transpilePackages: ["i18n", "ui", "solid"],
 };
 
 module.exports = nextConfig;

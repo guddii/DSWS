@@ -6,6 +6,7 @@ import { useIdentity } from "../../contexts/IdentityContext";
 import { Dataset, useLoadDataset, usePage } from "../../contexts/PageContext";
 import { useCallback, useEffect, useState } from "react";
 import useSWR, { Fetcher } from "swr";
+import { useTranslation } from "i18n/client";
 
 interface IDatasetSwrLoader {
   swrKey: string;
@@ -18,6 +19,7 @@ const DatasetSwrLoader = ({
   fetcher,
   onSuccess,
 }: IDatasetSwrLoader) => {
+  const t = useTranslation();
   const { message } = App.useApp();
   const { error } = useSWR(swrKey, fetcher, {
     onSuccess,
@@ -25,7 +27,7 @@ const DatasetSwrLoader = ({
 
   if (error) {
     console.error(error);
-    message.error(error.message || "Error while fetching dataset");
+    message.error(error.message || t("_.errorMessage"));
   }
 
   return null;
@@ -42,8 +44,10 @@ export const ControlsDataset = ({
   datasetPath,
   enableInitialLoading = false,
   enableSwrLoading = false,
-  buttonLabel = "Load Dataset",
+  buttonLabel,
 }: IControlsDatasetProperties) => {
+  const t = useTranslation();
+  buttonLabel = buttonLabel || t("_.load");
   const { storage } = useIdentity();
   const { setDataset } = usePage();
   const [isLoading, setIsLoading] = useState(false);

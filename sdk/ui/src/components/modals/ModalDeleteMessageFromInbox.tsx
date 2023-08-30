@@ -1,4 +1,5 @@
 import { ModalForm } from "./ModalForm";
+import { useTranslation } from "i18n/client";
 
 interface IModalDeleteMessageFromInboxProperties {
   open: boolean;
@@ -11,20 +12,22 @@ export const ModalDeleteMessageFromInbox = ({
   onCancel,
   onSubmit,
 }: IModalDeleteMessageFromInboxProperties) => {
+  const t = useTranslation();
+
   return (
     <ModalForm<{}>
-      title="Delete message from inbox"
-      successMessage="Successfully deleted message"
+      title={t("_.delete")}
+      successMessage={t("_.success")}
       open={open}
       initialValues={{}}
       onSubmit={onSubmit}
       onCancel={onCancel}
       modalProps={{
-        cancelText: "No",
-        okText: "Yes",
+        cancelText: t("_.no"),
+        okText: t("_.yes"),
       }}
     >
-      Do you want to delete this message with all its data from your inbox?
+      {t("sdk.ui.components.modals.ModalDeleteMessageFromInbox")}
     </ModalForm>
   );
 };

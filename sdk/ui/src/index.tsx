@@ -23,3 +23,5 @@ export * from "./interfaces/IAuth";
 export * from "./interfaces/IAgent";
 export * from "./interfaces/INavigation";
 export * from "./interfaces/IUserMenu";
+export * from "./interfaces/ILayoutOptions";
+export * from "./interfaces/IMetadataOptions";

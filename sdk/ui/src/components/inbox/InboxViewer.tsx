@@ -5,8 +5,10 @@ import { LoadingFailedFullbleed } from "../Loading";
 import { Empty, Space } from "antd";
 import { InboxMessageCard } from "./InboxMessageCard";
 import { usePage } from "../../contexts/PageContext";
+import { useTranslation } from "i18n/client";
 
 export const InboxViewer = () => {
+  const t = useTranslation();
   const { dataset } = usePage();
   const inboxUrl = dataset?.internal_resourceInfo.sourceIri;
 
@@ -37,9 +39,7 @@ export const InboxViewer = () => {
   if (data === undefined) return <LoadingFailedFullbleed />;
 
   if (data.length === 0) {
-    return (
-      <Empty description={"Your inbox is empty."} style={{ marginTop: 50 }} />
-    );
+    return <Empty description={t("_.empty")} style={{ marginTop: 50 }} />;
   }
 
   return (

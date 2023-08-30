@@ -9,28 +9,28 @@ import {
   SessionContent,
   LayoutContent,
 } from "ui";
-
-const currentItem = {
-  title: "Inbox",
-  key: "inbox",
-};
-
-const breadcrumbItems = [currentItem];
-
-const metadata = { title: "Citizen" };
+import { useTranslation } from "i18n/client";
 
 export default function Page() {
+  const t = useTranslation();
+  const currentItem = {
+    title: t("_.inbox"),
+    key: "inbox",
+  };
+
+  const breadcrumbItems = [currentItem];
+
   return (
     <SessionContent>
       <PageProvider>
         <FolderStructureVerification>
           <LayoutContent
-            options={{ breadcrumbItems, currentItem, metadata }}
+            options={{ breadcrumbItems, currentItem }}
             extra={
               <ControlsDataset
                 datasetPath={INBOX_FOLDER_PATH}
                 enableSwrLoading
-                buttonLabel="Reload Inbox"
+                buttonLabel={t("_.reload")}
               />
             }
           >
