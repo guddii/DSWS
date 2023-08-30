@@ -1,3 +1,5 @@
+import { UrlString } from "@inrupt/solid-client";
+
 type AbstractModelValue = string;
 
 interface IAbstractModelValues {
