@@ -78,7 +78,8 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
         body: JSON.stringify(requestBody),
       }
     );
-    console.log("🚀 | file: FormItemReference.tsx:86 | response:", response);
+
+    await checkResponse(response);
     setOpen(false);
   };
 
