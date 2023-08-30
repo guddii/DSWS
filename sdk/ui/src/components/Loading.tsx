@@ -70,12 +70,10 @@ export const Initializing = () => {
         top: 0,
         bottom: 0,
         zIndex: 999,
+        textAlign: "center",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-        <Loading />
-        <div>Initializing ...</div>
-      </div>
+      <Loading />
     </div>
   );
 };

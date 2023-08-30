@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Button, Form, FormInstance } from "antd";
+import { useTranslation } from "i18n/client";
 
 interface IFormsTurtleEditorProperties {
   children: ReactNode;
@@ -16,6 +17,8 @@ export const FormsTurtleEditor = ({
   disabled,
   form,
 }: IFormsTurtleEditorProperties) => {
+  const t = useTranslation();
+
   return (
     <Form
       form={form}
@@ -29,7 +32,7 @@ export const FormsTurtleEditor = ({
       {children}
       <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
         <Button type="primary" htmlType="submit">
-          Submit
+          {t("_.submit")}
         </Button>
       </Form.Item>
     </Form>

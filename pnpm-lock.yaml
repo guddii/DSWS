@@ -227,6 +227,9 @@ importers:
       server-only:
         specifier: 0.0.1
         version: 0.0.1
+      solid:
+        specifier: workspace:*
+        version: link:../solid
     devDependencies:
       '@types/negotiator':
         specifier: 0.6.1

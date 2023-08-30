@@ -23,11 +23,7 @@ export function FormItemOidcIssuer() {
 
   return (
     <Form.Item name="oidcIssuer" label="OIDC Issuer">
-      <Select
-        size="large"
-        placeholder="Please choose the OIDC Issuer"
-        onSelect={handleSelect}
-      >
+      <Select size="large" onSelect={handleSelect}>
         {oidcIssuerOptions}
       </Select>
     </Form.Item>

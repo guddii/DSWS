@@ -10,6 +10,7 @@ import { useSession } from "@inrupt/solid-ui-react";
 import { LoadingFullbleed } from "./Loading";
 import { VerifiedFolderStructureAlerts } from "./VerifiedFolderStructureAlerts";
 import { useIdentity } from "../contexts/IdentityContext";
+import { useTranslation } from "i18n/client";
 
 interface IFolderStructureVerificationProperties {
   children: ReactNode;
@@ -18,6 +19,7 @@ interface IFolderStructureVerificationProperties {
 export const FolderStructureVerification = ({
   children,
 }: IFolderStructureVerificationProperties) => {
+  const t = useTranslation();
   const { storage, webId } = useIdentity();
   const { session } = useSession();
   const [verifyingFolderStructure, setVerifyingFolderStructure] =
@@ -81,8 +83,8 @@ export const FolderStructureVerification = ({
       <Result
         style={{ margin: "50px auto" }}
         status="warning"
-        title="Some of the necessary data is missing."
-        subTitle="To ensure correct functionality across all applications certain data and access configurations need to be created."
+        title={t("sdk.ui.components.FolderStructureVerification.title")}
+        subTitle={t("sdk.ui.components.FolderStructureVerification.subTitle")}
         extra={
           <Space direction="vertical" size="large">
             <VerifiedFolderStructureAlerts
@@ -94,7 +96,7 @@ export const FolderStructureVerification = ({
               loading={creatingFolderStructure}
               disabled={creatingFolderStructure}
             >
-              Create missing data
+              {t("_.create")}
             </Button>
           </Space>
         }

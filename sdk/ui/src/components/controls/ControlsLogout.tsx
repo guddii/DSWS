@@ -2,8 +2,10 @@ import { LogoutButton } from "@inrupt/solid-ui-react";
 import { Button } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 import { useIdentity } from "../../contexts/IdentityContext";
+import { useTranslation } from "i18n/client";
 
 export function ControlsLogout() {
+  const t = useTranslation();
   const { webId } = useIdentity();
 
   function reload() {
@@ -23,7 +25,7 @@ export function ControlsLogout() {
         style={{ width: "100%" }}
         icon={<LogoutOutlined rev={"solidLogout"} />}
       >
-        Logout
+        {t("_.logout")}
       </Button>
     </LogoutButton>
   );

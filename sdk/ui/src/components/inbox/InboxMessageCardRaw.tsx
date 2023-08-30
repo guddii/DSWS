@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import { UrlString } from "solid";
 import useSWR from "swr";
 import { Loading, LoadingFailed } from "../Loading";
+import { useTranslation } from "i18n/client";
 
 const { Paragraph } = Typography;
 
@@ -11,13 +12,19 @@ interface IInboxMessageCardRawProperties {
   inboxMessageUrl: UrlString;
 }
 
-const InboxMessageCardRawTitle = () => (
-  <Divider plain>Raw Turtle Message </Divider>
-);
+const InboxMessageCardRawTitle = () => {
+  const t = useTranslation();
+  return (
+    <Divider plain>
+      {t("sdk.ui.components.inbox.InboxMessageCardRawTitle")}
+    </Divider>
+  );
+};
 
 export const InboxMessageCardRaw = ({
   inboxMessageUrl,
 }: IInboxMessageCardRawProperties) => {
+  const t = useTranslation();
   const { session } = useSession();
 
   /**
@@ -55,7 +62,9 @@ export const InboxMessageCardRaw = ({
         <InboxMessageCardRawTitle />
         <Space align="center" direction="vertical" style={{ width: "100%" }}>
           <LoadingFailed />
-          <Paragraph>Loading raw data failed.</Paragraph>
+          <Paragraph>
+            {t("sdk.ui.components.inbox.InboxMessageCardRaw")}
+          </Paragraph>
         </Space>
       </>
     );

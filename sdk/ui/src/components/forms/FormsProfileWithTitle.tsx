@@ -1,8 +1,10 @@
 import { useIdentity } from "../../contexts/IdentityContext";
 import { Divider } from "antd";
 import { FormsProfile } from "./FormsProfile";
+import { useTranslation } from "i18n/client";
 
 export function FormsProfileWithTitle() {
+  const t = useTranslation();
   const { webId } = useIdentity();
 
   if (!webId) {
@@ -12,7 +14,7 @@ export function FormsProfileWithTitle() {
   return (
     <>
       <Divider orientation="left" orientationMargin="0">
-        Profile Data
+        {t("_.profileData")}
       </Divider>
       <FormsProfile />
     </>

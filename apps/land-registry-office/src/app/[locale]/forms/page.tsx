@@ -7,29 +7,29 @@ import {
 } from "ui";
 import { LandRegistryOfficeModel } from "solid";
 import { Card, Form } from "antd";
-
-const currentItem = {
-  title: "Land Register Surveys",
-  key: "landRegisterSurveys",
-};
-
-const breadcrumbItems = [
-  {
-    title: "Forms",
-    key: "forms",
-  },
-  currentItem,
-];
-
-const metadata = { title: "Land Registry Office" };
+import { useTranslation } from "i18n/client";
 
 export default function Page() {
   const [form] = Form.useForm();
+  const t = useTranslation();
+
+  const currentItem = {
+    title: t("_.form.landRegisterSurveys"),
+    key: "landRegisterSurveys",
+  };
+
+  const breadcrumbItems = [
+    {
+      title: t("_.forms"),
+      key: "forms",
+    },
+    currentItem,
+  ];
 
   return (
     <SessionContent alwaysShowChildren>
-      <LayoutContent options={{ breadcrumbItems, currentItem, metadata }}>
-        <Card title={"Main Form"} extra={<ControlsAutofill form={form} />}>
+      <LayoutContent options={{ breadcrumbItems, currentItem }}>
+        <Card title={t("_.mainForm")} extra={<ControlsAutofill form={form} />}>
           <EditorTurtle
             form={form}
             model={LandRegistryOfficeModel.create()}

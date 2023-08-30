@@ -1,15 +1,17 @@
 import { Metadata } from "next";
 import { Space } from "antd";
+import { useTranslation } from "i18n/client";
 
 interface IBrandProperties {
   metadata: Metadata;
 }
 
 export const Brand = ({ metadata }: IBrandProperties) => {
+  const t = useTranslation();
   return (
     <Space>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={"/icon"} alt="App brand" width={32} height={32} />
+      <img src={"/icon"} alt={t("_.brand")} width={32} height={32} />
       <span>
         <strong
           style={{

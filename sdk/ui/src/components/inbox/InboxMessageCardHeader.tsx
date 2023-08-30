@@ -1,6 +1,7 @@
 import { Typography } from "antd";
 import { getDatetime, getUrl, schema } from "solid";
 import { InboxMessage } from "./InboxMessageCard";
+import { useTranslation } from "i18n/client";
 
 const { Text, Title } = Typography;
 
@@ -11,6 +12,8 @@ interface IInboxMessageCardHeaderProperties {
 export const InboxMessageCardHeader = ({
   inboxMessage,
 }: IInboxMessageCardHeaderProperties) => {
+  const t = useTranslation();
+
   if (!inboxMessage) {
     return <>Message Information could not be read!</>;
   }
@@ -27,7 +30,7 @@ export const InboxMessageCardHeader = ({
   return (
     <>
       <Title level={5} style={{ marginBottom: 0 }}>
-        From: {getUrl(inboxMessage, schema.sender)}
+        {t("_.from")}: {getUrl(inboxMessage, schema.sender)}
       </Title>
       <Text type="secondary" style={{ fontWeight: 400 }}>
         {formattedDateTime}

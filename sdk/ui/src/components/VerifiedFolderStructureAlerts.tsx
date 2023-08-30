@@ -1,5 +1,6 @@
 import { Alert, Space, Typography } from "antd";
 import { ValidAndVerifiedFolderStructure } from "solid";
+import { useTranslation } from "i18n/client";
 
 interface IVerifiedFolderStructureAlertsProperties {
   verifiedFolderStructure: ValidAndVerifiedFolderStructure;
@@ -8,15 +9,15 @@ interface IVerifiedFolderStructureAlertsProperties {
 export const VerifiedFolderStructureAlerts = ({
   verifiedFolderStructure,
 }: IVerifiedFolderStructureAlertsProperties) => {
+  const t = useTranslation();
   return (
     <Space direction="vertical" style={{ textAlign: "start" }}>
       <Alert
         message={
           <Typography>
-            <strong>stammdaten</strong> folder{" "}
             {verifiedFolderStructure.stammdatenFolderExists
-              ? "exists."
-              : "is missing!"}
+              ? t("_.exists", "/stammdaten")
+              : t("_.missing", "/stammdaten")}
           </Typography>
         }
         type={
@@ -27,10 +28,9 @@ export const VerifiedFolderStructureAlerts = ({
       <Alert
         message={
           <Typography>
-            <strong>stammdaten.ttl</strong> file{" "}
             {verifiedFolderStructure.stammdatenFileExists
-              ? "exists."
-              : "is missing!"}
+              ? t("_.exists", "/stammdaten/stammdaten.ttl")
+              : t("_.missing", "/stammdaten/stammdaten.ttl")}
           </Typography>
         }
         type={
@@ -41,10 +41,9 @@ export const VerifiedFolderStructureAlerts = ({
       <Alert
         message={
           <Typography>
-            <strong>inbox</strong> folder{" "}
             {verifiedFolderStructure.inboxFolderExists
-              ? "exists."
-              : "is missing!"}
+              ? t("_.exists", "/inbox")
+              : t("_.missing", "/inbox")}
           </Typography>
         }
         type={verifiedFolderStructure.inboxFolderExists ? "success" : "error"}
@@ -53,14 +52,9 @@ export const VerifiedFolderStructureAlerts = ({
       <Alert
         message={
           <Typography>
-            <strong>inbox</strong> folder{" "}
             {verifiedFolderStructure.inboxFolderPublicAppendAccessExists
-              ? "is"
-              : "is not"}{" "}
-            publicly available
-            {verifiedFolderStructure.inboxFolderPublicAppendAccessExists
-              ? "."
-              : "!"}
+              ? t("_.public", "/inbox")
+              : t("_.notPublic", "/inbox")}
           </Typography>
         }
         type={

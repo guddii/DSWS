@@ -9,14 +9,14 @@ import {
   TabsProps,
   Typography,
 } from "antd";
-import { Metadata } from "next";
+import { useTranslation } from "i18n/client";
+
 interface ItemType {
   title: string;
 }
 interface ILayoutContentOptions {
   breadcrumbItems: ItemType[];
   currentItem: ItemType;
-  metadata: Metadata;
 }
 interface ILayoutContentProperties {
   children: ReactNode;
@@ -29,10 +29,12 @@ export const LayoutContent = ({
   options,
   extra,
 }: ILayoutContentProperties) => {
+  const t = useTranslation();
+
   const items: TabsProps["items"] = [
     {
       key: "1",
-      label: `Viewer`,
+      label: t("_.viewer"),
       children: children,
     },
   ];

@@ -6,6 +6,7 @@ import { FormsAuthNWebIdWithTitle } from "../forms/FormsAuthNWebIdWithTitle";
 import { FormsProfileWithTitle } from "../forms/FormsProfileWithTitle";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { ControlsLogout } from "../controls/ControlsLogout";
+import { useTranslation } from "i18n/client";
 
 interface IDrawerIdentityProperties {
   metadata: Metadata;
@@ -13,6 +14,7 @@ interface IDrawerIdentityProperties {
 }
 
 export function DrawerIdentity({ metadata, auth }: IDrawerIdentityProperties) {
+  const t = useTranslation();
   const { drawerIdentityOpen, setDrawerIdentityOpen } = useIdentity();
 
   const onClose = () => {
@@ -20,7 +22,7 @@ export function DrawerIdentity({ metadata, auth }: IDrawerIdentityProperties) {
   };
 
   return (
-    <Drawer title="Identity" onClose={onClose} open={drawerIdentityOpen}>
+    <Drawer title={t("_.identity")} onClose={onClose} open={drawerIdentityOpen}>
       <FormsAuthNSessionWithTitle metadata={metadata} auth={auth} />
       <FormsAuthNWebIdWithTitle auth={auth} />
       <FormsProfileWithTitle />

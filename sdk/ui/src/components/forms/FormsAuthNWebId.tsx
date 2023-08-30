@@ -6,8 +6,10 @@ import { UserOutlined } from "@ant-design/icons";
 import { FormItemOidcIssuer } from "../formItem/FormItemOidcIssuer";
 import { FormItemLogin } from "../formItem/FormItemLogin";
 import { useIdentity } from "../../contexts/IdentityContext";
+import { useTranslation } from "i18n/client";
 
 export function FormsAuthNWebId() {
+  const t = useTranslation();
   const { message } = App.useApp();
   const { setWebId, setDrawerIdentityOpen } = useIdentity();
 
@@ -19,10 +21,10 @@ export function FormsAuthNWebId() {
         if (webId) setWebId(webId);
         setDrawerIdentityOpen(false);
       } else {
-        message.error("The WebID generator was not present");
+        message.error(t("_.errorMessage"));
       }
     } else {
-      message.error("The OIDC issuer is not supported");
+      message.error(t("_.errorMessage"));
     }
   };
 
@@ -35,7 +37,7 @@ export function FormsAuthNWebId() {
       <Form.Item
         name="username"
         label="Username"
-        rules={[{ required: true, message: "Please enter username" }]}
+        rules={[{ required: true, message: t("_.pleaseEnter", "username") }]}
       >
         <Input size="large" prefix={<UserOutlined rev={"username"} />} />
       </Form.Item>

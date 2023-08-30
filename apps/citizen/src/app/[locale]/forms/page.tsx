@@ -11,19 +11,7 @@ import {
   useIdentity,
 } from "ui";
 import { Card } from "antd";
-
-const currentItem = {
-  title: "Stammdaten",
-  key: "stammdaten",
-};
-
-const breadcrumbItems = [
-  {
-    title: "Forms",
-    key: "forms",
-  },
-  currentItem,
-];
+import { useTranslation } from "i18n/client";
 
 const EditorTurtleWithPageDataset = () => {
   const { dataset } = usePage();
@@ -36,24 +24,37 @@ const EditorTurtleWithPageDataset = () => {
   return <EditorTurtle dataset={dataset} subject={webId} />;
 };
 
-const metadata = { title: "Citizen" };
-
 export default function Page() {
+  const t = useTranslation();
+
+  const currentItem = {
+    title: t("_.stammdaten"),
+    key: "stammdaten",
+  };
+
+  const breadcrumbItems = [
+    {
+      title: t("_.forms"),
+      key: "forms",
+    },
+    currentItem,
+  ];
+
   return (
     <SessionContent>
       <PageProvider>
         <FolderStructureVerification>
           <LayoutContent
-            options={{ breadcrumbItems, currentItem, metadata }}
+            options={{ breadcrumbItems, currentItem }}
             extra={
               <ControlsDataset
                 datasetPath={STAMMDATEN_FILE_PATH}
                 enableInitialLoading
-                buttonLabel="Reload Stammdaten"
+                buttonLabel={t("_.reload")}
               />
             }
           >
-            <Card title={"Stammdaten"}>
+            <Card title={t("_.stammdaten")}>
               <EditorTurtleWithPageDataset />
             </Card>
           </LayoutContent>

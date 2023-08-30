@@ -1,4 +1,5 @@
 import { ModalForm } from "./ModalForm";
+import { useTranslation } from "i18n/client";
 
 interface IModalSaveToInboxProperties {
   open: boolean;
@@ -11,21 +12,24 @@ export const ModalSaveToInbox = ({
   onCancel,
   onSubmit,
 }: IModalSaveToInboxProperties) => {
+  const t = useTranslation();
+
   return (
     <ModalForm<{}>
-      title="Save to your inbox"
-      successMessage="Successfully saved data to inbox"
+      title={t("sdk.ui.components.modals.ModalSaveToInbox.title")}
+      successMessage={t(
+        "sdk.ui.components.modals.ModalSaveToInbox.successMessage"
+      )}
       open={open}
       initialValues={{}}
       onSubmit={onSubmit}
       onCancel={onCancel}
       modalProps={{
-        cancelText: "No",
-        okText: "Yes",
+        cancelText: t("_.no"),
+        okText: t("_.yes"),
       }}
     >
-      You have received data from the previous process. Do you want to store
-      this data in the inbox of your data vault?
+      {t("sdk.ui.components.modals.ModalSaveToInbox")}
     </ModalForm>
   );
 };
