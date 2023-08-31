@@ -21,8 +21,17 @@ export const TAX_OFFICE_WEB_ID: WebId = "https://id.inrupt.com/taxofficeapp";
 export const LAND_REGISTRY_OFFICE_WEB_ID: WebId =
   "https://id.inrupt.com/landregistryofficeapp";
 
-export const TAX_OFFICE_URL: UrlString = "http://localhost:4000";
-export const LAND_REGISTRY_OFFICE_URL: UrlString = "http://localhost:5000";
+export const CITIZEN_APP_URL: UrlString =
+  process.env.NEXT_PUBLIC_CITIZEN_APP_URL ||
+  "https://solid-showcase-citizen.vercel.app";
+
+export const TAX_OFFICE_APP_URL: UrlString =
+  process.env.NEXT_PUBLIC_TAX_OFFICE_APP_URL ||
+  "https://solid-showcase-tax-office.vercel.app";
+
+export const LAND_REGISTRY_OFFICE_APP_URL: UrlString =
+  process.env.NEXT_PUBLIC_LAND_REGISTRY_OFFICE_APP_URL ||
+  "https://solid-showcase-land-registry-office.vercel.app";
 
 export const SENDER_TO_PROPERTY_MAP: Record<WebId, UrlString> = {
   [TAX_OFFICE_WEB_ID]: HAS_TAX_DATA,
