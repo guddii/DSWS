@@ -21,30 +21,65 @@ import {
 import { RDF } from "@inrupt/lit-generated-vocab-common";
 import { schema } from "rdf-namespaces";
 
-const agentTexts: Record<WebId, { dataName: string; officeName: string }> = {
+const agentTextsEnglish: Record<
+  WebId,
+  { dataName: string; officeName: string }
+> = {
   [TAX_OFFICE_WEB_ID]: {
-    dataName: "tax data",
-    officeName: "tax office",
+    dataName: "Property Tax Return",
+    officeName: "Tax Office",
   },
   [LAND_REGISTRY_OFFICE_WEB_ID]: {
-    dataName: "land registry data",
-    officeName: "land registry office",
+    dataName: "Land Register Surveys",
+    officeName: "Land Registry Office",
   },
 };
 
-const generateMessageText = ({
+const generateMessageTextEnglish = ({
   sender,
   messageType,
 }: IInboxMessageSender & IInboxMessageType) => {
   switch (messageType) {
     case MessageTypes.SAVE_TO_DATA_MESSAGE:
       return `Your ${
-        agentTexts[sender.webId].dataName
+        agentTextsEnglish[sender.webId].dataName
       } has been uploaded to your pod at the ${
-        agentTexts[sender.webId].officeName
+        agentTextsEnglish[sender.webId].officeName
       }.`;
     case MessageTypes.REQUEST_ACCESS_MESSAGE:
       return "To access a data reference in you data vault access permission is required.";
+    default:
+      return "";
+  }
+};
+
+const agentTextsGerman: Record<
+  WebId,
+  { dataName: string; officeName: string }
+> = {
+  [TAX_OFFICE_WEB_ID]: {
+    dataName: "Grundsteuererklärung",
+    officeName: "Finanzamt",
+  },
+  [LAND_REGISTRY_OFFICE_WEB_ID]: {
+    dataName: "Grundbuchvermessungen",
+    officeName: "Katasteramt",
+  },
+};
+
+const generateMessageTextGerman = ({
+  sender,
+  messageType,
+}: IInboxMessageSender & IInboxMessageType) => {
+  switch (messageType) {
+    case MessageTypes.SAVE_TO_DATA_MESSAGE:
+      return `Ihre ${
+        agentTextsGerman[sender.webId].dataName
+      } sind in Ihren Pod beim ${
+        agentTextsGerman[sender.webId].officeName
+      } hochgeladen worden.`;
+    case MessageTypes.REQUEST_ACCESS_MESSAGE:
+      return "Für den Zugriff auf eine Datenreferenz in Ihrem Datentresor ist eine Zugriffsberechtigung erforderlich.";
     default:
       return "";
   }
@@ -66,9 +101,15 @@ export const createInboxMessageHeader = (
     .addUrl(schema.recipient, recipient.webId)
     .addUrl(schema.sender, sender.webId)
     .addStringNoLocale(MESSAGE_TYPE, messageType)
-    .addStringNoLocale(
+    .addStringWithLocale(
       schema.text,
-      generateMessageText({ sender, messageType })
+      generateMessageTextEnglish({ sender, messageType }),
+      "en"
+    )
+    .addStringWithLocale(
+      schema.text,
+      generateMessageTextGerman({ sender, messageType }),
+      "de"
     )
     .addUrl(schema.object, data.subject)
     .build();

@@ -1,19 +1,21 @@
-import { App, Button, Form, Input, Space } from "antd";
+import { App, Button, Form, FormInstance, Input, Space } from "antd";
 import { IRequestReferenceAccessBody, checkResponse, toUrlString } from "solid";
 import { IParsedPropertyWithRulesAndOptions } from "../../helper/propertiesGenerator";
 import { useCallback, useState } from "react";
 import { ModalAccessRequestToInbox } from "../modals/ModalAccessRequestToInbox";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { useAgent } from "../../contexts/AgentContext";
+import { useTranslation } from "i18n/client";
 
 interface IFormItemProperties {
   property: IParsedPropertyWithRulesAndOptions;
-  form: any;
+  form: FormInstance;
 }
 
 export const FormItemReference = ({ property, form }: IFormItemProperties) => {
   const identity = useIdentity();
   const agent = useAgent();
+  const t = useTranslation();
   const { message } = App.useApp();
   const predicateString = toUrlString(property.predicate);
   const propertyName: string | undefined = predicateString.split("/").pop();
@@ -28,6 +30,10 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
     setIsLoading(true);
     try {
       const currentValue = form.getFieldValue(property.predicate);
+      if (!currentValue) {
+        return;
+      }
+
       const searchParams = new URLSearchParams();
       searchParams.append("referenceUrl", currentValue);
 
@@ -47,11 +53,14 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
       console.log(dataset);
     } catch (error: any) {
       console.error(error);
-      message.error(error.message || "Error while fetching referenced data");
+      message.error(
+        (error.message && t(error.message)) ||
+          t("sdk.ui.components.formItem.FormItemReference.loadError")
+      );
     } finally {
       setIsLoading(false);
     }
-  }, [form, message, property.predicate]);
+  }, [form, message, property.predicate, t]);
 
   /**
    * Sends an inbox message with a request to access the reference currently in the form item.
@@ -59,7 +68,7 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
   const onSubmit = async () => {
     if (!property?.options?.creator) {
       message.error(
-        "No creator found for reference. Sending access request not possible"
+        t("sdk.ui.components.formItem.FormItemReference.submitError")
       );
       return;
     }
@@ -99,13 +108,8 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
           >
             <Input />
           </Form.Item>
-          <Button
-            onClick={loadReference}
-            loading={isLoading}
-            type="primary"
-            disabled={!form.getFieldValue(property.predicate)}
-          >
-            Load Data
+          <Button onClick={loadReference} loading={isLoading} type="primary">
+            {t("sdk.ui.components.formItem.FormItemReference.load")}
           </Button>
         </Space.Compact>
       </Form.Item>

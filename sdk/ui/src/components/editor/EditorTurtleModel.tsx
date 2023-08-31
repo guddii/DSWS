@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { Typography } from "antd";
+import { FormInstance, Typography } from "antd";
 import { propertiesGenerator } from "../../helper/propertiesGenerator";
 import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { IModalWebIdValues, ModalWebId } from "../modals/ModalWebId";
@@ -21,7 +21,7 @@ import { FormItemReference } from "../formItem/FormItemReference";
 interface IEditorTurtleModelProperties {
   model: AbstractModel;
   children?: ReactNode;
-  form: any;
+  form: FormInstance;
 }
 
 export const EditorTurtleModel = ({

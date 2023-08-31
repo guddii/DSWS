@@ -40,7 +40,7 @@ export const ModalForm = <T extends Store>({
       await onSubmit(values);
       message.success(successMessage);
     } catch (error: any) {
-      message.error(error.message || t("_.errorMessage"));
+      message.error((error.message && t(error.message)) || t("_.errorMessage"));
       console.error(error);
     }
     setIsLoading(false);

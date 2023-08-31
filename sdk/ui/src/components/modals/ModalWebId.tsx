@@ -37,6 +37,8 @@ export const ModalWebId = ({
       onSubmit={onSubmit}
       onCancel={onCancel}
       modalProps={{
+        cancelText: t("_.cancel"),
+        okText: t("_.ok"),
         okButtonProps: {
           disabled: !webId,
         },

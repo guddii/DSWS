@@ -32,6 +32,7 @@ export {
   getUrlAll,
   getDatetime,
   getStringNoLocale,
+  getStringWithLocale,
   setStringNoLocale,
   addStringNoLocale,
   getSourceUrl,

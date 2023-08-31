@@ -74,7 +74,9 @@ export const ControlsAutofillWithoutSession = ({
         setIsLoading(false);
       } catch (error: any) {
         console.error(error);
-        message.error(error.message || t("_.errorMessage"));
+        message.error(
+          (error.message && t(error.message)) || t("_.errorMessage")
+        );
         handleRevokeAccessGrant();
         setIsLoading(false);
       }

@@ -60,7 +60,7 @@ export const InboxMessageCardSaveButton = ({
       onSuccess();
     } catch (error: any) {
       message.error(
-        error.message ||
+        (error.message && t(error.message)) ||
           t("sdk.ui.components.inbox.InboxMessageCardSaveButton.success")
       );
       console.error(error);

@@ -1,3 +1,4 @@
+import { useTranslation } from "i18n/client";
 import { ModalForm } from "./ModalForm";
 
 interface IModalAccessRequestToInboxProperties {
@@ -11,22 +12,24 @@ export const ModalAccessRequestToInbox = ({
   onCancel,
   onSubmit,
 }: IModalAccessRequestToInboxProperties) => {
+  const t = useTranslation();
+
   return (
     <ModalForm<{}>
-      title="Missing Access Permission"
-      successMessage="Successfully sent access request to inbox"
+      title={t("sdk.ui.components.modals.ModalAccessRequestToInbox.title")}
+      successMessage={t(
+        "sdk.ui.components.modals.ModalAccessRequestToInbox.successMessage"
+      )}
       open={open}
       initialValues={{}}
       onSubmit={onSubmit}
       onCancel={onCancel}
       modalProps={{
-        cancelText: "No",
-        okText: "Yes",
+        cancelText: t("_.no"),
+        okText: t("_.yes"),
       }}
     >
-      It seems like the application does not have the correct permissions to
-      access the referenced data. Do you want to send an access request to the
-      inbox of your data vault?
+      {t("sdk.ui.components.modals.ModalAccessRequestToInbox")}
     </ModalForm>
   );
 };

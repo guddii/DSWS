@@ -27,7 +27,7 @@ const DatasetSwrLoader = ({
 
   if (error) {
     console.error(error);
-    message.error(error.message || t("_.errorMessage"));
+    message.error((error.message && t(error.message)) || t("_.errorMessage"));
   }
 
   return null;

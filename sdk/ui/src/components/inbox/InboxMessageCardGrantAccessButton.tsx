@@ -8,6 +8,7 @@ import {
 } from "solid";
 import { InboxMessageContent } from "./InboxMessageCard";
 import { useState } from "react";
+import { useTranslation } from "i18n/client";
 
 interface IInboxMessageCardGrantAccessButtonProperties {
   inboxMessageContent?: InboxMessageContent;
@@ -21,6 +22,7 @@ export const InboxMessageCardGrantAccessButton = ({
   onSuccess,
 }: IInboxMessageCardGrantAccessButtonProperties) => {
   const { message } = App.useApp();
+  const t = useTranslation();
   const [isLoadingGrant, setIsLoadingGrant] = useState(false);
   const [isLoadingDeny, setIsLoadingDeny] = useState(false);
 
@@ -51,12 +53,19 @@ export const InboxMessageCardGrantAccessButton = ({
       await checkResponse(response);
 
       message.success(
-        `Successfully ${granted ? "granted" : "denied"} access permission.`
+        granted
+          ? t(
+              "sdk.ui.components.inbox.InboxMessageCardGrantAccessButton.success.granted"
+            )
+          : t(
+              "sdk.ui.components.inbox.InboxMessageCardGrantAccessButton.success.denied"
+            )
       );
       onSuccess();
     } catch (error: any) {
       message.error(
-        error.message || "Some necessary data is missing in message."
+        (error.message && t(error.message)) ||
+          t("sdk.ui.components.inbox.InboxMessageCardGrantAccessButton.error")
       );
       console.error(error);
     }
@@ -80,14 +89,14 @@ export const InboxMessageCardGrantAccessButton = ({
         disabled={!inboxMessageContent || disabled || isLoadingGrant}
         loading={isLoadingDeny}
       >
-        Deny Access
+        {t("_.deny")}
       </Button>
       <Button
         onClick={onClickGrant}
         disabled={!inboxMessageContent || disabled || isLoadingDeny}
         loading={isLoadingGrant}
       >
-        Grant Access
+        {t("_.grant")}
       </Button>
     </Space.Compact>
   );
