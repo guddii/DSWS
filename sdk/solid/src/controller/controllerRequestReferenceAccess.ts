@@ -101,11 +101,17 @@ export const controllerRequestReferenceAccess = async ({
   session,
   serviceProvider,
 }: IControllerRequestReferenceAccess) => {
+  const corsHeader = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  };
+
   if (session.info.isLoggedIn) {
     if (!session.info.webId) {
       return NextResponse.json(
         { error: "Could not retrieve agent pod" },
-        { status: 500 }
+        { status: 500, headers: corsHeader }
       );
     }
 
@@ -113,37 +119,37 @@ export const controllerRequestReferenceAccess = async ({
     if (!requestData.requestor) {
       return NextResponse.json(
         { error: "Required requestor webId is missing in request body" },
-        { status: 400 }
+        { status: 400, headers: corsHeader }
       );
     }
     if (!requestData.owner) {
       return NextResponse.json(
         { error: "Required owner webId is missing in request body" },
-        { status: 400 }
+        { status: 400, headers: corsHeader }
       );
     }
     if (!requestData.target) {
       return NextResponse.json(
         { error: "Required target url is missing in request body" },
-        { status: 400 }
+        { status: 400, headers: corsHeader }
       );
     }
     if (!requestData.access) {
       return NextResponse.json(
         { error: "Required access mode is missing in request body" },
-        { status: 400 }
+        { status: 400, headers: corsHeader }
       );
     }
 
     try {
-      const agentPod: UrlString | null = await getPodFromWebId(
+      const agentPod: UrlString | undefined = await getPodFromWebId(
         session,
         session.info.webId
       );
       if (!agentPod) {
         return NextResponse.json(
           { error: "Could not retrieve agent pod" },
-          { status: 500 }
+          { status: 500, headers: corsHeader }
         );
       }
 
@@ -165,7 +171,7 @@ export const controllerRequestReferenceAccess = async ({
       if (!ownerAccess) {
         return NextResponse.json(
           { error: "Could not retrieve owner access modes" },
-          { status: 500 }
+          { status: 500, headers: corsHeader }
         );
       }
 
@@ -179,7 +185,7 @@ export const controllerRequestReferenceAccess = async ({
             error:
               "Owner does not have the permission to grant requested access modes",
           },
-          { status: 400 }
+          { status: 400, headers: corsHeader }
         );
       }
 
@@ -191,18 +197,18 @@ export const controllerRequestReferenceAccess = async ({
       if (!requestFile) {
         return NextResponse.json(
           { error: "Could not create request file" },
-          { status: 500 }
+          { status: 500, headers: corsHeader }
         );
       }
 
-      const ownerPod: UrlString | null = await getPodFromWebId(
+      const ownerPod: UrlString | undefined = await getPodFromWebId(
         session,
         requestData.owner
       );
       if (!ownerPod) {
         return NextResponse.json(
           { error: "Could not retrieve owner pod" },
-          { status: 500 }
+          { status: 500, headers: corsHeader }
         );
       }
 
@@ -241,14 +247,17 @@ export const controllerRequestReferenceAccess = async ({
 
       return NextResponse.json(
         { message: "Access request sent to inbox" },
-        { status: 200 }
+        { status: 200, headers: corsHeader }
       );
     } catch (error: any) {
       return NextResponse.json(
         { error: error.message || "Internal Server Error" },
-        { status: 500 }
+        { status: 500, headers: corsHeader }
       );
     }
   }
-  return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  return NextResponse.json(
+    { error: "Internal Server Error" },
+    { status: 500, headers: corsHeader }
+  );
 };

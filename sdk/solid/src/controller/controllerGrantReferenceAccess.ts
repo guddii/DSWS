@@ -121,12 +121,18 @@ export const controllerGrantReferenceAccess = async ({
   request,
   session,
 }: IControllerGrantReferenceAccess) => {
+  const corsHeader = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  };
+
   if (session.info.isLoggedIn) {
     const requestData: IGrantReferenceAccessBody = await request.json();
     if (!requestData.request) {
       return NextResponse.json(
         { error: "Required request url is missing in request body" },
-        { status: 400 }
+        { status: 400, headers: corsHeader }
       );
     }
 
@@ -137,7 +143,7 @@ export const controllerGrantReferenceAccess = async ({
         if (error.response.status === 404) {
           return NextResponse.json(
             { error: "Could not find request file" },
-            { status: 404 }
+            { status: 404, headers: corsHeader }
           );
         } else {
           throw error;
@@ -152,7 +158,7 @@ export const controllerGrantReferenceAccess = async ({
       if (requestFileData.status !== "pending") {
         return NextResponse.json(
           { error: `Access request already ${requestFileData.status}` },
-          { status: 400 }
+          { status: 400, headers: corsHeader }
         );
       }
 
@@ -172,15 +178,18 @@ export const controllerGrantReferenceAccess = async ({
             requestData.granted ? "granted" : "denied"
           }`,
         },
-        { status: 200 }
+        { status: 200, headers: corsHeader }
       );
     } catch (error: any) {
       console.error(error);
       return NextResponse.json(
         { error: error.message || "Internal Server Error" },
-        { status: 500 }
+        { status: 500, headers: corsHeader }
       );
     }
   }
-  return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  return NextResponse.json(
+    { error: "Internal Server Error" },
+    { status: 500, headers: corsHeader }
+  );
 };
