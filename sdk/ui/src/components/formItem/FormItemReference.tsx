@@ -1,11 +1,17 @@
 import { App, Button, Form, FormInstance, Input, Space } from "antd";
-import { IRequestReferenceAccessBody, checkResponse, toUrlString } from "solid";
+import {
+  IRequestReferenceAccessBody,
+  checkResponse,
+  toUrlString,
+  getCreatorPredicateString,
+  UrlString,
+} from "solid";
 import { IParsedPropertyWithRulesAndOptions } from "../../helper/propertiesGenerator";
 import { useCallback, useState } from "react";
 import { ModalAccessRequestToInbox } from "../modals/ModalAccessRequestToInbox";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { useAgent } from "../../contexts/AgentContext";
-import { useTranslation } from "i18n/client";
+import { I18nKey, useTranslation } from "i18n/client";
 
 interface IFormItemProperties {
   property: IParsedPropertyWithRulesAndOptions;
@@ -18,7 +24,7 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
   const t = useTranslation();
   const { message } = App.useApp();
   const predicateString = toUrlString(property.predicate);
-  const propertyName: string | undefined = predicateString.split("/").pop();
+  const propertyName: string = t(predicateString as I18nKey);
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -66,7 +72,11 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
    * Sends an inbox message with a request to access the reference currently in the form item.
    */
   const onSubmit = async () => {
-    if (!property?.options?.creator) {
+    const creator = form.getFieldValue(
+      getCreatorPredicateString(property.predicate)
+    ) as UrlString;
+
+    if (!creator) {
       message.error(
         t("sdk.ui.components.formItem.FormItemReference.submitError")
       );
@@ -78,10 +88,11 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
       owner: identity.webId,
       target: form.getFieldValue(property.predicate),
       access: { read: true },
+      serviceProvider: creator,
     };
 
     const response: Response = await fetch(
-      `${property.options.creator}/api/requestReferenceAccess`,
+      `${creator}/api/requestReferenceAccess`,
       {
         method: "POST",
         body: JSON.stringify(requestBody),

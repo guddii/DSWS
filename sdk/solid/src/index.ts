@@ -11,6 +11,7 @@ export * from "./helper/getResourceFromResponse";
 export * from "./helper/turtleFileGenerator";
 export * from "./helper/deepmerge";
 export * from "./helper/mergeThings";
+export * from "./helper/getCreatorPredicate";
 // Inrupt
 export * from "./inrupt";
 // Services

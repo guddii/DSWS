@@ -3,7 +3,7 @@ import { AbstractModel } from "./AbstractModel";
 import { createUrl } from "../helper/urlHelper";
 import {
   HAS_LAND_REGISTRY_DATA,
-  LAND_REGISTRY_OFFICE_APP_URL,
+  HAS_LAND_REGISTRY_DATA_CREATOR,
 } from "../config";
 
 export class TaxOfficeModel extends AbstractModel {
@@ -31,7 +31,11 @@ export class TaxOfficeModel extends AbstractModel {
         {
           predicate: createUrl(HAS_LAND_REGISTRY_DATA),
           value: "",
-          options: { reference: true, creator: LAND_REGISTRY_OFFICE_APP_URL },
+          options: { reference: true },
+        },
+        {
+          predicate: createUrl(HAS_LAND_REGISTRY_DATA_CREATOR),
+          value: "",
         },
       ],
     });

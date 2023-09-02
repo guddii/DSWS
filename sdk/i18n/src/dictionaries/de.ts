@@ -1,5 +1,10 @@
 import type { Dictionary } from "../i18nConfig";
-import { HAS_LAND_REGISTRY_DATA, HAS_TAX_DATA } from "solid";
+import {
+  HAS_LAND_REGISTRY_DATA,
+  HAS_LAND_REGISTRY_DATA_CREATOR,
+  HAS_TAX_DATA,
+  HAS_TAX_DATA_CREATOR,
+} from "solid";
 
 // prettier-ignore
 const dictionary: Dictionary = {
@@ -85,6 +90,8 @@ const dictionary: Dictionary = {
     "sdk.ui.components.modals.ModalWebId.description": "Zur Durchführung dieser Aktion ist eine Anmeldung erforderlich. Bitte klicken Sie auf Anmelden, um die Schaltfläche OK zu aktivieren.",
     "sdk.ui.components.modals.ModalWebId.message": "Anmeldung erforderlich",
     "sdk.ui.components.modals.ModalWebId.title": "Verwendung der WebId",
+    [HAS_LAND_REGISTRY_DATA_CREATOR]: "Katasterdaten Ersteller",
+    [HAS_TAX_DATA_CREATOR]: "Steuerdaten Ersteller",
     [HAS_LAND_REGISTRY_DATA]: "Katasterdaten",
     [HAS_TAX_DATA]: "Steuerdaten",
     "referenceUrl parameter is missing": "Parameter referenceUrl fehlt",

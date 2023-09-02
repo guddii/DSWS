@@ -1,5 +1,10 @@
 import type { Dictionary } from "../i18nConfig";
-import { HAS_LAND_REGISTRY_DATA, HAS_TAX_DATA } from "solid";
+import {
+  HAS_LAND_REGISTRY_DATA,
+  HAS_LAND_REGISTRY_DATA_CREATOR,
+  HAS_TAX_DATA,
+  HAS_TAX_DATA_CREATOR,
+} from "solid";
 
 // prettier-ignore
 const dictionary: Dictionary = {
@@ -85,6 +90,8 @@ const dictionary: Dictionary = {
     "sdk.ui.components.modals.ModalWebId.description": "A login is required to perform this action. Please click on login to activate the OK button.",
     "sdk.ui.components.modals.ModalWebId.message": "WebId Usage",
     "sdk.ui.components.modals.ModalWebId.title": "Login required",
+    [HAS_LAND_REGISTRY_DATA_CREATOR]: "Cadastral data creator",
+    [HAS_TAX_DATA_CREATOR]: "Tax data creator",
     [HAS_LAND_REGISTRY_DATA]: "Cadastral data",
     [HAS_TAX_DATA]: "Tax data",
     "referenceUrl parameter is missing": "referenceUrl parameter is missing",

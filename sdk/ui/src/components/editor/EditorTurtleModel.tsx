@@ -10,6 +10,7 @@ import {
   sendInboxMessage,
   MessageTypes,
   SENDER_TO_PROPERTY_MAP,
+  getCreatorPredicateString,
 } from "solid";
 import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
 import { ModalSaveToInbox } from "../modals/ModalSaveToInbox";
@@ -74,6 +75,13 @@ export const EditorTurtleModel = ({
             type: "url",
             predicate: SENDER_TO_PROPERTY_MAP[agent.webId],
             value: dataUrlString,
+          },
+          {
+            type: "url",
+            predicate: getCreatorPredicateString(
+              SENDER_TO_PROPERTY_MAP[agent.webId]
+            ),
+            value: toUrlString(globalThis.location.origin),
           },
         ],
       },

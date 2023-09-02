@@ -1,4 +1,9 @@
-import { HAS_LAND_REGISTRY_DATA, HAS_TAX_DATA } from "solid";
+import {
+  HAS_LAND_REGISTRY_DATA,
+  HAS_LAND_REGISTRY_DATA_CREATOR,
+  HAS_TAX_DATA,
+  HAS_TAX_DATA_CREATOR,
+} from "solid";
 export type I18nKey =
   | "_.actions"
   | "_.autofill"
@@ -83,7 +88,9 @@ export type I18nKey =
   | "sdk.ui.components.modals.ModalWebId.message"
   | "sdk.ui.components.modals.ModalWebId.title"
   | typeof HAS_LAND_REGISTRY_DATA
+  | typeof HAS_LAND_REGISTRY_DATA_CREATOR
   | typeof HAS_TAX_DATA
+  | typeof HAS_TAX_DATA_CREATOR
   | "referenceUrl parameter is missing"
   | "Required request url is missing in request body"
   | "Could not find request file"

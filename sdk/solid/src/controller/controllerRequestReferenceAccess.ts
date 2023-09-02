@@ -88,18 +88,18 @@ const validateRequestAccess = (
   );
 };
 
-export interface IRequestReferenceAccessBody extends Partial<IRequestData> {}
+export interface IRequestReferenceAccessBody extends Partial<IRequestData> {
+  serviceProvider: UrlString;
+}
 
 interface IControllerRequestReferenceAccess {
   request: Request;
   session: Session;
-  serviceProvider: UrlString;
 }
 
 export const controllerRequestReferenceAccess = async ({
   request,
   session,
-  serviceProvider,
 }: IControllerRequestReferenceAccess) => {
   const corsHeader = {
     "Access-Control-Allow-Origin": "*",
@@ -238,7 +238,10 @@ export const controllerRequestReferenceAccess = async ({
               type: "url",
               predicate: DCTERMS.mediator,
               value: toUrlString(
-                createUrl("api/grantReferenceAccess", serviceProvider)
+                createUrl(
+                  "api/grantReferenceAccess",
+                  requestData.serviceProvider
+                )
               ),
             },
           ],
