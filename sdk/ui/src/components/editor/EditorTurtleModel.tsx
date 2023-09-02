@@ -1,20 +1,28 @@
 import { ReactNode, useState } from "react";
-import { Typography } from "antd";
+import { FormInstance, Typography } from "antd";
 import { propertiesGenerator } from "../../helper/propertiesGenerator";
 import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { IModalWebIdValues, ModalWebId } from "../modals/ModalWebId";
 import { FormItem } from "../formItem/FormItem";
-import { AbstractModel, toUrlString, sendInboxMessage } from "solid";
+import {
+  AbstractModel,
+  toUrlString,
+  sendInboxMessage,
+  MessageTypes,
+  SENDER_TO_PROPERTY_MAP,
+  getCreatorPredicateString,
+} from "solid";
 import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
 import { ModalSaveToInbox } from "../modals/ModalSaveToInbox";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { useAgent } from "../../contexts/AgentContext";
 import { useTranslation } from "i18n/client";
+import { FormItemReference } from "../formItem/FormItemReference";
 
 interface IEditorTurtleModelProperties {
   model: AbstractModel;
   children?: ReactNode;
-  form: any;
+  form: FormInstance;
 }
 
 export const EditorTurtleModel = ({
@@ -29,7 +37,7 @@ export const EditorTurtleModel = ({
   const propertyValues = formValuesGenerator({ properties });
   const [openWebIdConfirm, setOpenWebIdConfirm] = useState(false);
   const [openSaveToInbox, setOpenSaveToInbox] = useState(false);
-  const [taxDataUrlString, setTaxDataUrlString] = useState("");
+  const [dataUrlString, setDataUrlString] = useState("");
 
   const onFinish = () => {
     setOpenWebIdConfirm(true);
@@ -46,7 +54,7 @@ export const EditorTurtleModel = ({
       body: JSON.stringify(values),
     });
     const { url } = await response.json();
-    setTaxDataUrlString(url);
+    setDataUrlString(url);
     setOpenSaveToInbox(true);
     resetState();
   };
@@ -59,8 +67,23 @@ export const EditorTurtleModel = ({
     await sendInboxMessage({
       recipient: identity,
       sender: agent,
+      messageType: MessageTypes.SAVE_TO_DATA_MESSAGE,
       data: {
-        reference: taxDataUrlString,
+        subject: identity.webId,
+        entries: [
+          {
+            type: "url",
+            predicate: SENDER_TO_PROPERTY_MAP[agent.webId],
+            value: dataUrlString,
+          },
+          {
+            type: "url",
+            predicate: getCreatorPredicateString(
+              SENDER_TO_PROPERTY_MAP[agent.webId]
+            ),
+            value: toUrlString(globalThis.location.origin),
+          },
+        ],
       },
     });
     setOpenSaveToInbox(false);
@@ -75,9 +98,20 @@ export const EditorTurtleModel = ({
         disabled={openWebIdConfirm}
         form={form}
       >
-        {properties.map((property) => (
-          <FormItem key={toUrlString(property.predicate)} property={property} />
-        ))}
+        {properties.map((property) =>
+          property.options?.reference ? (
+            <FormItemReference
+              key={toUrlString(property.predicate)}
+              property={property}
+              form={form}
+            />
+          ) : (
+            <FormItem
+              key={toUrlString(property.predicate)}
+              property={property}
+            />
+          )
+        )}
       </FormsTurtleEditor>
       <ModalWebId
         open={openWebIdConfirm}

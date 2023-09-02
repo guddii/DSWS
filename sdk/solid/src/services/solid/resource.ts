@@ -29,7 +29,7 @@ export const getResource = async (
   try {
     const data = await fetch(options.url, { headers });
 
-    return checkResponse(data);
+    return await checkResponse(data);
   } catch (error: any) {
     throw error;
   }
@@ -56,7 +56,7 @@ export const postResource = async (
       body: options.body,
     });
 
-    return checkResponse(data);
+    return await checkResponse(data);
   } catch (error: any) {
     throw error;
   }
@@ -101,7 +101,7 @@ export const putResource = async (
       body: options.body,
     });
 
-    return checkResponse(data);
+    return await checkResponse(data);
   } catch (error: any) {
     throw error;
   }

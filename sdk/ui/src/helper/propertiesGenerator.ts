@@ -1,4 +1,4 @@
-import { AbstractModel, IParsedProperty } from "solid";
+import { AbstractModel, IParsedProperty, UrlString } from "solid";
 
 interface IPropertiesGeneratorOptions {
   model: AbstractModel;
@@ -8,8 +8,14 @@ export interface IParsedPropertyRules {
   required: boolean;
 }
 
-export interface IParsedPropertyWithRules extends IParsedProperty {
+export interface IParsedPropertyOptions {
+  reference?: boolean;
+  creator?: UrlString;
+}
+
+export interface IParsedPropertyWithRulesAndOptions extends IParsedProperty {
   rules?: IParsedPropertyRules;
+  options?: IParsedPropertyOptions;
 }
 
 /**
@@ -19,13 +25,14 @@ export interface IParsedPropertyWithRules extends IParsedProperty {
  */
 export const propertiesGenerator = ({
   model,
-}: IPropertiesGeneratorOptions): Array<IParsedPropertyWithRules> => {
+}: IPropertiesGeneratorOptions): Array<IParsedPropertyWithRulesAndOptions> => {
   return model.values.map((entry) => {
-    const property: IParsedPropertyWithRules = {
+    const property: IParsedPropertyWithRulesAndOptions = {
       predicate: entry.predicate,
       properties: [entry.value],
       firstProperty: entry.value,
       rules: entry.rules || { required: false },
+      options: entry.options,
     };
 
     return property;

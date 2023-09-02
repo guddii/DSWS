@@ -2,7 +2,7 @@ export { WS } from "@inrupt/vocab-solid";
 
 export { FOAF, LDP, RDF } from "@inrupt/lit-generated-vocab-common";
 
-export { SCHEMA_INRUPT } from "@inrupt/vocab-common-rdf";
+export { SCHEMA_INRUPT, DCTERMS } from "@inrupt/vocab-common-rdf";
 
 export type {
   UrlString,
@@ -32,8 +32,10 @@ export {
   getUrlAll,
   getDatetime,
   getStringNoLocale,
+  getStringWithLocale,
   setStringNoLocale,
   addStringNoLocale,
+  getSourceUrl,
 } from "@inrupt/solid-client";
 
 export { Session, fetch } from "@inrupt/solid-client-authn-browser";

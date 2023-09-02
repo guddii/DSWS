@@ -35,5 +35,5 @@ export const controllerIssueAccessRequest = async ({
     }
   }
 
-  return NextResponse.error();
+  return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
 };

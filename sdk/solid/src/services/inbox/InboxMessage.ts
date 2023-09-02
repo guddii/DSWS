@@ -13,9 +13,16 @@ export interface IInboxMessageSender {
   };
 }
 
+export interface IInboxMessageDataEntry {
+  type: string;
+  predicate: string;
+  value: any;
+}
+
 export interface IInboxMessageData {
   data: {
-    reference: UrlString;
+    subject: UrlString;
+    entries: Array<IInboxMessageDataEntry>;
   };
 }
 
@@ -24,6 +31,15 @@ export interface IInboxMessageHeader {
     date: Date;
     target: UrlString;
   };
+}
+
+export enum MessageTypes {
+  SAVE_TO_DATA_MESSAGE = "saveToDataMessage",
+  REQUEST_ACCESS_MESSAGE = "requestAccessMessage",
+}
+
+export interface IInboxMessageType {
+  messageType: MessageTypes;
 }
 
 export interface IInboxMessageConfig {

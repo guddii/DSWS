@@ -3,10 +3,12 @@
  * @param response HTTP response
  * @returns HTTP response if it is OK
  */
-export const checkResponse = (response: Response): Response => {
+export const checkResponse = async (response: Response): Promise<Response> => {
   if (response.ok) {
     return response;
   }
 
-  throw new Error(response.statusText);
+  const responseBody = await response.json();
+
+  throw new Error(responseBody.error || response.statusText);
 };

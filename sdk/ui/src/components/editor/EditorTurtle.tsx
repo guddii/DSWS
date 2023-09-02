@@ -4,13 +4,14 @@ import { ReactNode } from "react";
 import { EditorTurtleDataset } from "./EditorTurtleDataset";
 import { EditorTurtleModel } from "./EditorTurtleModel";
 import { Dataset } from "../../contexts/PageContext";
+import { FormInstance } from "antd";
 
 interface IEditorTurtleProperties {
   dataset?: Dataset;
   model?: AbstractModel;
   subject?: string;
   children?: ReactNode;
-  form?: any;
+  form?: FormInstance;
 }
 
 export const EditorTurtle = ({

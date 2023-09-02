@@ -11,6 +11,7 @@ import {
   setStringNoLocale,
   setThing,
   saveSolidDatasetAt,
+  getSourceUrl,
 } from "solid";
 import { FormItem } from "../formItem/FormItem";
 import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
@@ -33,7 +34,7 @@ export const EditorTurtleDataset = ({
   const loadAndSetDataset = useLoadAndSetDataset();
 
   const data = useMemo(() => {
-    const datasetUrl = dataset.internal_resourceInfo.sourceIri;
+    const datasetUrl = getSourceUrl(dataset);
     const thingUrl = createUrl(subject, datasetUrl);
     const thing = getThing(dataset, toUrlString(thingUrl));
 
@@ -79,7 +80,7 @@ export const EditorTurtleDataset = ({
       message.success(t("_.success"));
     } catch (error: any) {
       console.error(error);
-      message.error(error.message || t("_.errorMessage"));
+      message.error((error.message && t(error.message)) || t("_.errorMessage"));
     }
   };
 

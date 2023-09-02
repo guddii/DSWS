@@ -6,28 +6,24 @@ import {
   createUrl,
   getSolidDataset,
   getThing,
-  getUrl,
   mergeThings,
   saveSolidDatasetAt,
-  schema,
   setThing,
   toUrlString,
 } from "solid";
-import { InboxContent, InboxMessage } from "./InboxMessageCard";
+import { InboxMessageContent } from "./InboxMessageCard";
 import { useSession } from "@inrupt/solid-ui-react";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { useTranslation } from "i18n/client";
 
-interface IInboxMessageCardSaveButtonProperties {
-  inboxMessage?: InboxMessage;
-  inboxContent?: InboxContent;
+export interface IInboxMessageCardSaveButtonProperties {
+  inboxMessageContent?: InboxMessageContent;
   disabled?: boolean;
   onSuccess: () => void;
 }
 
 export const InboxMessageCardSaveButton = ({
-  inboxMessage,
-  inboxContent,
+  inboxMessageContent,
   disabled,
   onSuccess,
 }: IInboxMessageCardSaveButtonProperties) => {
@@ -38,7 +34,7 @@ export const InboxMessageCardSaveButton = ({
 
   const onClick = async () => {
     try {
-      if (!inboxMessage || !inboxContent) {
+      if (!inboxMessageContent) {
         throw new Error();
       }
 
@@ -47,10 +43,10 @@ export const InboxMessageCardSaveButton = ({
         fetch: session.fetch,
       });
 
-      let thingToAdd: Thing = inboxContent;
-      const existingThing = getThing(dataset, asUrl(inboxContent));
+      let thingToAdd: Thing = inboxMessageContent;
+      const existingThing = getThing(dataset, asUrl(inboxMessageContent));
       if (existingThing) {
-        thingToAdd = mergeThings(existingThing, inboxContent);
+        thingToAdd = mergeThings(existingThing, inboxMessageContent);
       }
       const updatedDataset = setThing(dataset, thingToAdd);
 
@@ -64,7 +60,7 @@ export const InboxMessageCardSaveButton = ({
       onSuccess();
     } catch (error: any) {
       message.error(
-        error.message ||
+        (error.message && t(error.message)) ||
           t("sdk.ui.components.inbox.InboxMessageCardSaveButton.success")
       );
       console.error(error);
@@ -72,15 +68,7 @@ export const InboxMessageCardSaveButton = ({
   };
 
   return (
-    <Button
-      onClick={onClick}
-      disabled={
-        !inboxMessage ||
-        !inboxContent ||
-        !getUrl(inboxContent, schema.subjectOf) ||
-        disabled
-      }
-    >
+    <Button onClick={onClick} disabled={!inboxMessageContent || disabled}>
       {t("_.save")}
     </Button>
   );

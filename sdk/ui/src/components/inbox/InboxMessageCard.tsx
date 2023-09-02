@@ -2,29 +2,35 @@ import { useSession } from "@inrupt/solid-ui-react";
 import { Button, Card, Skeleton, App } from "antd";
 import { useCallback, useState } from "react";
 import {
+  SolidDataset,
   Thing,
   UrlString,
+  WithServerResourceInfo,
   deleteSolidDataset,
   getSolidDataset,
-  getThing,
+  getUrl,
+  schema,
 } from "solid";
 import useSWR, { useSWRConfig } from "swr";
 import { LoadingFailedFullbleed } from "../Loading";
-import { useIdentity } from "../../contexts/IdentityContext";
 import { InboxMessageCardHeader } from "./InboxMessageCardHeader";
 import { InboxMessageCardText } from "./InboxMessageCardText";
-import { InboxMessageCardContent } from "./InboxMessageCardContent";
 import { InboxMessageCardRaw } from "./InboxMessageCardRaw";
-import { InboxMessageCardSaveButton } from "./InboxMessageCardSaveButton";
+import { InboxMessageCardActionButton } from "./InboxMessageCardActionButton";
 import { ModalDeleteMessageFromInbox } from "../modals/ModalDeleteMessageFromInbox";
 import { useTranslation } from "i18n/client";
+import {
+  getInboxMessageContent,
+  getInboxMessageHeader,
+} from "../../helper/inboxMessage";
 
-export type InboxMessage = Thing;
-export type InboxContent = Thing;
+export type InboxMessage = SolidDataset & WithServerResourceInfo;
+export type InboxMessageHeader = Thing;
+export type InboxMessageContent = Thing;
 
-interface IMessageData {
-  inboxMessage?: InboxMessage;
-  inboxContent?: InboxContent;
+interface IInboxMessageData {
+  inboxMessageHeader?: InboxMessageHeader;
+  inboxMessageContent?: InboxMessageContent;
 }
 
 interface IInboxMessageCardProperties {
@@ -39,7 +45,6 @@ export const InboxMessageCard = ({
   const t = useTranslation();
   const { message } = App.useApp();
   const { session } = useSession();
-  const { webId } = useIdentity();
   const { mutate } = useSWRConfig();
   const [openRawMessage, setOpenRawMessage] = useState<boolean>(false);
   const [openDeleteMessage, setOpenDeleteMessage] = useState<boolean>(false);
@@ -50,30 +55,43 @@ export const InboxMessageCard = ({
    * @returns message meta info and content
    */
   const getMessage = useCallback(
-    async ({
-      url,
-      webId,
-    }: {
-      url: UrlString;
-      webId: string;
-    }): Promise<IMessageData> => {
-      const dataset = await getSolidDataset(url, {
+    async ({ url }: { url: UrlString }): Promise<IInboxMessageData> => {
+      const inboxMessageData: IInboxMessageData = {};
+
+      const inboxMessage = await getSolidDataset(url, {
         fetch: session.fetch,
       });
 
-      const inboxMessage = getThing(dataset, url);
-      const inboxContent = getThing(dataset, webId);
+      const inboxMessageHeader = getInboxMessageHeader(inboxMessage);
+      if (!inboxMessageHeader) {
+        return inboxMessageData;
+      }
+      inboxMessageData.inboxMessageHeader = inboxMessageHeader;
 
-      return {
-        inboxMessage: inboxMessage ?? undefined,
-        inboxContent: inboxContent ?? undefined,
-      };
+      const inboxMessageObject = getUrl(inboxMessageHeader, schema.object);
+      if (!inboxMessageObject) {
+        return inboxMessageData;
+      }
+
+      const inboxMessageContent = getInboxMessageContent(
+        inboxMessage,
+        inboxMessageObject
+      );
+      if (inboxMessageContent) {
+        inboxMessageData.inboxMessageContent = inboxMessageContent;
+      }
+
+      return inboxMessageData;
     },
     [session.fetch]
   );
 
-  const { data, error, isLoading } = useSWR<IMessageData>(
-    { url: inboxMessageUrl, webId },
+  const {
+    data: inboxMessageData,
+    error,
+    isLoading,
+  } = useSWR<IInboxMessageData>(
+    { url: inboxMessageUrl, variant: "solid" },
     getMessage
   );
 
@@ -83,7 +101,7 @@ export const InboxMessageCard = ({
       mutate(inboxUrl);
     } catch (error: any) {
       console.error(error);
-      message.error(error.message || t("_.errorMessage"));
+      message.error((error.message && t(error.message)) || t("_.errorMessage"));
     }
   };
 
@@ -96,60 +114,62 @@ export const InboxMessageCard = ({
     return null;
   }
 
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
+  if (isLoading || !inboxMessageData) {
+    return (
       <Card
-        style={{ width: "100%" }}
         headStyle={{ paddingTop: 16, paddingBottom: 16 }}
-        loading={isLoading}
-        title={
-          isLoading ? (
-            <Skeleton paragraph={false} active />
-          ) : (
-            <InboxMessageCardHeader inboxMessage={data?.inboxMessage} />
-          )
-        }
-        actions={[
-          <Button
-            key="show-raw-button"
-            onClick={() => setOpenRawMessage((previous) => !previous)}
-            disabled={isLoading}
-          >
-            {t("_.rawMessage")}
-          </Button>,
-          <InboxMessageCardSaveButton
-            key="save-data-button"
-            inboxMessage={data?.inboxMessage}
-            inboxContent={data?.inboxContent}
-            disabled={isLoading}
-            onSuccess={() => setOpenDeleteMessage(true)}
-          />,
-          <Button
-            key="delete-button"
-            danger
-            onClick={() => setOpenDeleteMessage(true)}
-            disabled={isLoading}
-          >
-            {t("_.delete")}
-          </Button>,
-        ]}
-      >
-        <InboxMessageCardText inboxMessage={data?.inboxMessage} />
-        <InboxMessageCardContent inboxContent={data?.inboxContent} />
-        {openRawMessage && (
-          <InboxMessageCardRaw inboxMessageUrl={inboxMessageUrl} />
-        )}
-        <ModalDeleteMessageFromInbox
-          open={openDeleteMessage}
-          onSubmit={deleteMessage}
-          onCancel={() => setOpenDeleteMessage(false)}
+        loading={true}
+        title={<Skeleton paragraph={false} active />}
+      />
+    );
+  }
+
+  return (
+    <Card
+      headStyle={{ paddingTop: 16, paddingBottom: 16 }}
+      title={
+        <InboxMessageCardHeader
+          inboxMessageHeader={inboxMessageData?.inboxMessageHeader}
         />
-      </Card>
-    </div>
+      }
+      actions={[
+        <Button
+          key="show-raw-button"
+          onClick={() => setOpenRawMessage((previous) => !previous)}
+          disabled={isLoading}
+        >
+          {t("_.rawMessage")}
+        </Button>,
+        <InboxMessageCardActionButton
+          key="action-button"
+          inboxMessageHeader={inboxMessageData?.inboxMessageHeader}
+          inboxMessageContent={inboxMessageData?.inboxMessageContent}
+          disabled={isLoading}
+          onSuccess={() => setOpenDeleteMessage(true)}
+        />,
+        <Button
+          key="delete-button"
+          danger
+          onClick={() => setOpenDeleteMessage(true)}
+          disabled={isLoading}
+        >
+          {t("_.delete")}
+        </Button>,
+      ]}
+    >
+      <InboxMessageCardText
+        inboxMessageHeader={inboxMessageData?.inboxMessageHeader}
+      />
+      {/* TODO: add a display of the data to allow the user to actually see what
+        they write into their data or what they grant access to */}
+      {openRawMessage && (
+        <InboxMessageCardRaw inboxMessageUrl={inboxMessageUrl} />
+      )}
+      <ModalDeleteMessageFromInbox
+        open={openDeleteMessage}
+        onSubmit={deleteMessage}
+        onCancel={() => setOpenDeleteMessage(false)}
+      />
+    </Card>
   );
 };

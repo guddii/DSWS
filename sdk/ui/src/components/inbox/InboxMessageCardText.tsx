@@ -1,22 +1,51 @@
 import { Typography } from "antd";
-import { getStringNoLocale, schema } from "solid";
-import { InboxMessage } from "./InboxMessageCard";
-import { useTranslation } from "i18n/client";
+import {
+  MESSAGE_TYPE,
+  MessageTypes,
+  getStringNoLocale,
+  getStringWithLocale,
+  schema,
+} from "solid";
+import { InboxMessageHeader } from "./InboxMessageCard";
+import { useLocaleFromPath, useTranslation } from "i18n/client";
 
-const { Paragraph } = Typography;
+const { Title, Text } = Typography;
+
+const messageTypeHeaderMap: Record<string, string> = {
+  [MessageTypes.SAVE_TO_DATA_MESSAGE]:
+    "sdk.ui.components.inbox.InboxMessageCardText.saveToDataMessage",
+  [MessageTypes.REQUEST_ACCESS_MESSAGE]:
+    "sdk.ui.components.inbox.InboxMessageCardText.requestAccessMessage",
+};
 
 interface IInboxMessageCardTextProperties {
-  inboxMessage?: InboxMessage;
+  inboxMessageHeader?: InboxMessageHeader;
 }
 
 export const InboxMessageCardText = ({
-  inboxMessage,
+  inboxMessageHeader,
 }: IInboxMessageCardTextProperties) => {
   const t = useTranslation();
+  const currentLocale = useLocaleFromPath();
 
-  if (!inboxMessage) {
-    return <Paragraph>{t("_.empty")}</Paragraph>;
+  if (!inboxMessageHeader) {
+    return null;
   }
 
-  return <Paragraph>{getStringNoLocale(inboxMessage, schema.text)}</Paragraph>;
+  const messageType = getStringNoLocale(inboxMessageHeader, MESSAGE_TYPE);
+  let messageHeader = t("sdk.ui.components.inbox.InboxMessageCardText.unknown");
+  if (messageType && messageTypeHeaderMap[messageType]) {
+    messageHeader = t(messageTypeHeaderMap[messageType]);
+  }
+  const messageText =
+    getStringWithLocale(inboxMessageHeader, schema.text, currentLocale) ||
+    getStringNoLocale(inboxMessageHeader, schema.text) ||
+    t("_.empty");
+
+  return (
+    <>
+      <Title level={5}>{messageHeader}</Title>
+      <Text>{messageText}</Text>
+    </>
+  );
 };

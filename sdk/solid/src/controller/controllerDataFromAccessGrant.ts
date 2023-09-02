@@ -48,5 +48,5 @@ export const controllerDataFromAccessGrant = async ({
     return NextResponse.json({ thing }, { status: 200 });
   }
 
-  return NextResponse.error();
+  return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
 };

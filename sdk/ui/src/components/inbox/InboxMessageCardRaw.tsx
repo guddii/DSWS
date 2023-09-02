@@ -33,7 +33,7 @@ export const InboxMessageCardRaw = ({
    * @returns raw turtle data string
    */
   const getRawMessage = useCallback(
-    async (url: UrlString): Promise<string> => {
+    async ({ url }: { url: UrlString }): Promise<string> => {
       const res = await session.fetch(url);
 
       return await res.text();
@@ -42,7 +42,7 @@ export const InboxMessageCardRaw = ({
   );
 
   const { data, error, isLoading } = useSWR<string>(
-    inboxMessageUrl,
+    { url: inboxMessageUrl, variant: "raw" },
     getRawMessage
   );
 

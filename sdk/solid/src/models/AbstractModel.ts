@@ -1,9 +1,17 @@
+import { UrlString } from "@inrupt/solid-client";
+
 type AbstractModelValue = string;
 
 interface IAbstractModelValues {
   predicate: URL;
   value: AbstractModelValue;
-  rules?: { required: boolean };
+  rules?: {
+    required: boolean;
+  };
+  options?: {
+    reference?: boolean;
+    creator?: UrlString;
+  };
 }
 
 interface IAbstractModelOptions {
