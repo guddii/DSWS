@@ -7,7 +7,7 @@ import {
   schema,
 } from "solid";
 import { InboxMessageHeader } from "./InboxMessageCard";
-import { useLocaleFromPath, useTranslation } from "i18n/client";
+import { I18nKey, useLocaleFromPath, useTranslation } from "i18n/client";
 
 const { Title, Text } = Typography;
 
@@ -35,7 +35,7 @@ export const InboxMessageCardText = ({
   const messageType = getStringNoLocale(inboxMessageHeader, MESSAGE_TYPE);
   let messageHeader = t("sdk.ui.components.inbox.InboxMessageCardText.unknown");
   if (messageType && messageTypeHeaderMap[messageType]) {
-    messageHeader = t(messageTypeHeaderMap[messageType]);
+    messageHeader = t(messageTypeHeaderMap[messageType] as I18nKey);
   }
   const messageText =
     getStringWithLocale(inboxMessageHeader, schema.text, currentLocale) ||

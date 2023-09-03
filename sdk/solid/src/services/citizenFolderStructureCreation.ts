@@ -1,4 +1,4 @@
-import { FOAF } from "@inrupt/lit-generated-vocab-common";
+import { VCARD } from "@inrupt/lit-generated-vocab-common";
 import { AccessModes, universalAccess } from "@inrupt/solid-client";
 import { Session } from "@inrupt/solid-client-authn-browser";
 import { turtleFileGenerator } from "../helper/turtleFileGenerator";
@@ -31,8 +31,9 @@ const createStammdatenFile = async (
   const defaultData = {
     subject: webId,
     values: {
-      [FOAF.firstName.iri.value]: "",
-      [FOAF.lastName.iri.value]: "",
+      [VCARD.given_name.value]: "",
+      [VCARD.family_name.value]: "",
+      [VCARD.locality.value]: "",
     },
   };
 

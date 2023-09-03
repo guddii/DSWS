@@ -31,5 +31,7 @@ export * from "./services/solid/thing";
 export * from "./models/AbstractModel";
 export * from "./models/TaxOfficeModel";
 export * from "./models/LandRegistryOfficeModel";
+// Vocab
+export * from "./vocab/GOV";
 // Config
 export * from "./config";

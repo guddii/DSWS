@@ -1,6 +1,6 @@
 export { WS } from "@inrupt/vocab-solid";
 
-export { FOAF, LDP, RDF } from "@inrupt/lit-generated-vocab-common";
+export { FOAF, LDP, RDF, VCARD } from "@inrupt/lit-generated-vocab-common";
 
 export { SCHEMA_INRUPT, DCTERMS } from "@inrupt/vocab-common-rdf";
 

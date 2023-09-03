@@ -34,9 +34,7 @@ export const SolidApp = ({
     <>
       <Initializing />
       <Provider agent={agent}>
-        <Layout
-          style={{ minWidth: 300, height: "100vh", overflow: "hidden scroll" }}
-        >
+        <Layout style={{ minWidth: 300, height: "100vh" }}>
           <LayoutMasthead metadata={metadata} userMenu={userMenu} />
           <Layout>
             <LayoutSider navigation={navigation} />
