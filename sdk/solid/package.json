@@ -11,6 +11,7 @@
   "types": "./src/index.ts",
   "dependencies": {
     "@inrupt/lit-generated-vocab-common": "0.3.11",
+    "@inrupt/lit-vocab-term": "0.3.5",
     "@inrupt/solid-client": "1.28.1",
     "@inrupt/solid-client-access-grants": "2.2.0",
     "@inrupt/solid-client-authn-browser": "1.16.0",
@@ -18,12 +19,15 @@
     "@inrupt/solid-client-notifications": "1.2.0",
     "@inrupt/vocab-common-rdf": "1.0.5",
     "@inrupt/vocab-solid": "1.0.4",
+    "@rdfjs/data-model": "2.0.1",
     "deepmerge": "4.3.1",
     "n3": "1.16.4",
+    "rdf-js": "4.0.2",
     "rdf-namespaces": "1.11.0"
   },
   "devDependencies": {
     "@types/n3": "1.10.4",
+    "@types/rdfjs__data-model": "2.0.4",
     "eslint": "8.39.0",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",

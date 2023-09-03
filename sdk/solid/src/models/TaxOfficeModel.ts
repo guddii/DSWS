@@ -1,40 +1,46 @@
-import { FOAF } from "@inrupt/lit-generated-vocab-common";
+import { VCARD } from "@inrupt/lit-generated-vocab-common";
 import { AbstractModel } from "./AbstractModel";
 import { createUrl } from "../helper/urlHelper";
-import {
-  HAS_LAND_REGISTRY_DATA,
-  HAS_LAND_REGISTRY_DATA_CREATOR,
-} from "../config";
+import { GOV } from "../vocab/GOV";
 
 export class TaxOfficeModel extends AbstractModel {
   static create() {
     return new TaxOfficeModel({
       values: [
         {
-          predicate: createUrl(FOAF.firstName.iri.value),
+          predicate: createUrl(VCARD.given_name.iri.value),
           value: "",
           rules: { required: true },
         },
         {
-          predicate: createUrl(FOAF.lastName.iri.value),
+          predicate: createUrl(VCARD.family_name.iri.value),
           value: "",
           rules: { required: true },
         },
         {
-          predicate: createUrl(FOAF.title.iri.value),
+          predicate: createUrl(VCARD.locality.iri.value),
+          value: "",
+          rules: { required: true },
+        },
+        {
+          predicate: createUrl(GOV.TradeID.value),
           value: "",
         },
         {
-          predicate: createUrl(FOAF.homepage.iri.value),
-          value: "",
-        },
-        {
-          predicate: createUrl(HAS_LAND_REGISTRY_DATA),
+          predicate: createUrl(GOV.PropertyData.value),
           value: "",
           options: { reference: true },
         },
         {
-          predicate: createUrl(HAS_LAND_REGISTRY_DATA_CREATOR),
+          predicate: createUrl(GOV.PropertyDataCreator.value),
+          value: "",
+        },
+        {
+          predicate: createUrl(GOV.CreditNotice.value),
+          value: "",
+        },
+        {
+          predicate: createUrl(GOV.ParentalBenefitNotice.value),
           value: "",
         },
       ],

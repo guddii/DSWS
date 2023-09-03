@@ -215,6 +215,9 @@ importers:
       '@formatjs/intl-localematcher':
         specifier: 0.2.32
         version: 0.2.32
+      '@inrupt/lit-vocab-term':
+        specifier: 0.3.5
+        version: 0.3.5
       negotiator:
         specifier: 0.6.3
         version: 0.6.3
@@ -264,6 +267,9 @@ importers:
       '@inrupt/lit-generated-vocab-common':
         specifier: 0.3.11
         version: 0.3.11
+      '@inrupt/lit-vocab-term':
+        specifier: 0.3.5
+        version: 0.3.5
       '@inrupt/solid-client':
         specifier: 1.28.1
         version: 1.28.1(encoding@0.1.13)
@@ -285,12 +291,18 @@ importers:
       '@inrupt/vocab-solid':
         specifier: 1.0.4
         version: 1.0.4
+      '@rdfjs/data-model':
+        specifier: 2.0.1
+        version: 2.0.1
       deepmerge:
         specifier: 4.3.1
         version: 4.3.1
       n3:
         specifier: 1.16.4
         version: 1.16.4
+      rdf-js:
+        specifier: 4.0.2
+        version: 4.0.2
       rdf-namespaces:
         specifier: 1.11.0
         version: 1.11.0
@@ -298,6 +310,9 @@ importers:
       '@types/n3':
         specifier: 1.10.4
         version: 1.10.4
+      '@types/rdfjs__data-model':
+        specifier: 2.0.4
+        version: 2.0.4
       eslint:
         specifier: 8.39.0
         version: 8.39.0
@@ -933,6 +948,11 @@ packages:
       '@rdfjs/types': 1.1.0
     dev: false
 
+  /@rdfjs/data-model@2.0.1:
+    resolution: {integrity: sha512-oRDYpy7/fJ9NNjS+M7m+dbnhi4lOWYGbBiM/A+u9bBExnN6ifXUF5mUsFxwZaQulmwTDaMhKERdV6iKTBUMgtw==}
+    hasBin: true
+    dev: false
+
   /@rdfjs/dataset@1.1.1:
     resolution: {integrity: sha512-BNwCSvG0cz0srsG5esq6CQKJc1m8g/M0DZpLuiEp0MMpfwguXX7VeS8TCg4UUG3DV/DqEvhy83ZKSEjdsYseeA==}
     hasBin: true
@@ -1022,6 +1042,12 @@ packages:
     dependencies:
       rdf-js: 4.0.2
     dev: false
+
+  /@types/rdfjs__data-model@2.0.4:
+    resolution: {integrity: sha512-3FidQ/YmHqp4Yl4ePQNC9B3YE3bWIIXT+YRTl2HfO1u/HD4GyUjk4sWlJscqKg4g6Cvzd3KMYpRL8TRv2CRdNw==}
+    dependencies:
+      '@rdfjs/types': 1.1.0
+    dev: true
 
   /@types/rdfjs__dataset@1.0.5:
     resolution: {integrity: sha512-8OBC9Kr/ZSgNoUTe5mHTDPHaPt8Xen4XbYfqcbYv56d+4WdKliHXaFmFc0L4I5vsynE5JGu21Hvg2zWgX1Az6Q==}

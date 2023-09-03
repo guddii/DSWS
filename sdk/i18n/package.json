@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "0.2.32",
+    "@inrupt/lit-vocab-term": "0.3.5",
     "negotiator": "0.6.3",
     "next": "13.4.10",
     "react": "^18.2.0",

@@ -44,6 +44,8 @@ export const LayoutContent = ({
       style={{
         padding: "0 16px",
         minWidth: 300,
+        overflow: "hidden scroll",
+        scrollbarWidth: "none",
       }}
     >
       <Row style={{ paddingTop: 16 }}>

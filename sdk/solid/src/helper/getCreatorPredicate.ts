@@ -3,7 +3,7 @@ import { createUrl, toUrlString } from "./urlHelper";
 
 export const getCreatorPredicateUrl = (url: UrlString | URL): URL => {
   url = createUrl(url);
-  url.pathname = url.pathname + "/creator";
+  url.pathname = url.pathname + "Creator";
   return url;
 };
 
