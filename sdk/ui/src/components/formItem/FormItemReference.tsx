@@ -3,8 +3,11 @@ import {
   IRequestReferenceAccessBody,
   checkResponse,
   toUrlString,
-  getCreatorPredicateString,
+  getCreatorPredicate,
   UrlString,
+  SolidDataset,
+  getThing,
+  fillEmptyFields,
 } from "solid";
 import { IParsedPropertyWithRulesAndOptions } from "../../helper/propertiesGenerator";
 import { useCallback, useState } from "react";
@@ -25,6 +28,8 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
   const { message } = App.useApp();
   const predicateString = toUrlString(property.predicate);
   const propertyName: string = t(predicateString as I18nKey);
+  const predicateCreatorString = getCreatorPredicate(predicateString);
+  const propertyCreatorName: string = t(predicateCreatorString as I18nKey);
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -54,9 +59,9 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
 
       await checkResponse(response);
 
-      const dataset = await response.json();
-      // TODO: display data in form instead of logging it
-      console.log(dataset);
+      const dataset: SolidDataset = await response.json();
+      const thing = getThing(dataset, identity.webId);
+      fillEmptyFields(thing, form);
     } catch (error: any) {
       console.error(error);
       message.error(
@@ -73,7 +78,7 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
    */
   const onSubmit = async () => {
     const creator = form.getFieldValue(
-      getCreatorPredicateString(property.predicate)
+      getCreatorPredicate(toUrlString(property.predicate))
     ) as UrlString;
 
     if (!creator) {
@@ -119,11 +124,29 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
           >
             <Input />
           </Form.Item>
+        </Space.Compact>
+      </Form.Item>
+
+      <Form.Item label={propertyCreatorName} extra={predicateCreatorString}>
+        <Space.Compact style={{ display: "flex" }}>
+          <Form.Item
+            name={predicateCreatorString}
+            noStyle
+            rules={[
+              {
+                ...property.rules,
+                message: `Please input your ${propertyCreatorName}!`,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
           <Button onClick={loadReference} loading={isLoading} type="primary">
             {t("sdk.ui.components.formItem.FormItemReference.load")}
           </Button>
         </Space.Compact>
       </Form.Item>
+
       <ModalAccessRequestToInbox
         open={open}
         onCancel={() => setOpen(false)}

@@ -32,7 +32,7 @@ export class TaxOfficeModel extends AbstractModel {
           options: { reference: true },
         },
         {
-          predicate: createUrl(GOV.PropertyDataCreator.value),
+          predicate: createUrl(GOV.PropertyDataSize.value),
           value: "",
         },
         {
