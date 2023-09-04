@@ -19,5 +19,5 @@ export const LAND_REGISTRY_OFFICE_WEB_ID: WebId =
 
 export const SENDER_TO_PROPERTY_MAP: Record<WebId, UrlString> = {
   [TAX_OFFICE_WEB_ID]: GOV.TaxDeclaration.value,
-  [LAND_REGISTRY_OFFICE_WEB_ID]: GOV.IdentityCardNumber.value,
+  [LAND_REGISTRY_OFFICE_WEB_ID]: GOV.PropertyData.value,
 };

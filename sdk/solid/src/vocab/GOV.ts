@@ -74,6 +74,16 @@ export const GOV = {
     .addLabel(`Herausgeber der Grundstücksdaten `, "de")
     .addLabel(`Property Data Creator`, "en"),
 
+  PropertyDataSize: new LitVocabTerm(
+    _NS("PropertyDataSize"),
+    // @ts-ignore
+    dataFactory,
+    getLocalStore(),
+    false
+  )
+    .addLabel(`Grundstücksgröße `, "de")
+    .addLabel(`Property Size`, "en"),
+
   BuildingPermit: new LitVocabTerm(
     _NS("BuildingPermit"),
     // @ts-ignore
@@ -93,6 +103,16 @@ export const GOV = {
   )
     .addLabel(`Steuererklärung`, "de")
     .addLabel(`Tax Declaration`, "en"),
+
+  TaxDeclarationCreator: new LitVocabTerm(
+    _NS("TaxDeclarationCreator"),
+    // @ts-ignore
+    dataFactory,
+    getLocalStore(),
+    false
+  )
+    .addLabel(`Herausgeber der Steuererklärung `, "de")
+    .addLabel(`Tax Declaration Creator`, "en"),
 
   BusinessPremisesPermit: new LitVocabTerm(
     _NS("BusinessPremisesPermit"),

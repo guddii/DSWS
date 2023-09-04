@@ -120,11 +120,13 @@ const createTurtleData = async (
 interface IControllerSubmitData {
   request: Request;
   session: Session;
+  additionalData?: Record<string, string>;
 }
 
 export const controllerSubmitData = async ({
   request,
   session,
+  additionalData = {},
 }: IControllerSubmitData) => {
   if (session.info.isLoggedIn) {
     const searchParams = new URL(request.url).searchParams;
@@ -152,12 +154,10 @@ export const controllerSubmitData = async ({
       }
 
       const submittedData = await request.json();
-      const submittedDataUrl = await createTurtleData(
-        session,
-        userPod,
-        webId,
-        submittedData
-      );
+      const submittedDataUrl = await createTurtleData(session, userPod, webId, {
+        ...submittedData,
+        ...additionalData,
+      });
 
       await universalAccess.setAgentAccess(
         submittedDataUrl,
