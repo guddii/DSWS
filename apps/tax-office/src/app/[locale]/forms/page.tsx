@@ -5,9 +5,10 @@ import {
   EditorTurtle,
   LayoutContent,
 } from "ui";
-import { TaxOfficeModel } from "solid";
+import { GOV, TaxOfficeModel } from "solid";
 import { Card, Form } from "antd";
-import { useTranslation } from "i18n/client";
+import { I18nKey, useTranslation } from "i18n/client";
+import { AttachmentPropertyDataModel } from "solid/src/models/AttachmentPropertyDataModel";
 
 export default function Page() {
   const [form] = Form.useForm();
@@ -27,11 +28,21 @@ export default function Page() {
   ];
   return (
     <SessionContent alwaysShowChildren>
-      <LayoutContent options={{ breadcrumbItems, currentItem }}>
-        <Card title={t("_.mainForm")} extra={<ControlsAutofill form={form} />}>
+      <LayoutContent
+        options={{ breadcrumbItems, currentItem }}
+        extra={<ControlsAutofill form={form} />}
+      >
+        <Card title={t("_.mainForm")}>
           <EditorTurtle
             form={form}
             model={TaxOfficeModel.create()}
+          ></EditorTurtle>
+        </Card>
+        <br />
+        <Card title={t("_.attachment", t(GOV.PropertyData.value as I18nKey))}>
+          <EditorTurtle
+            form={form}
+            model={AttachmentPropertyDataModel.create()}
           ></EditorTurtle>
         </Card>
       </LayoutContent>

@@ -27,15 +27,6 @@ export class TaxOfficeModel extends AbstractModel {
           value: "",
         },
         {
-          predicate: createUrl(GOV.PropertyData.value),
-          value: "",
-          options: { reference: true },
-        },
-        {
-          predicate: createUrl(GOV.PropertyDataSize.value),
-          value: "",
-        },
-        {
           predicate: createUrl(GOV.CreditNotice.value),
           value: "",
         },

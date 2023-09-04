@@ -14,6 +14,7 @@ export type I18nKey =
   | "Required requestor webId is missing in request body"
   | "Required target url is missing in request body"
   | "_.actions"
+  | "_.attachment"
   | "_.autofill"
   | "_.brand"
   | "_.cancel"

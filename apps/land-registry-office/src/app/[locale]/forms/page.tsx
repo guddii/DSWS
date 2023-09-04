@@ -28,8 +28,11 @@ export default function Page() {
 
   return (
     <SessionContent alwaysShowChildren>
-      <LayoutContent options={{ breadcrumbItems, currentItem }}>
-        <Card title={t("_.mainForm")} extra={<ControlsAutofill form={form} />}>
+      <LayoutContent
+        options={{ breadcrumbItems, currentItem }}
+        extra={<ControlsAutofill form={form} />}
+      >
+        <Card title={t("_.mainForm")}>
           <EditorTurtle
             form={form}
             model={LandRegistryOfficeModel.create()}
