@@ -1,4 +1,4 @@
-import { App, Button, Form, FormInstance, Input, Space } from "antd";
+import { App, Button, Divider, Form, FormInstance, Input } from "antd";
 import {
   IRequestReferenceAccessBody,
   checkResponse,
@@ -71,7 +71,7 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
     } finally {
       setIsLoading(false);
     }
-  }, [form, message, property.predicate, t]);
+  }, [form, identity.webId, message, property.predicate, t]);
 
   /**
    * Sends an inbox message with a request to access the reference currently in the form item.
@@ -111,40 +111,39 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
   return (
     <>
       <Form.Item label={propertyName} extra={predicateString}>
-        <Space.Compact style={{ display: "flex" }}>
-          <Form.Item
-            name={predicateString}
-            noStyle
-            rules={[
-              {
-                ...property.rules,
-                message: `Please input your ${propertyName}!`,
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-        </Space.Compact>
+        <Form.Item
+          name={predicateString}
+          noStyle
+          rules={[
+            {
+              ...property.rules,
+              message: `Please input your ${propertyName}!`,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
       </Form.Item>
 
       <Form.Item label={propertyCreatorName} extra={predicateCreatorString}>
-        <Space.Compact style={{ display: "flex" }}>
-          <Form.Item
-            name={predicateCreatorString}
-            noStyle
-            rules={[
-              {
-                ...property.rules,
-                message: `Please input your ${propertyCreatorName}!`,
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Button onClick={loadReference} loading={isLoading} type="primary">
-            {t("sdk.ui.components.formItem.FormItemReference.load")}
-          </Button>
-        </Space.Compact>
+        <Form.Item
+          name={predicateCreatorString}
+          noStyle
+          rules={[
+            {
+              ...property.rules,
+              message: `Please input your ${propertyCreatorName}!`,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      </Form.Item>
+
+      <Form.Item label={t("_.actions")}>
+        <Button onClick={loadReference} loading={isLoading}>
+          {t("sdk.ui.components.formItem.FormItemReference.load")}
+        </Button>
       </Form.Item>
 
       <ModalAccessRequestToInbox
@@ -152,6 +151,8 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
         onCancel={() => setOpen(false)}
         onSubmit={onSubmit}
       />
+
+      <Divider />
     </>
   );
 };
