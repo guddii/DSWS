@@ -38,6 +38,9 @@ export const EditorTurtleModel = ({
   const [openWebIdConfirm, setOpenWebIdConfirm] = useState(false);
   const [openSaveToInbox, setOpenSaveToInbox] = useState(false);
   const [dataUrlString, setDataUrlString] = useState("");
+  const [additionalData, setAdditionalData] = useState<Record<string, string>>(
+    {}
+  );
 
   const onFinish = () => {
     setOpenWebIdConfirm(true);
@@ -53,8 +56,9 @@ export const EditorTurtleModel = ({
       method: "POST",
       body: JSON.stringify(values),
     });
-    const { url } = await response.json();
+    const { url, data } = await response.json();
     setDataUrlString(url);
+    setAdditionalData(data);
     setOpenSaveToInbox(true);
     resetState();
   };
@@ -67,6 +71,14 @@ export const EditorTurtleModel = ({
     const predicate = SENDER_TO_PROPERTY_MAP[agent.webId];
     const predicateCreator = getCreatorPredicate(
       SENDER_TO_PROPERTY_MAP[agent.webId]
+    );
+
+    const additionalDataEntries = Object.entries(additionalData).map(
+      ([key, value]) => ({
+        type: "string",
+        predicate: key,
+        value,
+      })
     );
 
     await sendInboxMessage({
@@ -86,6 +98,7 @@ export const EditorTurtleModel = ({
             predicate: predicateCreator,
             value: toUrlString(globalThis.location.origin),
           },
+          ...additionalDataEntries,
         ],
       },
     });
