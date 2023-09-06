@@ -34,6 +34,16 @@ export const GOV = {
     .addLabel(`Umsatzsteuernummer`, "de")
     .addLabel(`Trade ID`, "en"),
 
+  TaxID: new LitVocabTerm(
+    _NS("TaxID"),
+    // @ts-ignore
+    dataFactory,
+    getLocalStore(),
+    false
+  )
+    .addLabel(`Steuernummer`, "de")
+    .addLabel(`Tax ID`, "en"),
+
   VehicleRegistrationCertificate: new LitVocabTerm(
     _NS("VehicleRegistrationCertificate"),
     // @ts-ignore

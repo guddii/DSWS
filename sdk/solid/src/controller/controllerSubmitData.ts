@@ -1,79 +1,42 @@
 import { Session } from "@inrupt/solid-client-authn-node";
-import { createUrl, replaceHashInUrl } from "../helper/urlHelper";
-import { legacyGetThing } from "../services/solid/thing";
-import { getProperty } from "../services/solid/property";
+import { createUrl } from "../helper/urlHelper";
 import {
-  buildThing,
   createResource,
-  createThing,
   FOAF,
-  getResourceFromResponse,
-  getSolidDataset,
-  saveSolidDatasetAt,
-  setThing,
   turtleFileGenerator,
   universalAccess,
 } from "../index";
 import { NextResponse } from "next/server";
 import { getPodFromWebId } from "../helper/getPodFromWebId";
+import {
+  submitDataGetDataset,
+  submitDataCreateDataset,
+  getValueFromDataset,
+  addValueToDataset,
+  createNewPod,
+} from "../services/submitData/dataHelper";
+import {
+  IAdditionalUniqueData,
+  createAndAddUniqueData,
+} from "../services/submitData/uniqueData";
 
-const createNewPod = async (session: Session) => {
-  const response = await session.fetch("https://provision.inrupt.com/", {
-    method: "POST",
-  });
-  const body = await response.json();
-
-  if (!body.storage) {
-    throw new Error("Pod creation failed.");
-  }
-
-  return String(body.storage);
+const getPodList = (session: Session, storage: string) => {
+  return submitDataGetDataset(session, storage, "pods.ttl");
 };
 
-const getPodList = async (session: Session, storage: string) => {
-  const url: URL = createUrl("pods.ttl", storage);
-  try {
-    const dataset = await getSolidDataset(url.toString(), {
-      fetch: session.fetch,
-    });
-
-    return dataset;
-  } catch (error: any) {
-    if (error.response.status === 404) {
-      return null;
-    }
-    throw error;
-  }
-};
-
-const createPodList = async (session: Session, storage: string) => {
-  const url: URL = createUrl("pods.ttl", storage);
-
-  const response = await createResource({
-    url,
-    body: turtleFileGenerator(),
-    session,
-  });
-  return getResourceFromResponse(response);
+const createPodList = (session: Session, storage: string) => {
+  return submitDataCreateDataset(session, storage, "pods.ttl");
 };
 
 const getUserPod = async (session: Session, storage: string, webId: string) => {
-  const datasetUrl = createUrl("pods.ttl", storage);
-  const thingUrl = replaceHashInUrl(datasetUrl, `#${webId}`);
-
-  try {
-    const thing = await legacyGetThing({ session, datasetUrl, thingUrl });
-    const data = await getProperty({
-      thing,
-      predicate: createUrl(FOAF.page.iri.value),
-    });
-    return data.firstProperty;
-  } catch (error: any) {
-    if (error.message.includes("did not resolve")) {
-      return null;
-    }
-    throw error;
-  }
+  return getValueFromDataset(
+    session,
+    storage,
+    "pods.ttl",
+    webId,
+    FOAF.page.iri.value,
+    "url"
+  );
 };
 
 const addUserPodToList = async (
@@ -82,21 +45,14 @@ const addUserPodToList = async (
   webId: string,
   userPod: string
 ) => {
-  const resourceURL = createUrl("pods.ttl", storage);
-  let podListDataset = await getSolidDataset(resourceURL.toString(), {
-    fetch: session.fetch,
-  });
-
-  const userPodThing = buildThing(createThing({ name: webId }))
-    .addUrl(FOAF.page.iri.value, userPod)
-    .build();
-
-  podListDataset = setThing(podListDataset, userPodThing);
-
-  return await saveSolidDatasetAt(
-    resourceURL.toString(),
-    podListDataset,
-    { fetch: session.fetch } // fetch from authenticated Session
+  return addValueToDataset(
+    session,
+    storage,
+    "pods.ttl",
+    webId,
+    FOAF.page.iri.value,
+    userPod,
+    "url"
   );
 };
 
@@ -121,42 +77,64 @@ interface IControllerSubmitData {
   request: Request;
   session: Session;
   additionalData?: Record<string, string>;
+  additionalUniqueData?: Array<IAdditionalUniqueData>;
 }
 
 export const controllerSubmitData = async ({
   request,
   session,
   additionalData = {},
+  additionalUniqueData = [],
 }: IControllerSubmitData) => {
   if (session.info.isLoggedIn) {
+    if (!session.info.webId) {
+      return NextResponse.json(
+        { error: "Could not retrieve agent pod" },
+        { status: 500 }
+      );
+    }
+
     const searchParams = new URL(request.url).searchParams;
     const webId = searchParams.get("webId");
+    if (!webId) {
+      return NextResponse.json(
+        { error: "Required webId url is missing as request parameter" },
+        { status: 400 }
+      );
+    }
 
-    if (webId && session.info.webId) {
-      const mainPod = await getPodFromWebId(session, session.info.webId);
-      if (!mainPod) {
-        return NextResponse.json(
-          { error: "Internal Server Error" },
-          { status: 500 }
-        );
-      }
-      const podList = await getPodList(session, mainPod);
+    const agentPod = await getPodFromWebId(session, session.info.webId);
+    if (!agentPod) {
+      return NextResponse.json(
+        { error: "Could not retrieve agent pod" },
+        { status: 500 }
+      );
+    }
 
+    try {
+      const podList = await getPodList(session, agentPod);
       if (!podList) {
-        await createPodList(session, mainPod);
+        await createPodList(session, agentPod);
       }
 
-      let userPod = await getUserPod(session, mainPod, webId);
-
+      let userPod = await getUserPod(session, agentPod, webId);
       if (!userPod) {
         userPod = await createNewPod(session);
-        await addUserPodToList(session, mainPod, webId, userPod);
+        await addUserPodToList(session, agentPod, webId, userPod);
       }
+
+      const uniqueData = await createAndAddUniqueData(
+        session,
+        agentPod,
+        webId,
+        additionalUniqueData
+      );
 
       const submittedData = await request.json();
       const submittedDataUrl = await createTurtleData(session, userPod, webId, {
         ...submittedData,
         ...additionalData,
+        ...uniqueData,
       });
 
       await universalAccess.setAgentAccess(
@@ -166,7 +144,15 @@ export const controllerSubmitData = async ({
         { fetch: session.fetch }
       );
 
-      return NextResponse.json({ url: submittedDataUrl }, { status: 200 });
+      return NextResponse.json(
+        { url: submittedDataUrl, data: uniqueData },
+        { status: 200 }
+      );
+    } catch (error: any) {
+      return NextResponse.json(
+        { error: error.message || "Internal Server Error" },
+        { status: 500 }
+      );
     }
   }
 
