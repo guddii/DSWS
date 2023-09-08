@@ -70,7 +70,6 @@ export const ControlsAutofillWithoutSession = ({
         }
 
         form.setFieldsValue(formValues);
-        router.push("/");
         setIsLoading(false);
       } catch (error: any) {
         console.error(error);
