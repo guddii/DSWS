@@ -6,23 +6,24 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "next build",
-    "dev": "next dev -p 5000",
+    "dev": "next dev -p 3060",
     "lint": "next lint",
-    "start": "next start -p 5000"
+    "start": "next start -p 3060"
   },
   "types": "dist/index.d.ts",
   "dependencies": {
     "@ant-design/icons": "5.1.2",
-    "@inrupt/solid-client": "1.28.1",
-    "@inrupt/solid-client-access-grants": "2.2.0",
-    "@inrupt/solid-client-authn-node": "1.16.0",
+    "@inrupt/solid-client": "1.30.0",
+    "@inrupt/solid-client-access-grants": "2.5.0",
+    "@inrupt/solid-client-authn-node": "1.17.1",
     "antd": "5.8.2",
     "i18n": "workspace:*",
     "next": "13.4.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "solid": "workspace:*",
-    "ui": "workspace:*"
+    "ui": "workspace:*",
+    "vocab": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "17.0.12",

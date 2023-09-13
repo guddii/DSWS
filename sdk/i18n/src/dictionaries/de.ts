@@ -1,5 +1,5 @@
 import type { Dictionary } from "../i18nConfig";
-import { GOV } from "solid";
+import { GOV } from "vocab";
 import { generateDictionaryFromVocab } from "../helper/generateDictionaryFromVocab";
 
 // prettier-ignore
@@ -29,8 +29,7 @@ const dictionary: Dictionary = {
     "_.empty": "Leer",
     "_.errorMessage": "Ein Fehler ist aufgetreten.",
     "_.exists": "<1> existiert.",
-    "_.form.landRegisterSurveys": "Grundbuchvermessungen",
-    "_.form.propertyTaxReturn": "Grundsteuererklärung",
+    "_.form": "Formular",
     "_.forms": "Formulare",
     "_.from": "Von",
     "_.getAPod": "Pod anlegen",
@@ -60,8 +59,18 @@ const dictionary: Dictionary = {
     "_.viewer": "Betrachter",
     "_.yes": "Ja",
     "apps.citizen.app.root.title": "Bürgerportal",
-    "apps.landRegistryOffice.app.root.title": "Katasteramt",
+    "apps.tradeOffice.app.root.title": "Gewerbeamt",
+    "apps.registrationOffice.app.root.title": "Einwohnermeldeamt",
     "apps.taxOffice.app.root.title": "Finanzamt",
+    "apps.vehicleRegistrationOffice.app.root.title": "Kfz-Zulassungsstelle",
+    "apps.customs.app.root.title": "Zoll",
+    "apps.landRegistryOffice.app.root.title": "Katasteramt",
+    "apps.constructionOffice.app.root.title": "Bauamt",
+    "apps.employmentAgency.app.root.title": "Arbeitsagentur",
+    "apps.environmentalOffice.app.root.title": "Umweltamt",
+    "apps.carInsuranceCompany.app.root.title": "Kfz-Versicherer",
+    "apps.reconstructionLoanCorporation.app.root.title": "Kreditanstalt für Wiederaufbau",
+    "apps.parentalBenefitsOffice.app.root.title": "Elterngeldstelle",
     "http://www.w3.org/2006/vcard/ns#family-name": "Nachname",
     "http://www.w3.org/2006/vcard/ns#given-name": "Vorname",
     "http://www.w3.org/2006/vcard/ns#locality": "Wohnort",
@@ -70,6 +79,8 @@ const dictionary: Dictionary = {
     "http://xmlns.com/foaf/0.1/lastName": "Nachname",
     "http://xmlns.com/foaf/0.1/title": "Titel",
     "referenceUrl parameter is missing": "Parameter referenceUrl fehlt",
+    "sdk.solid.services.inbox.createInboxMessageHeader.saveToDataMessageText": "Ihre <1> sind in Ihren Pod (<2>) hochgeladen worden.",
+    "sdk.solid.services.inbox.createInboxMessageHeader.requestAccessMessageText": "Für den Zugriff auf eine Datenreferenz in Ihrem Datentresor ist eine Zugriffsberechtigung erforderlich.",
     "sdk.ui.components.FolderStructureVerification.subTitle": "Um die korrekte Funktionalität in allen Anwendungen zu gewährleisten, müssen bestimmte Daten- und Zugriffskonfigurationen erstellt werden.",
     "sdk.ui.components.FolderStructureVerification.title": "Es fehlen einige der erforderlichen Daten.",
     "sdk.ui.components.SessionContent.1": "Diese Anwendung benötigt einen Pod als Datenspeicher und eine WebId um sich im Web zu identifizieren.",

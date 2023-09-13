@@ -5,17 +5,23 @@ import {
   EditorTurtle,
   LayoutContent,
 } from "ui";
-import { LandRegistryOfficeModel } from "solid";
+import {
+  AttachmentBusinessPremisesPermit,
+  AttachmentBusinessPremisesPermitFactoryConfiguration,
+  AttachmentIdentityCard,
+  MainForm,
+} from "solid";
 import { Card, Form } from "antd";
-import { useTranslation } from "i18n/client";
+import { I18nKey, useTranslation } from "i18n/client";
+import { GOV } from "vocab";
 
 export default function Page() {
   const [form] = Form.useForm();
   const t = useTranslation();
 
   const currentItem = {
-    title: t("_.form.landRegisterSurveys"),
-    key: "landRegisterSurveys",
+    title: t(GOV.PropertyData.value as I18nKey),
+    key: "form",
   };
 
   const breadcrumbItems = [
@@ -33,9 +39,27 @@ export default function Page() {
         extra={<ControlsAutofill form={form} />}
       >
         <Card title={t("_.mainForm")}>
+          <EditorTurtle form={form} model={MainForm.create()}></EditorTurtle>
+        </Card>
+        <br />
+        <Card title={t("_.attachment", t(GOV.IdentityCard.value as I18nKey))}>
           <EditorTurtle
             form={form}
-            model={LandRegistryOfficeModel.create()}
+            model={AttachmentIdentityCard.create()}
+          ></EditorTurtle>
+        </Card>
+        <br />
+        <Card
+          title={t(
+            "_.attachment",
+            t(GOV.BusinessPremisesPermit.value as I18nKey)
+          )}
+        >
+          <EditorTurtle
+            form={form}
+            model={AttachmentBusinessPremisesPermit.create(
+              AttachmentBusinessPremisesPermitFactoryConfiguration.AS_OPTIONAL
+            )}
           ></EditorTurtle>
         </Card>
       </LayoutContent>

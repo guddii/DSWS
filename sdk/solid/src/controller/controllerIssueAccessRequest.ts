@@ -19,21 +19,27 @@ export const controllerIssueAccessRequest = async ({
     const webId = searchParams.get("webId");
     const resources = searchParams.getAll("resource");
 
-    if (webId && resources.length) {
-      const accessRequestVc = await issueAccessRequest(
-        {
-          access,
-          resources,
-          resourceOwner: webId,
-        },
-        {
-          fetch: session.fetch,
-        }
-      );
-
-      return NextResponse.json(accessRequestVc, { status: 200 });
+    if (!webId) {
+      throw new Error("webId is unset");
     }
+
+    if (!resources.length) {
+      throw new Error("resources are unset");
+    }
+
+    const accessRequestVc = await issueAccessRequest(
+      {
+        access,
+        resources,
+        resourceOwner: webId,
+      },
+      {
+        fetch: session.fetch,
+      }
+    );
+
+    return NextResponse.json(accessRequestVc, { status: 200 });
   }
 
-  return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  throw new Error("session is not logged in");
 };

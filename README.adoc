@@ -4,6 +4,16 @@ This repository contains two applications that are deployed on vercel. The indiv
 
 The production environment URLs are
 
+- https://solid-showcase-car-insurance-company.vercel.app/
 - https://solid-showcase-citizen.vercel.app/
-- https://solid-showcase-tax-office.vercel.app/
+- https://solid-showcase-construction-office.vercel.app/
+- https://solid-showcase-customs.vercel.app/
+- https://solid-showcase-employment-agency.vercel.app/
+- https://solid-showcase-environmental-office.vercel.app/
 - https://solid-showcase-land-registry-office.vercel.app/
+- https://solid-showcase-parental-benefits-office.vercel.app/
+- https://solid-showcase-reconstruction-loan-corporation.vercel.app/
+- https://solid-showcase-registration-office.vercel.app/
+- https://solid-showcase-tax-office.vercel.app/
+- https://solid-showcase-trade-office.vercel.app/
+- https://solid-showcase-vehicle-registration-office.vercel.app/

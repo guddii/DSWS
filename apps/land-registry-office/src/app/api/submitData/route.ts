@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAgentUserSession } from "../../session";
-import { controllerSubmitData, GOV } from "solid";
+import { controllerSubmitData } from "solid";
+import { GOV } from "vocab";
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max).toString();

@@ -1,5 +1,13 @@
 stages:
+  - bootstrap
   - terraform
+
+terraform-bootstrap:
+  stage: bootstrap
+  trigger:
+    include: .gitlab/ci/terraform/bootstrap.gitlab-ci.yml
+    strategy: depend
+  allow_failure: true
 
 terraform-review:
   stage: terraform

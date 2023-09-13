@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "vocab",
+  "version": "0.0.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "./src/index.tsx",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "lint": "eslint \"src/**/*.ts*\""
+  },
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@inrupt/lit-vocab-term": "0.3.5",
+    "@rdfjs/data-model": "2.0.1",
+    "rdf-js": "4.0.2"
+  },
+  "devDependencies": {
+    "@types/rdfjs__data-model": "2.0.4",
+    "eslint": "8.39.0",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "5.0.4"
+  }
+}

@@ -27,6 +27,67 @@ importers:
         specifier: 1.10.12
         version: 1.10.12
 
+  apps/car-insurance-company:
+    dependencies:
+      '@ant-design/icons':
+        specifier: 5.1.2
+        version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-client':
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-access-grants':
+        specifier: 2.5.0
+        version: 2.5.0
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.17.1
+        version: 1.17.1
+      antd:
+        specifier: 5.8.2
+        version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      solid:
+        specifier: workspace:*
+        version: link:../../sdk/solid
+      ui:
+        specifier: workspace:*
+        version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
+    devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../sdk/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../sdk/tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
   apps/citizen:
     dependencies:
       '@ant-design/icons':
@@ -76,20 +137,20 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
 
-  apps/land-registry-office:
+  apps/construction-office:
     dependencies:
       '@ant-design/icons':
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.28.1
-        version: 1.28.1(encoding@0.1.13)
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.2.0
-        version: 2.2.0
+        specifier: 2.5.0
+        version: 2.5.0
       '@inrupt/solid-client-authn-node':
-        specifier: 1.16.0
-        version: 1.16.0
+        specifier: 1.17.1
+        version: 1.17.1
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -111,6 +172,436 @@ importers:
       ui:
         specifier: workspace:*
         version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
+    devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../sdk/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../sdk/tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  apps/customs:
+    dependencies:
+      '@ant-design/icons':
+        specifier: 5.1.2
+        version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-client':
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-access-grants':
+        specifier: 2.5.0
+        version: 2.5.0
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.17.1
+        version: 1.17.1
+      antd:
+        specifier: 5.8.2
+        version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      solid:
+        specifier: workspace:*
+        version: link:../../sdk/solid
+      ui:
+        specifier: workspace:*
+        version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
+    devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../sdk/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../sdk/tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  apps/employment-agency:
+    dependencies:
+      '@ant-design/icons':
+        specifier: 5.1.2
+        version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-client':
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-access-grants':
+        specifier: 2.5.0
+        version: 2.5.0
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.17.1
+        version: 1.17.1
+      antd:
+        specifier: 5.8.2
+        version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      solid:
+        specifier: workspace:*
+        version: link:../../sdk/solid
+      ui:
+        specifier: workspace:*
+        version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
+    devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../sdk/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../sdk/tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  apps/environmental-office:
+    dependencies:
+      '@ant-design/icons':
+        specifier: 5.1.2
+        version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-client':
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-access-grants':
+        specifier: 2.5.0
+        version: 2.5.0
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.17.1
+        version: 1.17.1
+      antd:
+        specifier: 5.8.2
+        version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      solid:
+        specifier: workspace:*
+        version: link:../../sdk/solid
+      ui:
+        specifier: workspace:*
+        version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
+    devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../sdk/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../sdk/tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  apps/land-registry-office:
+    dependencies:
+      '@ant-design/icons':
+        specifier: 5.1.2
+        version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-client':
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-access-grants':
+        specifier: 2.5.0
+        version: 2.5.0
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.17.1
+        version: 1.17.1
+      antd:
+        specifier: 5.8.2
+        version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      solid:
+        specifier: workspace:*
+        version: link:../../sdk/solid
+      ui:
+        specifier: workspace:*
+        version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
+    devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../sdk/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../sdk/tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  apps/parental-benefits-office:
+    dependencies:
+      '@ant-design/icons':
+        specifier: 5.1.2
+        version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-client':
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-access-grants':
+        specifier: 2.5.0
+        version: 2.5.0
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.17.1
+        version: 1.17.1
+      antd:
+        specifier: 5.8.2
+        version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      solid:
+        specifier: workspace:*
+        version: link:../../sdk/solid
+      ui:
+        specifier: workspace:*
+        version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
+    devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../sdk/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../sdk/tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  apps/reconstruction-loan-corporation:
+    dependencies:
+      '@ant-design/icons':
+        specifier: 5.1.2
+        version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-client':
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-access-grants':
+        specifier: 2.5.0
+        version: 2.5.0
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.17.1
+        version: 1.17.1
+      antd:
+        specifier: 5.8.2
+        version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      solid:
+        specifier: workspace:*
+        version: link:../../sdk/solid
+      ui:
+        specifier: workspace:*
+        version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
+    devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../sdk/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../sdk/tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  apps/registration-office:
+    dependencies:
+      '@ant-design/icons':
+        specifier: 5.1.2
+        version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-client':
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-access-grants':
+        specifier: 2.5.0
+        version: 2.5.0
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.17.1
+        version: 1.17.1
+      antd:
+        specifier: 5.8.2
+        version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      solid:
+        specifier: workspace:*
+        version: link:../../sdk/solid
+      ui:
+        specifier: workspace:*
+        version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
     devDependencies:
       '@types/node':
         specifier: 17.0.12
@@ -140,14 +631,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.28.1
-        version: 1.28.1(encoding@0.1.13)
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.2.0
-        version: 2.2.0
+        specifier: 2.5.0
+        version: 2.5.0
       '@inrupt/solid-client-authn-node':
-        specifier: 1.16.0
-        version: 1.16.0
+        specifier: 1.17.1
+        version: 1.17.1
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -169,6 +660,137 @@ importers:
       ui:
         specifier: workspace:*
         version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
+    devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../sdk/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../sdk/tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  apps/trade-office:
+    dependencies:
+      '@ant-design/icons':
+        specifier: 5.1.2
+        version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-client':
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-access-grants':
+        specifier: 2.5.0
+        version: 2.5.0
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.17.1
+        version: 1.17.1
+      antd:
+        specifier: 5.8.2
+        version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
+      nanoid:
+        specifier: 5.0.1
+        version: 5.0.1
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      solid:
+        specifier: workspace:*
+        version: link:../../sdk/solid
+      ui:
+        specifier: workspace:*
+        version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
+    devDependencies:
+      '@types/node':
+        specifier: 17.0.12
+        version: 17.0.12
+      '@types/react':
+        specifier: 18.0.22
+        version: 18.0.22
+      '@types/react-dom':
+        specifier: 18.0.7
+        version: 18.0.7
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../sdk/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../sdk/tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  apps/vehicle-registration-office:
+    dependencies:
+      '@ant-design/icons':
+        specifier: 5.1.2
+        version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
+      '@inrupt/solid-client':
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-access-grants':
+        specifier: 2.5.0
+        version: 2.5.0
+      '@inrupt/solid-client-authn-node':
+        specifier: 1.17.1
+        version: 1.17.1
+      antd:
+        specifier: 5.8.2
+        version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      i18n:
+        specifier: workspace:*
+        version: link:../../sdk/i18n
+      nanoid:
+        specifier: 5.0.1
+        version: 5.0.1
+      next:
+        specifier: 13.4.10
+        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      solid:
+        specifier: workspace:*
+        version: link:../../sdk/solid
+      ui:
+        specifier: workspace:*
+        version: link:../../sdk/ui
+      vocab:
+        specifier: workspace:*
+        version: link:../../sdk/vocab
     devDependencies:
       '@types/node':
         specifier: 17.0.12
@@ -233,9 +855,9 @@ importers:
       server-only:
         specifier: 0.0.1
         version: 0.0.1
-      solid:
+      vocab:
         specifier: workspace:*
-        version: link:../solid
+        version: link:../vocab
     devDependencies:
       '@types/negotiator':
         specifier: 0.6.1
@@ -271,20 +893,20 @@ importers:
         specifier: 0.3.5
         version: 0.3.5
       '@inrupt/solid-client':
-        specifier: 1.28.1
-        version: 1.28.1(encoding@0.1.13)
+        specifier: 1.30.0
+        version: 1.30.0(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.2.0
-        version: 2.2.0
+        specifier: 2.5.0
+        version: 2.5.0
       '@inrupt/solid-client-authn-browser':
-        specifier: 1.16.0
-        version: 1.16.0(encoding@0.1.13)
+        specifier: 1.17.1
+        version: 1.17.1(encoding@0.1.13)
       '@inrupt/solid-client-authn-node':
-        specifier: 1.16.0
-        version: 1.16.0
+        specifier: 1.17.1
+        version: 1.17.1
       '@inrupt/solid-client-notifications':
-        specifier: 1.2.0
-        version: 1.2.0(@inrupt/solid-client@1.28.1)
+        specifier: 1.3.0
+        version: 1.3.0(@inrupt/solid-client@1.30.0)
       '@inrupt/vocab-common-rdf':
         specifier: 1.0.5
         version: 1.0.5
@@ -297,18 +919,24 @@ importers:
       deepmerge:
         specifier: 4.3.1
         version: 4.3.1
+      i18n:
+        specifier: workspace:*
+        version: link:../i18n
       n3:
         specifier: 1.16.4
         version: 1.16.4
       nanoid:
-        specifier: 4.0.2
-        version: 4.0.2
+        specifier: 5.0.1
+        version: 5.0.1
       rdf-js:
         specifier: 4.0.2
         version: 4.0.2
       rdf-namespaces:
         specifier: 1.11.0
         version: 1.11.0
+      vocab:
+        specifier: workspace:*
+        version: link:../vocab
     devDependencies:
       '@types/n3':
         specifier: 1.10.4
@@ -337,8 +965,8 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-ui-react':
-        specifier: 2.8.2
-        version: 2.8.2(encoding@0.1.13)(react@18.2.0)
+        specifier: 2.9.0
+        version: 2.9.0(encoding@0.1.13)(react@18.2.0)
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -379,6 +1007,34 @@ importers:
       react:
         specifier: 18.2.0
         version: 18.2.0
+      tsconfig:
+        specifier: workspace:*
+        version: link:../tsconfig
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  sdk/vocab:
+    dependencies:
+      '@inrupt/lit-vocab-term':
+        specifier: 0.3.5
+        version: 0.3.5
+      '@rdfjs/data-model':
+        specifier: 2.0.1
+        version: 2.0.1
+      rdf-js:
+        specifier: 4.0.2
+        version: 4.0.2
+    devDependencies:
+      '@types/rdfjs__data-model':
+        specifier: 2.0.4
+        version: 2.0.4
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../eslint-config-custom
       tsconfig:
         specifier: workspace:*
         version: link:../tsconfig
@@ -459,13 +1115,6 @@ packages:
       react: 18.2.0
       resize-observer-polyfill: 1.5.1
       throttle-debounce: 5.0.0
-    dev: false
-
-  /@babel/runtime@7.22.3:
-    resolution: {integrity: sha512-XsDuspWKLUsxwCp6r7EhsExHtYfbe5oAGQ19kqngTdCPUoPQzOPdUbD/pB9PJiwb2ptYKQDjSJT3R6dC+EPqfQ==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      regenerator-runtime: 0.13.11
     dev: false
 
   /@babel/runtime@7.22.6:
@@ -566,11 +1215,12 @@ packages:
       '@types/rdf-js': 3.0.0
     dev: false
 
-  /@inrupt/oidc-client-ext@1.16.0(encoding@0.1.13):
-    resolution: {integrity: sha512-09fJEX64GFq6eWY5xSFsKWo9Uz2v14s2L2It49/KnzAe7O9hc8XXelNndLPxrrOOzuf38YHv4W1irFJPy4PPMw==}
+  /@inrupt/oidc-client-ext@1.17.1(encoding@0.1.13):
+    resolution: {integrity: sha512-uh8ecf4xALoel6Yxlg8srsGO44JhQLjE++mdM13Fniy6TwCU+odHSnMny9afpO/HBZ6abQ02mCFiLtrufczzaA==}
     dependencies:
       '@inrupt/oidc-client': 1.11.6
-      '@inrupt/solid-client-authn-core': 1.16.0(encoding@0.1.13)
+      '@inrupt/solid-client-authn-core': 1.17.1(encoding@0.1.13)
+      '@inrupt/universal-fetch': 1.0.3(encoding@0.1.13)
       jose: 4.14.4
       uuid: 9.0.0
     transitivePeerDependencies:
@@ -587,12 +1237,12 @@ packages:
       serialize-javascript: 4.0.0
     dev: false
 
-  /@inrupt/solid-client-access-grants@2.2.0:
-    resolution: {integrity: sha512-xOWzvi+uef7wHPbMhIPlTsDQXVYz3nP4dcY8mDUsUNHYLtf8JRLuN6E+TtrBgbgyBUl6FH4mcUfSzRHRvShpUA==}
-    engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0}
+  /@inrupt/solid-client-access-grants@2.5.0:
+    resolution: {integrity: sha512-DZMjNDRdt/KAJ98OusU/T8DQMijsRDM3nyi5NC/jzVL4A9WP6oaEusdHu+0DBtwLPVRSMUF1BRZLSPPK9wjjUA==}
+    engines: {node: ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/solid-client': 1.28.1(encoding@0.1.13)
-      '@inrupt/solid-client-vc': 0.5.0
+      '@inrupt/solid-client': 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-vc': 0.7.1
       '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
       '@types/rdfjs__dataset': 1.0.5
       auth-header: 1.0.0
@@ -604,42 +1254,37 @@ packages:
       - encoding
     dev: false
 
-  /@inrupt/solid-client-authn-browser@1.16.0(encoding@0.1.13):
-    resolution: {integrity: sha512-6Wq/e8C5RapSFTRhs7TKThwhLaQ2DdMqmAiqaNlP7XpTWKRv87Chc2sX0msPjzmM+L/Tde2+71lX1o0x6sQbKA==}
+  /@inrupt/solid-client-authn-browser@1.17.1(encoding@0.1.13):
+    resolution: {integrity: sha512-ApTK9H+v6YOp099opLdyLq9qM5j8adpYkK4KMOQKsK9ndDLVNiduq4EgPq4/jtwPGe0hG0YWuFuB8mJpLzJftA==}
     dependencies:
-      '@inrupt/oidc-client-ext': 1.16.0(encoding@0.1.13)
-      '@inrupt/solid-client-authn-core': 1.16.0(encoding@0.1.13)
-      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
-      '@types/lodash.clonedeep': 4.5.7
-      '@types/node': 20.2.5
-      '@types/uuid': 9.0.1
+      '@inrupt/oidc-client-ext': 1.17.1(encoding@0.1.13)
+      '@inrupt/solid-client-authn-core': 1.17.1(encoding@0.1.13)
+      '@inrupt/universal-fetch': 1.0.3(encoding@0.1.13)
       events: 3.3.0
       jose: 4.14.4
-      lodash.clonedeep: 4.5.0
       uuid: 9.0.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@inrupt/solid-client-authn-core@1.16.0(encoding@0.1.13):
-    resolution: {integrity: sha512-lp4p21Ob0SJwPW2mJcUkM6YBp/zj9MM+RlHRM1uUdpPgvybGDLEIgJfKjkjku0RqFFJwCSP/KtbdCgnNFk5KXw==}
+  /@inrupt/solid-client-authn-core@1.17.1(encoding@0.1.13):
+    resolution: {integrity: sha512-UKTtZH0lISgWaiUYRr0zRkvFHIjYzVaWEC0IJoLUFIEfJdYogMXmPKoHyJEw7MdJ6qVYMLdPo9k2OSLfdUfYjA==}
     engines: {node: ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
       '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
       events: 3.3.0
       jose: 4.14.4
-      lodash.clonedeep: 4.5.0
       uuid: 9.0.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@inrupt/solid-client-authn-node@1.16.0:
-    resolution: {integrity: sha512-4LSYwMwNUFoXDnwVQ9sxXnMsZCLArcUiYBnCO/PxmeRIkzhGx37RMxUSpGXc26XwhJ4vGHIlbPsdjBxtrpFg9Q==}
+  /@inrupt/solid-client-authn-node@1.17.1:
+    resolution: {integrity: sha512-4ISQPIz6mIcTLk2sVUEc6q7iD69SuXP50P1A8y8qAAzh/UvFyl2MDwCCXS7+WTpaYKAo2uc54WyYuJhDnu/Ujw==}
     engines: {node: ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/solid-client-authn-core': 1.16.0(encoding@0.1.13)
-      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
+      '@inrupt/solid-client-authn-core': 1.17.1(encoding@0.1.13)
+      '@inrupt/universal-fetch': 1.0.3(encoding@0.1.13)
       jose: 4.14.4
       openid-client: 5.4.2
       uuid: 9.0.0
@@ -647,13 +1292,13 @@ packages:
       - encoding
     dev: false
 
-  /@inrupt/solid-client-notifications@1.2.0(@inrupt/solid-client@1.28.1):
-    resolution: {integrity: sha512-CW/hlkHOTS65uNWOzNtBB97fbRuFslEaARl7fhU9UcQ5h7U1ktjD++QM7rIWMm3c8XVSbhT2N+3khX0+Lo5/kw==}
-    engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0}
+  /@inrupt/solid-client-notifications@1.3.0(@inrupt/solid-client@1.30.0):
+    resolution: {integrity: sha512-fM2q50Rgs+V15y8gkUnQcUDgg6lrPmrnxsm8ZJNF0MSiTlm9opSV4PONpSEiZIoljN/f6v4Dk/aOl1CedGPN+Q==}
+    engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     peerDependencies:
       '@inrupt/solid-client': ^1.25.2
     dependencies:
-      '@inrupt/solid-client': 1.28.1(encoding@0.1.13)
+      '@inrupt/solid-client': 1.30.0(encoding@0.1.13)
       '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
       '@types/events': 3.0.0
       '@types/ws': 8.5.4
@@ -668,20 +1313,23 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@inrupt/solid-client-vc@0.5.0:
-    resolution: {integrity: sha512-Rglf0I47hhkZ/kOjM2Vtxph6sh8ZzxHN/vUOYOMZR/fiRtN8DotCFASBZ3qgMbRYmroKCxs8QDEHF36sq3ftrQ==}
+  /@inrupt/solid-client-vc@0.7.1:
+    resolution: {integrity: sha512-zCB7qevs0AwxS2Z7EapnwnSdvMuIveOZTJRfPD/jZuOBX9r8peTLDel+OnpRv4/DtyNEwdYGR2BqRiF5t51tbg==}
+    engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/solid-client': 1.28.1(encoding@0.1.13)
-      cross-fetch: 3.1.6(encoding@0.1.13)
+      '@inrupt/solid-client': 1.30.0(encoding@0.1.13)
+      '@inrupt/universal-fetch': 1.0.3(encoding@0.1.13)
+    optionalDependencies:
+      fsevents: 2.3.2
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@inrupt/solid-client@1.28.1(encoding@0.1.13):
-    resolution: {integrity: sha512-Nq1/ttMSU+kvxucfjIdP8CAYzHSJGBv2ECQ9bIDmyxJQqBfBA0vMX3e9osgp1J0YHWHulbzBqCl/miROi6dOYA==}
+  /@inrupt/solid-client@1.30.0(encoding@0.1.13):
+    resolution: {integrity: sha512-iRyLqM9k5W0IiRHZz+dGsa+94pu8cGqjRB5B8s+YhLlNQH/fY6Xmu21f1zl1uKWebc4PBlAJPcBcR46RVXlCJQ==}
     engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
+      '@inrupt/universal-fetch': 1.0.3(encoding@0.1.13)
       '@rdfjs/dataset': 1.1.1
       '@types/rdfjs__dataset': 1.0.5
       buffer: 6.0.3
@@ -696,14 +1344,14 @@ packages:
       - encoding
     dev: false
 
-  /@inrupt/solid-ui-react@2.8.2(encoding@0.1.13)(react@18.2.0):
-    resolution: {integrity: sha512-4VmzfFso37mVJQVmDCXjl0od2w0sgGWvO8KWxOHsKmKqxY89vPpMKaN4gviLSFkjShec8YqtojxLjvrTJhfrFQ==}
-    engines: {node: ^14.17.0 || >=16.0.0}
+  /@inrupt/solid-ui-react@2.9.0(encoding@0.1.13)(react@18.2.0):
+    resolution: {integrity: sha512-5b5Y9u+H3v3jjjg25Gcxb08gWgdreXSQ8FznKdXGXfAt4INl2GDkqabdMpXNTcFnz4YhN2KXL6c/QKiASJcfhg==}
+    engines: {node: ^16.0.0 || ^18.0.0 || ^20.0.0}
     peerDependencies:
-      react: '>16.13.0 || ^17.0.0 || ^18.0.0'
+      react: '>16.13.0 || ^17.0.0 || ^18.0.0 || ^18.0.0 || ^20.0.0'
     dependencies:
-      '@inrupt/solid-client': 1.28.1(encoding@0.1.13)
-      '@inrupt/solid-client-authn-browser': 1.16.0(encoding@0.1.13)
+      '@inrupt/solid-client': 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client-authn-browser': 1.17.1(encoding@0.1.13)
       core-js: 3.30.2
       react: 18.2.0
       react-table: 7.8.0(react@18.2.0)
@@ -715,6 +1363,16 @@ packages:
 
   /@inrupt/universal-fetch@1.0.1(encoding@0.1.13):
     resolution: {integrity: sha512-oqbG7jS1fa6hVkjSir+u5Ab3eSbyxFyOjsgjDICL27mAd5z8oImTSETnY2hYbkRaJQYKMBOXhtm7L5/+EbeVJg==}
+    dependencies:
+      node-fetch: 2.6.11(encoding@0.1.13)
+      undici: 5.22.1
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@inrupt/universal-fetch@1.0.3(encoding@0.1.13):
+    resolution: {integrity: sha512-AP/nMOuuKvR2YoQkdS77ntuuq5ZYDGStI8Uirp1MCsyPSoBLyNnRjMLjlGqIlaC+5Xp7TYZJ9z/Kl2uUEpXUFw==}
+    engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
       node-fetch: 2.6.11(encoding@0.1.13)
       undici: 5.22.1
@@ -991,16 +1649,6 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: false
 
-  /@types/lodash.clonedeep@4.5.7:
-    resolution: {integrity: sha512-ccNqkPptFIXrpVqUECi60/DFxjNKsfoQxSQsgcBJCX/fuX1wgyQieojkcWH/KpE3xzLoWN/2k+ZeGqIN3paSvw==}
-    dependencies:
-      '@types/lodash': 4.14.195
-    dev: false
-
-  /@types/lodash@4.14.195:
-    resolution: {integrity: sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==}
-    dev: false
-
   /@types/n3@1.10.4:
     resolution: {integrity: sha512-FfRTwcbXcScVHuAjIASveRWL6Fi6fPALl1Ge8tMESYLqU7R42LJvtdBpUi+f9YK0oQPqIN+zFFgMDFJfLMx0bg==}
     dependencies:
@@ -1017,10 +1665,6 @@ packages:
 
   /@types/node@18.16.16:
     resolution: {integrity: sha512-NpaM49IGQQAUlBhHMF82QH80J08os4ZmyF9MkpCzWAGuOHqE4gTEbhzd7L3l5LmWuZ6E0OiC1FweQ4tsiW35+g==}
-    dev: false
-
-  /@types/node@20.2.5:
-    resolution: {integrity: sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==}
     dev: false
 
   /@types/prop-types@15.7.5:
@@ -1096,10 +1740,6 @@ packages:
   /@types/scheduler@0.16.3:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
     dev: true
-
-  /@types/uuid@9.0.1:
-    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
-    dev: false
 
   /@types/ws@8.5.4:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
@@ -1222,7 +1862,7 @@ packages:
       '@ant-design/cssinjs': 1.16.1(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/icons': 5.2.5(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/react-slick': 1.0.1(react@18.2.0)
-      '@babel/runtime': 7.22.3
+      '@babel/runtime': 7.22.6
       '@ctrl/tinycolor': 3.6.0
       '@rc-component/color-picker': 1.4.1(react-dom@18.2.0)(react@18.2.0)
       '@rc-component/mutate-observer': 1.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -1263,7 +1903,7 @@ packages:
       rc-tree: 5.7.9(react-dom@18.2.0)(react@18.2.0)
       rc-tree-select: 5.11.1(react-dom@18.2.0)(react@18.2.0)
       rc-upload: 4.3.4(react-dom@18.2.0)(react@18.2.0)
-      rc-util: 5.32.4(react-dom@18.2.0)(react@18.2.0)
+      rc-util: 5.35.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       scroll-into-view-if-needed: 3.0.10
@@ -2676,10 +3316,6 @@ packages:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
     dev: false
 
-  /lodash.clonedeep@4.5.0:
-    resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
-    dev: false
-
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
@@ -2751,9 +3387,9 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  /nanoid@4.0.2:
-    resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
-    engines: {node: ^14 || ^16 || >=18}
+  /nanoid@5.0.1:
+    resolution: {integrity: sha512-vWeVtV5Cw68aML/QaZvqN/3QQXc6fBfIieAlu05m7FZW2Dgb+3f0xc0TTxuJW+7u30t7iSDTV/j3kVI0oJqIfQ==}
+    engines: {node: ^18 || >=20}
     hasBin: true
     dev: false
 
@@ -3558,18 +4194,6 @@ packages:
       rc-util: 5.35.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
-  /rc-util@5.32.4(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-LRQpfPjtLbN9BrNgU/evbQrhTLfHepJPSKbhHF2Nm1cnNeZkSqXCKDTDPjMXa1VavcnJA1iP39O8PB0+Rc216Q==}
-    peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-    dependencies:
-      '@babel/runtime': 7.22.6
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-is: 16.13.1
     dev: false
 
   /rc-util@5.35.1(react-dom@18.2.0)(react@18.2.0):

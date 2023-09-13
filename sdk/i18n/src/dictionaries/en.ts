@@ -1,5 +1,5 @@
 import type { Dictionary } from "../i18nConfig";
-import { GOV } from "solid";
+import { GOV } from "vocab";
 import { generateDictionaryFromVocab } from "../helper/generateDictionaryFromVocab";
 
 // prettier-ignore
@@ -29,8 +29,7 @@ const dictionary: Dictionary = {
     "_.empty": "Empty",
     "_.errorMessage": "An error has occurred.",
     "_.exists": "<1> exists.",
-    "_.form.landRegisterSurveys": "Land Register Surveys",
-    "_.form.propertyTaxReturn": "Property Tax Return",
+    "_.form": "Formular",
     "_.forms": "Formulars",
     "_.from": "From",
     "_.getAPod": "Get a Pod",
@@ -60,8 +59,18 @@ const dictionary: Dictionary = {
     "_.viewer": "Viewer",
     "_.yes": "Yes",
     "apps.citizen.app.root.title": "Citizen",
-    "apps.landRegistryOffice.app.root.title": "Land Registry Office",
+    "apps.tradeOffice.app.root.title": "Trade Office",
+    "apps.registrationOffice.app.root.title": "Registration Office",
     "apps.taxOffice.app.root.title": "Tax Office",
+    "apps.vehicleRegistrationOffice.app.root.title": "Vehicle Registration Office",
+    "apps.customs.app.root.title": "Customs",
+    "apps.landRegistryOffice.app.root.title": "Land Registry Office",
+    "apps.constructionOffice.app.root.title": "Construction Office",
+    "apps.employmentAgency.app.root.title": "Employment Agency",
+    "apps.environmentalOffice.app.root.title": "Environmental Office",
+    "apps.carInsuranceCompany.app.root.title": "Car Insurance Company",
+    "apps.reconstructionLoanCorporation.app.root.title": "Reconstruction Loan Corporation",
+    "apps.parentalBenefitsOffice.app.root.title": "Parental Benefits Office",
     "http://www.w3.org/2006/vcard/ns#family-name": "Family Name",
     "http://www.w3.org/2006/vcard/ns#given-name": "Given Name",
     "http://www.w3.org/2006/vcard/ns#locality": "Locality",
@@ -70,6 +79,8 @@ const dictionary: Dictionary = {
     "http://xmlns.com/foaf/0.1/lastName": "Last name",
     "http://xmlns.com/foaf/0.1/title": "Title",
     "referenceUrl parameter is missing": "referenceUrl parameter is missing",
+    "sdk.solid.services.inbox.createInboxMessageHeader.saveToDataMessageText": "Your <1> has been uploaded to your pod at the <2>.",
+    "sdk.solid.services.inbox.createInboxMessageHeader.requestAccessMessageText": "To access a data reference in you data vault access permission is required.",
     "sdk.ui.components.FolderStructureVerification.subTitle": "To ensure correct functionality across all applications certain data and access configurations need to be created.",
     "sdk.ui.components.FolderStructureVerification.title": "Some of the necessary data is missing.",
     "sdk.ui.components.SessionContent.1": "This application requires a Pod as data storage and a WebId to identify yourself in the web.",

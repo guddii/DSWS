@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAgentUserSession } from "../../session";
-import { GOV, controllerSubmitData } from "solid";
+import { controllerSubmitData } from "solid";
+import { GOV } from "vocab";
 
 export async function POST(request: Request) {
   try {

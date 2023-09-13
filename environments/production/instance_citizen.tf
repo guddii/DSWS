@@ -11,8 +11,8 @@ resource "vercel_deployment" "instance_citizen" {
   files       = data.vercel_project_directory.instance_citizen.files
   path_prefix = data.vercel_project_directory.instance_citizen.path
   project_settings = {
-    root_directory: "apps/citizen"
+    root_directory : "apps/citizen"
   }
   delete_on_destroy = true
-  production = true
+  production        = true
 }

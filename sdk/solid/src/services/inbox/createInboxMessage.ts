@@ -23,7 +23,7 @@ export type ICreateInboxMessage = IInboxMessageConfig &
  * @param messageType
  * @param data
  */
-export const createInboxMessage = ({
+export const createInboxMessage = async ({
   config,
   recipient,
   sender,
@@ -34,7 +34,7 @@ export const createInboxMessage = ({
   const header = { date, target };
 
   let dataset = createSolidDataset();
-  dataset = createInboxMessageHeader(dataset, {
+  dataset = await createInboxMessageHeader(dataset, {
     recipient,
     sender,
     messageType,
