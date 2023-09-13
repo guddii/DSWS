@@ -4,9 +4,6 @@
 TBD
 ```
 
-_What is the [frontend dev version](https://builder.dev.qanary.net)?_
-_What is the [backend dev version](https://api.dev.qanary.net/v2/health)?_
-
 #### Device
 
 ```

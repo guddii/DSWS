@@ -1,6 +1,19 @@
 version: "3"
 
 services:
+  car-insurance-company:
+    container_name: car-insurance-company
+    build:
+      context: .
+      dockerfile: ./apps/car-insurance-company/Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - showcase
+    env_file:
+      - .env
+
   citizen:
     container_name: citizen
     build:
@@ -8,20 +21,63 @@ services:
       dockerfile: ./apps/citizen/Dockerfile
     restart: always
     ports:
-      - "3000:3000"
+      - "3010:3000"
     networks:
       - showcase
+    env_file:
+      - .env
 
-  tax-office:
-    container_name: tax-office
+  construction-office:
+    container_name: construction-office
     build:
       context: .
-      dockerfile: ./apps/tax-office/Dockerfile
+      dockerfile: ./apps/construction-office/Dockerfile
     restart: always
     ports:
-      - "4000:3000"
+      - "3020:3000"
     networks:
       - showcase
+    env_file:
+      - .env
+
+  customs:
+    container_name: customs
+    build:
+      context: .
+      dockerfile: ./apps/customs/Dockerfile
+    restart: always
+    ports:
+      - "3030:3000"
+    networks:
+      - showcase
+    env_file:
+      - .env
+
+  employment-agency:
+    container_name: employment-agency
+    build:
+      context: .
+      dockerfile: ./apps/employment-agency/Dockerfile
+    restart: always
+    ports:
+      - "3040:3000"
+    networks:
+      - showcase
+    env_file:
+      - .env
+
+  environmental-office:
+    container_name: environmental-office
+    build:
+      context: .
+      dockerfile: ./apps/environmental-office/Dockerfile
+    restart: always
+    ports:
+      - "3050:3000"
+    networks:
+      - showcase
+    env_file:
+      - .env
 
   land-registry-office:
     container_name: land-registry-office
@@ -30,9 +86,89 @@ services:
       dockerfile: ./apps/land-registry-office/Dockerfile
     restart: always
     ports:
-      - "5000:3000"
+      - "3060:3000"
     networks:
       - showcase
+    env_file:
+      - .env
+
+  parental-benefits-office:
+    container_name: parental-benefits-office
+    build:
+      context: .
+      dockerfile: ./apps/parental-benefits-office/Dockerfile
+    restart: always
+    ports:
+      - "3070:3000"
+    networks:
+      - showcase
+    env_file:
+      - .env
+
+  reconstruction-loan-corporation:
+    container_name: reconstruction-loan-corporation
+    build:
+      context: .
+      dockerfile: ./apps/reconstruction-loan-corporation/Dockerfile
+    restart: always
+    ports:
+      - "3080:3000"
+    networks:
+      - showcase
+    env_file:
+      - .env
+
+  registration-office:
+    container_name: registration-office
+    build:
+      context: .
+      dockerfile: ./apps/registration-office/Dockerfile
+    restart: always
+    ports:
+      - "3090:3000"
+    networks:
+      - showcase
+    env_file:
+      - .env
+
+  tax-office:
+    container_name: tax-office
+    build:
+      context: .
+      dockerfile: ./apps/tax-office/Dockerfile
+    restart: always
+    ports:
+      - "3100:3000"
+    networks:
+      - showcase
+    env_file:
+      - .env
+
+  trade-office:
+    container_name: trade-office
+    build:
+      context: .
+      dockerfile: ./apps/trade-office/Dockerfile
+    restart: always
+    ports:
+      - "3110:3000"
+    networks:
+      - showcase
+    env_file:
+      - .env
+
+  vehicle-registration-office:
+      container_name: vehicle-registration-office
+      build:
+        context: .
+        dockerfile: ./apps/vehicle-registration-office/Dockerfile
+      restart: always
+      ports:
+        - "3120:3000"
+      networks:
+        - showcase
+      env_file:
+        - .env
 
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname

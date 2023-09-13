@@ -31,8 +31,8 @@ const createStammdatenFile = async (
   const defaultData = {
     subject: webId,
     values: {
-      [VCARD.given_name.value]: "",
       [VCARD.family_name.value]: "",
+      [VCARD.given_name.value]: "",
       [VCARD.locality.value]: "",
     },
   };

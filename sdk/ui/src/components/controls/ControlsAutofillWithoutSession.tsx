@@ -70,6 +70,7 @@ export const ControlsAutofillWithoutSession = ({
         }
 
         form.setFieldsValue(formValues);
+        router.push(globalThis.location.pathname); // Removes the query to prevent infinite fetching
         setIsLoading(false);
       } catch (error: any) {
         console.error(error);
@@ -80,7 +81,7 @@ export const ControlsAutofillWithoutSession = ({
         setIsLoading(false);
       }
     },
-    [form, message, router, t, webId]
+    [form, message, t, webId]
   );
 
   useEffect(() => {

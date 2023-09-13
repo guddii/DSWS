@@ -10,12 +10,36 @@
       <sourceFolder url="file://$MODULE_DIR$/apps/tax-admin/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/apps/land-registry-office/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/sdk/i18n/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/car-insurance-company/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/construction-office/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/customs/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/environmental-office/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/parental-benefits-office/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/reconstruction-loan-corporation/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/registration-office/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/trade-office/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/vehicle-registration-office/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/employment-agency/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/sdk/vocab/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/apps/citizen/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/sdk/solid/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/sdk/solid/dist" />
       <excludeFolder url="file://$MODULE_DIR$/sdk/ui/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/sdk/ui/dist" />
       <excludeFolder url="file://$MODULE_DIR$/apps/tax-office/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/land-registry-office/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/car-insurance-company/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/land-registry-office/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/construction-office/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/customs/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/employment-agency/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/environmental-office/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/parental-benefits-office/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/reconstruction-loan-corporation/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/registration-office/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/trade-office/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/vehicle-registration-office/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/sdk/i18n/.turbo" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

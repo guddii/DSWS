@@ -20,7 +20,7 @@ export const sendInboxMessage = async ({
   data,
 }: SendInboxMessage) => {
   const { config } = createInboxMessageConfig({ recipient });
-  const dataset = createInboxMessage({
+  const dataset = await createInboxMessage({
     config,
     recipient,
     sender,

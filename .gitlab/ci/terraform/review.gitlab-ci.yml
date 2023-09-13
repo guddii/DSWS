@@ -40,9 +40,19 @@ apply:
   stage: deploy
   script:
     - gitlab-terraform apply
+    - echo "INSTANCE_CAR_INSURANCE_COMPANY_URL=$(gitlab-terraform output -raw instance_car-insurance-company_url)" >> build.env
     - echo "INSTANCE_CITIZEN_URL=$(gitlab-terraform output -raw instance_citizen_url)" >> build.env
-    - echo "INSTANCE_TAX_OFFICE_URL=$(gitlab-terraform output -raw instance_tax-office_url)" >> build.env
+    - echo "INSTANCE_CONSTRUCTION_OFFICE_URL=$(gitlab-terraform output -raw instance_construction-office_url)" >> build.env
+    - echo "INSTANCE_CUSTOMS_URL=$(gitlab-terraform output -raw instance_customs_url)" >> build.env
+    - echo "INSTANCE_EMPLOYMENT_AGENCY_URL=$(gitlab-terraform output -raw instance_employment-agency_url)" >> build.env
+    - echo "INSTANCE_ENVIRONMENTAL_OFFICE_URL=$(gitlab-terraform output -raw instance_environmental-office_url)" >> build.env
     - echo "INSTANCE_LAND_REGISTRY_OFFICE_URL=$(gitlab-terraform output -raw instance_land-registry-office_url)" >> build.env
+    - echo "INSTANCE_PARENTAL_BENEFITS_OFFICE_URL=$(gitlab-terraform output -raw instance_parental-benefits-office_url)" >> build.env
+    - echo "INSTANCE_RECONSTRUCTION_LOAN_CORPORATION_URL=$(gitlab-terraform output -raw instance_reconstruction-loan-corporation_url)" >> build.env
+    - echo "INSTANCE_REGISTRATION_OFFICE_URL=$(gitlab-terraform output -raw instance_registration-office_url)" >> build.env
+    - echo "INSTANCE_TAX_OFFICE_URL=$(gitlab-terraform output -raw instance_tax-office_url)" >> build.env
+    - echo "INSTANCE_TRADE_OFFICE_URL=$(gitlab-terraform output -raw instance_trade-office_url)" >> build.env
+    - echo "INSTANCE_VEHICLE_REGISTRATION_OFFICE_URL=$(gitlab-terraform output -raw instance_vehicle-registration-office_url)" >> build.env
   artifacts:
     name: apply
     paths:
@@ -67,13 +77,103 @@ destroy:
     action: stop
   when: manual
 
+report_instance_car-insurance-company:
+  stage: report
+  script:
+    - echo $INSTANCE_CAR_INSURANCE_COMPANY_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-car-insurance-company
+    url: https://$INSTANCE_CAR_INSURANCE_COMPANY_URL
+  dependencies:
+    - apply
+
 report_instance_citizen:
   stage: report
   script:
     - echo $INSTANCE_CITIZEN_URL
   environment:
-    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-citizen
+    name: production/solid-showcase-citizen
     url: https://$INSTANCE_CITIZEN_URL
+  needs:
+    - apply
+
+report_instance_construction-office:
+  stage: report
+  script:
+    - echo $INSTANCE_CONSTRUCTION_OFFICE_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-construction-office
+    url: https://$INSTANCE_CONSTRUCTION_OFFICE_URL
+  dependencies:
+    - apply
+
+report_instance_customs:
+  stage: report
+  script:
+    - echo $INSTANCE_CUSTOMS_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-customs
+    url: https://$INSTANCE_CUSTOMS_URL
+  dependencies:
+    - apply
+
+report_instance_employment-agency:
+  stage: report
+  script:
+    - echo $INSTANCE_EMPLOYMENT_AGENCY_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-employment-agency
+    url: https://$INSTANCE_EMPLOYMENT_AGENCY_URL
+  dependencies:
+    - apply
+
+report_instance_environmental-office:
+  stage: report
+  script:
+    - echo $INSTANCE_ENVIRONMENTAL_OFFICE_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-environmental-office
+    url: https://$INSTANCE_ENVIRONMENTAL_OFFICE_URL
+  dependencies:
+    - apply
+
+report_instance_land-registry-office:
+  stage: report
+  script:
+    - echo $INSTANCE_LAND_REGISTRY_OFFICE_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-land-registry-office
+    url: https://$INSTANCE_LAND_REGISTRY_OFFICE_URL
+  dependencies:
+    - apply
+
+report_instance_parental-benefits-office:
+  stage: report
+  script:
+    - echo $INSTANCE_PARENTAL_BENEFITS_OFFICE_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-parental-benefits-office
+    url: https://$INSTANCE_PARENTAL_BENEFITS_OFFICE_URL
+  dependencies:
+    - apply
+
+report_instance_reconstruction-loan-corporation:
+  stage: report
+  script:
+    - echo $INSTANCE_RECONSTRUCTION_LOAN_CORPORATION_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-reconstruction-loan-corporation
+    url: https://$INSTANCE_RECONSTRUCTION_LOAN_CORPORATION_URL
+  dependencies:
+    - apply
+
+report_instance_registration-office:
+  stage: report
+  script:
+    - echo $INSTANCE_REGISTRATION_OFFICE_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-registration-office
+    url: https://$INSTANCE_REGISTRATION_OFFICE_URL
   dependencies:
     - apply
 
@@ -87,12 +187,22 @@ report_instance_tax-office:
   dependencies:
     - apply
 
-report_instance_land-registry-office:
+report_instance_trade-office:
   stage: report
   script:
-    - echo $INSTANCE_LAND_REGISTRY_OFFICE_URL
+    - echo $INSTANCE_TRADE_OFFICE_URL
   environment:
-    name: production/solid-showcase-land-registry-office
-    url: https://$INSTANCE_LAND_REGISTRY_OFFICE_URL
-  needs:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-trade-office
+    url: https://$INSTANCE_TRADE_OFFICE_URL
+  dependencies:
+    - apply
+
+report_instance_vehicle-registration-office:
+  stage: report
+  script:
+    - echo $INSTANCE_VEHICLE_REGISTRATION_OFFICE_URL
+  environment:
+    name: review-${CI_COMMIT_REF_NAME}/solid-showcase-vehicle-registration-office
+    url: https://$INSTANCE_VEHICLE_REGISTRATION_OFFICE_URL
+  dependencies:
     - apply

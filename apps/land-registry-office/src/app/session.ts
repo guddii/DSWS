@@ -7,13 +7,29 @@ export const getAgentUserSession = async () => {
     return session;
   }
 
+  const clientId = process.env.LAND_REGISTRY_OFFICE_CLIENT_ID;
+  if (!clientId) {
+    throw new Error("LAND_REGISTRY_OFFICE_CLIENT_ID is undefined");
+  }
+
+  const clientSecret = process.env.LAND_REGISTRY_OFFICE_CLIENT_SECRET;
+  if (!clientSecret) {
+    throw new Error("LAND_REGISTRY_OFFICE_CLIENT_ID is undefined");
+  }
+
   // get your own client id and secret from https://login.inrupt.com/registration.html
-  await session.login({
-    clientId: "5667120c-ece3-4261-ba75-8c31c22e15d4",
-    clientSecret: "fe6e0c90-9a08-406f-a632-b243cd312512",
-    oidcIssuer: "https://login.inrupt.com",
-    tokenType: "Bearer",
-  });
+  await session
+    .login({
+      clientId,
+      clientSecret,
+      oidcIssuer: "https://login.inrupt.com",
+      tokenType: "Bearer",
+    })
+    .then(() => {
+      if (!session.info.isLoggedIn) {
+        throw new Error(`agent login failed`);
+      }
+    });
 
   return session;
 };

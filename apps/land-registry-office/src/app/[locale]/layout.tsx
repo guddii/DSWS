@@ -8,14 +8,13 @@ import {
 } from "ui";
 import { generateNavigation } from "./navigation";
 import { getStaticParams, getMetadata, I18nKey } from "i18n/server";
-import { LAND_REGISTRY_OFFICE_WEB_ID } from "solid";
 
 const auth: IAuth = {
   methods: [AuthMethods.WebId],
 };
 
 const agent: IAgent = {
-  webId: LAND_REGISTRY_OFFICE_WEB_ID,
+  webId: process.env.NEXT_PUBLIC_LAND_REGISTRY_OFFICE_WEB_ID,
 };
 
 export const generateStaticParams = getStaticParams();

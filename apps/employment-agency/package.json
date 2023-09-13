@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "employment-agency",
+  "version": "0.0.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev -p 3040",
+    "lint": "next lint",
+    "start": "next start -p 3040"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@ant-design/icons": "5.1.2",
+    "@inrupt/solid-client": "1.30.0",
+    "@inrupt/solid-client-access-grants": "2.5.0",
+    "@inrupt/solid-client-authn-node": "1.17.1",
+    "antd": "5.8.2",
+    "i18n": "workspace:*",
+    "next": "13.4.10",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "solid": "workspace:*",
+    "ui": "workspace:*",
+    "vocab": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.12",
+    "@types/react": "18.0.22",
+    "@types/react-dom": "18.0.7",
+    "eslint": "8.39.0",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "5.0.4"
+  }
+}

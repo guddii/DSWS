@@ -3,7 +3,9 @@ import { getDictionary } from "./getDictionary";
 import { generateText } from "../helper/generateText";
 
 export const getTranslation = async (currentLocale: Locale) => {
-  const dictionary: Record<string, string> = await getDictionary(currentLocale);
+  const dictionary: Record<string, string | undefined> = await getDictionary(
+    currentLocale
+  );
 
   return (key: I18nKey, ...replacements: Array<string>) => {
     let text = dictionary[key];

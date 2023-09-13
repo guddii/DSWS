@@ -9,7 +9,7 @@ import {
   toUrlString,
   sendInboxMessage,
   MessageTypes,
-  SENDER_TO_PROPERTY_MAP,
+  WEB_ID_TO_PROPERTY_MAP,
   getCreatorPredicate,
 } from "solid";
 import { FormsTurtleEditor } from "../forms/FormsTurtleEditor";
@@ -68,9 +68,9 @@ export const EditorTurtleModel = ({
   };
 
   const onSubmitSaveToInbox = async () => {
-    const predicate = SENDER_TO_PROPERTY_MAP[agent.webId];
+    const predicate = WEB_ID_TO_PROPERTY_MAP[agent.webId];
     const predicateCreator = getCreatorPredicate(
-      SENDER_TO_PROPERTY_MAP[agent.webId]
+      WEB_ID_TO_PROPERTY_MAP[agent.webId]
     );
 
     const additionalDataEntries = Object.entries(additionalData).map(

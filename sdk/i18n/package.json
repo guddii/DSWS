@@ -15,7 +15,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "server-only": "0.0.1",
-    "solid": "workspace:*"
+    "vocab": "workspace:*"
   },
   "devDependencies": {
     "@types/negotiator": "0.6.1",

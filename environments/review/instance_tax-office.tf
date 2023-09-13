@@ -11,7 +11,7 @@ resource "vercel_deployment" "instance_tax-office" {
   files       = data.vercel_project_directory.instance_tax-office.files
   path_prefix = data.vercel_project_directory.instance_tax-office.path
   project_settings = {
-    root_directory: "apps/tax-office"
+    root_directory : "apps/tax-office"
   }
   delete_on_destroy = true
 }

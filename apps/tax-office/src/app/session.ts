@@ -6,14 +6,29 @@ export const getAgentUserSession = async () => {
   if (session.info.isLoggedIn) {
     return session;
   }
+  const clientId = process.env.TAX_OFFICE_CLIENT_ID;
+  if (!clientId) {
+    throw new Error("LAND_REGISTRY_OFFICE_CLIENT_ID is undefined");
+  }
+
+  const clientSecret = process.env.TAX_OFFICE_CLIENT_SECRET;
+  if (!clientSecret) {
+    throw new Error("LAND_REGISTRY_OFFICE_CLIENT_ID is undefined");
+  }
 
   // get your own client id and secret from https://login.inrupt.com/registration.html
-  await session.login({
-    clientId: "1172f8fb-911d-4a3f-b4fd-2a706201d510",
-    clientSecret: "83abc881-667f-43b1-a1b3-91790a96870d",
-    oidcIssuer: "https://login.inrupt.com",
-    tokenType: "Bearer",
-  });
+  await session
+    .login({
+      clientId,
+      clientSecret,
+      oidcIssuer: "https://login.inrupt.com",
+      tokenType: "Bearer",
+    })
+    .then(() => {
+      if (!session.info.isLoggedIn) {
+        throw new Error("agent login failed");
+      }
+    });
 
   return session;
 };

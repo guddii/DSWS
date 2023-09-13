@@ -3,10 +3,10 @@
   "name": "showcase",
   "version": "0.0.0",
   "scripts": {
-    "start": "dotenv -- turbo run start",
+    "start": "dotenv -- turbo run start --concurrency 20",
     "build": "dotenv -- turbo run build",
     "clean": "turbo run clean",
-    "dev": "dotenv -- turbo run dev",
+    "dev": "dotenv -- turbo run dev --concurrency 20",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "test": "turbo run test"

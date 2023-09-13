@@ -30,9 +30,19 @@ export * from "./services/solid/storage";
 export * from "./services/solid/thing";
 // Models
 export * from "./models/AbstractModel";
-export * from "./models/TaxOfficeModel";
-export * from "./models/LandRegistryOfficeModel";
-// Vocab
-export * from "./vocab/GOV";
+export * from "./models/AttachmentBuildingPermit";
+export * from "./models/AttachmentBusinessPremisesPermit";
+export * from "./models/AttachmentCreditNotice";
+export * from "./models/AttachmentFundingNotice";
+export * from "./models/AttachmentIdentityCard";
+export * from "./models/AttachmentLicensePlateNumber";
+export * from "./models/AttachmentMotorVehicleInsuranceCertificate";
+export * from "./models/AttachmentParentalBenefitNotice";
+export * from "./models/AttachmentPropertyData";
+export * from "./models/AttachmentTaxDeclaration";
+export * from "./models/AttachmentTradeID";
+export * from "./models/AttachmentVehicleRegistrationCertificate";
+export * from "./models/MainForm";
+
 // Config
 export * from "./config";
