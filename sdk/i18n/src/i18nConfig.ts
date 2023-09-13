@@ -13,6 +13,7 @@ export type I18nKey =
   | "Required request url is missing in request body"
   | "Required requestor webId is missing in request body"
   | "Required target url is missing in request body"
+  | "No data found for user in dataset"
   | "_.actions"
   | "_.attachment"
   | "_.autofill"
@@ -110,7 +111,11 @@ export type I18nKey =
   | "sdk.ui.components.modals.ModalSaveToInbox.title"
   | "sdk.ui.components.modals.ModalWebId.description"
   | "sdk.ui.components.modals.ModalWebId.message"
-  | "sdk.ui.components.modals.ModalWebId.title";
+  | "sdk.ui.components.modals.ModalWebId.title"
+  | "sdk.ui.components.modals.ModalModelDataOverwrite.title"
+  | "sdk.ui.components.modals.ModalModelDataOverwrite"
+  | "sdk.ui.components.modals.ModalModelDataOverwrite.keep"
+  | "sdk.ui.components.modals.ModalModelDataOverwrite.overwrite";
 
 export const i18n = {
   defaultLocale: "en",

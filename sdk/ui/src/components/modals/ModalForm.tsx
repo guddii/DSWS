@@ -8,6 +8,7 @@ interface IModalFormProperties<T extends Store> {
   open: boolean;
   title?: string;
   successMessage?: string;
+  disableSuccessMessage?: boolean;
   initialValues: T;
   onSubmit: (values: T) => Promise<void>;
   onCancel: () => void;
@@ -19,6 +20,7 @@ export const ModalForm = <T extends Store>({
   open,
   title,
   successMessage,
+  disableSuccessMessage = false,
   initialValues,
   onSubmit,
   onCancel: onCancelProp,
@@ -38,7 +40,9 @@ export const ModalForm = <T extends Store>({
     setIsLoading(true);
     try {
       await onSubmit(values);
-      message.success(successMessage);
+      if (!disableSuccessMessage) {
+        message.success(successMessage);
+      }
     } catch (error: any) {
       message.error((error.message && t(error.message)) || t("_.errorMessage"));
       console.error(error);

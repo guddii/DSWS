@@ -5,7 +5,7 @@ export * from "./controller/controllerGetReferenceDataset";
 export * from "./controller/controllerRequestReferenceAccess";
 export * from "./controller/controllerGrantReferenceAccess";
 // Helper
-export * from "./helper/fillEmptyFields";
+export * from "./helper/fillModalFields";
 export * from "./helper/urlHelper";
 export * from "./helper/checkResponse";
 export * from "./helper/getResourceFromResponse";

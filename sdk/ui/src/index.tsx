@@ -10,6 +10,7 @@ export * from "./components/inbox/InboxViewer";
 export * from "./components/forms/FormsAuthNWebId";
 export * from "./components/forms/FormsAuthNSession";
 export * from "./components/layout/LayoutContent";
+export * from "./components/card/CardEditor";
 // Contexts
 export * from "./contexts/AgentContext";
 export * from "./contexts/IdentityContext";

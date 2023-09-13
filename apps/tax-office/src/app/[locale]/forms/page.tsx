@@ -2,8 +2,8 @@
 import {
   SessionContent,
   ControlsAutofill,
-  EditorTurtle,
   LayoutContent,
+  CardEditor,
 } from "ui";
 import {
   AttachmentCreditNotice,
@@ -15,7 +15,7 @@ import {
   AttachmentCreditNoticeFactoryConfiguration,
   AttachmentParentalBenefitNoticeFactoryConfiguration,
 } from "solid";
-import { Card, Form } from "antd";
+import { Form } from "antd";
 import { I18nKey, useTranslation } from "i18n/client";
 import { AttachmentPropertyData } from "solid/src/models/AttachmentPropertyData";
 import { GOV } from "vocab";
@@ -42,51 +42,44 @@ export default function Page() {
         options={{ breadcrumbItems, currentItem }}
         extra={<ControlsAutofill form={form} />}
       >
-        <Card title={t("_.mainForm")}>
-          <EditorTurtle
-            form={form}
-            model={MainForm.create(MainFormFactoryConfiguration.WITH_LOCALITY)}
-          ></EditorTurtle>
-        </Card>
+        <CardEditor
+          title={t("_.mainForm")}
+          form={form}
+          model={MainForm.create(MainFormFactoryConfiguration.WITH_LOCALITY)}
+        />
         <br />
-        <Card title={t("_.attachment", t(GOV.TradeLicence.value as I18nKey))}>
-          <EditorTurtle
-            form={form}
-            model={AttachmentTradeID.create(
-              AttachmentTradeIDFactoryConfiguration.AS_OPTIONAL
-            )}
-          ></EditorTurtle>
-        </Card>
+        <CardEditor
+          title={t("_.attachment", t(GOV.TradeLicence.value as I18nKey))}
+          form={form}
+          model={AttachmentTradeID.create(
+            AttachmentTradeIDFactoryConfiguration.AS_OPTIONAL
+          )}
+        />
         <br />
-        <Card title={t("_.attachment", t(GOV.PropertyData.value as I18nKey))}>
-          <EditorTurtle
-            form={form}
-            model={AttachmentPropertyData.create()}
-          ></EditorTurtle>
-        </Card>
+        <CardEditor
+          title={t("_.attachment", t(GOV.PropertyData.value as I18nKey))}
+          form={form}
+          model={AttachmentPropertyData.create()}
+        />
         <br />
-        <Card title={t("_.attachment", t(GOV.CreditNotice.value as I18nKey))}>
-          <EditorTurtle
-            form={form}
-            model={AttachmentCreditNotice.create(
-              AttachmentCreditNoticeFactoryConfiguration.AS_OPTIONAL
-            )}
-          ></EditorTurtle>
-        </Card>
+        <CardEditor
+          title={t("_.attachment", t(GOV.CreditNotice.value as I18nKey))}
+          form={form}
+          model={AttachmentCreditNotice.create(
+            AttachmentCreditNoticeFactoryConfiguration.AS_OPTIONAL
+          )}
+        />
         <br />
-        <Card
+        <CardEditor
           title={t(
             "_.attachment",
             t(GOV.ParentalBenefitNotice.value as I18nKey)
           )}
-        >
-          <EditorTurtle
-            form={form}
-            model={AttachmentParentalBenefitNotice.create(
-              AttachmentParentalBenefitNoticeFactoryConfiguration.AS_OPTIONAL
-            )}
-          ></EditorTurtle>
-        </Card>
+          form={form}
+          model={AttachmentParentalBenefitNotice.create(
+            AttachmentParentalBenefitNoticeFactoryConfiguration.AS_OPTIONAL
+          )}
+        />
       </LayoutContent>
     </SessionContent>
   );

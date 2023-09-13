@@ -7,11 +7,14 @@ import {
   UrlString,
   SolidDataset,
   getThing,
-  fillEmptyFields,
+  fillModalFields,
+  AbstractModel,
+  Thing,
 } from "solid";
 import { IParsedPropertyWithRulesAndOptions } from "../../helper/propertiesGenerator";
 import { useCallback, useState } from "react";
 import { ModalAccessRequestToInbox } from "../modals/ModalAccessRequestToInbox";
+import { ModalModelDataOverwrite } from "../modals/ModalModelDataOverwrite";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { useAgent } from "../../contexts/AgentContext";
 import { I18nKey, useTranslation } from "i18n/client";
@@ -19,9 +22,14 @@ import { I18nKey, useTranslation } from "i18n/client";
 interface IFormItemProperties {
   property: IParsedPropertyWithRulesAndOptions;
   form: FormInstance;
+  model: AbstractModel;
 }
 
-export const FormItemReference = ({ property, form }: IFormItemProperties) => {
+export const FormItemReference = ({
+  property,
+  form,
+  model,
+}: IFormItemProperties) => {
   const identity = useIdentity();
   const agent = useAgent();
   const t = useTranslation();
@@ -30,17 +38,20 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
   const propertyName: string = t(predicateString as I18nKey);
   const predicateCreatorString = getCreatorPredicate(predicateString);
   const propertyCreatorName: string = t(predicateCreatorString as I18nKey);
+  const [referenceThing, setReferenceThing] = useState<Thing | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [openAccessRequestToInbox, setOpenAccessRequestToInbox] =
+    useState(false);
+  const [openModelDataOverwrite, setOpenModelDataOverwrite] = useState(false);
 
   /**
-   * Loads the data with the reference currently in the form item. If the loading
-   * fails with a 403 status it opens the dialog to send an inbox message.
+   * Tries to load the data with the reference currently in the form item to fill the current
+   * attachment card form entries with the data.
    */
   const loadReference = useCallback(async () => {
     setIsLoading(true);
     try {
-      const currentValue = form.getFieldValue(property.predicate);
+      const currentValue = form.getFieldValue(toUrlString(property.predicate));
       if (!currentValue) {
         return;
       }
@@ -53,7 +64,7 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
       );
 
       if (response.status === 403) {
-        setOpen(true);
+        setOpenAccessRequestToInbox(true);
         return;
       }
 
@@ -61,7 +72,28 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
 
       const dataset: SolidDataset = await response.json();
       const thing = getThing(dataset, identity.webId);
-      fillEmptyFields(thing, form);
+      if (!thing) {
+        throw new Error("No data found for user in dataset");
+      }
+
+      const isNotEmpty = model.values.some(({ predicate }) => {
+        const predicateString = toUrlString(predicate);
+
+        if (predicateString !== toUrlString(property.predicate)) {
+          const fieldValue = form.getFieldValue(predicateString);
+          if (fieldValue !== "") {
+            return true;
+          }
+        }
+        return false;
+      });
+
+      if (isNotEmpty) {
+        setReferenceThing(thing);
+        setOpenModelDataOverwrite(true);
+      } else {
+        fillModalFields(thing, form, model);
+      }
     } catch (error: any) {
       console.error(error);
       message.error(
@@ -71,12 +103,25 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
     } finally {
       setIsLoading(false);
     }
-  }, [form, identity.webId, message, property.predicate, t]);
+  }, [form, identity.webId, message, model, property.predicate, t]);
+
+  /**
+   * Fills modal with thing from state if available.
+   */
+  const onOverwriteData = async () => {
+    if (!referenceThing) {
+      message.error(t("No data found for user in dataset"));
+    } else {
+      fillModalFields(referenceThing, form, model);
+      setReferenceThing(null);
+    }
+    setOpenModelDataOverwrite(false);
+  };
 
   /**
    * Sends an inbox message with a request to access the reference currently in the form item.
    */
-  const onSubmit = async () => {
+  const onRequestReferenceAccess = async () => {
     const creator = form.getFieldValue(
       getCreatorPredicate(toUrlString(property.predicate))
     ) as UrlString;
@@ -105,7 +150,7 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
     );
 
     await checkResponse(response);
-    setOpen(false);
+    setOpenAccessRequestToInbox(false);
   };
 
   return (
@@ -147,9 +192,14 @@ export const FormItemReference = ({ property, form }: IFormItemProperties) => {
       </Form.Item>
 
       <ModalAccessRequestToInbox
-        open={open}
-        onCancel={() => setOpen(false)}
-        onSubmit={onSubmit}
+        open={openAccessRequestToInbox}
+        onCancel={() => setOpenAccessRequestToInbox(false)}
+        onSubmit={onRequestReferenceAccess}
+      />
+      <ModalModelDataOverwrite
+        open={openModelDataOverwrite}
+        onCancel={() => setOpenModelDataOverwrite(false)}
+        onSubmit={onOverwriteData}
       />
 
       <Divider />

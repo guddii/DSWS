@@ -2,11 +2,11 @@
 import {
   SessionContent,
   ControlsAutofill,
-  EditorTurtle,
   LayoutContent,
+  CardEditor,
 } from "ui";
 import { MainForm } from "solid";
-import { Card, Form } from "antd";
+import { Form } from "antd";
 import { I18nKey, useTranslation } from "i18n/client";
 import { GOV } from "vocab";
 
@@ -33,9 +33,11 @@ export default function Page() {
         options={{ breadcrumbItems, currentItem }}
         extra={<ControlsAutofill form={form} />}
       >
-        <Card title={t("_.mainForm")}>
-          <EditorTurtle form={form} model={MainForm.create()}></EditorTurtle>
-        </Card>
+        <CardEditor
+          title={t("_.mainForm")}
+          form={form}
+          model={MainForm.create()}
+        />
       </LayoutContent>
     </SessionContent>
   );
