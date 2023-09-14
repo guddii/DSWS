@@ -120,6 +120,7 @@ export const EditorTurtleModel = ({
               key={toUrlString(property.predicate)}
               property={property}
               form={form}
+              model={model}
             />
           ) : (
             <FormItem

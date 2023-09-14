@@ -18,6 +18,7 @@ const dictionary: Dictionary = {
     "Required request url is missing in request body": "Required request url is missing in request body",
     "Required requestor webId is missing in request body": "Required requestor webId is missing in request body",
     "Required target url is missing in request body": "Required target url is missing in request body",
+    "No data found for user in dataset": "No data found for user in dataset",
     "_.actions": "Actions",
     "_.attachment": "Attachment: <1>",
     "_.autofill": "Autofill",
@@ -116,6 +117,10 @@ const dictionary: Dictionary = {
     "sdk.ui.components.modals.ModalWebId.description": "A login is required to perform this action. Please click on login to activate the OK button.",
     "sdk.ui.components.modals.ModalWebId.message": "WebId Usage",
     "sdk.ui.components.modals.ModalWebId.title": "Login required",
+    "sdk.ui.components.modals.ModalModelDataOverwrite.title": "Some Data in Attachment has already been modified.",
+    "sdk.ui.components.modals.ModalModelDataOverwrite": "You already entered some data in this attachment, that would be overwritten. Do you want to keep your previous data or overwrite it instead.",
+    "sdk.ui.components.modals.ModalModelDataOverwrite.keep": "Keep",
+    "sdk.ui.components.modals.ModalModelDataOverwrite.overwrite": "Overwrite",
     ...generateDictionaryFromVocab(GOV)
 };
 

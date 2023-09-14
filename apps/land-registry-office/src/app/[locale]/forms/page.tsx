@@ -2,8 +2,8 @@
 import {
   SessionContent,
   ControlsAutofill,
-  EditorTurtle,
   LayoutContent,
+  CardEditor,
 } from "ui";
 import {
   AttachmentBusinessPremisesPermit,
@@ -11,7 +11,7 @@ import {
   AttachmentIdentityCard,
   MainForm,
 } from "solid";
-import { Card, Form } from "antd";
+import { Form } from "antd";
 import { I18nKey, useTranslation } from "i18n/client";
 import { GOV } from "vocab";
 
@@ -38,30 +38,28 @@ export default function Page() {
         options={{ breadcrumbItems, currentItem }}
         extra={<ControlsAutofill form={form} />}
       >
-        <Card title={t("_.mainForm")}>
-          <EditorTurtle form={form} model={MainForm.create()}></EditorTurtle>
-        </Card>
+        <CardEditor
+          title={t("_.mainForm")}
+          form={form}
+          model={MainForm.create()}
+        />
         <br />
-        <Card title={t("_.attachment", t(GOV.IdentityCard.value as I18nKey))}>
-          <EditorTurtle
-            form={form}
-            model={AttachmentIdentityCard.create()}
-          ></EditorTurtle>
-        </Card>
+        <CardEditor
+          title={t("_.attachment", t(GOV.IdentityCard.value as I18nKey))}
+          form={form}
+          model={AttachmentIdentityCard.create()}
+        />
         <br />
-        <Card
+        <CardEditor
           title={t(
             "_.attachment",
             t(GOV.BusinessPremisesPermit.value as I18nKey)
           )}
-        >
-          <EditorTurtle
-            form={form}
-            model={AttachmentBusinessPremisesPermit.create(
-              AttachmentBusinessPremisesPermitFactoryConfiguration.AS_OPTIONAL
-            )}
-          ></EditorTurtle>
-        </Card>
+          form={form}
+          model={AttachmentBusinessPremisesPermit.create(
+            AttachmentBusinessPremisesPermitFactoryConfiguration.AS_OPTIONAL
+          )}
+        />
       </LayoutContent>
     </SessionContent>
   );

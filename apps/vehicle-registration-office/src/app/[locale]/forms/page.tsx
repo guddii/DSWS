@@ -2,8 +2,8 @@
 import {
   SessionContent,
   ControlsAutofill,
-  EditorTurtle,
   LayoutContent,
+  CardEditor,
 } from "ui";
 import {
   AttachmentIdentityCard,
@@ -13,7 +13,7 @@ import {
   MainForm,
   MainFormFactoryConfiguration,
 } from "solid";
-import { Card, Form } from "antd";
+import { Form } from "antd";
 import { I18nKey, useTranslation } from "i18n/client";
 import { GOV } from "vocab";
 
@@ -40,40 +40,34 @@ export default function Page() {
         options={{ breadcrumbItems, currentItem }}
         extra={<ControlsAutofill form={form} />}
       >
-        <Card title={t("_.mainForm")}>
-          <EditorTurtle
-            form={form}
-            model={MainForm.create(MainFormFactoryConfiguration.WITH_LOCALITY)}
-          ></EditorTurtle>
-        </Card>
+        <CardEditor
+          title={t("_.mainForm")}
+          form={form}
+          model={MainForm.create(MainFormFactoryConfiguration.WITH_LOCALITY)}
+        />
         <br />
-        <Card title={t("_.attachment", t(GOV.IdentityCard.value as I18nKey))}>
-          <EditorTurtle
-            form={form}
-            model={AttachmentIdentityCard.create()}
-          ></EditorTurtle>
-        </Card>
+        <CardEditor
+          title={t("_.attachment", t(GOV.IdentityCard.value as I18nKey))}
+          form={form}
+          model={AttachmentIdentityCard.create()}
+        />
         <br />
-        <Card title={t("_.attachment", t(GOV.TradeLicence.value as I18nKey))}>
-          <EditorTurtle
-            form={form}
-            model={AttachmentTradeID.create(
-              AttachmentTradeIDFactoryConfiguration.AS_OPTIONAL
-            )}
-          ></EditorTurtle>
-        </Card>
+        <CardEditor
+          title={t("_.attachment", t(GOV.TradeLicence.value as I18nKey))}
+          form={form}
+          model={AttachmentTradeID.create(
+            AttachmentTradeIDFactoryConfiguration.AS_OPTIONAL
+          )}
+        />
         <br />
-        <Card
+        <CardEditor
           title={t(
             "_.attachment",
             t(GOV.VehicleRegistrationCertificate.value as I18nKey)
           )}
-        >
-          <EditorTurtle
-            form={form}
-            model={AttachmentVehicleRegistrationCertificate.create()}
-          ></EditorTurtle>
-        </Card>
+          form={form}
+          model={AttachmentVehicleRegistrationCertificate.create()}
+        />
       </LayoutContent>
     </SessionContent>
   );

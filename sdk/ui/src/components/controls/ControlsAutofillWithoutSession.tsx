@@ -81,7 +81,7 @@ export const ControlsAutofillWithoutSession = ({
         setIsLoading(false);
       }
     },
-    [form, message, t, webId]
+    [form, message, router, t, webId]
   );
 
   useEffect(() => {
