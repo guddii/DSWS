@@ -7,33 +7,26 @@ terraform-bootstrap:
   trigger:
     include: .gitlab/ci/terraform/bootstrap.gitlab-ci.yml
     strategy: depend
-  rules:
-    - changes:
-        - "apps/*"
-        - "environments/*"
-        - "sdk/*"
-      if: $CI_MERGE_REQUEST_ID || $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
 
 terraform-review:
   stage: terraform
   trigger:
     include: .gitlab/ci/terraform/review.gitlab-ci.yml
     strategy: depend
-  rules:
-    - changes:
-        - "apps/*"
-        - "environments/*"
-        - "sdk/*"
-      if: $CI_MERGE_REQUEST_ID
+  only:
+    refs:
+      - branches
+  except:
+    refs:
+      - main
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /docs:/
 
 terraform-production:
   stage: terraform
   trigger:
     include: .gitlab/ci/terraform/production.gitlab-ci.yml
     strategy: depend
-  rules:
-    - changes:
-        - "apps/*"
-        - "environments/*"
-        - "sdk/*"
-      if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  only:
+    refs:
+      - main
