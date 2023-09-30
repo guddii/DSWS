@@ -1,0 +1,20 @@
+{description}
+
+Version:: {revnumber}, {revdate} ({revremark})
+
+Editors::
+{author_1} +
+{author_2} +
+{author_3}
+
+Module:: Project C149.2 Compulsory module
+
+Module Supervisor:: Prof. Dr. Thomas Riechert
+
+Lecturer:: Prof. Dr. Andreas Both
+
+Institute::
+Leipzig University of Applied Sciences
+
+Faculty::
+Computer Science and Media

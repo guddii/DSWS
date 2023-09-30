@@ -9,8 +9,8 @@ import {
   AttachmentCreditNotice,
   AttachmentCreditNoticeFactoryConfiguration,
   AttachmentIdentityCard,
-  AttachmentMotorVehicleInsuranceCertificate,
-  AttachmentMotorVehicleInsuranceCertificateFactoryConfiguration,
+  AttachmentVehicleInsurance,
+  AttachmentVehicleInsuranceFactoryConfiguration,
   MainForm,
   MainFormFactoryConfiguration,
 } from "solid";
@@ -54,13 +54,10 @@ export default function Page() {
         />
         <br />
         <CardEditor
-          title={t(
-            "_.attachment",
-            t(GOV.MotorVehicleInsuranceCertificate.value as I18nKey)
-          )}
+          title={t("_.attachment", t(GOV.VehicleInsurance.value as I18nKey))}
           form={form}
-          model={AttachmentMotorVehicleInsuranceCertificate.create(
-            AttachmentMotorVehicleInsuranceCertificateFactoryConfiguration.AS_OPTIONAL
+          model={AttachmentVehicleInsurance.create(
+            AttachmentVehicleInsuranceFactoryConfiguration.AS_OPTIONAL
           )}
         />
         <br />

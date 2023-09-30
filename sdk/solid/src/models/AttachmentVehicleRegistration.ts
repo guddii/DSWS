@@ -2,20 +2,20 @@ import { AbstractModel } from "./AbstractModel";
 import { createUrl } from "../helper/urlHelper";
 import { GOV } from "vocab";
 
-export enum AttachmentVehicleRegistrationCertificateFactoryConfiguration {
+export enum AttachmentVehicleRegistrationFactoryConfiguration {
   AS_OPTIONAL = "AS_OPTIONAL",
 }
 
-export class AttachmentVehicleRegistrationCertificate extends AbstractModel {
+export class AttachmentVehicleRegistration extends AbstractModel {
   static create(
-    configuration?: AttachmentVehicleRegistrationCertificateFactoryConfiguration
+    configuration?: AttachmentVehicleRegistrationFactoryConfiguration
   ) {
     switch (configuration) {
-      case AttachmentVehicleRegistrationCertificateFactoryConfiguration.AS_OPTIONAL:
-        return new AttachmentVehicleRegistrationCertificate({
+      case AttachmentVehicleRegistrationFactoryConfiguration.AS_OPTIONAL:
+        return new AttachmentVehicleRegistration({
           values: [
             {
-              predicate: createUrl(GOV.VehicleRegistrationCertificate.value),
+              predicate: createUrl(GOV.VehicleRegistration.value),
               value: "",
               options: { reference: true },
             },
@@ -26,10 +26,10 @@ export class AttachmentVehicleRegistrationCertificate extends AbstractModel {
           ],
         });
       default:
-        return new AttachmentVehicleRegistrationCertificate({
+        return new AttachmentVehicleRegistration({
           values: [
             {
-              predicate: createUrl(GOV.VehicleRegistrationCertificate.value),
+              predicate: createUrl(GOV.VehicleRegistration.value),
               value: "",
               options: { reference: true },
             },

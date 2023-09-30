@@ -1,0 +1,49 @@
+= Scenario, Requirements and Concept
+
+This section outlines the scenario which involves an electronically supported process, the assumed requirements resulting from the technical basis and the general concept.
+
+== Scenario
+
+Germany has a federal system of governance, which results in multiple public authorities with distinctive responsibilities and duties towards citizens.
+The interaction between citizens and the authorities occurs through bureaucratic procedures like application forms.
+These forms frequently require data from other public authorities, the private sector or other recurring data that has to be specified again each time.
+This has led to considerable frustration among citizens, especially in the current age of digital data.
+An exemplary case of this frustration was the _Erklärung zur Feststellung des Grundsteuerwerts 2022_ <<TAGESSCHAU>>.
+
+_Grundsteuer_ (property tax) is charged on real estate by the German government and is the responsibility of the property owners to pay.
+As of 2022, citizens were required to submit a new declaration containing their property details to ensure that their tax calculations were accurate.
+However, the authorities had much of the information needed to make the declaration, such as _Lage des Grundstücks_, _Grundstücksfläche_, _Bodenrichtwert_, _Gebäudeart_ _Wohnfläche_, and _Baujahr des Gebäudes _.
+The main problem is that the data was managed by different authorities, namely the _Finanzämter_, the _Katasteramt_ and the _Grundbuchamt_.
+As there has been no opportunity to share or access the existing data, it was necessary to declare it again <<TAGESSCHAU>>, <<REFORM-DER-GRUNDSTEUER>>.
+(The information may vary, as the regulations and names of the offices are not standardized in the Germany.)
+
+To summarise, there are two possible solutions that could improve interactions with public authorities.
+Users should be able to share or access data from public authorities to others if they are authorised for it, without having to obtain and manage it themselves.
+For future use of the data, it is essential to ensure accuracy and immutability once declared.
+
+== Requirements
+
+Based on the previously described foundations for data processing maintaining the data sovereignty of users, we developed these requirements.
+
+[[REQ-1]][REQ-1]:: Users must be able to provide clear consent for the processing of their personal data, as outlined in <<GDPR-1>>.
+To achieve this, the application's user interface should clearly present each access requirement to the user and detail which data will be accessed and what rights will be granted to applications, as demanded in <<GDPR-3>>.
+[[REQ-2]][REQ-2]:: Applications must allow interoperability, by utilising the same data and offering easy ways to pass data between applications, as described in <<Scenario>>.
+[[REQ-3]][REQ-3]:: Applications should not require deep understanding of underlying technologies on the user side, as <<E-Governance>> applications should be convenient and easy to use.
+[[REQ-4]][REQ-4]:: To minimise the effort required to maintain data and to avoid errors, it is proposed not to require users to store all relevant data in their individual storages, as shown in the <<Scenario>>.
+[[REQ-5]][REQ-5]:: After a user submitted a form at a government office, they should have access to that data, but not be able to change it after the submission, as illustrated by the given <<Scenario>>.
+[[REQ-6]][REQ-6]:: Applications will only request access to a user's data if it is necessary according to the demands of <<GDPR-2>>.
+
+== Concept
+
+As a concept for this showcase, we propose a network of multiple applications to provide e-governance processes for citizens.
+Two distinct types of applications are required, along with a data storage system used by these applications.
+This data storage holds personal data, either directly under the control of the citizen or managed by government offices.
+
+To give citizens complete control over their personal data, we propose the *citizen application* as the first type of application.
+This application allows direct access and editing of all personal data.
+Moreover, when used with other applications, it provides supplementary functions such as communication via messages or data access management.
+
+For e-governance processes, we propose the second type of application, the *government applications*, each of which fulfils the role of a single public administration service.
+Stored personal data, sourced from different agents, can be shared between these government applications, creating a network of interdependent applications.
+These government applications enable e-governance functionality and allow citizens to interact with government services, such as providing personal information and creating new personal data, utilising existing data.
+In subsequent diagrams, government applications and their corresponding storages are denoted by `+OfficeNApplication+` and `+OfficeNStorage+` respectively, to differentiate between multiple government applications.

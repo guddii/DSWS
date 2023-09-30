@@ -53,7 +53,7 @@ const dictionary: Dictionary = {
     "_.reload": "Aktualisieren",
     "_.revoke": "Zugriffserlaubnis widerrufen",
     "_.save": "Speichern",
-    "_.stammdaten": "Stammdaten",
+    "_.maindata": "Stammdaten",
     "_.storage": "Speicher",
     "_.submit": "Senden",
     "_.success": "Erfolg",

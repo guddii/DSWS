@@ -9,7 +9,7 @@ import {
   AttachmentIdentityCard,
   AttachmentTradeID,
   AttachmentTradeIDFactoryConfiguration,
-  AttachmentVehicleRegistrationCertificate,
+  AttachmentVehicleRegistration,
   MainForm,
   MainFormFactoryConfiguration,
 } from "solid";
@@ -61,12 +61,9 @@ export default function Page() {
         />
         <br />
         <CardEditor
-          title={t(
-            "_.attachment",
-            t(GOV.VehicleRegistrationCertificate.value as I18nKey)
-          )}
+          title={t("_.attachment", t(GOV.VehicleRegistration.value as I18nKey))}
           form={form}
-          model={AttachmentVehicleRegistrationCertificate.create()}
+          model={AttachmentVehicleRegistration.create()}
         />
       </LayoutContent>
     </SessionContent>

@@ -1,0 +1,4 @@
+Abstract::
+Amidst data protection incidents and IT security breaches, it is crucial that web application processed data remains secure from unauthorised access.
+In addressing this issue, Tim-Berners Lee started the Solid initiative, which facilitates storage and processing of data in a decentralised network.
+This project serves as a showcase of citizen data storage and processing in the context of public administration processes using Solid principles.

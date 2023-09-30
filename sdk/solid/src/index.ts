@@ -36,12 +36,12 @@ export * from "./models/AttachmentCreditNotice";
 export * from "./models/AttachmentFundingNotice";
 export * from "./models/AttachmentIdentityCard";
 export * from "./models/AttachmentLicensePlateNumber";
-export * from "./models/AttachmentMotorVehicleInsuranceCertificate";
+export * from "./models/AttachmentVehicleInsurance";
 export * from "./models/AttachmentParentalBenefitNotice";
 export * from "./models/AttachmentPropertyData";
 export * from "./models/AttachmentTaxDeclaration";
 export * from "./models/AttachmentTradeID";
-export * from "./models/AttachmentVehicleRegistrationCertificate";
+export * from "./models/AttachmentVehicleRegistration";
 export * from "./models/MainForm";
 
 // Config

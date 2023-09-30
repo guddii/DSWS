@@ -1,0 +1,94 @@
+@startuml
+actor Citizen
+participant CitizenApplication
+participant SolidServer
+participant CitizenStorage
+participant Office1Application
+participant Office1Storage
+participant Office1CitizenStorage
+participant Office2Application
+participant Office2Storage
+participant Office2CitizenStorage
+
+Citizen -> CitizenApplication : Navigate to the application
+
+ref over CitizenApplication, SolidServer
+  [REF-1] Login with session
+end ref
+
+ref over CitizenApplication, CitizenStorage
+  [REF-2] Bootstrapping
+end ref
+
+ref over CitizenApplication, CitizenStorage
+  [REF-3] Edit data
+end ref
+
+Citizen <-- CitizenApplication : Process finished
+Citizen -> Office1Application : Navigate to the application
+
+ref over Office1Application
+  [REF-4] Login without session
+end ref
+
+ref over Office1Application, SolidServer
+  [REF-5] Access via Access Request and Access Grant
+end ref
+
+ref over Office1Application, CitizenStorage
+  [REF-7] Reading data and form filling
+end ref
+
+Office1Application -> Office1Application : Fill form data manually
+
+ref over SolidServer, Office1CitizenStorage
+  [REF-8] Save data to office 1 citizen storage
+end ref
+
+ref over Office1Application, CitizenStorage
+  [REF-9] Send save-to-data message to citizen's inbox
+end ref
+
+Citizen <-- Office1Application : Process finished
+Citizen -> CitizenApplication : Navigate to the application
+
+ref over CitizenApplication, SolidServer
+  [REF-1] Login with session
+end ref
+
+ref over CitizenApplication, CitizenStorage
+  [REF-11] Merge data from inbox to maindata
+end ref
+
+Citizen <-- CitizenApplication : Process finished
+Citizen -> Office2Application : Navigate to the application
+
+ref over Office2Application
+  [REF-4] Login without session
+end ref
+
+ref over Office2Application, SolidServer
+  [REF-5] Access via Access Request and Access Grant
+end ref
+
+ref over Office2Application, CitizenStorage
+  [REF-7] Reading data and form filling
+end ref
+
+ref over Office2Application, Citizen
+  [REF-14] Reading data from reference
+end ref
+
+Office2Application -> Office2Application : Fill form data manually
+
+ref over SolidServer, Office2CitizenStorage
+  [REF-8] Save data to office 2 citizen storage
+end ref
+
+ref over Office2Application, CitizenStorage
+  [REF-9] Send save-to-data message to citizen's inbox
+end ref
+
+Citizen <-- Office2Application : Process finished
+
+@enduml

@@ -18,35 +18,59 @@ export const GOV = {
   // car-insurance-company (Kfz-Versicherer)
   // ----------------------------------------------------------------
 
-  MotorVehicleInsuranceCertificate: new LitVocabTerm(
-    _NS("MotorVehicleInsuranceCertificate"),
+  VehicleInsurance: new LitVocabTerm(
+    _NS("VehicleInsurance"),
     // @ts-ignore
     dataFactory,
     getLocalStore(),
     false
   )
     .addLabel(`Kfz-Versicherungsschein`, "de")
-    .addLabel(`Motor Vehicle Insurance Certificate`, "en"),
+    .addComment(
+      "Ein Dokument, das nachweist, dass ein Kraftfahrzeug versichert ist, und das Einzelheiten zum Versicherungsschutz enthält.",
+      "de"
+    )
+    .addLabel(`Motor Vehicle Insurance Certificate`, "en")
+    .addComment(
+      "A document proving that a motor vehicle is insured, providing coverage details.",
+      "en"
+    ),
 
-  MotorVehicleInsuranceCertificateCreator: new LitVocabTerm(
-    _NS("MotorVehicleInsuranceCertificateCreator"),
+  VehicleInsuranceCreator: new LitVocabTerm(
+    _NS("VehicleInsuranceCreator"),
     // @ts-ignore
     dataFactory,
     getLocalStore(),
     false
   )
     .addLabel(`Herausgeber des Kfz-Versicherungsschein`, "de")
-    .addLabel(`Motor Vehicle Insurance Certificate Creator`, "en"),
+    .addComment(
+      "Die Stelle oder Person, die für die Erstellung und Ausstellung von Kfz-Versicherungsscheinen zuständig ist.",
+      "de"
+    )
+    .addLabel(`Motor Vehicle Insurance Certificate Creator`, "en")
+    .addComment(
+      "The entity or person responsible for generating and issuing motor vehicle insurance certificates.",
+      "en"
+    ),
 
-  MotorVehicleInsuranceID: new LitVocabTerm(
-    _NS("MotorVehicleInsuranceID"),
+  VehicleInsuranceID: new LitVocabTerm(
+    _NS("VehicleInsuranceID"),
     // @ts-ignore
     dataFactory,
     getLocalStore(),
     false
   )
     .addLabel(`Kfz-Versichertennummer`, "de")
-    .addLabel(`Motor Vehicle Insurance ID`, "en"),
+    .addComment(
+      "Eine eindeutige Identifikationsnummer, die mit einer bestimmten Kfz-Versicherungspolice verbunden ist.",
+      "de"
+    )
+    .addLabel(`Motor Vehicle Insurance ID`, "en")
+    .addComment(
+      "A unique identification number associated with a specific motor vehicle insurance policy.",
+      "en"
+    ),
 
   // ----------------------------------------------------------------
   // construction-office (Bauamt)
@@ -60,7 +84,15 @@ export const GOV = {
     false
   )
     .addLabel(`Baugenehmigung`, "de")
-    .addLabel(`Building Permit`, "en"),
+    .addComment(
+      "Offizielle Genehmigung der örtlichen Behörden für den Beginn von Bau- oder Renovierungsarbeiten an einer Immobilie.",
+      "de"
+    )
+    .addLabel(`Building Permit`, "en")
+    .addComment(
+      "Official authorization from local authorities to commence construction or renovation on a property.",
+      "en"
+    ),
 
   BuildingPermitCreator: new LitVocabTerm(
     _NS("BuildingPermitCreator"),
@@ -70,7 +102,15 @@ export const GOV = {
     false
   )
     .addLabel(`Herausgeber der Baugenehmigung`, "de")
-    .addLabel(`Building Permit Creator`, "en"),
+    .addComment(
+      "Die für die Erteilung von Baugenehmigungen und die Überwachung von Bauprojekten zuständige Stelle oder Behörde.",
+      "de"
+    )
+    .addLabel(`Building Permit Creator`, "en")
+    .addComment(
+      "The entity or agency responsible for granting building permits and overseeing construction projects.",
+      "en"
+    ),
 
   BuildingCompletion: new LitVocabTerm(
     _NS("BuildingCompletion"),
@@ -80,31 +120,55 @@ export const GOV = {
     false
   )
     .addLabel(`Baufertigstellung`, "de")
-    .addLabel(`Building Completion`, "en"),
+    .addComment(
+      "Das Jahr, in dem die Bauarbeiten an einem Gebäude abgeschlossen sind und es zur Nutzung oder zum Bezug bereit ist.",
+      "de"
+    )
+    .addLabel(`Building Completion`, "en")
+    .addComment(
+      "The year at which construction work on a building is finished and it is ready for use or occupancy.",
+      "en"
+    ),
 
   // ----------------------------------------------------------------
   // customs (Zoll)
   // ----------------------------------------------------------------
 
-  VehicleRegistrationCertificate: new LitVocabTerm(
-    _NS("VehicleRegistrationCertificate"),
+  VehicleRegistration: new LitVocabTerm(
+    _NS("VehicleRegistration"),
     // @ts-ignore
     dataFactory,
     getLocalStore(),
     false
   )
     .addLabel(`Fahrzeugschein`, "de")
-    .addLabel(`Vehicle Registration Certificate`, "en"),
+    .addComment(
+      "Ein Dokument, das die Zulassung eines Fahrzeugs bei den zuständigen Behörden bestätigt und wichtige Details enthält.",
+      "de"
+    )
+    .addLabel(`Vehicle Registration Certificate`, "en")
+    .addComment(
+      "A document confirming a vehicle's registration with relevant authorities, containing key details.",
+      "en"
+    ),
 
-  VehicleRegistrationCertificateCreator: new LitVocabTerm(
-    _NS("VehicleRegistrationCertificateCreator"),
+  VehicleRegistrationCreator: new LitVocabTerm(
+    _NS("VehicleRegistrationCreator"),
     // @ts-ignore
     dataFactory,
     getLocalStore(),
     false
   )
     .addLabel(`Herausgeber des Fahrzeugscheins`, "de")
-    .addLabel(`Vehicle Registration Certificate Creator`, "en"),
+    .addComment(
+      "Die Organisation oder Abteilung, die für die Ausstellung von Fahrzeugzulassungsbescheinigungen zuständig ist.",
+      "de"
+    )
+    .addLabel(`Vehicle Registration Certificate Creator`, "en")
+    .addComment(
+      "The organization or department responsible for issuing vehicle registration certificates.",
+      "en"
+    ),
 
   VehicleConstructionYear: new LitVocabTerm(
     _NS("VehicleConstructionYear"),
@@ -114,7 +178,15 @@ export const GOV = {
     false
   )
     .addLabel(`Fahrzeugbaujahr`, "de")
-    .addLabel(`Vehicle Construction Year`, "en"),
+    .addComment(
+      "Das Jahr, in dem ein Fahrzeug ursprünglich hergestellt oder gebaut wurde.",
+      "de"
+    )
+    .addLabel(`Vehicle Construction Year`, "en")
+    .addComment(
+      "The year in which a vehicle was originally manufactured or constructed.",
+      "en"
+    ),
 
   // ----------------------------------------------------------------
   // employment-agency (Arbeitsagentur)
@@ -128,7 +200,15 @@ export const GOV = {
     false
   )
     .addLabel(`Förderbescheid`, "de")
-    .addLabel(`Funding Notice`, "en"),
+    .addComment(
+      "Ein Dokument, das die Empfänger über die Verfügbarkeit von finanzieller Unterstützung oder Finanzierungsmöglichkeiten informiert.",
+      "de"
+    )
+    .addLabel(`Funding Notice`, "en")
+    .addComment(
+      "A document informing recipients about the availability of financial support or funding opportunities.",
+      "en"
+    ),
 
   FundingNoticeCreator: new LitVocabTerm(
     _NS("FundingNoticeCreator"),
@@ -138,7 +218,15 @@ export const GOV = {
     false
   )
     .addLabel(`Herausgeber des Förderbescheids`, "de")
-    .addLabel(`Funding Notice Creator`, "en"),
+    .addComment(
+      "Die für die Ausstellung von Förderbescheiden und die Verwaltung von Förderprogrammen zuständige Stelle oder Organisation.",
+      "de"
+    )
+    .addLabel(`Funding Notice Creator`, "en")
+    .addComment(
+      "The entity or organization responsible for issuing funding notices and managing funding programs.",
+      "en"
+    ),
 
   FundingGrant: new LitVocabTerm(
     _NS("FundingGrant"),
@@ -148,7 +236,15 @@ export const GOV = {
     false
   )
     .addLabel(`Förderzuschuss`, "de")
-    .addLabel(`Funding Grant`, "en"),
+    .addComment(
+      "Finanzielle Unterstützung, die Einzelpersonen, Unternehmen oder Organisationen für bestimmte Zwecke oder Projekte gewährt wird.",
+      "de"
+    )
+    .addLabel(`Funding Grant`, "en")
+    .addComment(
+      "Financial assistance provided to individuals, businesses, or organizations for specific purposes or projects.",
+      "en"
+    ),
 
   // ----------------------------------------------------------------
   // environmental-office (Umweltamt)
@@ -162,7 +258,15 @@ export const GOV = {
     false
   )
     .addLabel(`Betriebsstättengenehmigung`, "de")
-    .addLabel(`Business Premises Permit`, "en"),
+    .addComment(
+      "Offizielle Genehmigung, die es einem Unternehmen erlaubt, an einem bestimmten Ort tätig zu sein.",
+      "de"
+    )
+    .addLabel(`Business Premises Permit`, "en")
+    .addComment(
+      "Official permission allowing a business to operate from a specific location.",
+      "en"
+    ),
 
   BusinessPremisesPermitCreator: new LitVocabTerm(
     _NS("BusinessPremisesPermitCreator"),
@@ -172,7 +276,15 @@ export const GOV = {
     false
   )
     .addLabel(`Herausgeber der Betriebsstättengenehmigung`, "de")
-    .addLabel(`Business Premises Permit Creator`, "en"),
+    .addComment(
+      "Die Behörde, die für die Erteilung von Genehmigungen für den Betrieb von Unternehmen an bestimmten Standorten zuständig ist.",
+      "de"
+    )
+    .addLabel(`Business Premises Permit Creator`, "en")
+    .addComment(
+      "The authority responsible for granting permits to operate businesses at specific premises.",
+      "en"
+    ),
 
   BusinessPremisesInspectionInterval: new LitVocabTerm(
     _NS("BusinessPremisesInspectionInterval"),
@@ -182,7 +294,15 @@ export const GOV = {
     false
   )
     .addLabel(`Grundstückinspektionsintervall`, "de")
-    .addLabel(`Business Premises Inspection Interval`, "en"),
+    .addComment(
+      "Die Häufigkeit, mit der Inspektionen von Geschäftsräumen erforderlich sind, um die Einhaltung der Vorschriften zu gewährleisten.",
+      "de"
+    )
+    .addLabel(`Business Premises Inspection Interval`, "en")
+    .addComment(
+      "The frequency at which inspections of business premises are required to ensure compliance with regulations.",
+      "en"
+    ),
 
   // ----------------------------------------------------------------
   // land-registry-office (Katasteramt)
@@ -196,7 +316,15 @@ export const GOV = {
     false
   )
     .addLabel(`Grundstücksdaten`, "de")
-    .addLabel(`Property Data`, "en"),
+    .addComment(
+      "Informationen und Details, die sich auf eine bestimmte Immobilie beziehen, wie z. B. Eigentumsverhältnisse, Abmessungen und Bewertung.",
+      "de"
+    )
+    .addLabel(`Property Data`, "en")
+    .addComment(
+      "Information and details related to a specific property, such as ownership, dimensions, and valuation.",
+      "en"
+    ),
 
   PropertyDataCreator: new LitVocabTerm(
     _NS("PropertyDataCreator"),
@@ -206,7 +334,15 @@ export const GOV = {
     false
   )
     .addLabel(`Herausgeber der Grundstücksdaten`, "de")
-    .addLabel(`Property Data Creator`, "en"),
+    .addComment(
+      "Die Quelle oder Organisation, die für die Sammlung und Pflege von immobilienbezogenen Informationen verantwortlich ist.",
+      "de"
+    )
+    .addLabel(`Property Data Creator`, "en")
+    .addComment(
+      "The source or organization responsible for collecting and maintaining property-related information.",
+      "en"
+    ),
 
   PropertyDataSize: new LitVocabTerm(
     _NS("PropertyDataSize"),
@@ -216,7 +352,12 @@ export const GOV = {
     false
   )
     .addLabel(`Grundstücksgröße`, "de")
-    .addLabel(`Property Size`, "en"),
+    .addComment(
+      "Die physischen Abmessungen oder die Fläche einer Immobilie.",
+      "de"
+    )
+    .addLabel(`Property Size`, "en")
+    .addComment("The physical dimensions or area of a property.", "en"),
 
   // ----------------------------------------------------------------
   // parental-benefits-office (Elterngeldstelle)
@@ -230,7 +371,15 @@ export const GOV = {
     false
   )
     .addLabel(`Elterngeldbescheid`, "de")
-    .addLabel(`Parental Benefit Notice`, "en"),
+    .addComment(
+      "Ein Dokument, das Eltern über ihren Anspruch auf Elterngeld und die damit verbundenen Einzelheiten informiert.",
+      "de"
+    )
+    .addLabel(`Parental Benefit Notice`, "en")
+    .addComment(
+      "A document informing parents about their eligibility for parental benefits and the associated details.",
+      "en"
+    ),
 
   ParentalBenefitNoticeCreator: new LitVocabTerm(
     _NS("ParentalBenefitNoticeCreator"),
@@ -240,7 +389,15 @@ export const GOV = {
     false
   )
     .addLabel(`Herausgeber des Elterngeldbescheids`, "de")
-    .addLabel(`Parental Benefit Notice Creator`, "en"),
+    .addComment(
+      "Die Behörde oder Einrichtung, die für die Ausstellung von Elterngeldbescheiden zuständig ist.",
+      "de"
+    )
+    .addLabel(`Parental Benefit Notice Creator`, "en")
+    .addComment(
+      "The government agency or institution responsible for issuing parental benefit notices.",
+      "en"
+    ),
 
   ParentalBenefitAmount: new LitVocabTerm(
     _NS("ParentalBenefitAmount"),
@@ -250,7 +407,15 @@ export const GOV = {
     false
   )
     .addLabel(`Elterngeldbetrag`, "de")
-    .addLabel(`Parental Benefit Amount`, "en"),
+    .addComment(
+      "Die finanzielle Unterstützung, die den Eltern während ihrer Elternzeit gewährt wird.",
+      "de"
+    )
+    .addLabel(`Parental Benefit Amount`, "en")
+    .addComment(
+      "The financial support provided to parents during their designated parental leave.",
+      "en"
+    ),
 
   // ----------------------------------------------------------------
   // reconstruction-loan-corporation (Kfw)
@@ -264,7 +429,15 @@ export const GOV = {
     false
   )
     .addLabel(`Kreditbescheid`, "de")
-    .addLabel(`Credit Notice`, "en"),
+    .addComment(
+      "Ein Dokument, das eine Privatperson oder ein Unternehmen über ein kreditrelevantes Ereignis oder eine Änderung der Kreditbedingungen informiert.",
+      "de"
+    )
+    .addLabel(`Credit Notice`, "en")
+    .addComment(
+      "A document informing an individual or business about a credit-related event or change in credit terms.",
+      "en"
+    ),
 
   CreditNoticeCreator: new LitVocabTerm(
     _NS("CreditNoticeCreator"),
@@ -274,7 +447,15 @@ export const GOV = {
     false
   )
     .addLabel(`Herausgeber des Kreditbescheids`, "de")
-    .addLabel(`Credit Notice Creator`, "en"),
+    .addComment(
+      "Das Finanzinstitut oder die Kreditauskunftei, die für den Versand von Kreditmitteilungen zuständig ist.",
+      "de"
+    )
+    .addLabel(`Credit Notice Creator`, "en")
+    .addComment(
+      "The financial institution or credit agency responsible for sending credit notices.",
+      "en"
+    ),
 
   CreditAmount: new LitVocabTerm(
     _NS("CreditAmount"),
@@ -284,7 +465,15 @@ export const GOV = {
     false
   )
     .addLabel(`Kreditbetrag`, "de")
-    .addLabel(`Credit Amount`, "en"),
+    .addComment(
+      "Der Geldbetrag, der von einer natürlichen oder juristischen Person als Kredit gewährt oder aufgenommen wird.",
+      "de"
+    )
+    .addLabel(`Credit Amount`, "en")
+    .addComment(
+      "The sum of money extended as credit or borrowed by an individual or entity.",
+      "en"
+    ),
 
   CreditPeriod: new LitVocabTerm(
     _NS("CreditPeriod"),
@@ -294,7 +483,15 @@ export const GOV = {
     false
   )
     .addLabel(`Kreditlaufzeit`, "de")
-    .addLabel(`Credit Period`, "en"),
+    .addComment(
+      "Die Dauer, innerhalb derer ein geliehener Kredit zurückgezahlt werden muss, einschließlich etwaiger Zinsen.",
+      "de"
+    )
+    .addLabel(`Credit Period`, "en")
+    .addComment(
+      "The duration within which borrowed credit must be repaid, including any applicable interest.",
+      "en"
+    ),
 
   // ----------------------------------------------------------------
   // registration-office (Einwohnermeldeamt)
@@ -308,7 +505,15 @@ export const GOV = {
     false
   )
     .addLabel(`Personalausweis`, "de")
-    .addLabel(`Identity Card`, "en"),
+    .addComment(
+      "Ein von der Regierung ausgestelltes Dokument, das zur Bestätigung der Identität einer Person verwendet wird und oft ein Foto und persönliche Informationen enthält.",
+      "de"
+    )
+    .addLabel(`Identity Card`, "en")
+    .addComment(
+      "A government-issued document used to confirm an individual's identity, often including a photograph and personal information.",
+      "en"
+    ),
 
   IdentityCardCreator: new LitVocabTerm(
     _NS("IdentityCardCreator"),
@@ -318,7 +523,15 @@ export const GOV = {
     false
   )
     .addLabel(`Herausgeber des Personalausweis`, "de")
-    .addLabel(`Identity Card Creator`, "en"),
+    .addComment(
+      "Die für die Ausstellung von Personalausweisen zuständige Regierungsbehörde oder Abteilung.",
+      "de"
+    )
+    .addLabel(`Identity Card Creator`, "en")
+    .addComment(
+      "The government agency or department responsible for issuing identity cards.",
+      "en"
+    ),
 
   IdentityCardNumber: new LitVocabTerm(
     _NS("IdentityCardNumber"),
@@ -328,7 +541,15 @@ export const GOV = {
     false
   )
     .addLabel(`Personalausweis-Nr.`, "de")
-    .addLabel(`Identity Card Number`, "en"),
+    .addComment(
+      "Ein eindeutiger alphanumerischer Code, der dem Personalausweis einer Person zu Identifikationszwecken zugewiesen wird.",
+      "de"
+    )
+    .addLabel(`Identity Card Number`, "en")
+    .addComment(
+      "A unique alphanumeric code assigned to an individual's identity card for identification purposes.",
+      "en"
+    ),
 
   // ----------------------------------------------------------------
   //  tax-office (Finanzamt)
@@ -342,7 +563,15 @@ export const GOV = {
     false
   )
     .addLabel(`Steuererklärung`, "de")
-    .addLabel(`Tax Declaration`, "en"),
+    .addComment(
+      "Eine formelle Erklärung, in der die finanziellen Details und das Einkommen einer Person oder eines Unternehmens für die Steuerveranlagung offengelegt werden.",
+      "de"
+    )
+    .addLabel(`Tax Declaration`, "en")
+    .addComment(
+      "A formal statement disclosing an individual's or business's financial details and income for tax assessment.",
+      "en"
+    ),
 
   TaxDeclarationCreator: new LitVocabTerm(
     _NS("TaxDeclarationCreator"),
@@ -352,7 +581,15 @@ export const GOV = {
     false
   )
     .addLabel(`Herausgeber der Steuererklärung`, "de")
-    .addLabel(`Tax Declaration Creator`, "en"),
+    .addComment(
+      "Die für die Bearbeitung und Erfassung von Steuererklärungen zuständige Stelle, häufig eine Steuerbehörde.",
+      "de"
+    )
+    .addLabel(`Tax Declaration Creator`, "en")
+    .addComment(
+      "The entity responsible for processing and recording tax declarations, often a tax authority.",
+      "en"
+    ),
 
   TaxID: new LitVocabTerm(
     _NS("TaxID"),
@@ -362,7 +599,15 @@ export const GOV = {
     false
   )
     .addLabel(`Steuernummer`, "de")
-    .addLabel(`Tax ID`, "en"),
+    .addComment(
+      "Eine eindeutige Identifikationsnummer, die Einzelpersonen und Unternehmen für steuerliche Zwecke zugewiesen wird.",
+      "de"
+    )
+    .addLabel(`Tax ID`, "en")
+    .addComment(
+      "A unique identification number assigned to individuals and businesses for tax-related purposes.",
+      "en"
+    ),
 
   // ----------------------------------------------------------------
   // trade-office (Gewerbeamt)
@@ -376,7 +621,15 @@ export const GOV = {
     false
   )
     .addLabel(`Gewerbeschein`, "de")
-    .addLabel(`Trade Licence`, "en"),
+    .addComment(
+      "Offizielle Genehmigung, die es einer Person oder einem Unternehmen erlaubt, ein bestimmtes Gewerbe oder einen bestimmten Beruf auszuüben.",
+      "de"
+    )
+    .addLabel(`Trade Licence`, "en")
+    .addComment(
+      "Official authorization permitting an individual or business to engage in a specific trade or occupation.",
+      "en"
+    ),
 
   TradeLicenceCreator: new LitVocabTerm(
     _NS("TradeLicenceCreator"),
@@ -386,7 +639,15 @@ export const GOV = {
     false
   )
     .addLabel(`Herausgeber des Gewerbescheins`, "de")
-    .addLabel(`Trade Licence Creator`, "en"),
+    .addComment(
+      "Die Aufsichtsbehörde oder lokale Behörde, die für die Erteilung von Gewerbeerlaubnissen zuständig ist.",
+      "de"
+    )
+    .addLabel(`Trade Licence Creator`, "en")
+    .addComment(
+      "The regulatory body or local authority responsible for issuing trade licenses.",
+      "en"
+    ),
 
   TradeID: new LitVocabTerm(
     _NS("TradeID"),
@@ -396,7 +657,15 @@ export const GOV = {
     false
   )
     .addLabel(`Umsatzsteuernummer`, "de")
-    .addLabel(`Trade ID`, "en"),
+    .addComment(
+      "Eine eindeutige Kennung, die mit einem bestimmten Gewerbe oder Unternehmen für Verfolgungs- und Regulierungszwecke verbunden ist.",
+      "de"
+    )
+    .addLabel(`Trade ID`, "en")
+    .addComment(
+      "A unique identifier associated with a specific trade or business for tracking and regulatory purposes.",
+      "en"
+    ),
 
   // ----------------------------------------------------------------
   // vehicle-registration-office (Kfz-Zulassungsstelle)
@@ -410,7 +679,15 @@ export const GOV = {
     false
   )
     .addLabel(`Kennzeichen`, "de")
-    .addLabel(`License Plate`, "en"),
+    .addComment(
+      "Ein Schild mit einer eindeutigen Kombination aus Zahlen und Buchstaben zur Identifizierung eines Kraftfahrzeugs.",
+      "de"
+    )
+    .addLabel(`License Plate`, "en")
+    .addComment(
+      "A plate displaying a unique combination of numbers and letters to identify a motor vehicle.",
+      "en"
+    ),
 
   LicensePlateCreator: new LitVocabTerm(
     _NS("LicensePlateCreator"),
@@ -420,7 +697,15 @@ export const GOV = {
     false
   )
     .addLabel(`Herausgeber des Kennzeichens`, "de")
-    .addLabel(`License Plate Creator`, "en"),
+    .addComment(
+      "Die für die Ausgabe von Nummernschildern zuständige Regierungsbehörde oder Abteilung.",
+      "de"
+    )
+    .addLabel(`License Plate Creator`, "en")
+    .addComment(
+      "The government agency or department responsible for issuing license plates.",
+      "en"
+    ),
 
   LicensePlateNumber: new LitVocabTerm(
     _NS("LicensePlateNumber"),
@@ -430,5 +715,13 @@ export const GOV = {
     false
   )
     .addLabel(`Kennzeichennummer`, "de")
-    .addLabel(`License Plate Number`, "en"),
+    .addComment(
+      "Der alphanumerische Code, der auf dem Nummernschild eines Fahrzeugs zur Identifizierung im Straßenverkehr angezeigt wird.",
+      "de"
+    )
+    .addLabel(`License Plate Number`, "en")
+    .addComment(
+      "The alphanumeric code displayed on a vehicle's license plate for identification on the road.",
+      "en"
+    ),
 };

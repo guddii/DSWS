@@ -8,13 +8,13 @@ import { Session } from "@inrupt/solid-client-authn-browser";
 import { toUrlString, createUrl } from "../helper/urlHelper";
 import {
   INBOX_FOLDER_PATH,
-  STAMMDATEN_FILE_PATH,
-  STAMMDATEN_FOLDER_PATH,
+  MAINDATA_FILE_PATH,
+  MAINDATA_FOLDER_PATH,
 } from "../config";
 
 type VerifiedFolderStructure = {
-  stammdatenFolderExists: boolean;
-  stammdatenFileExists: boolean;
+  maindataFolderExists: boolean;
+  maindataFileExists: boolean;
   inboxFolderExists: boolean;
   inboxFolderPublicAppendAccessExists: boolean;
 };
@@ -86,8 +86,8 @@ const isFolderStructureValid = (
 
 /**
  * Verifies that the necessary data exists and has correct access configuration
- * in provided storage. Checks if "stammdaten" folder exists, "stammdaten.ttl"
- * file exists inside "stammdaten" folder, "inbox" folder exists and has public
+ * in provided storage. Checks if "maindata" folder exists, "maindata.ttl"
+ * file exists inside "maindata" folder, "inbox" folder exists and has public
  * append access enabled.
  * @param session running solid session
  * @param storage url of storage to use for data verification
@@ -98,29 +98,26 @@ export const verifyCitizenFolderStructure = async (
   storage: string
 ): Promise<ValidAndVerifiedFolderStructure> => {
   const verifiedFolderStructure: VerifiedFolderStructure = {
-    stammdatenFolderExists: false,
-    stammdatenFileExists: false,
+    maindataFolderExists: false,
+    maindataFileExists: false,
     inboxFolderExists: false,
     inboxFolderPublicAppendAccessExists: false,
   };
 
-  const stammdatenFolderUrl = createUrl(STAMMDATEN_FOLDER_PATH, storage);
-  const stammdatenFileUrl = createUrl(STAMMDATEN_FILE_PATH, storage);
+  const maindataFolderUrl = createUrl(MAINDATA_FOLDER_PATH, storage);
+  const maindataFileUrl = createUrl(MAINDATA_FILE_PATH, storage);
   const inboxFolderUrl = createUrl(INBOX_FOLDER_PATH, storage);
 
-  // check stammdaten folder
-  const stammdatenFolderInfo = await checkResourceInfo(
+  // check maindata folder
+  const maindataFolderInfo = await checkResourceInfo(
     session,
-    stammdatenFolderUrl
+    maindataFolderUrl
   );
-  verifiedFolderStructure.stammdatenFolderExists = !!stammdatenFolderInfo;
+  verifiedFolderStructure.maindataFolderExists = !!maindataFolderInfo;
 
-  // check stammdaten file
-  const stammdatenFileInfo = await checkResourceInfo(
-    session,
-    stammdatenFileUrl
-  );
-  verifiedFolderStructure.stammdatenFileExists = !!stammdatenFileInfo;
+  // check maindata file
+  const maindataFileInfo = await checkResourceInfo(session, maindataFileUrl);
+  verifiedFolderStructure.maindataFileExists = !!maindataFileInfo;
 
   // check inbox folder
   const inboxFolderInfo = await checkResourceInfo(session, inboxFolderUrl);

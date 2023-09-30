@@ -1,0 +1,13 @@
+@startuml
+person "Citizen" as C
+file "Property Declaration" as PD1
+interface "Property\nData" as PD2
+interface "Credit Notice" as CN
+interface "Parental\nBenefit\nNotice" as PBN
+interface "VAT number" as VAT
+C --> PD1
+PD2 -r-> C
+CN --> C
+PBN -l-> C
+VAT--> C
+@enduml

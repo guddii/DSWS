@@ -1,0 +1,16 @@
+= Previous Research
+
+Since the Solid project has started, and the first demonstration of a Social Application using the Solid specifications has been published <<SOLID-DEMO>>, there have been a number of attempts to apply the ideas to different domains.
+
+Zhao et al. <<Zhao>> demonstrated a way to shard public transportation data through a Solid framework.
+Werbrouck et al. <<Werbrouck>> showed an application to access common data shared in construction processes and identified the Solid specifications as a useful way to adapt Linked Data principles in the domain of Building Information Modeling (BIM).
+Henselmann et al. <<SOLID-POC>> applied the Solid specifications to a loan request use case, showing that Solid can be useful in a B2B or B2C context.
+Some research has been made on the use of Solid specifications in the healthcare domain.
+Weng et al. <<Weng>> proposed a cloud data model based on Solid for the storing of personal health data and Chen et al. <<Chen>> used Solid Pods as storage for wearable medical devices.
+
+In "Making Sense of Solid for Data Governance and GDPR" <<Pandit>>, a theoretical exploration of Solid in the context of GDPR regulations, the authors describe a lack of features in current Solid specifications, given the compliance obligations and enforcement as envisioned by GDPR.
+However, Sun et al. <<Sun>> and Bailly et al. <<Bailly>> investigated the development of Solid applications under the GDPR, focused on personal health data and general personal data, respectively.
+The latter especially explored the difficulties in UI design that arise, when combining the conceptual requirements of both interoperability and data privacy restrictions.
+This is mirrored by a survey <<Survey>> done by the https://solidlab.be[SolidLab Flanders], in which 12 people with experience in designing Solid applications have identified difficulties in explaining the main concepts of Solid to users as the biggest challenge.
+
+As pointed out by Penteado et al. <<Review-LOGD>> the biggest challenge in providing government data in a Linked Data structure is still that there are no uniform processes yet, even though linked open data offers a lot of useful advantages.

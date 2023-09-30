@@ -1,11 +1,11 @@
 import { UrlString, WebId } from "@inrupt/solid-client";
 import { GOV } from "vocab";
 
-export const STAMMDATEN_FOLDER_NAME = "stammdaten";
-export const STAMMDATEN_FOLDER_PATH = `${STAMMDATEN_FOLDER_NAME}/`;
+export const MAINDATA_FOLDER_NAME = "maindata";
+export const MAINDATA_FOLDER_PATH = `${MAINDATA_FOLDER_NAME}/`;
 
-export const STAMMDATEN_FILE_NAME = "stammdaten.ttl";
-export const STAMMDATEN_FILE_PATH = `${STAMMDATEN_FOLDER_NAME}/${STAMMDATEN_FILE_NAME}`;
+export const MAINDATA_FILE_NAME = "maindata.ttl";
+export const MAINDATA_FILE_PATH = `${MAINDATA_FOLDER_NAME}/${MAINDATA_FILE_NAME}`;
 
 export const INBOX_FOLDER_NAME = "inbox";
 export const INBOX_FOLDER_PATH = `${INBOX_FOLDER_NAME}/`;
@@ -49,7 +49,7 @@ if (process.env.NEXT_PUBLIC_VEHICLE_REGISTRATION_OFFICE_WEB_ID) {
 
 if (process.env.NEXT_PUBLIC_CUSTOMS_WEB_ID) {
   WEB_ID_TO_PROPERTY_MAP[process.env.NEXT_PUBLIC_CUSTOMS_WEB_ID] =
-    GOV.VehicleRegistrationCertificate.value;
+    GOV.VehicleRegistration.value;
   WEB_ID_TO_OFFICE_NAME_MAP[process.env.NEXT_PUBLIC_CUSTOMS_WEB_ID] =
     "apps.customs.app.root.title";
 }
@@ -86,7 +86,7 @@ if (process.env.NEXT_PUBLIC_ENVIRONMENTAL_OFFICE_WEB_ID) {
 
 if (process.env.NEXT_PUBLIC_CAR_INSURANCE_COMPANY_WEB_ID) {
   WEB_ID_TO_PROPERTY_MAP[process.env.NEXT_PUBLIC_CAR_INSURANCE_COMPANY_WEB_ID] =
-    GOV.MotorVehicleInsuranceCertificate.value;
+    GOV.VehicleInsurance.value;
   WEB_ID_TO_OFFICE_NAME_MAP[
     process.env.NEXT_PUBLIC_CAR_INSURANCE_COMPANY_WEB_ID
   ] = "apps.carInsuranceCompany.app.root.title";

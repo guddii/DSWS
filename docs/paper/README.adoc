@@ -1,0 +1,34 @@
+= Data-Sovereign Web Services Utilising the Solid Architecture
+Florian Gudat <florian.gudat@guices.com>; Maja Katharina Hoffmann <maja_katharina.hoffmann@stud.htwk-leipzig.de>; Sergi Domenech Guzy <sergiguzy@proton.me>;
+v1.0, 2023-09-30 (Leipzig)
+:revnumber: v1.0
+:revdate: 2023-09-30
+:revremark: Leipzig
+:description: An exploration of the architectural requirements for implementing robust technologies in e-government scenarios.
+:library: Asciidoctor
+:idprefix:
+:numbered:
+:toc: macro
+:toc-title:
+:css-signature: github
+:max-width: 892px
+:note-caption: :information_source:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+endif::[]
+include::front-matter.adoc[leveloffset=1]
+include::abstract.adoc[leveloffset=1]
+[discrete]
+== Table of Contents
+toc::[]
+include::motivation.adoc[leveloffset=1]
+include::theoretical-foundations.adoc[leveloffset=1]
+include::previous-research.adoc[leveloffset=1]
+include::requirements.adoc[leveloffset=1]
+include::implementation.adoc[leveloffset=1]
+include::discussion.adoc[leveloffset=1]
+include::summary.adoc[leveloffset=1]
+
+[bibliography]
+include::references.adoc[leveloffset=1]

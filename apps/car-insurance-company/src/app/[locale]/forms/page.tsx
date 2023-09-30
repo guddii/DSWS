@@ -15,7 +15,7 @@ export default function Page() {
   const t = useTranslation();
 
   const currentItem = {
-    title: t(GOV.MotorVehicleInsuranceCertificate.value as I18nKey),
+    title: t(GOV.VehicleInsurance.value as I18nKey),
     key: "form",
   };
 

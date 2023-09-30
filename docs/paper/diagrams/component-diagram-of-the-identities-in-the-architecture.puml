@@ -1,0 +1,28 @@
+@startuml
+person "Citizen" as C_U
+agent "Citizen Application" as C_A
+card "Citizen Storage" as C_S {
+    folder "inbox" as inbox {
+        file "submission.ttl" as submission_c
+    }
+    folder "maindata" {
+        file "maindata.ttl" as file_maindata
+    }
+}
+person "Government" as G_U
+agent "Government Application" as G_A
+card "Government Storage" as G_S {
+    file "pods.ttl" as file_pods
+}
+card "Government Citizen Storage" as GC_V {
+    file "submission.ttl" as submission_gc
+}
+C_U --> C_A : (1)
+C_A --> file_maindata : (2), (8)
+C_U --> G_A : (3)
+file_maindata --> G_A : (4)
+G_A <--> file_pods : (5)
+file_pods <-u-> submission_gc : (6)
+G_A --> submission_c : (7)
+G_U .. submission_gc : owns
+@enduml

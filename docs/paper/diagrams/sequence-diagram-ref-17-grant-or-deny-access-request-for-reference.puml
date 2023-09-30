@@ -1,0 +1,42 @@
+@startuml
+actor Citizen
+participant CitizenApplication
+participant SolidServer
+'participant CitizenStorage
+participant Office1Application
+participant Office1Storage
+participant Office1CitizenStorage
+'participant Office2Application
+'participant Office2Storage
+'participant Office2CitizenStorage
+
+
+Citizen -> CitizenApplication : Grant/Deny trustee access request via inbox
+
+CitizenApplication -> Office1Application : Grant/Deny access
+
+SolidServer <-- Office1Application : Get request file
+
+SolidServer <--> Office1Storage : Get
+
+SolidServer -> Office1Application : Request file
+
+Office1Application -> Office1Application : Check request status
+
+alt Granted/Denied case
+    CitizenApplication <-- Office1Application : Already granted/denied error
+else Pending case
+    alt Grant permission case
+        ref over SolidServer, Office1Application, Office1CitizenStorage
+          [REF-18] Update permissions in ACL resource for requester
+        end ref
+    end
+
+    SolidServer <-- Office1Application : Update request status in request file
+
+    SolidServer <--> Office1Storage : Update
+
+    CitizenApplication <-- Office1Application : Success response
+end
+
+@enduml
