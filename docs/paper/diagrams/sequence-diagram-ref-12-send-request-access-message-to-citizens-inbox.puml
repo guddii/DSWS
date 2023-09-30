@@ -1,0 +1,22 @@
+@startuml
+'actor Citizen
+'participant CitizenApplication
+participant SolidServer
+participant CitizenStorage
+participant Office1Application
+'participant Office1Storage
+'participant Office1CitizenStorage
+'participant Office2Application
+'participant Office2Storage
+'participant Office2CitizenStorage
+
+ref over Office1Application
+  [REF-13] Generate request access message Turtle file
+end ref
+
+SolidServer <-- Office1Application : Save message file into citizen's inbox
+
+SolidServer <--> CitizenStorage : Save
+
+SolidServer -> Office1Application : Message saved
+@enduml

@@ -15,27 +15,25 @@ export const VerifiedFolderStructureAlerts = ({
       <Alert
         message={
           <Typography>
-            {verifiedFolderStructure.stammdatenFolderExists
-              ? t("_.exists", "/stammdaten")
-              : t("_.missing", "/stammdaten")}
+            {verifiedFolderStructure.maindataFolderExists
+              ? t("_.exists", "/maindata")
+              : t("_.missing", "/maindata")}
           </Typography>
         }
         type={
-          verifiedFolderStructure.stammdatenFolderExists ? "success" : "error"
+          verifiedFolderStructure.maindataFolderExists ? "success" : "error"
         }
         showIcon
       />
       <Alert
         message={
           <Typography>
-            {verifiedFolderStructure.stammdatenFileExists
-              ? t("_.exists", "/stammdaten/stammdaten.ttl")
-              : t("_.missing", "/stammdaten/stammdaten.ttl")}
+            {verifiedFolderStructure.maindataFileExists
+              ? t("_.exists", "/maindata/maindata.ttl")
+              : t("_.missing", "/maindata/maindata.ttl")}
           </Typography>
         }
-        type={
-          verifiedFolderStructure.stammdatenFileExists ? "success" : "error"
-        }
+        type={verifiedFolderStructure.maindataFileExists ? "success" : "error"}
         showIcon
       />
       <Alert

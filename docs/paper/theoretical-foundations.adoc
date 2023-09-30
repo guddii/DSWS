@@ -1,0 +1,74 @@
+= Theoretical Foundations
+
+In this section, we will describe and define the theoretical foundations and frameworks pertinent to the project to establish a uniform understanding of the terminology used.
+We outline e-governance as a technical domain and data sovereignty as a result of the context.
+Additionally, we consider Solid as a technological basis.
+
+== E-Governance
+
+E-government allows citizens and businesses to access state services in a convenient and flexible manner, independent of time restrictions <<BMI-EGOV>>.
+
+== Data Sovereignty
+
+The term data sovereignty is used in various contexts and often carries different meanings.
+A universally agreed-upon definition doesn't exist.
+Its literal significance implies control over data, its storage, collection, and processing.
+Interpreted this way, data sovereignty can indicate an individual's control over their entitled data or data concerning them <<DATENSOUVERAENITAET>>.
+
+For the purposes of this research, control of personal data is described as safeguarding against unauthorised access and limiting access to only authorised individuals.
+Subsequently, data sovereignty is defined, within the following context, by the provisions of the General Data Protection Regulation (GDPR), which establishes a standard for all digital entities operating in Europe.
+The following principles of data protection are particularly relevant to this showcase:
+
+[[GDPR-1]][GDPR-1]::
+"*Lawfulness, fairness and transparency* — Processing must be lawful, fair, and transparent to the data subject" <<WHAT-IS-GDPR>>.
+[[GDPR-2]][GDPR-2]::
+"*Purpose limitation* — You must process data for the legitimate purposes specified explicitly to the data subject when you collected it" <<WHAT-IS-GDPR>>.
+[[GDPR-3]][GDPR-3]::
+"*Data minimisation* — You should collect and process only as much data as absolutely necessary for the purposes specified" <<WHAT-IS-GDPR>>.
+
+Other provisions of the GDPR not relevant to the research interest are disregarded in this showcase.
+If the web service is intended to run in a productive environment, all required provisions must be met <<WHAT-IS-GDPR>>.
+
+== Solid
+
+Solid (Social Linked Data) is a set of technological specifications for the exchange of social data that is built on a number of pre-existing standards.
+It includes technologies for communication, data management and security.
+The central idea of the Solid project is to provide interoperable standards and "fundamental affordances for decentralised Web applications for information exchange in a way that is secure and privacy respecting. In this environment, actors allocate identifiers for their content, shape and store data where they have access to, set access controls, and use preferred applications and services to achieve them" <<SOLID-PROTOCOL-INTRODCTION>>.
+
+Due to the abundance of associated information, only the core concepts are presented here, supplemented by selected parts of the specification.
+
+NOTE: Since all specifications are still in development, some of the terminology is still subject to changes.
+
+=== Terminology
+
+This document uses the terms *https://solidproject.org/TR/protocol#storage[storage]*, *https://solidproject.org/TR/protocol#solid-app[Solid app]*, *https://solidproject.org/TR/protocol#uniform-resource-identifier[URI]*, *https://solidproject.org/TR/protocol#resource[resource]*, *https://solidproject.org/TR/protocol#agent[agent]* and *https://solidproject.org/TR/protocol#owner[owner]* as defined in the Solid Protocol <<SOLID-PROTOCOL>>.
+In addition, the terms *https://www.w3.org/TR/rdf11-concepts/#section-Introduction[RDF]*, *https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-vocabulary[RDF vocabulary]*, and *https://www.w3.org/TR/rdf11-concepts/#dfn-namespace-prefix[namespace prefix]* from RDF 1.1 Concepts and Abstract Syntax <<RDF11-CONCEPTS>> are used.
+*https://www.w3.org/TR/turtle/#sec-intro[Turtle]* is used as defined in RDF 1.1 Turtle <<RDF11-TURTLE>>.
+The meaning of *https://www.w3.org/2005/Incubator/webid/spec/identity/#introduction[WebID]* is defined in WebID 1.0 <<WEBID>>.
+The use of the *https://solidproject.org/TR/wac#acl-resource[Access Control List (ACL) resource]* and *https://solidproject.org/TR/wac#access-mode[access mode]* is defined in Web Access Control <<SOLID-WAC>>, while *https://solidproject.org/TR/acp#abstract[Access Control Policy (ACP)]* is defined in its specification <<SOLID-ACP>>.
+The term *https://docs.inrupt.com/ess/latest/security/access-requests-grants/#access-requests-and-grants[Access Requests and Grants]* is used as defined in Access Requests and Grants <<INRUPT-ACP>>.
+
+The following terms will extend the definitions above.
+
+Data Trustee::
+A data trustee is an independent identity of trust that mediates data between the data provider and the data user in a secure and legally compliant manner <<DATENTREUHAENDER>>.
+
+Enterprise Solid Server (ESS)::
+The https://www.inrupt.com/products/enterprise-solid-server[Enterprise Solid Server (ESS)] is a Solid implementation developed by Inrupt, Inc..
+
+This is not an exhaustive list of the entire terminology used in Solid.
+For information about associated technologies, please consult the https://solidproject.org/TR[Solid Technical Reports] or the https://docs.inrupt.com/[Inrupt Documentation].
+
+=== About Solid
+
+The Solid architecture comprises identities, storage, servers and Solid apps.
+The storage or Solid Pod functions as a secure data vault.
+Any data can be stored in a storage, as long as it is compatible with the Linked Data specifications.
+Solid servers, either self-hosted or as a provider, are responsible for managing user identity along with any data stored in storages, including regulating access to this data.
+Solid applications are able to utilize and manipulate data stored in storages as long as the required permissions have been granted by the data storage owner.
+The fundamental premise of the Solid project is to work towards a decentralised World Wide Web with federated systems, where users have control and access to all their personal data.
+Any user can have a data storage linked to their identity at any location or server.
+Data from the storage can be employed in applications designed to operate with the Solid specification.
+Data can be shared with applications or other users, and access control can be achieved.
+These standards enable the creation of federated systems where data is arranged in a decentralised manner.
+For more information on Solid, please refer to the https://solidproject.org/about[About Solid Website].

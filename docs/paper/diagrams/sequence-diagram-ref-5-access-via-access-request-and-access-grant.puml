@@ -1,0 +1,38 @@
+@startuml
+actor Citizen
+'participant CitizenApplication
+participant SolidServer
+participant CitizenStorage
+participant Office1Application
+'participant Office1Storage
+'participant Office1CitizenStorage
+'participant Office2Application
+'participant Office2Storage
+'participant Office2CitizenStorage
+
+'Access Request
+Office1Application -> Office1Application : Issue Access Request for data
+
+SolidServer <-- Office1Application : Login as agent
+SolidServer -> Office1Application : Agent session
+
+SolidServer <-- Office1Application : Issue Access Request
+SolidServer -> Office1Application : Access Request object
+
+SolidServer <-- Office1Application : Redirect to access management UI
+ref over Citizen, SolidServer
+  [REF-6] Grant Access Request via access management UI
+end ref
+SolidServer -> Office1Application : Access Grant object
+
+'Access Grant
+Office1Application -> Office1Application : Get data from Access Grant
+
+SolidServer <-- Office1Application : Login as agent
+SolidServer -> Office1Application : Agent session
+
+SolidServer <-- Office1Application : Request data with Access Grant
+SolidServer <--> CitizenStorage : Get data
+SolidServer -> Office1Application : Data
+
+@enduml

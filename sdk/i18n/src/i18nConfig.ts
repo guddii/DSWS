@@ -48,7 +48,7 @@ export type I18nKey =
   | "_.reload"
   | "_.revoke"
   | "_.save"
-  | "_.stammdaten"
+  | "_.maindata"
   | "_.storage"
   | "_.submit"
   | "_.success"

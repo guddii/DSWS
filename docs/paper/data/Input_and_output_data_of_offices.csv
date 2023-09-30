@@ -1,0 +1,16 @@
+Predicates;🐵;🦊;🐱;🦁;🐯;🐮;🐷;🐭;🐹;🐰;🐻;🐨
+vcard:given-name;in;in;in;in;in;in;in;in;in;in;in;in
+vcard:family-name;in;in;in;in;in;in;in;in;in;in;in;in
+vcard:locality;in;;;in;;;;;in;in;in;in
+gov:VehicleInsurance;out;;;;;;;;;;in?;
+gov:BuildingPermit;;out;;;in;;;in;;;;
+gov:VehicleRegistration;;;out;;;;;;;;;in
+gov:FundingNotice;;;;out;;;;;;;;
+gov:BusinessPremisesPermit;;;;;out;in?;;in;;;;
+gov:PropertyData;;in;;in?;in;out;;in;;in;;
+gov:ParentalBenefitNotice;;;;;;;out;;;in?;;
+gov:CreditNotice;;;;;;;;out;;in?;in?;
+gov:IdentityCard;;;in;in;;in;;;out;;in;in
+gov:TaxDeclaration;;;;;;;;in;;out;;
+gov:TradeLicence;;in?;in;;in;;;in;;in?;out;in?
+gov:LicensePlate;;;;;;;;;;;;out

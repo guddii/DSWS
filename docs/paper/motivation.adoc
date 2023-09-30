@@ -1,0 +1,64 @@
+= Motivation
+
+Navigating public services is a task every German citizen is confronted regularly.
+Often, public service processes,
+such as submitting a tax declaration, require citizens to provide additional data,
+which itself needs to be obtained from other public offices.
+A recent change in German property tax law required all citizens who are property owners in Germany
+to submit a property tax declaration, based on which tax rates for the following years would be calculated.
+The form for this declaration also required property owners
+to obtain property data from the local land registry office
+and provide it as an attachment to the property tax declaration.
+This resulted in a lengthy process, which is still ongoing.
+
+Offering public services digitally can facilitate the navigation of processes for citizens.
+Additionally, if personal or public service data is available digitally,
+communication between offices can be streamlined, reducing the effort needed on behalf of citizens to provide data.
+Enhancing digital data processing for public service has been extensively discussed in Germany in recent years.
+Despite some advancements, such as the _Onlinezugangsgesetz_ that aimed to provide 575 public administration services digitally, their ambition remains unfulfilled.
+As of 2023, only 132 services are comprehensively available throughout Germany <<BMI-OZG>>.
+
+One of the challenges in providing digitally available public services is ensuring data protection and privacy.
+If personal data concerning a citizen is produced and maintained by one public office,
+this data cannot be shared with other parties, even if it is needed for an official process.
+This places responsibility for obtaining information from secondary public offices with the citizens,
+which leads to reduced efficiency, since navigating service offices can be time-consuming.
+
+A parallel technological advancement is the Solid specification,
+a decentralised and secure storage solution
+that has been under development by the https://www.w3.org/community/solid/[Solid Community Group] since 2018.
+Additionally, this approach is based on publicly defined schemas, open to all.
+
+As these specifications aim to provide solutions for problems similar to those described previously,
+the applicability of the specification for German public authorities should be examined.
+Following an agreed upon set of standards and specifications,
+each office can develop their IT infrastructure at their own pace while ensuring compatibility of produced data types.
+
+The situation described leads to the following *key research question* this paper aims to address:
+
+* Is the Solid technology suitable for a naive e-government solution,
+or does it require additional specifications to serve as an approach for the development of e-government applications?
+
+In this context, we refer to solutions proposed in this work as naive,
+since they were developed focusing only on the citizen as a user.
+As a result, complicated data processing and government business logic are excluded,
+and only the storage, access and submission of citizen data is covered.
+
+Various concerns need to be considered in the development of e-government applications,
+such as interoperability, i.e. the compatibility of produced data, privacy and data sovereignty, as well as usability.
+
+Therefore, the key research question can be divided into multiple essential questions to be answered:
+
+* Does the Solid specification cover all the requirements of a government process?
+* Which currently available reference implementations of the specifications can be used in development?
+* Which processes and data flows need to be modelled in applications to facilitate interoperability?
+* Is the protection of citizens' data and sovereignty ensured by the technology used?
+* Can applications build based on these specifications offer an improvement in usability compared to current processes?
+
+To answer these questions,
+in this work we will formulate requirements for e-government applications based on common scenarios.
+Based on these requirements, we will implement a showcase scenario with multiple applications.
+Applications in this showcase will be built on the specifications developed by the Solid Community Group
+and use current available reference implementations.
+We will discuss the implementation strategies and decisions needed in development
+and evaluate which further insights can be derived from our work.

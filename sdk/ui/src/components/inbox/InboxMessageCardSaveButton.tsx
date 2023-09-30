@@ -1,6 +1,6 @@
 import { Button, App } from "antd";
 import {
-  STAMMDATEN_FILE_PATH,
+  MAINDATA_FILE_PATH,
   Thing,
   asUrl,
   createUrl,
@@ -38,7 +38,7 @@ export const InboxMessageCardSaveButton = ({
         throw new Error();
       }
 
-      const datasetUrl = toUrlString(createUrl(STAMMDATEN_FILE_PATH, storage));
+      const datasetUrl = toUrlString(createUrl(MAINDATA_FILE_PATH, storage));
       const dataset = await getSolidDataset(datasetUrl, {
         fetch: session.fetch,
       });

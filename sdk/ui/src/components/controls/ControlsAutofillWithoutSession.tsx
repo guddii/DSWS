@@ -7,7 +7,7 @@ import {
   createUrl,
   getStorageFromWebId,
   issueAccess,
-  STAMMDATEN_FILE_PATH,
+  MAINDATA_FILE_PATH,
 } from "solid";
 import { formValuesGenerator } from "../../helper/formValuesGenerator";
 import { useRouter } from "next/navigation";
@@ -119,7 +119,7 @@ export const ControlsAutofillWithoutSession = ({
         return fetch("/api/issueAccessRequest?" + searchParams.toString());
       },
       webId: webIdUrl,
-      resource: createUrl(STAMMDATEN_FILE_PATH, storage),
+      resource: createUrl(MAINDATA_FILE_PATH, storage),
     });
   };
 
@@ -142,7 +142,7 @@ export const ControlsAutofillWithoutSession = ({
               {t(
                 "sdk.ui.components.controls.ControlsAutofillWithoutSession.reasonElement.1"
               )}
-              <Typography.Text code>{STAMMDATEN_FILE_PATH}</Typography.Text>
+              <Typography.Text code>{MAINDATA_FILE_PATH}</Typography.Text>
               {t(
                 "sdk.ui.components.controls.ControlsAutofillWithoutSession.reasonElement.2"
               )}

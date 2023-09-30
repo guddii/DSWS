@@ -9,25 +9,25 @@ import { ValidAndVerifiedFolderStructure } from "./citizenFolderStructureVerific
 import {
   INBOX_FOLDER_NAME,
   INBOX_FOLDER_PATH,
-  STAMMDATEN_FILE_NAME,
-  STAMMDATEN_FOLDER_NAME,
-  STAMMDATEN_FOLDER_PATH,
+  MAINDATA_FILE_NAME,
+  MAINDATA_FOLDER_NAME,
+  MAINDATA_FOLDER_PATH,
 } from "../config";
 
 /**
- * Creates a "stammdaten.ttl" turtle file inside of the provided storage. Fills
+ * Creates a "maindata.ttl" turtle file inside of the provided storage. Fills
  * the created file with a basic data skeleton.
  * @param session running solid session
  * @param storage url of storage to create the new file in
  * @param webId user webId used as subject in created data
  * @returns response object of file creation
  */
-const createStammdatenFile = async (
+const createMaindataFile = async (
   session: Session,
   webId: string,
   storage: URL
 ): Promise<Response> => {
-  const stammdatenFileUrl = createUrl(STAMMDATEN_FILE_NAME, storage);
+  const maindataFileUrl = createUrl(MAINDATA_FILE_NAME, storage);
   const defaultData = {
     subject: webId,
     values: {
@@ -38,7 +38,7 @@ const createStammdatenFile = async (
   };
 
   return await createResource({
-    url: stammdatenFileUrl,
+    url: maindataFileUrl,
     body: turtleFileGenerator(defaultData),
     session,
   });
@@ -63,8 +63,8 @@ const addPublicAppendAccess = async (
 
 /**
  * Creates missing necessary data and access configuration using provided
- * verified data object. Creates "stammdaten" folder, "stammdaten.ttl" file
- * inside "stammdaten" folder, "inbox" folder with public append access enabled
+ * verified data object. Creates "maindata" folder, "maindata.ttl" file
+ * inside "maindata" folder, "inbox" folder with public append access enabled
  * if they are missing.
  * @param session running solid session
  * @param storage url of storage to use for data creation
@@ -78,19 +78,19 @@ export const createCitizenFolderStructure = async (
   verifiedFolderStructure: ValidAndVerifiedFolderStructure
 ): Promise<void> => {
   const storageUrl = createUrl(storage);
-  const stammdatenFolderUrl = createUrl(STAMMDATEN_FOLDER_PATH, storage);
+  const maindataFolderUrl = createUrl(MAINDATA_FOLDER_PATH, storage);
   const inboxFolderUrl = createUrl(INBOX_FOLDER_PATH, storage);
 
-  if (!verifiedFolderStructure.stammdatenFolderExists) {
+  if (!verifiedFolderStructure.maindataFolderExists) {
     await createContainer({
       url: storageUrl,
-      name: STAMMDATEN_FOLDER_NAME,
+      name: MAINDATA_FOLDER_NAME,
       session,
     });
   }
 
-  if (!verifiedFolderStructure.stammdatenFileExists) {
-    await createStammdatenFile(session, webId, stammdatenFolderUrl);
+  if (!verifiedFolderStructure.maindataFileExists) {
+    await createMaindataFile(session, webId, maindataFolderUrl);
   }
 
   if (!verifiedFolderStructure.inboxFolderExists) {

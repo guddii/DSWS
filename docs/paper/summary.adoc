@@ -1,0 +1,59 @@
+= Summary
+
+In this project, we explored the implementation of the Solid project specifications in the context of e-government processes in Germany.
+The Solid specifications offer a framework for securely storing data in decentralised data storages, with granular control over data access.
+We discussed which specifications within the solid framework can be used to create secure web applications for e-governance and identified certain limitations or areas where these specifications may fall short.
+
+These are the key findings and takeaways from this showcase:
+
+//Applicability of Solid for E-Government
+We found the Solid specifications generally applicable to e-government processes.
+Particularly, the emphasis on interoperability based on the Solid model, involving providers and applications, has shown promise in working seamlessly with various government applications, enabling users to share personal data with different public administration offices.
+
+//Development Challenges
+According to our experience, current technologies, including libraries and reference implementations of providers,
+are not yet mature enough to streamline development for wider adoption.
+However, certain Solid specifications and technologies, such as creating a WebID and initialising data storages,
+have proven to be valuable assets in this showcase and work reliably within the framework.
+
+The Solid specifications propose a wide array of technologies and methods for giving users control over their data and which agents can access which resources.
+
+We have found the specifications to be lacking for some use-cases in this particular showcase,
+i.e. data flows, where a citizen is not the owner, but the trustee of a resource.
+The absence of features
+for managing data on behalf of citizens by public administration offices has made some derivations from standard solid workflows necessary.
+Our proposed authorisation flows for these cases are a working example,
+but for more secure development, a standardised specification for those scenarios is necessary.
+
+The previously mentioned granular control over access and permissions only applies to generic resources, such as folders or files.
+Presently, the Solid specification does not provide any means to regulate access to specific data entries within resources.
+The only way to enable such functionality is through supplementary procedures, like providing a separate authorising trustee.
+Further research could explore easy and secure methods to directly allow this functionality.
+
+Nevertheless, the Solid specifications can serve as a valuable reference point for designing interoperable e-governance applications.
+Further research and development should be encouraged,
+since working within an already established framework of technologies can facilitate the development of new applications.
+It should be especially noted that the Solid framework is not a commercial product,
+but an open-source project and as such dependent on research and insights from the community.
+Seeing as there have been multiple research and development projects applying the Solid specifications to various use-cases,
+the findings in this work should be re-evaluated in the future.
+
+//ESS
+Since the showcase focuses on applications in the Solid framework and only works with the ESS as a provider,
+limited insights were gained regarding the broader challenges in developing Solid server technologies.
+However, there is potential for future development of Solid servers to accommodate the needs identified in this showcase.
+
+//User Experience
+Adapting the Solid concept for e-governance poses a significant challenge,
+especially in making it accessible to users who may not have an in-depth understanding of Solid principles.
+Further research is required to create user-friendly ways of interacting with Solid applications and data models.
+
+//RDF Vocabulary
+A major obstacle encountered is the lack of an established RDF vocabulary for public administration processes and documents in Germany.
+While this work didn't focus on converting existing processes into RDF models, we can say that well-defined ontologies are a major factor in designing solid applications.
+But even in a broader context, a well-defined vocabulary and terminology is needed in order to create reliable and accessible e-governance applications.
+In designing this showcase, it became evident that the theoretical foundations, particularly regarding RDF resource modelling, require further interdisciplinary assessment.
+
+In conclusion, this showcase highlights the potential of the Solid project specifications in enhancing e-government processes, with a focus on interoperability and user-controlled data management.
+While there are challenges to overcome, such as technology readiness and user-friendliness, further research and development in this domain could lead to significant advancements in the field of e-governance.
+Additionally, specifying an ontology for e-government processes is essential for the successful adoption of Solid in governmental contexts.

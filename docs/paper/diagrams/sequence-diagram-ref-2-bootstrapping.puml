@@ -1,0 +1,69 @@
+@startuml
+actor Citizen
+participant CitizenApplication
+participant SolidServer
+participant CitizenStorage
+'participant Office1Application
+'participant Office1Storage
+'participant Office1CitizenStorage
+'participant Office2Application
+'participant Office2Storage
+'participant Office2CitizenStorage
+
+'maindata folder check
+CitizenApplication -> SolidServer : Request maindata folder information
+SolidServer <--> CitizenStorage : Get maindata folder information
+CitizenApplication <-- SolidServer : Maindata folder information
+CitizenApplication -> CitizenApplication : Check maindata folder
+
+'maindata.ttl file check
+CitizenApplication -> SolidServer : Request maindata.ttl file information
+SolidServer <--> CitizenStorage : Get maindata.ttl file information
+CitizenApplication <-- SolidServer  : maindata.ttl file information
+CitizenApplication -> CitizenApplication : Check maindata.ttl file
+
+'inbox folder check
+CitizenApplication -> SolidServer : Request inbox folder information
+SolidServer <--> CitizenStorage : Get inbox folder information
+CitizenApplication <-- SolidServer : Inbox folder information
+CitizenApplication -> CitizenApplication : Check inbox folder
+
+'inbox append permission check
+CitizenApplication -> SolidServer : Request inbox folder ACL resource
+SolidServer <--> CitizenStorage : Get inbox folder ACL resource
+CitizenApplication <-- SolidServer : Inbox folder ACL resource
+CitizenApplication -> CitizenApplication : Check inbox folder append permission
+
+alt File/folder/permission missing case
+    CitizenApplication -> CitizenApplication : Display bootstrapping UI
+
+    Citizen -> CitizenApplication : Generate missing data
+
+    alt maindata folder missing case
+        CitizenApplication -> SolidServer : Create maindata folder
+        SolidServer <--> CitizenStorage : Create
+        CitizenApplication <-- SolidServer : Created
+    end
+
+    alt maindata.ttl file missing case
+        CitizenApplication -> SolidServer : Create maindata.ttl file
+        SolidServer <--> CitizenStorage : Create
+        CitizenApplication <-- SolidServer : Created
+    end
+
+    alt inbox folder missing case
+        CitizenApplication -> SolidServer : Create inbox folder
+        SolidServer <--> CitizenStorage : Create
+        CitizenApplication <-- SolidServer : Created
+    end
+
+    alt inbox folder append permission missing
+        CitizenApplication -> SolidServer : Add public append permission to ACL resource
+        SolidServer <--> CitizenStorage : Add
+        CitizenApplication <-- SolidServer : Added
+    end
+end
+
+CitizenApplication -> CitizenApplication : Redirect to app UI
+
+@enduml

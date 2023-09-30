@@ -1,5 +1,5 @@
 "use client";
-import { STAMMDATEN_FILE_PATH } from "solid";
+import { MAINDATA_FILE_PATH } from "solid";
 import {
   SessionContent,
   EditorTurtle,
@@ -28,8 +28,8 @@ export default function Page() {
   const t = useTranslation();
 
   const currentItem = {
-    title: t("_.stammdaten"),
-    key: "stammdaten",
+    title: t("_.maindata"),
+    key: "maindata",
   };
 
   const breadcrumbItems = [
@@ -48,13 +48,13 @@ export default function Page() {
             options={{ breadcrumbItems, currentItem }}
             extra={
               <ControlsDataset
-                datasetPath={STAMMDATEN_FILE_PATH}
+                datasetPath={MAINDATA_FILE_PATH}
                 enableInitialLoading
                 buttonLabel={t("_.reload")}
               />
             }
           >
-            <Card title={t("_.stammdaten")}>
+            <Card title={t("_.maindata")}>
               <EditorTurtleWithPageDataset />
             </Card>
           </LayoutContent>

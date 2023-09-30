@@ -8,12 +8,12 @@ import {
   AttachmentFundingNotice,
   AttachmentIdentityCard,
   AttachmentLicensePlateNumber,
-  AttachmentMotorVehicleInsuranceCertificate,
+  AttachmentVehicleInsurance,
   AttachmentParentalBenefitNotice,
   AttachmentPropertyData,
   AttachmentTaxDeclaration,
   AttachmentTradeID,
-  AttachmentVehicleRegistrationCertificate,
+  AttachmentVehicleRegistration,
   MainForm,
 } from "solid";
 import { AuditOutlined } from "@ant-design/icons";
@@ -68,7 +68,7 @@ const CardEditorExtra = ({ model }: ICardEditorExtraProperties) => {
       <CardEditorExtraButton href="https://solid-showcase-vehicle-registration-office.vercel.app/" />
     );
   }
-  if (model instanceof AttachmentMotorVehicleInsuranceCertificate) {
+  if (model instanceof AttachmentVehicleInsurance) {
     return (
       <CardEditorExtraButton href="https://solid-showcase-car-insurance-company.vercel.app/" />
     );
@@ -93,7 +93,7 @@ const CardEditorExtra = ({ model }: ICardEditorExtraProperties) => {
       <CardEditorExtraButton href="https://solid-showcase-trade-office.vercel.app/" />
     );
   }
-  if (model instanceof AttachmentVehicleRegistrationCertificate) {
+  if (model instanceof AttachmentVehicleRegistration) {
     return (
       <CardEditorExtraButton href="https://solid-showcase-customs.vercel.app/" />
     );

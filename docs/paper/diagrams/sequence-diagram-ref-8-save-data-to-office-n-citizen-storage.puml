@@ -1,0 +1,40 @@
+@startuml
+'actor Citizen
+'participant CitizenApplication
+participant SolidServer
+'participant CitizenStorage
+participant Office1Application
+participant Office1Storage
+participant Office1CitizenStorage
+'participant Office2Application
+'participant Office2Storage
+'participant Office2CitizenStorage
+
+Office1Application -> Office1Application : Save data (to office 1 citizen storage)
+
+SolidServer <-- Office1Application: Login as agent
+
+SolidServer -> Office1Application : Agent session
+
+SolidServer <-- Office1Application : Get office 1 citizen storage
+
+SolidServer <--> Office1Storage : Get storage
+
+SolidServer -> Office1Application : Path to storage or nothing
+
+alt Nothing case
+    SolidServer <-- Office1Application : Create a new storage
+
+    SolidServer <--> Office1CitizenStorage : Create storage
+
+    SolidServer -> Office1Application : Path to storage
+end
+
+SolidServer <-- Office1Application : Save to storage and grant citizen read access
+
+SolidServer <--> Office1CitizenStorage : Save
+
+SolidServer <--> Office1CitizenStorage : Grant citizen read access to reference
+
+SolidServer -> Office1Application : Reference of saved ttl, additional data
+@enduml

@@ -1,0 +1,13 @@
+Predicates;Label;Description
+gov:VehicleInsurance;Motor Vehicle Insurance Certificate;A document proving that a motor vehicle is insured, providing coverage details.
+gov:BuildingPermit;Building Permit;Official authorization from local authorities to commence construction or renovation on a property.
+gov:VehicleRegistration;Vehicle Registration Certificate;A document confirming a vehicle's registration with relevant authorities, containing key details.
+gov:FundingNotice;Funding Notice;A document informing recipients about the availability of financial support or funding opportunities.
+gov:BusinessPremisesPermit;Business Premises Permit;Official permission allowing a business to operate from a specific location.
+gov:PropertyData;Property Data;Information and details related to a specific property, such as ownership, dimensions, and valuation.
+gov:ParentalBenefitNotice;Parental Benefit Notice;A document informing parents about their eligibility for parental benefits and the associated details.
+gov:CreditNotice;Credit Notice;A document informing an individual or business about a credit-related event or change in credit terms.
+gov:IdentityCard;Identity Card;A government-issued document used to confirm an individual's identity, often including a photograph and personal information.
+gov:TaxDeclaration;Tax Declaration;A formal statement disclosing an individual's or business's financial details and income for tax assessment.
+gov:TradeLicence;Trade Licence;Official authorization permitting an individual or business to engage in a specific trade or occupation.
+gov:LicensePlate;License Plate;A plate displaying a unique combination of numbers and letters to identify a motor vehicle.

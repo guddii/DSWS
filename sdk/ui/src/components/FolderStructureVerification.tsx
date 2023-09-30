@@ -52,8 +52,8 @@ export const FolderStructureVerification = ({
       );
 
       const updatedVerifiedFolderStructure: ValidAndVerifiedFolderStructure = {
-        stammdatenFolderExists: true,
-        stammdatenFileExists: true,
+        maindataFolderExists: true,
+        maindataFileExists: true,
         inboxFolderExists: true,
         inboxFolderPublicAppendAccessExists: true,
         validFolderStructure: true,

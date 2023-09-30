@@ -1,0 +1,76 @@
+@startuml
+actor Citizen
+participant CitizenApplication
+participant SolidServer
+participant CitizenStorage
+participant Office1Application
+'participant Office1Storage
+'participant Office1CitizenStorage
+participant Office2Application
+participant Office2Storage
+participant Office2CitizenStorage
+
+Citizen -> Office1Application : Read data from reference
+
+Office1Application -> Office1Application : Load referenced data
+
+SolidServer <-- Office1Application : Login as agent
+
+SolidServer -> Office1Application : Agent session
+
+SolidServer <-- Office1Application : Request referenced data
+
+SolidServer <--> Office2CitizenStorage : Get data
+
+SolidServer -> Office1Application : Data or unauthorized error
+
+alt Data case
+    Office1Application -> Office1Application : Automatically fill data into form
+else Unauthorized case
+    Office1Application -> Office2Application : Request reference access
+
+    SolidServer <-- Office2Application: Login as agent
+
+    SolidServer -> Office2Application : Agent session
+
+    SolidServer <-- Office2Application : Get requests folder
+
+    SolidServer <--> Office2Storage : Get folder
+
+    SolidServer -> Office2Application : Path to folder or nothing
+
+    alt Nothing case
+        SolidServer <-- Office2Application : Create a new folder
+
+        SolidServer <--> Office2Storage : Create folder
+
+        SolidServer -> Office2Application : Path to folder
+    end
+
+    ref over SolidServer, Office2Application, Office2Storage
+      [REF-15] Validate requested access with owner permissions
+    end ref
+
+    ref over SolidServer, Office2Application, Office2Storage
+      [REF-16] Generate and save request Turtle file
+    end ref
+
+    ref over SolidServer, CitizenStorage, Office2Application
+      [REF-12] Send request access message to citizen's inbox
+    end ref
+
+    Citizen -> CitizenApplication : Navigate to the application
+
+   ref over CitizenApplication, SolidServer
+     [REF-1] Login with session
+   end ref
+
+   ref over CitizenApplication, SolidServer, CitizenStorage, Office2Application, Office2Storage, Office2CitizenStorage
+     [REF-17] Grant or deny trustee access request for reference
+   end ref
+
+   ref over Citizen, CitizenApplication, SolidServer, CitizenStorage, Office2Application, Office2Storage, Office2CitizenStorage
+     [REF-14] Reading data from reference
+   end ref
+end
+@enduml

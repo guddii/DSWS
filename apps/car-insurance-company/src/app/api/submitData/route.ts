@@ -8,8 +8,8 @@ export async function POST(request: Request) {
     const session = await getAgentUserSession();
     const additionalUniqueData = [
       {
-        name: "motorVehicleInsuranceID",
-        predicate: GOV.MotorVehicleInsuranceID.value,
+        name: "vehicleInsuranceID",
+        predicate: GOV.VehicleInsuranceID.value,
       },
     ];
     return controllerSubmitData({ request, session, additionalUniqueData });

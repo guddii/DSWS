@@ -1,0 +1,437 @@
+= Implementation
+
+This section focuses on the technical implementation of the macro architecture and network of web applications, along with their interaction.
+Additionally, we examine the modelling of data, emphasizing ownership (whether by the owner or trustee) and the resulting access permissions.
+Lastly, we present selected scenarios and processes used to resolve specific issues within the macro architecture.
+
+== Architecture
+
+Before examining the specific applications, it is imperative to discuss the essential identities, which are the unique system-wide identifiers of the agents, as derived from the <<Concept>>.
+The primary concerns are the citizen and the government, with the government serving as a representative of any institution listed in <<Applications>>.
+These objects are identified based on the requirements and Solid technology and can be obtained from the figure below.
+
+.Component diagram of the identities in the architecture. Source: own figure
+[plantuml,id=Component_diagram_of_the_identities_in_the_architecture]
+----
+include::diagrams/component-diagram-of-the-identities-in-the-architecture.puml[]
+----
+
+The figure illustrates the essential entities required for the programmatic process, with third-party services, such as the identity provider, excluded in this depiction.
+These entities include the applications and data storages that correspond to the agents.
+Furthermore, the government application includes an additional storage that safeguards the citizen's data.
+
+The numbered directional arrows depict a possible data flow path between the various components and their ranking in the flow.
+The diagram also indicates relationships between the components with dashed arrows.
+
+== Technologies
+
+When considering the technology used, certain prerequisites affect technological decisions.
+Solid is built on web technologies, which establishes a web-based architecture as the overall ecosystem.
+
+Multiple implementations of Solid servers are available along with some free public accessible services.
+We have opted to use the Enterprise Solid Server (ESS) service from Inrupt, Inc., as we did not need to manipulate the server functions.
+Furthermore, the platform offers a distinct feature of xref:Data-Sovereignty-Discussion[Data Sovereignty], which cannot be found elsewhere.
+In addition, Inrupt offers client SDKs that simplify the operation of ESS functions:
+
+- https://docs.inrupt.com/developer-tools/javascript/client-libraries/[Inrupt JavaScript Client Libraries]
+- https://docs.inrupt.com/developer-tools/javascript/react-sdk/[Solid React SDK]
+
+We have chosen TypeScript and JavaScript as our primary languages because they are the most widely used programming languages in modern web applications.
+Our implementation utilises the https://nextjs.org[Next.js] https://react.dev[React] framework by Vercel, and we have chosen https://ant.design[Ant Design] to create the graphical user interface due to its capabilities in speeding up web application development.
+
+The following text will not explain the functions abstracted by the libraries mentioned above.
+
+== Applications
+
+The applications can be categorised into two groups, as described in <<Concept>>.
+The first group consists of applications that are completely trusted, meaning they have unrestricted access to all user data.
+This includes the ESS services and the citizen application.
+The second group comprises untrusted applications that have limited access to resources, only when absolutely necessary.
+This distinction is required because there are also two separate use cases for these applications.
+In order to establish true ownership of their data, it is necessary that users have access to a fully trusted application which enables them to maintain all of their data without restrictions.
+Such a Solid app with the ability to view and alter any user data is only achieved by providing unrestricted access.
+In government applications, unrestricted access should not be necessary as they only consume the provided data when necessary, while complying with <<REQ-1>> and <<REQ-6>>.
+As a result, these two groups are essential to fulfil all aspects of user data sovereignty.
+
+The following table offers a symbolic name and crucial information of implemented applications, including their names, brief descriptions, designated actions and links to public instances.
+The number of applications was chosen to simulate the complex processes often present in official public service contexts.
+This approach avoids oversimplification of processes and interconnected dependencies, and creates a realistic and diffuse network of applications.
+
+.Input and output data of the Solid applications
+[%header,width=100%,format=csv,separator=;,id=Input_and_output_data_of_the_solid_applications]
+|===
+include::data/Solid_applications.csv[]
+|===
+
+== Data Modelling
+
+As outlined in the applications section, the applications and services implemented can be categorised into trust groups.
+This section will provide a thorough examination of this classification.
+Firstly, we will examine data ownership in detail, followed by a discussion of data creation.
+This discussion aims to provide an objective and clear overview of the trust groups and their functionality.
+Additionally, we will delve into authorisations and provide a detailed description of the inputs and outputs of respective applications.
+
+=== Owners of Data
+
+Citizens are responsible for owning and managing their own data in `+maindata.ttl+`.
+This resource includes fundamental information that is required for most bureaucratic purposes, including first and last names, as well as place of residence.
+In addition, it contains identifiers that are crucial in specific contexts, such as the tax reference number for the tax office.
+To reference the relevant previous submission and issuer, data from prior taxes are stored in the dataset.
+
+Offices hold information on citizens from previous submissions or self-collected data.
+Citizens are granted access to this data related to themselves to ensure transparency and reusability.
+
+=== Creators of Data
+
+The created data is primarily sourced from citizens themselves, who input it either through the citizen portal or at the relevant office.
+Any changes require a new submission, similar to existing official processes.
+However, it is permissible to access and transmit the information, thus fulfilling the concept of the data trustee.
+
+Certain pieces of information comprise data collected or created by the authorities, including land registry data or the tax number.
+These data may be provided to the user, but cannot be altered by them.
+
+=== Custom `+gov+` RDF Vocabulary
+
+To facilitate all data created by the applications, a custom `+gov+` RDF vocabulary has been created to define the necessary predicates.
+The following table presents all data references generated by the various applications.
+To enhance readability, the predicates are formatted with a namespace prefix.
+To generate the complete predicate identifier by expansion, `+gov:{predicate}+` would be replaced by `+urn:gov#{predicate}+`.
+
+.Custom `+gov+` predicates
+[%header,width=100%,format=csv,separator=;,id=Custom_gov_predicates]
+|===
+include::data/Custom_gov_predicates.csv[]
+|===
+
+=== Inputs and Outputs of the Applications
+
+The table below displays the predicates and data inputs required for each application.
+The symbols within table columns are explained in <<Applications>>.
+
+In addition to the custom `+gov+` predicates, three new standardised predicates from the `+vcard+` RDF vocabulary are used.
+These are also formatted with a namespace prefix, and by expanding, the prefix `+vcard:{predicate}+` would be replaced by `+http://www.w3.org/2006/vcard/ns#{predicate}+`.
+The table cells indicate whether the combination of application and predicate acts as an input (`+in+`) or an output (`+out+`).
+Optional inputs are marked with a question mark at the end (`+?+`).
+
+.Input and output data of offices
+[%header,width=100%,format=csv,separator=;,id=Input_and_output_data_of_offices]
+|===
+include::data/Input_and_output_data_of_offices.csv[]
+|===
+
+The `+vcard+` predicates in the table above belong to the citizen's maindata and are directly accessible to all applications, if authorized by the user.
+Whereas all the `+gov+` predicates are references to previous submissions to the respective office for use by the citizen.
+The actual data of the application is hidden behind the reference.
+
+== Scenarios and Processes
+
+The sequence diagrams below illustrate the processes showcased.
+One diagram illustrates the complete usage scenario, whereas the remaining diagrams portray the recurrent sequences within it.
+
+To enhance diagram clarity, reference blocks are utilised to represent these recurrent sequences.
+These referenced subprocesses always include the participants furthest to the left and right, as indicated by their width.
+Furthermore, some participants in between may also be involved.
+
+For simplicity, the diagrams do not include differentiation between client and server functions, as it bears a limited relevance and would unnecessarily enhance the diagram's complexity.
+Communication between the client and server of the same participant is indicated by an arrow pointing from the participant to itself, similar to other actions targeted at itself.
+In addition, in cases where basic read/write/append operations are performed on data, the following diagrams condense the request and response actions into a single arrow pointing in both directions.
+
+As previously described, offices serve as representatives for the web applications listed in <<Applications>>.
+Office 1 and office 2 are introduced in the following diagrams to clarify the communication process between two representatives.
+These offices serve as placeholders for relevant participants and do not represent specific offices.
+Furthermore, the meaning of office 1 and office 2 may vary between the different diagrams.
+
+=== Overall Architecture
+
+The diagram below shows the entire procedure of utilising the applications.
+The process assumes the existence of an identity and data storage, which may not possess the necessary file or folder structure and permissions for the process to be carried out.
+
+.Sequence diagram of the overall architecture. Source: own figure
+[plantuml]
+----
+include::diagrams/sequence-diagram-overall-architecture.puml[]
+----
+
+=== References
+
+The overall sequence diagram uses a variety of repetitive referenced subprocesses, which are detailed here.
+The diagrams explained are listed in the order of their appearance in the overall diagram.
+
+[#REF-1]
+==== [REF-1] Login With Session
+
+The login process is defined by Inrupt as described in the software library.
+
+- https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/authenticate-browser/[Authenticate (Browser)]
+- https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/authenticate-nodejs-script/[Authenticate (Node.js: Single-User App)]
+
+As this mechanism was not manipulated, we omit its sequence diagram.
+Authentication in the browser was partially facilitated through the Inrupt Solid React SDK, utilising the adapter library for login functions.
+
+[#REF-2]
+==== [REF-2] Bootstrapping
+
+The diagram illustrates bootstrapping via the application to establish the essential structure and access rights in the data storage.
+
+.Sequence diagram of bootstrapping. Source: own figure
+[plantuml]
+----
+include::diagrams/sequence-diagram-ref-2-bootstrapping.puml[]
+----
+
+[#REF-3]
+==== [REF-3] Edit Data
+
+Editing the data is a straightforward process and not displayed in a sequence diagram due to its simplicity.
+The Inrupt JavaScript Client library functions were utilised for reading and writing data to the data storage.
+For more details on this mechanism, refer to https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/read-write-data/[Read/Write Structured Data].
+
+The data was presented through the user interface (UI) library's form component and transformed through adapter patterns.
+
+[#REF-4]
+==== [REF-4] Login Without Session
+
+The process of logging in without a session cannot truly be considered a log-in, as it lacks any authentication.
+Rather, a WebID is produced based on the username and used in subsequent authorisation procedures.
+This approach guarantees that applications are only granted the bare minimum of permissions and that authorisations must be specifically requested for each resource.
+
+[#REF-5]
+==== [REF-5] Access via Access Request and Access Grant
+
+The sequence diagram depicts the Access Grant Service as implemented in the ESS.
+This procedure utilises the ACP specification to selectively release resources to an application.
+Only after explicit user permission can the resources be accessed.
+
+.Sequence diagram of access via Access Request and Access Grant. Source: own figure
+[plantuml]
+----
+include::diagrams/sequence-diagram-ref-5-access-via-access-request-and-access-grant.puml[]
+----
+
+For more details on this mechanism, refer to https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/manage-access-requests-grants/[Access Requests and Grants].
+
+[#REF-6]
+==== [REF-6] Grant Access Request via Access Management UI
+
+Users can grant or refuse an agent's Access Request via the provided access management UI of the Inrupt PodSpaces.
+This involves the user logging in and explicitly choosing access rights for the requested resources
+as well as optionally specifying the duration of access.
+ESS will then create an Access Grant with the according status, which allows the agent to access the related resource.
+This service is used as is, and was not modified for this particular use case.
+
+[#REF-7]
+==== [REF-7] Reading Data and Form Filling
+
+Reading and completing forms utilises the same process as editing data and can be followed in this section.
+The only variation is that there is a fixed data model in this procedure, as opposed to the dynamic creation of data when editing.
+
+[#REF-8]
+==== [REF-8] Save Data to Office `+n+` Citizen Storage
+
+As depicted in the illustration below, the data provided by the user is stored in an isolated data storage that exclusively safeguards the data of one user.
+The primary objective of this measure is to heighten the difficulty of unauthorised access.
+The WebID affiliated with the application is the creator and owner of the storage and the submitted data.
+The concept of a data trustee is incorporated by issuing the submission's reference via read access.
+
+.Sequence diagram of saving data to office `+n+` citizen storage. Source: own figure
+[plantuml]
+----
+include::diagrams/sequence-diagram-ref-8-save-data-to-office-n-citizen-storage.puml[]
+----
+
+[#REF-9]
+==== [REF-9] Send save-to-data Message to Citizen's Inbox
+
+As outlined in the <<REF-4>> documentation, government applications lack true authentication measures.
+This raises the question of what steps are required for processing user data.
+Therefore, an inbox mechanism is employed to attach a Turtle file to the user's publicly accessible inbox directory for subsequent processing in an application with enhanced privileges.
+
+This sequence illustrates the use case of creating a save-to-data message and saving it to the user's inbox.
+
+.Sequence diagram of sending save-to-data message to citizen's inbox. Source: own figure
+[plantuml]
+----
+include::diagrams/sequence-diagram-ref-9-send-save-to-data-message-to-citizens-inbox.puml[]
+----
+
+[[REF-10]]
+==== [REF-10] Generate save-to-data Message Turtle File
+
+The generation of message data only involves simple Turtle text creation from supplied data.
+Consequently, there is no need for any sequence diagram to further illustrate this process.
+As a significant part of this type of message generation, the identification as a save-to-data message is stored in the message Turtle data.
+
+[[REF-11]]
+==== [REF-11] Merge Data From Inbox to Maindata
+
+To process save-to-data inbox messages, the message body is merged with the `+maindata.ttl+` file, and any existing data is overwritten as required.
+This is a straightforward operation that is not depicted graphically here.
+
+[[REF-12]]
+==== [REF-12] Send Request Access Message to Citizen's Inbox
+
+This sequence illustrates the use case of creating a request access message and saving it to the user's inbox.
+The process follows the same steps as shown in <<REF-9>> and differs only in the content of the generated message.
+
+.Sequence diagram of sending request access message to citizen's inbox. Source: own figure
+[plantuml]
+----
+include::diagrams/sequence-diagram-ref-12-send-request-access-message-to-citizens-inbox.puml[]
+----
+
+[[REF-13]]
+==== [REF-13] Generate Request Access Message Turtle File
+
+For the same reasons as given in <<REF-10>>, no graphical representation of the process is necessary.
+In this message generation type, the identification as a request for access message is stored in the message Turtle data.
+
+[[REF-14]]
+==== [REF-14] Reading Data From Reference
+
+The process of reading reference data is composed of two distinct sections, as presented in the diagram below.
+The first stage includes the access to the referenced data.
+If the application is not yet authorised to access the data, an additional subprocess is initiated to request the necessary permissions.
+In the second stage, the user has the option of granting or denying the Access Request via their inbox.
+This custom functionality is necessary because the ESS Access Grant services do not provide a way to grant access to a resource to another participant if the user is not the actual owner of the data or does not have full access.
+
+.Sequence diagram of reading data from reference. Source: own figure
+[plantuml]
+----
+include::diagrams/sequence-diagram-ref-14-reading-data-from-reference.puml[]
+----
+
+[[REF-15]]
+==== [REF-15] Validate Requested Access With Owner Permissions
+
+Before creating an Access Request, the owner's permissions must first be used to validate the requested access.
+This process ensures that the owner possesses all the requested access permissions, thereby allowing them to grant these permissions to other participants.
+
+[[REF-16]]
+==== [REF-16] Generate and Save Request Turtle File
+
+This process consists of generating a basic Turtle file containing the request information, followed by storing the generated file in the office storage.
+At file generation, an initial pending status is added to the Turtle data to allow the request status to be checked and updated in subsequent processes.
+
+[[REF-17]]
+==== [REF-17] Grant or Deny Trustee Access Request for Reference
+
+The sequence diagram visualises the user-initiated process of granting or denying a request for access to a referenced resource as the data trustee.
+If access is granted, all the requested permissions are provided to the original requester.
+If access is denied, no further changes to permissions are required, as the requester does not possess any initial access permissions.
+In either scenario, the request state is updated based on the user's decision to avoid multiple uses of the request.
+
+.Sequence diagram of granting or denying a trustee access request to a reference. Source: own figure
+[plantuml]
+----
+include::diagrams/sequence-diagram-ref-17-grant-or-deny-access-request-for-reference.puml[]
+----
+
+[[REF-18]]
+==== [REF-18] Update Permissions in ACL resource for Requester
+
+This process uses ACL resource functionality based on the ACP language to grant requested access permissions to resources.
+This involves adding the requester and requested permissions to resource-specific ACL resources and updating them in the data storage.
+
+== Implementation Strategies
+
+This section covers various implementation strategies and approaches that were relevant during the project.
+It outlines specific development choices and describes customised solutions for required features.
+The section also outlines failed attempts, providing context for the final successful solutions and why these were necessary over more straightforward options.
+
+=== Access Granting and Policies
+
+The widely supported ACL resource functionality provides simple ways to manage resource access for different users.
+It allows read, write, append and control permissions on resources enabling control of user and application access to data, by providing an associated ACL resource for each resource in a storage instance.
+However, this mechanism has several limitations.
+These include the lack of timed access permissions and the lack of partial control permissions for other users.
+Additionally, the Solid providers do not offer a straightforward method for users to manage access permissions defined in the ACL resource, through a management UI.
+
+The alternative permission mechanism of Access Requests and Access Grants aims to address several of these issues.
+It allows permissions to be granted on a timed basis to prevent unlimited access and provides a simple access management UI to handle Access Requests.
+The main drawback of this approach is its current Solid server support, as only the Enterprise Solid Server provides an implementation.
+Additionally, it only functions when the user granting access also owns the data.
+
+Since both approaches to access management have different advantages and disadvantages, it was necessary to make use of both depending on the use case.
+
+Our citizen application requires complete access to the user's data storage.
+It must be able to read and create folders, files, and permissions as detailed in <<REF-2>>.
+Implementing this functionality through Access Requests and Access Grants is impossible or would result in confusing behaviour due to multiple Access Requests for various resources.
+Therefore, this application relies on ACL resources as the access management feature and assumes that the user has full access to the data storage, which is implied as the user is the storage owner.
+This approach enables the citizen application to function as a trustworthy management tool for accessing user data, following a complete session login, as depicted in the initial steps of the <<Overall Architecture>>.
+
+Our government applications cannot be treated as trusted management tools with complete access to the user's data storage.
+Only the necessary data should be requested when required, according to <<REQ-6>>.
+These constraints are incompatible with the ACL resource approach, as a full session login would be necessary, granting full access to all data.
+Therefore, these applications rely on Access Requests and Access Grants to request only the required data when it becomes necessary, as described in the second part of the <<Overall Architecture>>.
+This dependence on Access Requests and Access Grants required utilising the official Enterprise Solid Server implementation provided by Inrupt.
+However, this is not a significant drawback, as all other server implementations are still progressing in the adoption of Solid standards and will support comparable mechanisms in the future.
+
+=== UI/UX
+
+One of the challenges in this project has been to keep the processes user-friendly (see <<REQ-3>>), but still adhere to the requirements <<REQ-1>>/<<REQ-5>>.
+Ideally, applications should not have full access to read/write data in the user's personal data storage unless absolutely necessary.
+However, to populate a user's data storage with the necessary maindata files, to be able to use government applications, this could not be realised with Access Grants, since it is not possible to send an Access Request to create a specific (container) resource (e.g. maindata and inbox) without granting write access to the entire data storage.
+In order to keep the UI easy to use and self-explanatory, we opted to not require users to edit raw RDF files and instead focused on designing data flows for specific purposes.
+
+=== Additional Mechanisms
+
+A few of the mechanisms we have found to be necessary for our showcase were not provided by the Solid specification itself or the used Solid provider.
+In these cases, it was necessary to create custom mechanisms to implement the required functionality.
+
+==== Application Data Storage Specific to a User
+
+The Solid specification was built with the intention of users maintaining all their data in their own personal data storage.
+In this showcase, one of the requirements (<<REQ-5>>) is that users cannot further modify an official form after submitting it at a government office.
+At the same time, they need to be able to access any submitted data and, if necessary, grant access to other applications.
+This combination of access permissions cannot be achieved in a user-owned data storage, as the user is always automatically granted all possible permissions.
+As a solution to this issue, a different participant must be the owner of the data storage and explicitly grant only the necessary read permissions to the user.
+For these reasons, government applications in this showcase create multiple data storages, each specific to a WebID, but owned by the government application.
+This makes it possible for users to access data they have submitted at an office, without being able to change the submitted data.
+See <<REF-8>> for a detailed diagram of this mechanism.
+
+==== Granting Access to Other Participants
+
+Granting access to data outside the user's data storage is not included in the Solid specification, as it is designed to allow users to maintain only their own data.
+In our particular case, the user is not the owner of all the available data.
+However, they still need to be able to grant read access to other applications.
+Several approaches were explored to satisfy these requirements.
+
+Initially, the Access Grant Service implemented in the ESS was utilised, as it already served as a mechanism for other applications to access data stored in the user's data storage.
+However, this method proved problematic, as Access Requests are always directed to the owner of the requested data.
+In this scenario, the owner is not the user who should grant access.
+Instead, a separate government application controls the data.
+Therefore, only the original government application would be able to grant access, not the user.
+As a result, this approach did not offer the functionality necessary to access data controlled by another participant.
+
+In the second approach, a modification of the process outlined in <<REF-8>> was implemented to grant the user control write access beforehand by modifying the ACL resource associated with the resource of which the user is a trustee, thus enabling them to manipulate the permissions set for the connected resource.
+This allowed the user to grant read access to any third party application, allowing them to access the data stored in another application's user storage.
+However, the user gained full editing rights to the resource permissions through control write permission.
+This enabled them to grant write access to other participants, including themselves, even if they only had read access.
+This loophole rendered the approach unfeasible, as the user could edit data uploaded to a government application, which is not permitted according to <<REQ-5>>.
+
+The final approach uses a fully custom-built mechanism to create and process data trustee access requests.
+All applications provide a custom server functionality that allows users to extend their access permissions to other participants for data stored in the application's user storage.
+This includes the creation of custom request files, their storage in the application storage and the ability for users to grant or deny them via another custom server functionality.
+Resource permission modifications via ACL resource are carried out by the government application that owns the resource.
+All requested permissions are compared to the user's access rights to prevent problems encountered when directly modifying permissions in the ACL resource as a user, as seen in the second approach.
+A detailed description of this process is provided in <<REF-14>>.
+
+==== Inbox With Write-Back and Access Granting Mechanism
+
+To ensure that individuals are made aware of changes occurring in their respective government data storages or applications that request access to data, a messaging service is required.
+The Solid specification includes a https://solidproject.org/TR/notifications-protocol[Notification Protocol].
+The ESS services implement this protocol as WebSocket notifications, as specified in the https://solidproject.org/TR/notifications-protocol[Solid Notifications Protocol].
+Further information about the current implementation in the ESS can be found at https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/subscribe-to-notifications/[Subscribe to WebSocket Notifications].
+This system provides real-time updates on known and owned data, but no means of creating and storing messages for later processing.
+Additionally, in our scenario, the user is not the owner of all resources and folders that require notifications.
+
+Due to these reasons, it was necessary to create a customised messaging mechanism to provide the user with the necessary tools.
+In order for this feature to work correctly, it is necessary to create an inbox folder in the user's main storage that has public append access enabled.
+This step is ensured by the mandatory bootstrapping procedure detailed in <<REF-2>>.
+This folder is used by other applications to store messages as Turtle files in the user's storage.
+Through the citizen app, users can view and handle these incoming messages.
+
+For our showcase, two message variants with custom inbox functionality were required: a save-to-data message and a request access message.
+The save-to-data message (<<REF-9>>) allows the user to transfer incoming data from other applications back to their maindata, see <<REF-11>> for more information.
+The request access message (<<REF-12>>) enables the user to grant the requested permissions to other applications, as previously outlined in <<REF-17>>.
+By implementing these two message types, we were able to provide essential additional functionality that was not originally incorporated in the Solid specification.

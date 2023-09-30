@@ -1,0 +1,218 @@
+= Discussion
+
+In this chapter,
+we will discuss some of the challenges
+encountered while working on the e-government showcase under Solid specifications.
+The development of this showcase touched on many different topics, such as the use of specifications and libraries,
+designing data flows and keeping access control in the hands of the user,
+while also making the UI easy to work with and accessible.
+For nearly every step, a different approach could be considered,
+and a lot of starting points for further research can be found.
+
+== Conceptual Realisation
+
+As outlined in <<Concept>>, we designed two different types of applications; multiple government applications
+representing public administration offices, as well as one citizen application, used to manage personal data.
+In order to reduce effort required by citizens to effectively navigate bureaucratic processes,
+one of the important requirements was the interoperability of all applications
+Interoperability is also an integral part of the Solid specifications,
+and we found the general architecture consisting of data storages,
+agents and applications to be well-fitting for the purpose of public administration services.
+We observed that building multiple applications with logically linked data requirements
+based on the same concepts can help reduce the effort needed to develop each individual application.
+Providing applications with a similar structure and design can also improve upon the usability and accessibility of public services,
+since a familiarity with structures and interfaces could help citizens navigate the processes more easily.
+Although gaining a deep understanding about data processes in public administration services
+on an operational level was not feasible in the scope of this work,
+the general  assumption can be made that with further specification of data and processes
+required by different public administration offices, the ideas developed could be improved upon and expanded.
+However, it is important to note that all applications and processes developed in this work
+rely upon a limited understanding of the domain of public administration service processes and regulations.
+Certain aspects, e.g. legal restrictions could not be included in designing the scenarios.
+
+Other additions to specific technologies may be required in further development, and need to be evaluated separately.
+Many technologies and applications specific to public administration services in Germany
+are already established or under development.
+These need to integrate with e-government application under Solid specifications.
+One aspect where this might be needed is providing other identification services
+in combination with the Solid WebID Profile.
+Available technologies in Germany are e.g.
+the https://www.ausweisapp.bund.de/en/online-identification[electronic identity card] or the https://id.bund.de/en[BundID].
+
+== [[Data-Sovereignty-Discussion]]Data Sovereignty
+
+Giving the users full control of their personal data and providing transparent data flows
+as well as facilitating access to already submitted or produced data is one of the most important aspects of the specified scenario.
+Since the Solid specifications aim to give a reference for those standards,
+many of the included technologies integrated well with the planned architecture.
+Controlling data access with the ACL resources can serve as an entry point for those concerns.
+We have found the specifications lacking in the context of usability,
+as manually setting access rights for specific resources requires the user to be familiar with the general
+concepts of data storage and Solid servers, as well as understanding the fundamental access modes in the ACL resource.
+
+There are two main concerns in our implementation regarding this:
+
+Firstly, we decided to further limit the scope of our implementation to work with the Access Grant Service implemented by the Solid Enterprise Server (ESS).
+The service allows applications to directly request access to any resource,
+specifying which access modes are needed and optionally a time frame for which the access is granted.
+Other server implementations don't yet support this feature, and this project was limited to creating Solid applications,
+while using a reference implementation of a Solid server.
+Some functionalities of the government office apps, like initialising data storages for each citizen,
+might have been more straightforward implementation-wise if we had built a dedicated Solid server.
+Our decision to focus on the ESS implementation has made it possible to make use of the Access Granting mechanism,
+but because of that, the applications built in this showcase are not compatible with other Solid providers.
+While it is likely that other providers will have a similar feature in the future,
+as the concept is featured in the Solid access control policy specifications,
+it is a drawback that the applications developed in this showcase are not independent of the user's choice of Provider.
+
+The second important subject concerning data sovereignty is the data access in the citizen app.
+Applications in this showcase require specific resources being present in a data storage, such as the maindata and inbox.
+The citizen application developed in this showcase requires
+read and write access to a data storage in order to create these resources with a bootstrapping mechanism,
+as described in the chapter implementation <<REF-2>>.
+Users might be hesitant to use their personal data storage with official government applications, if it contains data from other sources or applications.
+While Applications that provide users with the tools to edit all their data freely by themselves by design need full access to a data storage,
+solutions could be found to provide users with a way to create these necessary resources with any other Solid application they prefer.
+One way to achieve this could be providing description resources (e.g. using the Protocol for Web Description Resources <<POWDER>>)
+for the needed (container) resources, which Solid applications could use to initialise a users Solid storage according to the description provided.
+While the use of description resources is featured in the Solid protocol under section
+https://solidproject.org/TR/protocol#auxiliary-resources[4.3 Auxiliary Resources], there is not yet a specification for
+initialising storage resources based on description resources.
+
+== Citizens as resource trustees
+
+We have found that since the Solid specifications were developed with Social Web Applications as a background,
+where all resources concerning an agent are typically owned by that agent themselves,
+some of the necessary structures and mechanisms needed to mirror the processes of public administration services
+had no equivalent model in the specification.
+
+One of those features is the ability to grant access to resources of which a user is not the owner, but the trustee.
+This distinction is important since resources produced by government applications on behalf of an individual
+need to be owned by those offices to ensure consistency and offer a single point of truth.
+In the implementation,
+we conceptualised this by creating a separate storage for each citizen using a government application,
+to which they will be granted read access, based on their WebID.
+Since many public administration processes require citizens
+to forward data produced by one public entity on their behalf to another,
+citizens need to be able to provide read access to those resources to other agents.
+
+As described previously in section <<Additional Mechanisms>>, in this implementation
+different approaches were tested and evaluated against the specified <<Requirements>>.
+
+The implementation proposed in this work features a functional mechanism for government
+applications to request access to a resource owned by another government application,
+which will be granted after confirmation by the trustee.
+However, it should be noted that this feature should only serve as a reference as it is experimental
+and further specifications would be needed to ensure security in this process.
+
+== Working With the Solid Framework
+
+We have found that one challenge in working with the developing specifications and frameworks was the difficulty in planning and developing an application based on standards and libraries that are in different stages of development.
+One of the biggest issues is the lack of standardised patterns in the libraries.
+This has been pointed out by developers and designers interviewed at SolidLab Flanders <<Survey>> as well,
+with developers mentioning a lack of design patterns as the second-biggest challenge in developing Solid applications.
+The patterns mentioned most in that survey are login and consent flow.
+Given that the libraries and reference implementations are still in development, some standardisation could be an important next step.
+There are two main issues that could be solved by standardised implementations: Firstly, additional standardised patterns make it easier to develop Solid applications, which could lead to more people adopting the standard, and secondly, recognisable patterns make the applications easier to understand and use.
+
+Differences in terminology between the JavaScript libraries and SDK,
+the Enterprise Solid Server documentation and the Solid specification itself made development more difficult
+and can be seen as severe risks in the development of applications,
+especially if it concerns security and authorisation features.
+The initial design of features or processes, based on the Solid specification,
+needed to be adapted throughout development as the provided library implementations
+diverge from the specification or not yet realise all needed features.
+This resulted in reduced quality as several different approaches had to be developed,
+often containing workarounds for these limitations.
+As such, some of the developed solutions are highly experimental,
+which is a direct consequence of problems encountered with the current state of the Solid specification and framework.
+Some of these workaround implementations and failed approaches are further detailed in <<Implementation Strategies>>.
+
+== UI/UX
+
+In order for e-government applications to be accessible, an intuitive User Interface is an important requirement.
+We specified this previously as
+"Applications should not require deep understanding of underlying technologies on the user side [...]" <<REQ-3>>.
+Since advanced end-user testing hasn't been in the scope of this work, the following insights are based on qualitative observations and feedback.
+
+One of the primary challenges encountered in implementing the User Interface within the Solid framework relates to data flows.
+Several aspects were found to be confusing for users.
+Users may encounter difficulties understanding how data moves within the system, potentially leading to frustration or mismanagement of personal data.
+Similarly, the login and authentication flow might not be easily understandable for users, especially distinguishing between signing in using a session and merely providing a WebID without signing in.
+This differentiation may not be immediately clear to users and can create uncertainty about their status within the system.
+Access rights management is a critical element of all applications developed in this work, and likewise is not something most people use regularly.
+Particularly, since access granting works differently for citizens' personal data storages and those owned by government offices on behalf of the citizen.
+Users may find the multitude of steps involved in granting access to be overwhelming and time-consuming.
+
+In addition to these challenges, a substantial factor in the implementation and adaptation process revolves around understanding the Solid specifications and navigating the associated terminology.
+Our experience aligns with the findings in the previously mentioned series of interviews conducted by SolidLab Flanders <<Survey>>, which identified the challenge of making Solid concepts explainable as a top concern for Solid app developers.
+Users need accessible explanations and intuitive interfaces to engage effectively with Solid-based applications.
+In future work on these or similar applications, these concerns should be emphasised.
+
+== Data Models
+
+In order to apply the Solid specifications to the use case, all resources need to be provided
+as RDF triples and as such stored as Turtle files.
+As such, all resources in a Solid storage are processable by a vast number of applications,
+since it is a non-proprietary standard and most RDF resources are described using shared ontologies
+and vocabularies specific to and across various domains.
+This makes shared and collaborative management of knowledge and data possible.
+In approaching this project,
+we were confronted with the challenge that public administration processes and entities are one domain,
+that does not yet have an agreed upon vocabulary for Linked Data.
+
+The Chapter <<Data Modelling>> focuses on the implementation aspects concerned with modelling
+data required in the administration processes as RDF resources.
+Since in this project the focus was on developing applications, that closely mirror existing processes,
+we decided to create a custom vocabulary for specific data types( see also <<Custom `+gov+` RDF Vocabulary>>).
+Alternatively, existing Vocabularies could be used,
+such as the http://vocab.deri.ie/void[Vocabulary of Interlinked Datasets].
+We have found that even with the reduced complexity of the government applications and data flows designed in this showcase,
+compared with those needed for more complex bureaucratic processes,
+no already established vocabulary features needed predicates, such as tax reference number or trade licence.
+
+Creating a vocabulary of predicates not only facilitates automated processing of information,
+but can also serve as a tool for information discovery and sharing.
+As such, creating a vocabulary for representing data relevant to e-government processes could be both a tool to provide
+insights into the connections between data types and processes as well as serve as specification for the design of applications in this domain.
+
+The showcase developed in this work can serve as a reference implementation
+for utilising existing Linked Data principles,
+and more specifically, the Solid specifications to design e-government applications.
+However, in order to effectively and securely build on this,
+a common vocabulary for sharing personal data related to public administration services is needed.
+
+== Conclusion
+
+This work aimed to develop a showcase for e-government services as Solid applications.
+We proposed an architecture of logically linked applications that utilises Linked Data principles in order to facilitate
+sharing personal data with different public entities.
+This features a citizen application,
+used to manage a citizen's personal data storage, which is accessed via a Solid server,
+as well as government applications, that facilitate sharing data with different public offices.
+All government applications require different information from citizens,
+which is entered on a UI form.
+They then provide a service, which can be storing entered data as official documents
+or additionally providing certain personal data to the citizen, which can be saved in their own storage.
+
+We found that the Solid specifications were generally well applicable to this context.
+Established standards and implementations were used to ensure data sovereignty,
+such as managing access via Access Requests and Grants.
+However, some specific custom workflows needed to be implemented,
+mainly concerning the storing of citizen data by government applications.
+We proposed a model for this,
+where government applications create a separate storage instance on the Solid server for each citizen,
+who will then be the trustee of all resources in that storage.
+Trustees can access and share these resources.
+This is a scenario not touched upon in the Solid specifications, and as such, no standardised workflow exists.
+As applications or Solid servers developed in an e-government context will need these functionalities,
+in order to further develop such services, additional specifications need to be provided.
+
+Additional further challenges,
+such as designing usable and understandable user interfaces,
+ensuring data consistency and working with RDF vocabularies have been described in this chapter.
+
+All highlighted shortcomings of preliminary specifications when applied to e-government applications,
+should not be understood as arguments
+for deeming the Solid specifications fundamentally flawed or inapplicable in this scenario.
+Rather, they should be seen as a basis for future research.
