@@ -2,6 +2,6 @@
 
 This is the beginning of our project documentation.
 
-You can read about the link:rdf-data/README.adoc[RDF Data Structures] used in this project
+You can read about the xref:rdf-data/README.adoc[RDF Data Structures,window=_blank] used in this project
 
-Read our paper link:paper/README.adoc[here]
+Read our paper xref:paper/README.adoc[here,window=_blank]

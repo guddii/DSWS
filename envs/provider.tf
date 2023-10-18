@@ -1,0 +1,24 @@
+# Configure the Vercel provider using the required_providers stanza.
+# You may optionally use a version directive to prevent breaking
+# changes occurring unannounced.
+terraform {
+  required_providers {
+    vercel = {
+      source  = "vercel/vercel"
+      version = "0.15.1"
+    }
+  }
+  cloud {
+    organization = "guddii"
+
+    workspaces {
+      name = "showcase-solid-egovernance"
+    }
+  }
+}
+
+provider "vercel" {
+  # Or omit this for the api_token to be read
+  # from the VERCEL_API_TOKEN environment variable
+  api_token = var.vercel_api_token
+}

@@ -10,7 +10,7 @@ Each Citizen has a Maindata container in their own Pod As of now these contain o
 .Example: maindata.ttl
 [,ttl]
 ----
-include::../rdf-data/maindata.ttl[]
+include::maindata.ttl[]
 ----
 
 The purpose of this resource is to be used with other service providers such as the Tax Office App.
@@ -33,5 +33,5 @@ Additional information is given in rdf syntax
 
 [,ttl]
 ----
-include::../rdf-data/message.ttl[]
+include::message.ttl[]
 ----

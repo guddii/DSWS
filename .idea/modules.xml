@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/solid-showcase-egovernance.iml" filepath="$PROJECT_DIR$/.idea/solid-showcase-egovernance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/showcase-solid-egovernance.iml" filepath="$PROJECT_DIR$/.idea/showcase-solid-egovernance.iml" />
     </modules>
   </component>
 </project>

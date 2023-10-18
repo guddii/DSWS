@@ -1,19 +1,15 @@
 = Solid Showcase E-Governance
 
-This repository contains two applications that are deployed on vercel. The individual instances can be found in the environments section: https://gitlab.imn.htwk-leipzig.de/solid/solid-showcase-egovernance/-/environments
-
-The production environment URLs are
-
-- https://solid-showcase-car-insurance-company.vercel.app/
-- https://solid-showcase-citizen.vercel.app/
-- https://solid-showcase-construction-office.vercel.app/
-- https://solid-showcase-customs.vercel.app/
-- https://solid-showcase-employment-agency.vercel.app/
-- https://solid-showcase-environmental-office.vercel.app/
-- https://solid-showcase-land-registry-office.vercel.app/
-- https://solid-showcase-parental-benefits-office.vercel.app/
-- https://solid-showcase-reconstruction-loan-corporation.vercel.app/
-- https://solid-showcase-registration-office.vercel.app/
-- https://solid-showcase-tax-office.vercel.app/
-- https://solid-showcase-trade-office.vercel.app/
-- https://solid-showcase-vehicle-registration-office.vercel.app/
+- https://showcase-solid-car-insurance-company.vercel.app/
+- https://showcase-solid-citizen.vercel.app/
+- https://showcase-solid-construction-office.vercel.app/
+- https://showcase-solid-customs.vercel.app/
+- https://showcase-solid-employment-agency.vercel.app/
+- https://showcase-solid-environmental-office.vercel.app/
+- https://showcase-solid-land-registry-office.vercel.app/
+- https://showcase-solid-parental-benefits-office.vercel.app/
+- https://showcase-solid-reconstruction-loan-corporation.vercel.app/
+- https://showcase-solid-registration-office.vercel.app/
+- https://showcase-solid-tax-office.vercel.app/
+- https://showcase-solid-trade-office.vercel.app/
+- https://showcase-solid-vehicle-registration-office.vercel.app/

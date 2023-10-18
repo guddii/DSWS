@@ -6,9 +6,7 @@ export const ControlsHelp = () => {
   return (
     <Button
       type="text"
-      href={
-        "https://gitlab.imn.htwk-leipzig.de/solid/solid-showcase-egovernance/-/issues"
-      }
+      href={"https://github.com/guddii/showcase-solid-egovernance/issues"}
       target={"_blank"}
       icon={<QuestionCircleOutlined rev={"QuestionCircleOutlined"} />}
     />
