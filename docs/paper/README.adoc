@@ -12,11 +12,6 @@ v1.0, 2023-09-30 (Leipzig)
 :toc-title:
 :css-signature: github
 :max-width: 892px
-:note-caption: :information_source:
-ifdef::env-github[]
-:tip-caption: :bulb:
-:note-caption: :information_source:
-endif::[]
 include::front-matter.adoc[leveloffset=1]
 include::abstract.adoc[leveloffset=1]
 [discrete]
