@@ -8,13 +8,6 @@ terraform {
       version = "0.15.1"
     }
   }
-  cloud {
-    organization = "guddii"
-
-    workspaces {
-      name = "showcase-solid-egovernance"
-    }
-  }
 }
 
 provider "vercel" {

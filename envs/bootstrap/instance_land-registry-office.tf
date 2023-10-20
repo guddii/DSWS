@@ -1,20 +1,11 @@
+data "vercel_project_directory" "instance_land-registry-office" {
+  path = "../.."
+}
+
 resource "vercel_project" "instance_land-registry-office" {
   name           = var.instance_land-registry-office
   framework      = "nextjs"
   root_directory = "apps/land-registry-office"
-  git_repository = {
-    type = "github"
-    repo = "guddii/showcase-solid-egovernance"
-  }
-}
-
-resource "vercel_deployment" "instance_land-registry-office" {
-  project_id = vercel_project.instance_land-registry-office.id
-  ref        = "main"
-  project_settings = {
-    root_directory : "apps/land-registry-office"
-  }
-  production = true
 }
 
 resource "vercel_project_environment_variable" "web-id_land-registry-office" {

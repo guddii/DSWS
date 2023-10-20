@@ -1,20 +1,11 @@
+data "vercel_project_directory" "instance_trade-office" {
+  path = "../.."
+}
+
 resource "vercel_project" "instance_trade-office" {
   name           = var.instance_trade-office
   framework      = "nextjs"
   root_directory = "apps/trade-office"
-  git_repository = {
-    type = "github"
-    repo = "guddii/showcase-solid-egovernance"
-  }
-}
-
-resource "vercel_deployment" "instance_trade-office" {
-  project_id = vercel_project.instance_trade-office.id
-  ref        = "main"
-  project_settings = {
-    root_directory : "apps/trade-office"
-  }
-  production = true
 }
 
 resource "vercel_project_environment_variable" "web-id_instance_trade-office" {

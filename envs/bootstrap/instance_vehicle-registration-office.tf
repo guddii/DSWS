@@ -1,20 +1,11 @@
+data "vercel_project_directory" "instance_vehicle-registration-office" {
+  path = "../.."
+}
+
 resource "vercel_project" "instance_vehicle-registration-office" {
   name           = var.instance_vehicle-registration-office
   framework      = "nextjs"
   root_directory = "apps/vehicle-registration-office"
-  git_repository = {
-    type = "github"
-    repo = "guddii/showcase-solid-egovernance"
-  }
-}
-
-resource "vercel_deployment" "instance_vehicle-registration-office" {
-  project_id = vercel_project.instance_vehicle-registration-office.id
-  ref        = "main"
-  project_settings = {
-    root_directory : "apps/vehicle-registration-office"
-  }
-  production = true
 }
 
 resource "vercel_project_environment_variable" "web-id_instance_vehicle-registration-office" {

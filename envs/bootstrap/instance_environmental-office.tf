@@ -1,20 +1,11 @@
+data "vercel_project_directory" "instance_environmental-office" {
+  path = "../.."
+}
+
 resource "vercel_project" "instance_environmental-office" {
   name           = var.instance_environmental-office
   framework      = "nextjs"
   root_directory = "apps/environmental-office"
-  git_repository = {
-    type = "github"
-    repo = "guddii/showcase-solid-egovernance"
-  }
-}
-
-resource "vercel_deployment" "instance_environmental-office" {
-  project_id = vercel_project.instance_environmental-office.id
-  ref        = "main"
-  project_settings = {
-    root_directory : "apps/environmental-office"
-  }
-  production = true
 }
 
 resource "vercel_project_environment_variable" "web-id_instance_environmental-office" {

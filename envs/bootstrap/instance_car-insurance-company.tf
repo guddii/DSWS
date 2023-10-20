@@ -1,20 +1,11 @@
+data "vercel_project_directory" "instance_car-insurance-company" {
+  path = "../.."
+}
+
 resource "vercel_project" "instance_car-insurance-company" {
   name           = var.instance_car-insurance-company
   framework      = "nextjs"
   root_directory = "apps/car-insurance-company"
-  git_repository = {
-    type = "github"
-    repo = "guddii/showcase-solid-egovernance"
-  }
-}
-
-resource "vercel_deployment" "instance_car-insurance-company" {
-  project_id = vercel_project.instance_car-insurance-company.id
-  ref        = "main"
-  project_settings = {
-    root_directory : "apps/car-insurance-company"
-  }
-  production = true
 }
 
 resource "vercel_project_environment_variable" "web-id_instance_car-insurance-company" {

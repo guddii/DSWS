@@ -1,20 +1,11 @@
+data "vercel_project_directory" "instance_customs" {
+  path = "../.."
+}
+
 resource "vercel_project" "instance_customs" {
   name           = var.instance_customs
   framework      = "nextjs"
   root_directory = "apps/customs"
-  git_repository = {
-    type = "github"
-    repo = "guddii/showcase-solid-egovernance"
-  }
-}
-
-resource "vercel_deployment" "instance_customs" {
-  project_id = vercel_project.instance_customs.id
-  ref        = "main"
-  project_settings = {
-    root_directory : "apps/customs"
-  }
-  production = true
 }
 
 resource "vercel_project_environment_variable" "web-id_instance_customs" {

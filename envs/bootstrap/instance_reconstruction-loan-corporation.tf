@@ -1,20 +1,11 @@
+data "vercel_project_directory" "instance_reconstruction-loan-corporation" {
+  path = "../.."
+}
+
 resource "vercel_project" "instance_reconstruction-loan-corporation" {
   name           = var.instance_reconstruction-loan-corporation
   framework      = "nextjs"
   root_directory = "apps/reconstruction-loan-corporation"
-  git_repository = {
-    type = "github"
-    repo = "guddii/showcase-solid-egovernance"
-  }
-}
-
-resource "vercel_deployment" "instance_reconstruction-loan-corporation" {
-  project_id = vercel_project.instance_reconstruction-loan-corporation.id
-  ref        = "main"
-  project_settings = {
-    root_directory : "apps/reconstruction-loan-corporation"
-  }
-  production = true
 }
 
 resource "vercel_project_environment_variable" "web-id_instance_reconstruction-loan-corporation" {

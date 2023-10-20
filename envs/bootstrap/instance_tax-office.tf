@@ -1,20 +1,11 @@
+data "vercel_project_directory" "instance_tax-office" {
+  path = "../.."
+}
+
 resource "vercel_project" "instance_tax-office" {
   name           = var.instance_tax-office
   framework      = "nextjs"
   root_directory = "apps/tax-office"
-  git_repository = {
-    type = "github"
-    repo = "guddii/showcase-solid-egovernance"
-  }
-}
-
-resource "vercel_deployment" "instance_tax-office" {
-  project_id = vercel_project.instance_tax-office.id
-  ref        = "main"
-  project_settings = {
-    root_directory : "apps/tax-office"
-  }
-  production = true
 }
 
 resource "vercel_project_environment_variable" "web-id_tax-office" {
