@@ -1,7 +1,7 @@
 = Solid Showcase E-Governance
 
 This is a research project demonstrating the utilisation of Solid architecture for data-sovereign web services.
-The research paper is available at: https://guddii.github.io/showcase-solid-egovernance/paper/README.html.
+The research paper is available at: https://guddii.github.io/DSWS/paper/README.html.
 
 == Usage
 
