@@ -11,12 +11,12 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@ant-design/icons": "5.1.2",
-    "@inrupt/solid-ui-react": "2.9.0",
+    "@inrupt/solid-ui-react": "3.0.0",
     "antd": "5.8.2",
     "deepmerge": "4.3.1",
     "encoding": "0.1.13",
     "i18n": "workspace:*",
-    "next": "13.4.10",
+    "next": "14.1.4",
     "react-dom": "18.2.0",
     "solid": "workspace:*",
     "swr": "2.2.0"

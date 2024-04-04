@@ -18,8 +18,8 @@ importers:
         specifier: workspace:*
         version: link:sdk/eslint-config-custom
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       prettier:
         specifier: 2.8.8
         version: 2.8.8
@@ -33,14 +33,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -48,8 +48,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -100,8 +100,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -143,14 +143,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
         specifier: 2.5.0
         version: 2.5.0
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -158,8 +158,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -204,14 +204,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -219,8 +219,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -265,14 +265,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -280,8 +280,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -326,14 +326,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -341,8 +341,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -387,14 +387,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -402,8 +402,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -448,14 +448,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -463,8 +463,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -509,14 +509,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -524,8 +524,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -570,14 +570,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -585,8 +585,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -631,14 +631,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -646,8 +646,8 @@ importers:
         specifier: workspace:*
         version: link:../../sdk/i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -692,14 +692,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -710,8 +710,8 @@ importers:
         specifier: 5.0.1
         version: 5.0.1
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -756,14 +756,14 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -774,8 +774,8 @@ importers:
         specifier: 5.0.1
         version: 5.0.1
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -844,8 +844,8 @@ importers:
         specifier: 0.6.3
         version: 0.6.3
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -893,20 +893,20 @@ importers:
         specifier: 0.3.5
         version: 0.3.5
       '@inrupt/solid-client':
-        specifier: 1.30.0
-        version: 1.30.0(encoding@0.1.13)
+        specifier: 2.0.1
+        version: 2.0.1(encoding@0.1.13)
       '@inrupt/solid-client-access-grants':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 3.0.4
+        version: 3.0.4
       '@inrupt/solid-client-authn-browser':
-        specifier: 1.17.1
-        version: 1.17.1(encoding@0.1.13)
+        specifier: 2.1.0
+        version: 2.1.0
       '@inrupt/solid-client-authn-node':
-        specifier: 1.17.1
-        version: 1.17.1
+        specifier: 2.1.0
+        version: 2.1.0
       '@inrupt/solid-client-notifications':
-        specifier: 1.3.0
-        version: 1.3.0(@inrupt/solid-client@1.30.0)
+        specifier: 2.0.0
+        version: 2.0.0
       '@inrupt/vocab-common-rdf':
         specifier: 1.0.5
         version: 1.0.5
@@ -965,8 +965,8 @@ importers:
         specifier: 5.1.2
         version: 5.1.2(react-dom@18.2.0)(react@18.2.0)
       '@inrupt/solid-ui-react':
-        specifier: 2.9.0
-        version: 2.9.0(encoding@0.1.13)(react@18.2.0)
+        specifier: 3.0.0
+        version: 3.0.0(encoding@0.1.13)(react@18.2.0)
       antd:
         specifier: 5.8.2
         version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -980,8 +980,8 @@ importers:
         specifier: workspace:*
         version: link:../i18n
       next:
-        specifier: 13.4.10
-        version: 13.4.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
@@ -1215,16 +1215,13 @@ packages:
       '@types/rdf-js': 3.0.0
     dev: false
 
-  /@inrupt/oidc-client-ext@1.17.1(encoding@0.1.13):
-    resolution: {integrity: sha512-uh8ecf4xALoel6Yxlg8srsGO44JhQLjE++mdM13Fniy6TwCU+odHSnMny9afpO/HBZ6abQ02mCFiLtrufczzaA==}
+  /@inrupt/oidc-client-ext@2.1.0:
+    resolution: {integrity: sha512-wejwulfJNOlJypp9R5/fjapqGZ42lF9+6drYHjuAEcO6uY+ozgeUxUmdsgQ8Gh6VjhuiUGv0UkgEQRDoBRh0Tg==}
     dependencies:
       '@inrupt/oidc-client': 1.11.6
-      '@inrupt/solid-client-authn-core': 1.17.1(encoding@0.1.13)
-      '@inrupt/universal-fetch': 1.0.3(encoding@0.1.13)
-      jose: 4.14.4
-      uuid: 9.0.0
-    transitivePeerDependencies:
-      - encoding
+      '@inrupt/solid-client-authn-core': 2.1.0
+      jose: 5.2.3
+      uuid: 9.0.1
     dev: false
 
   /@inrupt/oidc-client@1.11.6:
@@ -1241,72 +1238,75 @@ packages:
     resolution: {integrity: sha512-DZMjNDRdt/KAJ98OusU/T8DQMijsRDM3nyi5NC/jzVL4A9WP6oaEusdHu+0DBtwLPVRSMUF1BRZLSPPK9wjjUA==}
     engines: {node: ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/solid-client': 1.30.0(encoding@0.1.13)
+      '@inrupt/solid-client': 1.30.0
       '@inrupt/solid-client-vc': 0.7.1
-      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
+      '@inrupt/universal-fetch': 1.0.1
       '@types/rdfjs__dataset': 1.0.5
       auth-header: 1.0.0
       base64url: 3.0.1
       rdf-namespaces: 1.11.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@inrupt/solid-client-authn-browser@1.17.1(encoding@0.1.13):
-    resolution: {integrity: sha512-ApTK9H+v6YOp099opLdyLq9qM5j8adpYkK4KMOQKsK9ndDLVNiduq4EgPq4/jtwPGe0hG0YWuFuB8mJpLzJftA==}
+  /@inrupt/solid-client-access-grants@3.0.4:
+    resolution: {integrity: sha512-UuTjOdmRBuVQE2SIQrWTXIR/bhtjuGq5mYH9a+bj/nTAPpsDEMEA/ahTdL5y/xArdUlNRMO7ZFZ0OT9fWCK/Mg==}
+    engines: {node: ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/oidc-client-ext': 1.17.1(encoding@0.1.13)
-      '@inrupt/solid-client-authn-core': 1.17.1(encoding@0.1.13)
-      '@inrupt/universal-fetch': 1.0.3(encoding@0.1.13)
+      '@inrupt/solid-client': 2.0.1(encoding@0.1.13)
+      '@inrupt/solid-client-vc': 1.0.2
+      '@types/rdfjs__dataset': 1.0.5
+      auth-header: 1.0.0
+      base64url: 3.0.1
+      n3: 1.17.3
+      rdf-namespaces: 1.11.0
+    optionalDependencies:
+      fsevents: 2.3.3
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@inrupt/solid-client-authn-browser@2.1.0:
+    resolution: {integrity: sha512-52wHrXVxs6RWYAjVGLT+gGJTVdD2y2Ahv1ZuSXxabPsOIiam/Sk2NHzmk+A7wlsQyZ5GYcsuzG4UBId1eOwqKA==}
+    dependencies:
+      '@inrupt/oidc-client-ext': 2.1.0
+      '@inrupt/solid-client-authn-core': 2.1.0
       events: 3.3.0
-      jose: 4.14.4
-      uuid: 9.0.0
-    transitivePeerDependencies:
-      - encoding
+      jose: 5.2.3
+      uuid: 9.0.1
     dev: false
 
-  /@inrupt/solid-client-authn-core@1.17.1(encoding@0.1.13):
-    resolution: {integrity: sha512-UKTtZH0lISgWaiUYRr0zRkvFHIjYzVaWEC0IJoLUFIEfJdYogMXmPKoHyJEw7MdJ6qVYMLdPo9k2OSLfdUfYjA==}
-    engines: {node: ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
+  /@inrupt/solid-client-authn-core@2.1.0:
+    resolution: {integrity: sha512-wuRzaNh+fotI8yYohKGSUmkf2hBSPjMHoCeQagJz0BzFTFc7C913RrMxQTf2GnBDp9npPxAVyrhZWAKm6BZTkg==}
+    engines: {node: ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
       events: 3.3.0
-      jose: 4.14.4
-      uuid: 9.0.0
-    transitivePeerDependencies:
-      - encoding
+      jose: 5.2.3
+      uuid: 9.0.1
     dev: false
 
-  /@inrupt/solid-client-authn-node@1.17.1:
-    resolution: {integrity: sha512-4ISQPIz6mIcTLk2sVUEc6q7iD69SuXP50P1A8y8qAAzh/UvFyl2MDwCCXS7+WTpaYKAo2uc54WyYuJhDnu/Ujw==}
-    engines: {node: ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
+  /@inrupt/solid-client-authn-node@2.1.0:
+    resolution: {integrity: sha512-LJ7/t4sy5Et7zAw5bLduucZIxT5Adg3XDrZKIGPmUvDQ/nPDphrWSTvHnyS0e3Coo1xUhWiYDA6D9I8qXev6Ug==}
+    engines: {node: ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/solid-client-authn-core': 1.17.1(encoding@0.1.13)
-      '@inrupt/universal-fetch': 1.0.3(encoding@0.1.13)
-      jose: 4.14.4
-      openid-client: 5.4.2
-      uuid: 9.0.0
-    transitivePeerDependencies:
-      - encoding
+      '@inrupt/solid-client-authn-core': 2.1.0
+      jose: 5.2.3
+      openid-client: 5.6.5
+      uuid: 9.0.1
     dev: false
 
-  /@inrupt/solid-client-notifications@1.3.0(@inrupt/solid-client@1.30.0):
-    resolution: {integrity: sha512-fM2q50Rgs+V15y8gkUnQcUDgg6lrPmrnxsm8ZJNF0MSiTlm9opSV4PONpSEiZIoljN/f6v4Dk/aOl1CedGPN+Q==}
-    engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
-    peerDependencies:
-      '@inrupt/solid-client': ^1.25.2
+  /@inrupt/solid-client-notifications@2.0.0:
+    resolution: {integrity: sha512-mNaLIMvdlut8yzMbWujinSEfr1l71Y/yIcK2hibUiHFQKYipHZC8q2LOUVHsCbElqFUH1Kg2RV5cx+Ks8bLs1Q==}
+    engines: {node: ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/solid-client': 1.30.0(encoding@0.1.13)
-      '@inrupt/universal-fetch': 1.0.1(encoding@0.1.13)
-      '@types/events': 3.0.0
-      '@types/ws': 8.5.4
+      '@inrupt/solid-client': 2.0.1(encoding@0.1.13)
       events: 3.3.0
       isomorphic-ws: 5.0.0(ws@8.13.0)
       ws: 8.13.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -1317,51 +1317,84 @@ packages:
     resolution: {integrity: sha512-zCB7qevs0AwxS2Z7EapnwnSdvMuIveOZTJRfPD/jZuOBX9r8peTLDel+OnpRv4/DtyNEwdYGR2BqRiF5t51tbg==}
     engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/solid-client': 1.30.0(encoding@0.1.13)
-      '@inrupt/universal-fetch': 1.0.3(encoding@0.1.13)
+      '@inrupt/solid-client': 1.30.0
+      '@inrupt/universal-fetch': 1.0.3
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@inrupt/solid-client@1.30.0(encoding@0.1.13):
+  /@inrupt/solid-client-vc@1.0.2:
+    resolution: {integrity: sha512-yhrT+27GYfpEp+Bvzs/14lk86YtXN1eoAQA4krRI0PvcbYk3CLNldjwuh49+cK8GUYdjYCtg1l1tCj3WKqf9aA==}
+    engines: {node: ^18.0.0 || ^20.0.0}
+    dependencies:
+      '@inrupt/solid-client': 2.0.1(encoding@0.1.13)
+      event-emitter-promisify: 1.1.0
+      jsonld-context-parser: 2.4.0(encoding@0.1.13)
+      jsonld-streaming-parser: 3.4.0(encoding@0.1.13)
+      md5: 2.3.0
+      n3: 1.17.3
+      rdf-namespaces: 1.12.0
+    optionalDependencies:
+      fsevents: 2.3.3
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@inrupt/solid-client@1.30.0:
     resolution: {integrity: sha512-iRyLqM9k5W0IiRHZz+dGsa+94pu8cGqjRB5B8s+YhLlNQH/fY6Xmu21f1zl1uKWebc4PBlAJPcBcR46RVXlCJQ==}
     engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
-      '@inrupt/universal-fetch': 1.0.3(encoding@0.1.13)
+      '@inrupt/universal-fetch': 1.0.3
       '@rdfjs/dataset': 1.1.1
       '@types/rdfjs__dataset': 1.0.5
       buffer: 6.0.3
       http-link-header: 1.1.1
-      jsonld-context-parser: 2.3.0(encoding@0.1.13)
-      jsonld-streaming-parser: 3.2.0(encoding@0.1.13)
+      jsonld-context-parser: 2.3.0
+      jsonld-streaming-parser: 3.2.0
       n3: 1.16.4
       uuid: 9.0.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@inrupt/solid-ui-react@2.9.0(encoding@0.1.13)(react@18.2.0):
-    resolution: {integrity: sha512-5b5Y9u+H3v3jjjg25Gcxb08gWgdreXSQ8FznKdXGXfAt4INl2GDkqabdMpXNTcFnz4YhN2KXL6c/QKiASJcfhg==}
-    engines: {node: ^16.0.0 || ^18.0.0 || ^20.0.0}
+  /@inrupt/solid-client@2.0.1(encoding@0.1.13):
+    resolution: {integrity: sha512-z6cHHwxYOgpF2Tpro5JZRRsQ95PNEjHW5sfG3HYzFApWrFfQNWtYcHWXazOZLgkbIGEFTw2wZ55oPrD0TIZMpQ==}
+    engines: {node: ^18.0.0 || ^20.0.0}
+    dependencies:
+      '@rdfjs/dataset': 1.1.1
+      buffer: 6.0.3
+      http-link-header: 1.1.1
+      jsonld-context-parser: 2.4.0(encoding@0.1.13)
+      jsonld-streaming-parser: 3.4.0(encoding@0.1.13)
+      n3: 1.17.3
+      uuid: 9.0.1
+    optionalDependencies:
+      fsevents: 2.3.3
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@inrupt/solid-ui-react@3.0.0(encoding@0.1.13)(react@18.2.0):
+    resolution: {integrity: sha512-D9Id8cs84nml686Q7sjSeKDp87oVKmWtEa6p9MB0ZmCVme7cxTiijqnvP+bRl1Tes0MbNV97AAYYZbR63KOpQg==}
+    engines: {node: ^18.0.0 || ^20.0.0}
     peerDependencies:
       react: '>16.13.0 || ^17.0.0 || ^18.0.0 || ^18.0.0 || ^20.0.0'
     dependencies:
-      '@inrupt/solid-client': 1.30.0(encoding@0.1.13)
-      '@inrupt/solid-client-authn-browser': 1.17.1(encoding@0.1.13)
-      core-js: 3.30.2
+      '@inrupt/solid-client': 2.0.1(encoding@0.1.13)
+      '@inrupt/solid-client-authn-browser': 2.1.0
       react: 18.2.0
       react-table: 7.8.0(react@18.2.0)
       stream: 0.0.2
-      swr: 1.3.0(react@18.2.0)
+      swr: 2.2.5(react@18.2.0)
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@inrupt/universal-fetch@1.0.1(encoding@0.1.13):
+  /@inrupt/universal-fetch@1.0.1:
     resolution: {integrity: sha512-oqbG7jS1fa6hVkjSir+u5Ab3eSbyxFyOjsgjDICL27mAd5z8oImTSETnY2hYbkRaJQYKMBOXhtm7L5/+EbeVJg==}
     dependencies:
       node-fetch: 2.6.11(encoding@0.1.13)
@@ -1370,7 +1403,7 @@ packages:
       - encoding
     dev: false
 
-  /@inrupt/universal-fetch@1.0.3(encoding@0.1.13):
+  /@inrupt/universal-fetch@1.0.3:
     resolution: {integrity: sha512-AP/nMOuuKvR2YoQkdS77ntuuq5ZYDGStI8Uirp1MCsyPSoBLyNnRjMLjlGqIlaC+5Xp7TYZJ9z/Kl2uUEpXUFw==}
     engines: {node: ^14.17.0 || ^16.0.0 || ^18.0.0 || ^20.0.0}
     dependencies:
@@ -1390,6 +1423,10 @@ packages:
 
   /@next/env@13.4.10:
     resolution: {integrity: sha512-3G1yD/XKTSLdihyDSa8JEsaWOELY+OWe08o0LUYzfuHp1zHDA8SObQlzKt+v+wrkkPcnPweoLH1ImZeUa0A1NQ==}
+    dev: false
+
+  /@next/env@14.1.4:
+    resolution: {integrity: sha512-e7X7bbn3Z6DWnDi75UWn+REgAbLEqxI8Tq2pkFOFAMpWAWApz/YCUhtWMWn410h8Q2fYiYL7Yg5OlxMOCfFjJQ==}
 
   /@next/eslint-plugin-next@13.3.4:
     resolution: {integrity: sha512-mvS+HafOPy31oJbAi920WJXMdjbyb4v5FAMr9PeGZfRIdEcsLkA3mU/ZvmwzovJgP3nAWw2e2yM8iIFW8VpvIA==}
@@ -1403,10 +1440,28 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
+    dev: false
+    optional: true
+
+  /@next/swc-darwin-arm64@14.1.4:
+    resolution: {integrity: sha512-ubmUkbmW65nIAOmoxT1IROZdmmJMmdYvXIe8211send9ZYJu+SqxSnJM4TrPj9wmL6g9Atvj0S/2cFmMSS99jg==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
     optional: true
 
   /@next/swc-darwin-x64@13.4.10:
     resolution: {integrity: sha512-ngXhUBbcZIWZWqNbQSNxQrB9T1V+wgfCzAor2olYuo/YpaL6mUYNUEgeBMhr8qwV0ARSgKaOp35lRvB7EmCRBg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@next/swc-darwin-x64@14.1.4:
+    resolution: {integrity: sha512-b0Xo1ELj3u7IkZWAKcJPJEhBop117U78l70nfoQGo4xUSvv0PJSTaV4U9xQBLvZlnjsYkc8RwQN1HoH/oQmLlQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -1419,10 +1474,28 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: false
+    optional: true
+
+  /@next/swc-linux-arm64-gnu@14.1.4:
+    resolution: {integrity: sha512-457G0hcLrdYA/u1O2XkRMsDKId5VKe3uKPvrKVOyuARa6nXrdhJOOYU9hkKKyQTMru1B8qEP78IAhf/1XnVqKA==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
     optional: true
 
   /@next/swc-linux-arm64-musl@13.4.10:
     resolution: {integrity: sha512-F+VlcWijX5qteoYIOxNiBbNE8ruaWuRlcYyIRK10CugqI/BIeCDzEDyrHIHY8AWwbkTwe6GRHabMdE688Rqq4Q==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@next/swc-linux-arm64-musl@14.1.4:
+    resolution: {integrity: sha512-l/kMG+z6MB+fKA9KdtyprkTQ1ihlJcBh66cf0HvqGP+rXBbOXX0dpJatjZbHeunvEHoBBS69GYQG5ry78JMy3g==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -1435,10 +1508,28 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: false
+    optional: true
+
+  /@next/swc-linux-x64-gnu@14.1.4:
+    resolution: {integrity: sha512-BapIFZ3ZRnvQ1uWbmqEGJuPT9cgLwvKtxhK/L2t4QYO7l+/DxXuIGjvp1x8rvfa/x1FFSsipERZK70pewbtJtw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
     optional: true
 
   /@next/swc-linux-x64-musl@13.4.10:
     resolution: {integrity: sha512-zFkzqc737xr6qoBgDa3AwC7jPQzGLjDlkNmt/ljvQJ/Veri5ECdHjZCUuiTUfVjshNIIpki6FuP0RaQYK9iCRg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@next/swc-linux-x64-musl@14.1.4:
+    resolution: {integrity: sha512-mqVxTwk4XuBl49qn2A5UmzFImoL1iLm0KQQwtdRJRKl21ylQwwGCxJtIYo2rbfkZHoSKlh/YgztY0qH3wG1xIg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -1451,6 +1542,15 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
+    dev: false
+    optional: true
+
+  /@next/swc-win32-arm64-msvc@14.1.4:
+    resolution: {integrity: sha512-xzxF4ErcumXjO2Pvg/wVGrtr9QQJLk3IyQX1ddAC/fi6/5jZCZ9xpuL9Tzc4KPWMFq8GGWFVDMshZOdHGdkvag==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
     optional: true
 
   /@next/swc-win32-ia32-msvc@13.4.10:
@@ -1459,10 +1559,28 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
+    dev: false
+    optional: true
+
+  /@next/swc-win32-ia32-msvc@14.1.4:
+    resolution: {integrity: sha512-WZiz8OdbkpRw6/IU/lredZWKKZopUMhcI2F+XiMAcPja0uZYdMTZQRoQ0WZcvinn9xZAidimE7tN9W5v9Yyfyw==}
+    engines: {node: '>= 10'}
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
     optional: true
 
   /@next/swc-win32-x64-msvc@13.4.10:
     resolution: {integrity: sha512-g2+tU63yTWmcVQKDGY0MV1PjjqgZtwM4rB1oVVi/v0brdZAcrcTV+04agKzWtvWroyFz6IqtT0MoZJA7PNyLVw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@next/swc-win32-x64-msvc@14.1.4:
+    resolution: {integrity: sha512-4Rto21sPfw555sZ/XNLqfxDUNeLhNYGO2dlPqsnuCg8N8a2a9u1ltqBOPQ4vj1Gf7eJC0W2hHG2eYUHuiXgY2w==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -1634,10 +1752,12 @@ packages:
     resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
       tslib: 2.5.2
-
-  /@types/events@3.0.0:
-    resolution: {integrity: sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==}
     dev: false
+
+  /@swc/helpers@0.5.2:
+    resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
+    dependencies:
+      tslib: 2.5.2
 
   /@types/http-link-header@1.0.3:
     resolution: {integrity: sha512-y8HkoD/vyid+5MrJ3aas0FvU3/BVBGcyG9kgxL0Zn4JwstA8CglFPnrR0RuzOjRCXwqzL5uxWC2IO7Ub0rMU2A==}
@@ -1740,12 +1860,6 @@ packages:
   /@types/scheduler@0.16.3:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
     dev: true
-
-  /@types/ws@8.5.4:
-    resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
-    dependencies:
-      '@types/node': 17.0.12
-    dev: false
 
   /@typescript-eslint/parser@5.59.8(eslint@8.39.0)(typescript@5.0.4):
     resolution: {integrity: sha512-AnR19RjJcpjoeGojmwZtCwBX/RidqDZtzcbG3xHrmz0aHHoOcbWnpDllenRDmDvsV0RQ6+tbb09/kyc+UT9Orw==}
@@ -2078,6 +2192,10 @@ packages:
 
   /caniuse-lite@1.0.30001492:
     resolution: {integrity: sha512-2efF8SAZwgAX1FJr87KWhvuJxnGJKOnctQa8xLOskAXNXq8oiuqgl6u1kk3fFpsp3GgvzlRjiK1sl63hNtFADw==}
+    dev: false
+
+  /caniuse-lite@1.0.30001605:
+    resolution: {integrity: sha512-nXwGlFWo34uliI9z3n6Qc0wZaf7zaZWA1CPZ169La5mV3I/gem7bst0vr5XQH5TJXZIMfDeZyOrZnSlVzKxxHQ==}
 
   /canonicalize@1.0.8:
     resolution: {integrity: sha512-0CNTVCLZggSh7bc5VkX5WWPWO+cyZbNd07IHIsSXLia/eAq+r836hgk+8BKoEh7949Mda87VUOitx5OddVj64A==}
@@ -2089,6 +2207,10 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+
+  /charenc@0.0.2:
+    resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
+    dev: false
 
   /classnames@2.3.2:
     resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
@@ -2139,6 +2261,10 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  /crypt@0.0.2:
+    resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
+    dev: false
 
   /crypto-js@4.1.1:
     resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
@@ -2680,6 +2806,10 @@ packages:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
 
+  /event-emitter-promisify@1.1.0:
+    resolution: {integrity: sha512-uyHG8gjwYGDlKoo0Txtx/u1HI1ubj0FK0rVqI4O0s1EymQm4iAEMbrS5B+XFlSaS8SZ3xzoKX+YHRZk8Nk/bXg==}
+    dev: false
+
   /event-target-shim@5.0.1:
     resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
     engines: {node: '>=6'}
@@ -2784,8 +2914,8 @@ packages:
   /fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
-  /fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+  /fsevents@2.3.3:
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -2853,6 +2983,7 @@ packages:
 
   /glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
+    dev: false
 
   /glob@7.1.7:
     resolution: {integrity: sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==}
@@ -3050,6 +3181,10 @@ packages:
       has-tostringtag: 1.0.0
     dev: false
 
+  /is-buffer@1.1.6:
+    resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
+    dev: false
+
   /is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
@@ -3215,8 +3350,12 @@ packages:
       ws: 8.13.0
     dev: false
 
-  /jose@4.14.4:
-    resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
+  /jose@4.15.5:
+    resolution: {integrity: sha512-jc7BFxgKPKi94uOvEmzlSWFFe2+vASyXaKUpdQKatWAESU2MWjDfFf0fdfc83CDKcA5QecabZeNLyfhe3yKNkg==}
+    dev: false
+
+  /jose@5.2.3:
+    resolution: {integrity: sha512-KUXdbctm1uHVL8BYhnyHkgp3zDX5KW8ZhAKVFEfUbU2P8Alpzjb+48hHvjOdQIyPshoblhzsuqOwEEAbtHVirA==}
     dev: false
 
   /js-sdsl@4.4.0:
@@ -3250,7 +3389,7 @@ packages:
       minimist: 1.2.8
     dev: false
 
-  /jsonld-context-parser@2.3.0(encoding@0.1.13):
+  /jsonld-context-parser@2.3.0:
     resolution: {integrity: sha512-c6w2GE57O26eWFjcPX6k6G86ootsIfpuVwhZKjCll0bVoDGBxr1P4OuU+yvgfnh1GJhAGErolfC7W1BklLjWMg==}
     hasBin: true
     dependencies:
@@ -3264,7 +3403,20 @@ packages:
       - encoding
     dev: false
 
-  /jsonld-streaming-parser@3.2.0(encoding@0.1.13):
+  /jsonld-context-parser@2.4.0(encoding@0.1.13):
+    resolution: {integrity: sha512-ZYOfvh525SdPd9ReYY58dxB3E2RUEU4DJ6ZibO8AitcowPeBH4L5rCAitE2om5G1P+HMEgYEYEr4EZKbVN4tpA==}
+    hasBin: true
+    dependencies:
+      '@types/http-link-header': 1.0.3
+      '@types/node': 18.16.16
+      cross-fetch: 3.1.6(encoding@0.1.13)
+      http-link-header: 1.1.1
+      relative-to-absolute-iri: 1.0.7
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /jsonld-streaming-parser@3.2.0:
     resolution: {integrity: sha512-lJR1SCT364PGpFrOQaY+ZQ7qDWqqiT3IMK+AvZ83fo0LvltFn8/UyXvIFc3RO7YcaEjLahAF0otCi8vOq21NtQ==}
     dependencies:
       '@bergos/jsonparse': 1.4.1
@@ -3274,7 +3426,24 @@ packages:
       buffer: 6.0.3
       canonicalize: 1.0.8
       http-link-header: 1.1.1
-      jsonld-context-parser: 2.3.0(encoding@0.1.13)
+      jsonld-context-parser: 2.3.0
+      rdf-data-factory: 1.1.1
+      readable-stream: 4.4.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /jsonld-streaming-parser@3.4.0(encoding@0.1.13):
+    resolution: {integrity: sha512-897CloyQgQidfkB04dLM5XaAXVX/cN9A2hvgHJo4y4jRhIpvg3KLMBBfcrswepV2N3T8c/Rp2JeFdWfVsbVZ7g==}
+    dependencies:
+      '@bergos/jsonparse': 1.4.1
+      '@rdfjs/types': 1.1.0
+      '@types/http-link-header': 1.0.3
+      '@types/readable-stream': 2.3.15
+      buffer: 6.0.3
+      canonicalize: 1.0.8
+      http-link-header: 1.1.1
+      jsonld-context-parser: 2.4.0(encoding@0.1.13)
       rdf-data-factory: 1.1.1
       readable-stream: 4.4.0
     transitivePeerDependencies:
@@ -3332,6 +3501,14 @@ packages:
       yallist: 4.0.0
     dev: false
 
+  /md5@2.3.0:
+    resolution: {integrity: sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==}
+    dependencies:
+      charenc: 0.0.2
+      crypt: 0.0.2
+      is-buffer: 1.1.6
+    dev: false
+
   /merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
     dev: false
@@ -3376,6 +3553,14 @@ packages:
 
   /n3@1.16.4:
     resolution: {integrity: sha512-jtC53efM5/q4BYC3qBnegn1MJDKXHH9PEd6gVDNpIicbgXS6gkANz4DdI0jt4aLvza1xSjCcni33riXWvfoEdw==}
+    engines: {node: '>=12.0'}
+    dependencies:
+      queue-microtask: 1.2.3
+      readable-stream: 4.4.0
+    dev: false
+
+  /n3@1.17.3:
+    resolution: {integrity: sha512-ZHc24eZi2GIJcJQVxtL6NT3g+mTHRNeTVfXWELzeUOirqLrh2AAyg0nfYZ/kryJWKFSCgO37DGB6Ok3qmGgEcA==}
     engines: {node: '>=12.0'}
     dependencies:
       queue-microtask: 1.2.3
@@ -3439,6 +3624,45 @@ packages:
       '@next/swc-win32-arm64-msvc': 13.4.10
       '@next/swc-win32-ia32-msvc': 13.4.10
       '@next/swc-win32-x64-msvc': 13.4.10
+    transitivePeerDependencies:
+      - '@babel/core'
+      - babel-plugin-macros
+    dev: false
+
+  /next@14.1.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-1WTaXeSrUwlz/XcnhGTY7+8eiaFvdet5z9u3V2jb+Ek1vFo0VhHKSAIJvDWfQpttWjnyw14kBeq28TPq7bTeEQ==}
+    engines: {node: '>=18.17.0'}
+    hasBin: true
+    peerDependencies:
+      '@opentelemetry/api': ^1.1.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      sass: ^1.3.0
+    peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
+      sass:
+        optional: true
+    dependencies:
+      '@next/env': 14.1.4
+      '@swc/helpers': 0.5.2
+      busboy: 1.6.0
+      caniuse-lite: 1.0.30001605
+      graceful-fs: 4.2.11
+      postcss: 8.4.31
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      styled-jsx: 5.1.1(react@18.2.0)
+    optionalDependencies:
+      '@next/swc-darwin-arm64': 14.1.4
+      '@next/swc-darwin-x64': 14.1.4
+      '@next/swc-linux-arm64-gnu': 14.1.4
+      '@next/swc-linux-arm64-musl': 14.1.4
+      '@next/swc-linux-x64-gnu': 14.1.4
+      '@next/swc-linux-x64-musl': 14.1.4
+      '@next/swc-win32-arm64-msvc': 14.1.4
+      '@next/swc-win32-ia32-msvc': 14.1.4
+      '@next/swc-win32-x64-msvc': 14.1.4
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
@@ -3575,10 +3799,10 @@ packages:
       is-wsl: 2.2.0
     dev: false
 
-  /openid-client@5.4.2:
-    resolution: {integrity: sha512-lIhsdPvJ2RneBm3nGBBhQchpe3Uka//xf7WPHTIglery8gnckvW7Bd9IaQzekzXJvWthCMyi/xVEyGW0RFPytw==}
+  /openid-client@5.6.5:
+    resolution: {integrity: sha512-5P4qO9nGJzB5PI0LFlhj4Dzg3m4odt0qsJTfyEtZyOlkgpILwEioOhVVJOrS1iVH494S4Ee5OCjjg6Bf5WOj3w==}
     dependencies:
-      jose: 4.14.4
+      jose: 4.15.5
       lru-cache: 6.0.0
       object-hash: 2.2.0
       oidc-token-hash: 5.0.3
@@ -3649,6 +3873,15 @@ packages:
 
   /postcss@8.4.14:
     resolution: {integrity: sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      nanoid: 3.3.6
+      picocolors: 1.0.0
+      source-map-js: 1.0.2
+    dev: false
+
+  /postcss@8.4.31:
+    resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.6
@@ -4238,6 +4471,10 @@ packages:
     resolution: {integrity: sha512-zSUyICtC5utLjY0FVegUdagsbirnCNmqkA9/cjErIPhGKbGnYrrNNzoJjCTAehTEC3pkXeJwoeywKb6QKHaXcQ==}
     dev: false
 
+  /rdf-namespaces@1.12.0:
+    resolution: {integrity: sha512-Fk48ltssXTmyXeoLqC0y85CEAhhWH+wvu7bkr9WxsKUyFDcKwWSHOK7CvRq3XRampy1qhSrOsIQ8U1gQDCh5MA==}
+    dev: false
+
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
@@ -4549,19 +4786,21 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /swr@1.3.0(react@18.2.0):
-    resolution: {integrity: sha512-dkghQrOl2ORX9HYrMDtPa7LTVHJjCTeZoB1dqTbnnEDlSvN8JEKpYIYurDfvbQFUUS8Cg8PceFVZNkW0KNNYPw==}
-    peerDependencies:
-      react: ^16.11.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: false
-
   /swr@2.2.0(react@18.2.0):
     resolution: {integrity: sha512-AjqHOv2lAhkuUdIiBu9xbuettzAzWXmCEcLONNKJRba87WAefz8Ca9d6ds/SzrPc235n1IxWYdhJ2zF3MNUaoQ==}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
     dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /swr@2.2.5(react@18.2.0):
+    resolution: {integrity: sha512-QtxqyclFeAsxEUeZIYmsaQ0UjimSq1RZ9Un7I68/0ClKK/U3LoyQunwkQfJZr2fc22DfIXLNDc2wFyTEikCUpg==}
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      client-only: 0.0.1
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
@@ -4756,12 +4995,18 @@ packages:
     hasBin: true
     dev: false
 
+  /uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+    dev: false
+
   /watchpack@2.4.0:
     resolution: {integrity: sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==}
     engines: {node: '>=10.13.0'}
     dependencies:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
+    dev: false
 
   /webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -4842,3 +5087,4 @@ packages:
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+    dev: false
