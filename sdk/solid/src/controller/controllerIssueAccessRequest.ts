@@ -2,6 +2,8 @@ import { AccessModes } from "@inrupt/solid-client";
 import { NextResponse } from "next/server";
 import { Session } from "@inrupt/solid-client-authn-node";
 import { issueAccessRequest } from "@inrupt/solid-client-access-grants";
+import type { IssueAccessRequestParameters } from "@inrupt/solid-client-access-grants/src/gConsent/type/IssueAccessRequestParameters";
+import type { AccessBaseOptions } from "@inrupt/solid-client-access-grants/src/gConsent/type/AccessBaseOptions";
 
 interface IControllerIssueAccessRequest {
   request: Request;
@@ -27,16 +29,17 @@ export const controllerIssueAccessRequest = async ({
       throw new Error("resources are unset");
     }
 
-    const accessRequestVc = await issueAccessRequest(
-      {
-        access,
-        resources,
-        resourceOwner: webId,
-      },
-      {
-        fetch: session.fetch,
-      }
-    );
+    const params: IssueAccessRequestParameters = {
+      access,
+      resourceOwner: webId,
+      resources,
+    };
+    const options: AccessBaseOptions & { returnLegacyJsonld: false } = {
+      returnLegacyJsonld: false,
+      fetch: session.fetch,
+    };
+
+    const accessRequestVc = await issueAccessRequest(params, options);
 
     return NextResponse.json(accessRequestVc, { status: 200 });
   }

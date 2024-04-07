@@ -1,22 +1,128 @@
-= Solid Showcase E-Governance
+= Data-Sovereign Web Services Utilising the Solid Architecture (DSWS)
+// Refs:
+:url: https://guddii.github.io/DSWS
+:url-repo: https://github.com/guddii/DSWS
 
-This is a research project demonstrating the utilisation of Solid architecture for data-sovereign web services.
-The research paper is available at: https://guddii.github.io/DSWS/paper/README.html.
+image:https://img.shields.io/badge/Project-Solid-7C4DFF.svg[link="https://solidproject.org/"]
+image:{url-repo}/actions/workflows/github-pages.yml/badge.svg[link="{url-repo}/actions/workflows/github-pages.yml"]
+image:{url-repo}/actions/workflows/terraform-apply.yml/badge.svg[link="{url-repo}/actions/workflows/terraform-apply.yml"]
+
+This repository presents an innovative approach to developing data-sovereign Web services using the Solid protocol.
+This concept involves capturing personal data and data held in trust and making it available to other services.
+To demonstrate this idea, 12 services have been created to represent government agencies or other organizations that act as trustees for citizens.
+Personal data management can be accomplished through a citizen service that stores personal data and references to the data held in trust.
+
+The research was conducted as part of https://modulux.htwk-leipzig.de/modulux/modul/6290[C149.2] and aims to provide a simplified example of an e-governance scenario.
+For a detailed explanation of the approach, including its benefits and drawbacks, please visit: {url}/paper/README.html
+
+== Installation
+
+An .env file is required to provide the necessary environment variables at runtime.
+You can find the available environment variables in xref:.env.example[] or copy the entire file:
+
+[source,bash]
+----
+cp .env.example .env
+----
+
+You need to create https://start.inrupt.com/[Inrupt profiles] and register corresponding https://login.inrupt.com/registration.html[Inrupt application] for each service.
+Add the WebID, Client ID, and Client secret to the process as environment variables.
+
+This is a https://nodejs.org/en/download/package-manager[Node.js] based project, please use the package manager https://pnpm.io/installation[pnpm] to install this project.
+
+[source,bash]
+----
+pnpm install
+----
 
 == Usage
 
-The web services created in this project are accessible via the URLs listed below.
+If you want to run this project in development mode, enter the following command in your terminal:
 
-- https://showcase-solid-car-insurance-company.vercel.app/
-- https://showcase-solid-citizen.vercel.app/
-- https://showcase-solid-construction-office.vercel.app/
-- https://showcase-solid-customs.vercel.app/
-- https://showcase-solid-employment-agency.vercel.app/
-- https://showcase-solid-environmental-office.vercel.app/
-- https://showcase-solid-land-registry-office.vercel.app/
-- https://showcase-solid-parental-benefits-office.vercel.app/
-- https://showcase-solid-reconstruction-loan-corporation.vercel.app/
-- https://showcase-solid-registration-office.vercel.app/
-- https://showcase-solid-tax-office.vercel.app/
-- https://showcase-solid-trade-office.vercel.app/
-- https://showcase-solid-vehicle-registration-office.vercel.app/
+[source,bash]
+----
+pnpm run dev
+----
+
+If the servers have booted successfully, you can select one of the local servers listed in the table below to access the services.
+If you do not want to manually start the servers, you can use one of the available public examples.
+In both cases, it is recommended to begin with the 'citizen' service and then proceed to any other desired services.
+
+[cols="5,25,25,45"]
+|===
+|Symbol |Service Name |Local Server |Public Server
+
+|🐵
+|car-insurance-company
+|http://localhost:3000/
+|https://showcase-solid-car-isurance-company.vercel.app/
+
+
+|🐶
+|citizen
+|http://localhost:3010/
+|https://showcase-solid-citizen.vercel.app/
+
+|🦊
+|construction-office
+|http://localhost:3020/
+|https://showcase-solid-construction-office.vercel.app/
+
+|🐱
+|customs
+|http://localhost:3030/
+|https://showcase-solid-customs.vercel.app/
+
+|🦁
+|employment-office
+|http://localhost:3040/
+|https://showcase-solid-employment-agency.vercel.app/
+
+|🐯
+|environmental-office
+|http://localhost:3050/
+|https://showcase-solid-environmental-office.vercel.app/
+
+|🐮
+|land-registry-office
+|http://localhost:3060/
+|https://showcase-solid-land-registry-office.vercel.app/
+
+|🐷
+|parental-benefits-office
+|http://localhost:3070/
+|https://showcase-solid-parental-benefits-office.vercel.app/
+
+|🐭
+|reconstruction-loan-corporation
+|http://localhost:3080/
+|https://showcase-solid-reconstruction-loan-corporation.vercel.app/
+
+|🐹
+|registration-office
+|http://localhost:3090/
+|https://showcase-solid-registration-office.vercel.app/
+
+|🐰
+|tax-office
+|http://localhost:3100/
+|https://showcase-solid-tax-office.vercel.app/
+
+|🐻
+|trade-office
+|http://localhost:3110/
+|https://showcase-solid-trade-office.vercel.app/
+
+|🐨
+|vehicle-registration-office
+|http://localhost:3120/
+|https://showcase-solid-vehicle-registration-office.vercel.app
+|===
+
+== Authors
+
+https://github.com/guddii[@guddii], https://github.com/mjhfmn[@mjhfmn] and https://github.com/sergidomenechguzy[@sergidomenechguzy]
+
+== Licence
+
+link:LICENSE[MIT]
